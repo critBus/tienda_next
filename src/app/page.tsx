@@ -12,7 +12,6 @@ import CategoryNavigation from '@/components/home/CategoryNavigation';
 export default function Home() {
   return (
     <main>
-      <HeaderComponent />
       <TopBar />
       <CategoryNavigation />
       <RecommendedProducts />
