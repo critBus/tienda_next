@@ -1,0 +1,7 @@
+.truncate-text {
+    @apply overflow-hidden whitespace-nowrap;
+    text-overflow: ellipsis;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0%;
+    vertical-align: middle;
+  }

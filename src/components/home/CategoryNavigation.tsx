@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import ShowMeAllTheProducts from './ShowMeAllTheProducts';
-
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import ShowMeAllTheProducts from "./ShowMeAllTheProducts";
+import CategoryImageLink from "./CategoryImageLink";
+import "./CategoryNavigation.css";
 interface Category {
   id: string;
   name: string;
@@ -13,69 +14,73 @@ interface Category {
 }
 
 const all_categories: Category[] = [
-  { id: 'carnicos', name: 'Cárnicos', imageFile: 'carnicos.png', link: '/categorias/carnicos' },
   {
-    id: 'pescados',
-    name: 'Pescados y Mariscos',
-    imageFile: 'pescados y mariscos.png',
-    link: '/categorias/pescados',
+    id: "carnicos",
+    name: "Cárnicos",
+    imageFile: "carnicos.png",
+    link: "/categorias/carnicos",
   },
   {
-    id: 'huevos',
-    name: 'Huevos y Lácteos',
-    imageFile: 'huevos.png',
-    link: '/categorias/huevos',
+    id: "pescados",
+    name: "Pescados y Mariscos",
+    imageFile: "pescados y mariscos.png",
+    link: "/categorias/pescados",
   },
   {
-    id: 'agro',
-    name: 'Del Agro',
-    imageFile: 'del agro.png',
-    link: '/categorias/agro',
+    id: "huevos",
+    name: "Huevos y Lácteos",
+    imageFile: "huevos.png",
+    link: "/categorias/huevos",
   },
   {
-    id: 'ferreteria',
-    name: 'Ferretería',
-    imageFile: 'ferreteria.png',
-    link: '/categorias/ferreteria',
+    id: "agro",
+    name: "Del Agro",
+    imageFile: "del agro.png",
+    link: "/categorias/agro",
   },
   {
-    id: 'helados',
-    name: 'Cakes, Helados y Dulces',
-    imageFile: 'helados.png',
-    link: '/categorias/ferreteria',
+    id: "ferreteria",
+    name: "Ferretería",
+    imageFile: "ferreteria.png",
+    link: "/categorias/ferreteria",
   },
   {
-    id: 'infantiles',
-    name: 'Infantiles y Escolares',
-    imageFile: 'infantiles y escolares.png',
-    link: '/categorias/infantiles',
+    id: "helados",
+    name: "Cakes, Helados y Dulces",
+    imageFile: "helados.png",
+    link: "/categorias/ferreteria",
   },
-  { id: 'bebidas', name: 'Bebidas', imageFile: 'bebidas.png', link: '/categorias/bebidas' },
-  { id: 'farmacia', name: 'Farmacia', imageFile: 'farmacia.png', link: '/categorias/farmacia' },
-  { id: 'buffet', name: 'Buffet', imageFile: 'buffet.png', link: '/categorias/buffet' },
   {
-    id: 'electro',
-    name: 'Electro',
-    imageFile: 'electrodomesticos.png',
-    link: '/categorias/electro',
+    id: "infantiles",
+    name: "Infantiles y Escolares",
+    imageFile: "infantiles y escolares.png",
+    link: "/categorias/infantiles",
+  },
+  {
+    id: "bebidas",
+    name: "Bebidas",
+    imageFile: "bebidas.png",
+    link: "/categorias/bebidas",
+  },
+  {
+    id: "farmacia",
+    name: "Farmacia",
+    imageFile: "farmacia.png",
+    link: "/categorias/farmacia",
+  },
+  {
+    id: "buffet",
+    name: "Buffet",
+    imageFile: "buffet.png",
+    link: "/categorias/buffet",
+  },
+  {
+    id: "electro",
+    name: "Electro",
+    imageFile: "electrodomesticos.png",
+    link: "/categorias/electro",
   },
 ];
-
-function CategoryImageLink({ category }: { category: Category }) {
-  return (
-    <Link href={category.link} className="flex flex-col items-center m-2">
-      <div className="w-24 h-24 relative">
-        <Image
-          src={`/assets/categories/${category.imageFile}`}
-          alt={category.name}
-          fill
-          className="object-cover rounded-full"
-        />
-      </div>
-      <span className="mt-2 text-sm text-center">{category.name}</span>
-    </Link>
-  );
-}
 
 export default function CategoryNavigation() {
   const [rowCategories] = useState(() => {
@@ -99,7 +104,11 @@ export default function CategoryNavigation() {
             className="sm:hidden flex overflow-x-auto whitespace-nowrap gap-1 overflow-visible scrollbar-hide"
           >
             {rowCategory.categories.map((category) => (
-              <CategoryImageLink key={category.id} category={category} />
+              <CategoryImageLink
+                key={category.id}
+                img={category.imageFile}
+                name={category.name}
+              />
             ))}
           </div>
         ))}
@@ -110,11 +119,15 @@ export default function CategoryNavigation() {
       <div className="max-sm:hidden mt-3 flex flex-col items-center justify-center">
         <div className="flex flex-row flex-wrap max-sm:h-52">
           {all_categories.map((category) => (
-            <CategoryImageLink key={category.id} category={category} />
+            <CategoryImageLink
+              key={category.id}
+              img={category.imageFile}
+              name={category.name}
+            />
           ))}
         </div>
         <ShowMeAllTheProducts />
       </div>
     </div>
   );
-} 
+}

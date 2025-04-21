@@ -1,14 +1,17 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-
+import Image from "next/image";
+import Link from "next/link";
+import "./CategoryImageLink.css";
 interface CategoryImageLinkProps {
   img: string;
   name: string;
 }
 
-export default function CategoryImageLink({ img, name }: CategoryImageLinkProps) {
+export default function CategoryImageLink({
+  img,
+  name,
+}: CategoryImageLinkProps) {
   return (
     <Link
       href="#"
@@ -33,4 +36,4 @@ export default function CategoryImageLink({ img, name }: CategoryImageLinkProps)
       </div>
     </Link>
   );
-} 
+}
