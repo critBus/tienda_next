@@ -1,26 +1,82 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Carga de la fuente */
+@font-face {
+  font-family: 'RobotoCondensed-Bold';
+  src: url('../assets/fonts/RobotoCondensed-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: 'Roboto';
+  src: url('../assets/fonts/Roboto-Regular.ttf') format('truetype');
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@font-face {
+  font-family: 'Roboto-Bold';
+  src: url('../assets/fonts/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Source-Sans-Pro';
+  src: url('../assets/fonts/SourceSansPro-Light.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Source-Sans-Pro-Bold';
+  src: url('../assets/fonts/SourceSansPro-Bold.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Heebo';
+  src: url('../assets/fonts/Heebo-Light.ttf') format('truetype');
+}
+
+.custom-link {
+  letter-spacing: 0%;
+  vertical-align: middle;
+  text-decoration: none !important;
+  /* Elimina subrayado por defecto */
+}
+
+/* Estilos personalizados */
+.roboto-condensed-bold {
+  font-family: 'RobotoCondensed-Bold', sans-serif !important;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  text-decoration: none !important;
+}
+
+.roboto {
+  font-family: 'Roboto' !important;
+}
+
+.roboto-bold {
+  font-family: 'Roboto-Bold' !important;
+}
+
+.source-sans-pro {
+  font-family: 'Source-Sans-Pro' !important;
+}
+
+.source-sans-pro-bold {
+  font-family: 'Source-Sans-Pro-Bold' !important;
+}
+
+.lg\:roboto-bold {
+  @media (width >=64rem
+
+    /* 1024px */
+  ) {
+    font-family: 'Roboto-Bold' !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.heebo {
+  font-family: 'Heebo' !important;
+}
+
+.arial {
+  font-family: Arial, sans-serif;
 }
