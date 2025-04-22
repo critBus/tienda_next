@@ -1,5 +1,5 @@
+import APIService from "@/app/service/APIService";
 import ProductsSection from "./ProductsSection";
-import { getProducts } from "@/app/service/api/products";
 
 interface Product {
   id: number;
@@ -24,7 +24,7 @@ interface ProductApi {
 }
 
 export default async function RecommendedProducts() {
-  const products: ProductApi[] = await getProducts();
+  const products: ProductApi[] = await APIService.products.getProducts();
   console.log(products);
   const recommendedProducts: Product[] = products.map<Product>((product) => ({
     id: Number(product.id),
