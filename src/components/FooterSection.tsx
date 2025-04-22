@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
+import Image from "next/image";
 
 export default function FooterSection() {
   return (
@@ -46,11 +46,28 @@ export default function FooterSection() {
             </div>
           </div>
           <div className="flex flex-col text-left lg:w-60 lg:items-end">
-            <span className="source-sans-pro text-[#B2B2B2] mt-4 text-lg">Síguenos</span>
+            <span className="source-sans-pro text-[#B2B2B2] mt-4 text-lg">
+              Síguenos
+            </span>
             <div className="flex flex-row justify-start gap-3 mt-3">
-              <Image src="/assets/footer/facebook.svg" alt="Facebook" width={24} height={24} />
-              <Image src="/assets/footer/usuarios.svg" alt="Usuarios" width={24} height={24} />
-              <Image src="/assets/footer/instagram.svg" alt="Instagram" width={24} height={24} />
+              <Image
+                src="/assets/footer/facebook.svg"
+                alt="Facebook"
+                width={24}
+                height={24}
+              />
+              <Image
+                src="/assets/footer/usuarios.svg"
+                alt="Usuarios"
+                width={24}
+                height={24}
+              />
+              <Image
+                src="/assets/footer/instagram.svg"
+                alt="Instagram"
+                width={24}
+                height={24}
+              />
             </div>
           </div>
         </div>
@@ -61,8 +78,12 @@ export default function FooterSection() {
 
         <div className="flex flex-col lg:flex-row lg:gap-4 lg:flex-wrap">
           <div className="flex flex-col text-left mt-2 lg:w-60">
-            <span className="roboto text-[#B2B2B2] text-base">Enlaces de interés</span>
-            <span className="source-sans-pro text-white mt-4 text-lg">Inicio</span>
+            <span className="roboto text-[#B2B2B2] text-base">
+              Enlaces de interés
+            </span>
+            <span className="source-sans-pro text-white mt-4 text-lg">
+              Inicio
+            </span>
             <span className="source-sans-pro text-white mt-1 text-lg">
               Términos de los Servicios
             </span>
@@ -72,7 +93,9 @@ export default function FooterSection() {
           </div>
           <div className="flex flex-col text-left mt-6 lg:w-60">
             <span className="roboto text-[#B2B2B2] text-base">Legal</span>
-            <span className="source-sans-pro text-white mt-4 text-lg">Política de envíos</span>
+            <span className="source-sans-pro text-white mt-4 text-lg">
+              Política de envíos
+            </span>
             <span className="source-sans-pro text-white mt-1 text-lg">
               Política de privacidad
             </span>
@@ -83,7 +106,9 @@ export default function FooterSection() {
           <div className="flex flex-col text-left mt-6 lg:grow lg:items-end">
             <div className="lg:flex lg:flex-col lg:text-left">
               <div className="lg:w-full">
-                <span className="roboto-bold text-white text-4xl lg:text-xl">Pago seguro</span>
+                <span className="roboto-bold text-white text-4xl lg:text-xl">
+                  Pago seguro
+                </span>
               </div>
 
               <div className="flex flex-row gap-1 justify-start py-4">
@@ -93,7 +118,12 @@ export default function FooterSection() {
                   width={40}
                   height={25}
                 />
-                <Image src="/assets/footer/visa.png" alt="Visa" width={40} height={25} />
+                <Image
+                  src="/assets/footer/visa.png"
+                  alt="Visa"
+                  width={40}
+                  height={25}
+                />
                 <Image
                   src="/assets/footer/americaexpresajustado.png"
                   alt="American Express"
@@ -106,7 +136,12 @@ export default function FooterSection() {
                   width={40}
                   height={25}
                 />
-                <Image src="/assets/footer/tropipay.png" alt="Tropipay" width={40} height={25} />
+                <Image
+                  src="/assets/footer/tropipay.png"
+                  alt="Tropipay"
+                  width={40}
+                  height={25}
+                />
               </div>
             </div>
           </div>
@@ -114,4 +149,4 @@ export default function FooterSection() {
       </div>
     </div>
   );
-} 
+}
