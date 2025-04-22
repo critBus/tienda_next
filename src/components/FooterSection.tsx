@@ -55,18 +55,21 @@ export default function FooterSection() {
                 alt="Facebook"
                 width={24}
                 height={24}
+                className="w-6 h-6 object-contain"
               />
               <Image
                 src="/assets/footer/usuarios.svg"
                 alt="Usuarios"
                 width={24}
                 height={24}
+                className="w-6 h-6 object-contain"
               />
               <Image
                 src="/assets/footer/instagram.svg"
                 alt="Instagram"
                 width={24}
                 height={24}
+                className="w-6 h-6 object-contain"
               />
             </div>
           </div>
