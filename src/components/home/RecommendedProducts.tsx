@@ -1,6 +1,5 @@
-'use client';
-
-import ProductsSection from './ProductsSection';
+import ProductsSection from "./ProductsSection";
+import { getProducts } from "@/app/service/api/products";
 
 interface Product {
   id: number;
@@ -12,54 +11,34 @@ interface Product {
   freeShipping: boolean;
 }
 
-const recommendedProducts: Product[] = [
-  {
-    id: 1,
-    name: 'Galletas Integrales con Semillas de Chía sin cáscaras (400 g)',
-    price: 232.69,
-    originalPrice: 40.69,
-    discountPercentage: 10,
-    image: '/assets/products/img/pomos-de-agua.png',
-    freeShipping: true,
-  },
-  {
-    id: 2,
-    name: 'Galletas Integrales con Semillas de Chía sin cáscaras (400 g)',
-    price: 232.69,
-    originalPrice: 40.69,
-    discountPercentage: 10,
-    image: '/assets/products/img/especias_refinidas.png',
-    freeShipping: true,
-  },
-  {
-    id: 3,
-    name: 'Galletas Integrales con Semillas de Chía sin cáscaras (400 g)',
-    price: 232.69,
-    originalPrice: 40.69,
-    discountPercentage: 10,
-    image: '/assets/products/img/molo_para_piza.png',
-    freeShipping: true,
-  },
-  {
-    id: 4,
-    name: 'Galletas Integrales con Semillas de Chía sin cáscaras (400 g)',
-    price: 232.69,
-    originalPrice: 40.69,
-    discountPercentage: 10,
-    image: '/assets/products/img/pasta_barbicue.png',
-    freeShipping: true,
-  },
-  {
-    id: 5,
-    name: 'Galletas Integrales con Semillas de Chía sin cáscaras (400 g)',
-    price: 232.69,
-    originalPrice: 40.69,
-    discountPercentage: 10,
-    image: '/assets/products/img/rico_drato.png',
-    freeShipping: true,
-  },
-];
+interface ProductApi {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  image: string;
+  categoryId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-export default function RecommendedProducts() {
-  return <ProductsSection title="Productos recomendados" products={recommendedProducts} />;
-} 
+export default async function RecommendedProducts() {
+  const products: ProductApi[] = await getProducts();
+  console.log(products);
+  const recommendedProducts: Product[] = products.map<Product>((product) => ({
+    id: Number(product.id),
+    name: product.name,
+    price: product.price,
+    originalPrice: product.price,
+    discountPercentage: 10,
+    image: product.image,
+    freeShipping: true,
+  }));
+  return (
+    <ProductsSection
+      title="Productos recomendados"
+      products={recommendedProducts}
+    />
+  );
+}
