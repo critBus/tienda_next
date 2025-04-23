@@ -1,21 +1,12 @@
-'use client';
+"use client";
 
-import ProductCard from './ProductCard';
-import ShowMeAllTheProducts from './ShowMeAllTheProducts';
-
-interface Product {
-  id: number | string;
-  name: string;
-  price: number;
-  originalPrice?: number;
-  discountPercentage?: number;
-  image: string;
-  freeShipping?: boolean;
-}
+import { ProductDTO } from "@/types";
+import ProductCard from "./ProductCard";
+import ShowMeAllTheProducts from "./ShowMeAllTheProducts";
 
 interface ProductsSectionProps {
   title: string;
-  products: Product[];
+  products: ProductDTO[];
   gray_background?: boolean;
 }
 
@@ -25,7 +16,7 @@ export default function ProductsSection({
   gray_background = true,
 }: ProductsSectionProps) {
   return (
-    <section className={gray_background ? 'bg-[#F8F8F8]' : 'bg-white'}>
+    <section className={gray_background ? "bg-[#F8F8F8]" : "bg-white"}>
       <div className="pt-6 pb-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título de la sección */}
         <h2 className="text-2xl sm:text-3xl roboto-bold mb-8 text-center md:text-left">
@@ -49,4 +40,4 @@ export default function ProductsSection({
       </div>
     </section>
   );
-} 
+}

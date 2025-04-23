@@ -1,20 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-
-interface Product {
-  id: number | string;
-  name: string;
-  price: number;
-  originalPrice?: number;
-  discountPercentage?: number;
-  image: string;
-  freeShipping?: boolean;
-}
+import { useState } from "react";
+import Image from "next/image";
+import { ProductDTO } from "@/types";
 
 interface ProductCardProps {
-  product: Product;
+  product: ProductDTO;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
@@ -22,8 +13,9 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   const addToCart = () => {
     // Implementar lógica de carrito aquí
-    console.log('Añadir al carrito:', product, quantity);
+    console.log("Añadir al carrito:", product, quantity);
   };
+  const are_different_prices = product.originalPrice != product.price;
 
   return (
     <div className="relative w-full h-40 sm:h-80 sm:w-52 inline-block bg-white shadow-md rounded-lg">
@@ -43,8 +35,13 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="flex w-[60%] sm:w-full flex-col gap-2">
           <span className="font-semibold text-[#4E4949]">{product.name}</span>
           <div className="flex flex-row gap-2">
-            <span className="font-bold text-[17px]">${product.originalPrice}</span>
-            <span className="text-sm line-through text-red-500">${product.price}</span>
+            <span className="font-bold text-[17px]">${product.price}</span>
+            {are_different_prices && (
+              <span className="text-sm line-through text-red-500">
+                ${product.originalPrice}
+              </span>
+            )}
+
             {product.freeShipping && (
               <span className="rounded-sm text-[12px] text-[#0B7B69] bg-[#DBFEE3] p-1">
                 Envio Gratis
@@ -108,7 +105,10 @@ export default function ProductCard({ product }: ProductCardProps) {
               height={16}
               className="h-4 w-4"
             />
-            <span className="text-red-500 text-xs font-bold"> -{product.discountPercentage}% </span>
+            <span className="text-red-500 text-xs font-bold">
+              {" "}
+              -{product.discountPercentage}%{" "}
+            </span>
           </div>
         )}
 
@@ -120,7 +120,10 @@ export default function ProductCard({ product }: ProductCardProps) {
             height={16}
             className="h-4 w-4"
           />
-          <span className="max-sm:hidden text-[#AC7B04] text-[12px] font-bold"> NUEVO </span>
+          <span className="max-sm:hidden text-[#AC7B04] text-[12px] font-bold">
+            {" "}
+            NUEVO{" "}
+          </span>
         </div>
 
         <div className="sm:hidden bg-[#E5EAF0] w-8 p-1 rounded-r-md shadow flex items-center justify-center">
@@ -145,4 +148,4 @@ export default function ProductCard({ product }: ProductCardProps) {
       </div>
     </div>
   );
-} 
+}
