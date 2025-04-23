@@ -1,3 +1,6 @@
+import { CategoryDTO } from "./category.types";
+import { CompanyDTO } from "./company.types";
+
 export interface ProductDTO {
   id: number;
   name: string;
@@ -7,6 +10,12 @@ export interface ProductDTO {
   image: string;
   freeShipping: boolean;
   categoryId: number;
+  companyId: number;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface Product extends ProductDTO {
+  category: CategoryDTO;
+  company: CompanyDTO;
 }

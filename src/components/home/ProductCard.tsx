@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ProductDTO } from "@/types";
+import { Product } from "@/types";
 
 interface ProductCardProps {
-  product: ProductDTO;
+  product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  console.log(product);
   const [quantity, setQuantity] = useState(1);
 
   const addToCart = () => {
@@ -16,6 +17,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     console.log("Añadir al carrito:", product, quantity);
   };
   const are_different_prices = product.originalPrice != product.price;
+  const its_new = true;
 
   return (
     <div className="relative w-full h-40 sm:h-80 sm:w-52 inline-block bg-white shadow-md rounded-lg">
@@ -29,7 +31,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             height={200}
           />
           <span className="absolute bottom-0 right-0 px-3 py-1 z-10 bg-[#FAFAFA] bg-opacity-90 text-[#655F5F] text-[10px] font-medium rounded-md">
-            Mercadito TSO
+            {product.company.name}
           </span>
         </div>
         <div className="flex w-[60%] sm:w-full flex-col gap-2">
@@ -112,19 +114,21 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
 
-        <div className="bg-[#FEF4DB] max-sm:w-8 p-1 rounded-r-md shadow flex items-center justify-center">
-          <Image
-            src="/assets/products/icons/select.svg"
-            alt="Nuevo"
-            width={16}
-            height={16}
-            className="h-4 w-4"
-          />
-          <span className="max-sm:hidden text-[#AC7B04] text-[12px] font-bold">
-            {" "}
-            NUEVO{" "}
-          </span>
-        </div>
+        {its_new && (
+          <div className="bg-[#FEF4DB] max-sm:w-8 p-1 rounded-r-md shadow flex items-center justify-center">
+            <Image
+              src="/assets/products/icons/select.svg"
+              alt="Nuevo"
+              width={16}
+              height={16}
+              className="h-4 w-4"
+            />
+            <span className="max-sm:hidden text-[#AC7B04] text-[12px] font-bold">
+              {" "}
+              NUEVO{" "}
+            </span>
+          </div>
+        )}
 
         <div className="sm:hidden bg-[#E5EAF0] w-8 p-1 rounded-r-md shadow flex items-center justify-center">
           <Image
@@ -137,7 +141,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       </div>
 
-      <div className="absolute sm:mt-2 z-10 top-0 right-0 bg-[#E5EAF0] w-8 p-1 rounded-l-md shadow flex items-center justify-center">
+      <div className="max-sm:hidden absolute sm:mt-2 z-10 top-0 right-0 bg-[#E5EAF0] w-8 p-1 rounded-l-md shadow flex items-center justify-center">
         <Image
           src="/assets/products/icons/calendar-edit.svg"
           alt="Calendario"

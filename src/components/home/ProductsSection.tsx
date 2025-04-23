@@ -1,12 +1,12 @@
 "use client";
 
-import { ProductDTO } from "@/types";
+import { Product } from "@/types";
 import ProductCard from "./ProductCard";
 import ShowMeAllTheProducts from "./ShowMeAllTheProducts";
 
 interface ProductsSectionProps {
   title: string;
-  products: ProductDTO[];
+  products: Product[];
   gray_background?: boolean;
 }
 

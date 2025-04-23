@@ -1,8 +1,8 @@
 import APIService from "@/app/service/APIService";
 import ProductsSection from "./ProductsSection";
-import type { ProductDTO } from "@/types/index";
+import type { Product } from "@/types/index";
 export default async function RecommendedProducts() {
-  const recommendedProducts: ProductDTO[] =
+  const recommendedProducts: Product[] =
     await APIService.products.getProducts();
   return (
     <ProductsSection
