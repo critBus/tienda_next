@@ -5,14 +5,8 @@ import { useState, useEffect } from "react";
 import ShowMeAllTheProducts from "./ShowMeAllTheProducts";
 import CategoryImageLink from "./CategoryImageLink";
 import "./CategoryNavigation.css";
-
-interface Category {
-  id: number;
-  name: string;
-  image?: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import ApiService from "@/service/ApiService";
+import { Category } from "@/types";
 
 export default function CategoryNavigation() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -21,14 +15,8 @@ export default function CategoryNavigation() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("/api/categories");
-        const data = await response.json();
-
-        if (data.status === "success") {
-          setCategories(data.data);
-        } else {
-          console.error("Error al cargar categorías:", data.message);
-        }
+        const categories = await ApiService.category.all();
+        setCategories(categories);
       } catch (error) {
         console.error("Error al cargar categorías:", error);
       } finally {

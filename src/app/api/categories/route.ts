@@ -7,6 +7,7 @@ export async function GET() {
     return NextResponse.json({
       status: "success",
       data: categories,
+      code: 200,
     });
   } catch (error) {
     console.error("Error al obtener categorías:", error);
