@@ -1,9 +1,9 @@
 import { Product } from "@/types";
 import ProductsSection from "./ProductsSection";
-import APIService from "@/service/APIService";
+import PrismaService from "@/service/PrismaService";
 
 export default async function BestSellingProducts() {
-  const products: Product[] = await APIService.products.getProducts();
+  const products: Product[] = await PrismaService.products.getProducts();
   return (
     <ProductsSection
       title="Productos más Vendidos"

@@ -1,9 +1,10 @@
-import APIService from "@/service/APIService";
+import PrismaService from "@/service/PrismaService";
 import ProductsSection from "./ProductsSection";
-import type { Product } from "@/types/index";
+import { Product } from "@/types";
+
 export default async function RecommendedProducts() {
   const recommendedProducts: Product[] =
-    await APIService.products.getProducts();
+    await PrismaService.products.getProducts();
   return (
     <ProductsSection
       title="Productos recomendados"

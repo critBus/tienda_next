@@ -1,9 +1,10 @@
-export interface CategoryDTO {
-  id: number;
-  name: string;
-  image?: string | null;
-}
+// 1. Importamos el tipo original y lo renombramos
+import { Category as CategoryPrisma } from "@/app/generated/prisma/index";
 
-export interface Category extends CategoryDTO {
+// 2. Creamos un alias exportable para el tipo original
+export type CategoryDTO = CategoryPrisma;
+
+// 3. Extendemos el tipo original en nuestra interfaz
+export interface Category extends CategoryPrisma {
   link: string;
 }

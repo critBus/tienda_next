@@ -1,6 +1,5 @@
 import prisma from "@/libs/prisma";
-import { Product, ProductDTO } from "@/types";
-import { Company, Category } from "../../app/generated/prisma/index";
+import { Product, ProductDTO, CategoryDTO, CompanyDTO } from "@/types";
 
 export async function getProducts(): Promise<Product[]> {
   console.log("intenta llamar a obtener los productos");
@@ -9,10 +8,10 @@ export async function getProducts(): Promise<Product[]> {
     const products: Product[] = [];
     for (let i = 0; i < products_response.length; i++) {
       const product_dto = products_response[i];
-      const company: Company | null = await prisma.company.findUnique({
+      const company: CompanyDTO | null = await prisma.company.findUnique({
         where: { id: product_dto.companyId },
       });
-      const category: Category | null = await prisma.category.findUnique({
+      const category: CategoryDTO | null = await prisma.category.findUnique({
         where: { id: product_dto.categoryId },
       });
       if (company && category) {
