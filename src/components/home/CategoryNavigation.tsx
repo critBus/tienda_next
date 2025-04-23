@@ -1,98 +1,58 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { useState, useEffect } from "react";
+
 import ShowMeAllTheProducts from "./ShowMeAllTheProducts";
 import CategoryImageLink from "./CategoryImageLink";
 import "./CategoryNavigation.css";
+
 interface Category {
-  id: string;
+  id: number;
   name: string;
-  imageFile: string;
-  link: string;
+  image?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
-const all_categories: Category[] = [
-  {
-    id: "carnicos",
-    name: "Cárnicos",
-    imageFile: "carnicos.png",
-    link: "/categorias/carnicos",
-  },
-  {
-    id: "pescados",
-    name: "Pescados y Mariscos",
-    imageFile: "pescados y mariscos.png",
-    link: "/categorias/pescados",
-  },
-  {
-    id: "huevos",
-    name: "Huevos y Lácteos",
-    imageFile: "huevos.png",
-    link: "/categorias/huevos",
-  },
-  {
-    id: "agro",
-    name: "Del Agro",
-    imageFile: "del agro.png",
-    link: "/categorias/agro",
-  },
-  {
-    id: "ferreteria",
-    name: "Ferretería",
-    imageFile: "ferreteria.png",
-    link: "/categorias/ferreteria",
-  },
-  {
-    id: "helados",
-    name: "Cakes, Helados y Dulces",
-    imageFile: "helados.png",
-    link: "/categorias/ferreteria",
-  },
-  {
-    id: "infantiles",
-    name: "Infantiles y Escolares",
-    imageFile: "infantiles y escolares.png",
-    link: "/categorias/infantiles",
-  },
-  {
-    id: "bebidas",
-    name: "Bebidas",
-    imageFile: "bebidas.png",
-    link: "/categorias/bebidas",
-  },
-  {
-    id: "farmacia",
-    name: "Farmacia",
-    imageFile: "farmacia.png",
-    link: "/categorias/farmacia",
-  },
-  {
-    id: "buffet",
-    name: "Buffet",
-    imageFile: "buffet.png",
-    link: "/categorias/buffet",
-  },
-  {
-    id: "electro",
-    name: "Electro",
-    imageFile: "electrodomesticos.png",
-    link: "/categorias/electro",
-  },
-];
-
 export default function CategoryNavigation() {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("/api/categories");
+        const data = await response.json();
+
+        if (data.status === "success") {
+          setCategories(data.data);
+        } else {
+          console.error("Error al cargar categorías:", data.message);
+        }
+      } catch (error) {
+        console.error("Error al cargar categorías:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   const [rowCategories] = useState(() => {
     const rows = [];
-    for (let i = 0; i < all_categories.length; i += 4) {
+    for (let i = 0; i < categories.length; i += 4) {
       rows.push({
         id: `row-${i}`,
-        categories: all_categories.slice(i, i + 4),
+        categories: categories.slice(i, i + 4),
       });
     }
     return rows;
   });
+
+  if (isLoading) {
+    return <div>Cargando categorías...</div>;
+  }
 
   return (
     <div className="overflow-visible">
@@ -106,7 +66,7 @@ export default function CategoryNavigation() {
             {rowCategory.categories.map((category) => (
               <CategoryImageLink
                 key={category.id}
-                img={category.imageFile}
+                img={category.image || ""}
                 name={category.name}
               />
             ))}
@@ -118,10 +78,10 @@ export default function CategoryNavigation() {
       {/* Versión desktop */}
       <div className="max-sm:hidden mt-3 flex flex-col items-center justify-center">
         <div className="flex flex-row flex-wrap max-sm:h-52">
-          {all_categories.map((category) => (
+          {categories.map((category) => (
             <CategoryImageLink
               key={category.id}
-              img={category.imageFile}
+              img={category.image || ""}
               name={category.name}
             />
           ))}
