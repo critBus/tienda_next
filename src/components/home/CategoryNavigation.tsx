@@ -8,15 +8,32 @@ import "./CategoryNavigation.css";
 import ApiService from "@/service/ApiService";
 import { Category } from "@/types";
 
+interface RowCategory {
+  id: string;
+  categories: Category[];
+}
+
 export default function CategoryNavigation() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [rowCategories, setRowCategories] = useState<RowCategory[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const categories = await ApiService.category.all();
+        console.log("pide las categorias");
+        console.log(categories);
         setCategories(categories);
+
+        const rows = [];
+        for (let i = 0; i < categories.length; i += 4) {
+          rows.push({
+            id: `row-${i}`,
+            categories: categories.slice(i, i + 4),
+          });
+        }
+        setRowCategories(rows);
       } catch (error) {
         console.error("Error al cargar categorías:", error);
       } finally {
@@ -26,17 +43,6 @@ export default function CategoryNavigation() {
 
     fetchCategories();
   }, []);
-
-  const [rowCategories] = useState(() => {
-    const rows = [];
-    for (let i = 0; i < categories.length; i += 4) {
-      rows.push({
-        id: `row-${i}`,
-        categories: categories.slice(i, i + 4),
-      });
-    }
-    return rows;
-  });
 
   if (isLoading) {
     return <div>Cargando categorías...</div>;

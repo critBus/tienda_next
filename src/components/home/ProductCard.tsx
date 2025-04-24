@@ -9,7 +9,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  console.log(product);
+  // console.log(product);
   const [quantity, setQuantity] = useState(1);
 
   const addToCart = () => {
