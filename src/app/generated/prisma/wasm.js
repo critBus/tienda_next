@@ -114,6 +114,11 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.CurrencyScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
 exports.Prisma.CompanyScalarFieldEnum = {
   id: 'id',
   name: 'name'
@@ -155,6 +160,7 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
+  Currency: 'Currency',
   Company: 'Company',
   Product: 'Product',
   Category: 'Category'
