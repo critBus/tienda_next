@@ -4,6 +4,8 @@ import { CompanyDTO } from "./company.types";
 // 1. Importamos el tipo original y lo renombramos
 import { Product as ProductPrisma } from "@/app/generated/prisma/index";
 
+import { Price } from "./price.types";
+
 // 2. Creamos un alias exportable para el tipo original
 export type ProductDTO = ProductPrisma;
 
@@ -24,4 +26,5 @@ export interface Product {
   category: CategoryDTO;
   company: CompanyDTO;
   priceBaseCurrency: number;
+  Price: Price;
 }

@@ -3,14 +3,23 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Product } from "@/types";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store"; // Adjust the path if necessary
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  // console.log(product);
   const [quantity, setQuantity] = useState(1);
+
+  const selectedCurrency = useSelector(
+    (state: RootState) => state.currency.selectedCurrency
+  );
+
+  const convertedPrice = product.Price.find(
+    (price) => price.currencyId === selectedCurrency?.id
+  )?.value;
 
   const addToCart = () => {
     // Implementar lógica de carrito aquí
@@ -39,11 +48,13 @@ export default function ProductCard({ product }: ProductCardProps) {
           <span className="font-semibold text-[#4E4949]">{product.name}</span>
           <div className="flex flex-row gap-2">
             <span className="font-bold text-[17px]">
-              ${Number(product.priceBaseCurrency)}
+              {selectedCurrency?.symbol}
+              {convertedPrice || Number(product.priceBaseCurrency)}
             </span>
             {are_different_prices && (
               <span className="text-sm line-through text-red-500">
-                ${product.originalPrice}
+                {selectedCurrency?.symbol}
+                {product.originalPrice}
               </span>
             )}
 
