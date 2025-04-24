@@ -14,15 +14,20 @@ export async function getProducts(): Promise<Product[]> {
       },
     },
   });
-  console.log(products_response[0]);
+  // console.log(products_response[0]);
   const products: Product[] = products_response.map((product) => ({
     ...product,
     priceBaseCurrency: Number(product.priceBaseCurrency),
     Price: product.Price.map((price) => ({
       ...price,
+      value: Number(price.value),
+      currency: {
+        ...price.currency,
+        baseRate: Number(price.currency.baseRate),
+      },
     })), // Map each price in the array
   }));
-  console.log(products[0]);
+  // console.log(products[0]);
   return products;
 }
 

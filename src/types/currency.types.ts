@@ -1,1 +1,7 @@
-export type { Currency as CurrencyDTO } from "@/app/generated/prisma/index";
+export interface CurrencyDTO {
+  id: number;
+  name: string;
+  baseRate: number;
+  isDefault: boolean;
+  isBase: boolean;
+}

@@ -48,12 +48,10 @@ export default function ProductCard({ product }: ProductCardProps) {
           <span className="font-semibold text-[#4E4949]">{product.name}</span>
           <div className="flex flex-row gap-2">
             <span className="font-bold text-[17px]">
-              {selectedCurrency?.symbol}
               {convertedPrice || Number(product.priceBaseCurrency)}
             </span>
             {are_different_prices && (
               <span className="text-sm line-through text-red-500">
-                {selectedCurrency?.symbol}
                 {product.originalPrice}
               </span>
             )}
