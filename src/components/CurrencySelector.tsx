@@ -1,16 +1,44 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from "react";
+import prisma from "@/libs/prisma";
+
+interface Currency {
+  id: number;
+  name: string;
+  isDefault: boolean;
+  isBase: boolean;
+}
 
 export default function CurrencySelector() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState('USD');
-  
-  const currencies = ['USD', 'EUR', 'GBP', 'MXN', 'ARS'];
+  const [currencies, setCurrencies] = useState<Currency[]>([]);
+  const [selectedCurrency, setSelectedCurrency] = useState<string>("");
+
+  useEffect(() => {
+    const fetchCurrencies = async () => {
+      try {
+        const response = await fetch("/api/currencies");
+        const data = await response.json();
+        setCurrencies(data);
+
+        // Establecer la moneda por defecto
+        const defaultCurrency = data.find((c: Currency) => c.isDefault);
+        if (defaultCurrency) {
+          setSelectedCurrency(defaultCurrency.name);
+        }
+      } catch (error) {
+        console.error("Error al cargar las monedas:", error);
+      }
+    };
+
+    fetchCurrencies();
+  }, []);
 
   const selectCurrency = (currency: string) => {
     setSelectedCurrency(currency);
     setIsOpen(false);
+    // Aquí podrías guardar la selección en localStorage o en un contexto global
   };
 
   return (
@@ -21,7 +49,7 @@ export default function CurrencySelector() {
         onClick={() => setIsOpen(!isOpen)}
         className="bg-[#F8F8F8] flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
       >
-        {selectedCurrency}
+        {selectedCurrency || "Seleccionar moneda"}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 ml-2"
@@ -42,11 +70,15 @@ export default function CurrencySelector() {
           <div className="py-1">
             {currencies.map((currency) => (
               <button
-                key={currency}
-                onClick={() => selectCurrency(currency)}
-                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                key={currency.id}
+                onClick={() => selectCurrency(currency.name)}
+                className={`block w-full text-left px-4 py-2 text-sm ${
+                  currency.isDefault
+                    ? "font-bold text-yellow-600"
+                    : "text-gray-700"
+                } hover:bg-gray-100`}
               >
-                {currency}
+                {currency.name}
               </button>
             ))}
           </div>
@@ -54,4 +86,4 @@ export default function CurrencySelector() {
       )}
     </div>
   );
-} 
+}
