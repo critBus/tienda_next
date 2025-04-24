@@ -1,29 +1,23 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import prisma from "@/libs/prisma";
 
-interface Currency {
-  id: number;
-  name: string;
-  isDefault: boolean;
-  isBase: boolean;
-}
+import { CurrencyDTO } from "@/types";
+import ApiService from "@/service/ApiService";
 
 export default function CurrencySelector() {
   const [isOpen, setIsOpen] = useState(false);
-  const [currencies, setCurrencies] = useState<Currency[]>([]);
+  const [currencies, setCurrencies] = useState<CurrencyDTO[]>([]);
   const [selectedCurrency, setSelectedCurrency] = useState<string>("");
 
   useEffect(() => {
     const fetchCurrencies = async () => {
       try {
-        const response = await fetch("/api/currencies");
-        const data = await response.json();
-        setCurrencies(data);
+        const response = await ApiService.currency.all();
+        setCurrencies(response);
 
         // Establecer la moneda por defecto
-        const defaultCurrency = data.find((c: Currency) => c.isDefault);
+        const defaultCurrency = response.find((c: CurrencyDTO) => c.isDefault);
         if (defaultCurrency) {
           setSelectedCurrency(defaultCurrency.name);
         }
@@ -49,7 +43,7 @@ export default function CurrencySelector() {
         onClick={() => setIsOpen(!isOpen)}
         className="bg-[#F8F8F8] flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
       >
-        {selectedCurrency || "Seleccionar moneda"}
+        {selectedCurrency || "..."}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 ml-2"

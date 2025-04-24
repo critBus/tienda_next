@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/libs/prisma";
+import { SUCCES, ERROR } from "@/types";
 
 export async function GET() {
   try {
@@ -8,11 +9,20 @@ export async function GET() {
         isDefault: "desc",
       },
     });
-    return NextResponse.json(currencies);
+    return NextResponse.json({
+      status: SUCCES,
+      data: currencies,
+      code: 200,
+    });
   } catch (error) {
     console.error("Error al obtener las monedas:", error);
+
     return NextResponse.json(
-      { error: "Error al obtener las monedas" },
+      {
+        status: ERROR,
+        message: "Error al obtener las monedas",
+        code: 500,
+      },
       { status: 500 }
     );
   }
