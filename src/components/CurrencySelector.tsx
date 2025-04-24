@@ -1,39 +1,35 @@
 "use client";
 
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store";
+import { setSelectedCurrency } from "@/store/slices/currencySlice";
 import { CurrencyDTO } from "@/types";
-import ApiService from "@/service/ApiService";
 
 export default function CurrencySelector() {
   const [isOpen, setIsOpen] = useState(false);
-  const [currencies, setCurrencies] = useState<CurrencyDTO[]>([]);
-  const [selectedCurrency, setSelectedCurrency] = useState<string>("");
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchCurrencies = async () => {
-      try {
-        const response = await ApiService.currency.all();
-        setCurrencies(response);
+  const { currencies, selectedCurrency, isLoading } = useSelector(
+    (state: RootState) => ({
+      currencies: state.currency.currencies,
+      selectedCurrency: state.currency.selectedCurrency,
+      isLoading: state.currency.isLoading,
+    })
+  );
 
-        // Establecer la moneda por defecto
-        const defaultCurrency = response.find((c: CurrencyDTO) => c.isDefault);
-        if (defaultCurrency) {
-          setSelectedCurrency(defaultCurrency.name);
-        }
-      } catch (error) {
-        console.error("Error al cargar las monedas:", error);
-      }
-    };
-
-    fetchCurrencies();
-  }, []);
-
-  const selectCurrency = (currency: string) => {
-    setSelectedCurrency(currency);
+  const selectCurrency = (currency: CurrencyDTO) => {
+    dispatch(setSelectedCurrency(currency));
     setIsOpen(false);
-    // Aquí podrías guardar la selección en localStorage o en un contexto global
   };
+
+  if (isLoading) {
+    return (
+      <div className="bg-[#F8F8F8] flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm">
+        Cargando...
+      </div>
+    );
+  }
 
   return (
     <div className="relative inline-block text-left">
@@ -43,7 +39,7 @@ export default function CurrencySelector() {
         onClick={() => setIsOpen(!isOpen)}
         className="bg-[#F8F8F8] flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
       >
-        {selectedCurrency || "..."}
+        {selectedCurrency?.name || "..."}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5 ml-2"
@@ -65,7 +61,7 @@ export default function CurrencySelector() {
             {currencies.map((currency) => (
               <button
                 key={currency.id}
-                onClick={() => selectCurrency(currency.name)}
+                onClick={() => selectCurrency(currency)}
                 className={`block w-full text-left px-4 py-2 text-sm ${
                   currency.isDefault
                     ? "font-bold text-yellow-600"
