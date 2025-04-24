@@ -4,12 +4,10 @@ import FooterSection from "@/components/FooterSection";
 import HeaderComponent from "@/components/HeaderComponent";
 import NavigationMenu from "@/components/NavigationMenu";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+
 import "./globals.css";
 import CurrencyInitializer from "@/components/CurrencyInitializer";
 import Providers from "@/providers/Providers";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <Providers>
           <CurrencyInitializer />
           <HeaderComponent />
