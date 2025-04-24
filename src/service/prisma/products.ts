@@ -3,11 +3,14 @@ import { Product, ProductDTO } from "@/types";
 
 export async function getProducts(): Promise<Product[]> {
   console.log("intenta llamar a obtener los productos");
-  const products_response: Product[] = await prisma.product.findMany({
+  const products_response = await prisma.product.findMany({
     include: { category: true, company: true },
   });
-
-  return products_response;
+  const products: Product[] = products_response.map((product) => ({
+    ...product,
+    priceBaseCurrency: Number(product.priceBaseCurrency),
+  }));
+  return products;
 }
 
 export async function getProductById(id: number): Promise<ProductDTO | null> {

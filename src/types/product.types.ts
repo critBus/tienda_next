@@ -7,7 +7,21 @@ import { Product as ProductPrisma } from "@/app/generated/prisma/index";
 // 2. Creamos un alias exportable para el tipo original
 export type ProductDTO = ProductPrisma;
 
-export interface Product extends ProductDTO {
+export interface Product {
+  id: number;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+  image: string;
+  description: string;
+  originalPrice: number;
+  stock: number;
+  discountPercentage: number | null;
+  freeShipping: boolean;
+  categoryId: number;
+  companyId: number;
+
   category: CategoryDTO;
   company: CompanyDTO;
+  priceBaseCurrency: number;
 }

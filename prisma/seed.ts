@@ -1,4 +1,5 @@
 import prisma from "@/libs/prisma";
+import { ProductDTO } from "@/types";
 
 export async function main() {
   // Crear monedas
@@ -6,6 +7,7 @@ export async function main() {
     prisma.currency.create({
       data: {
         name: "USD",
+        baseRate: 1.0,
         isDefault: true,
         isBase: true,
       },
@@ -13,6 +15,7 @@ export async function main() {
     prisma.currency.create({
       data: {
         name: "EUR",
+        baseRate: 0.85,
         isDefault: false,
         isBase: false,
       },
@@ -20,6 +23,7 @@ export async function main() {
     prisma.currency.create({
       data: {
         name: "GBP",
+        baseRate: 0.75,
         isDefault: false,
         isBase: false,
       },
@@ -27,6 +31,7 @@ export async function main() {
     prisma.currency.create({
       data: {
         name: "CUP",
+        baseRate: 24.0,
         isDefault: false,
         isBase: false,
       },
@@ -76,13 +81,13 @@ export async function main() {
   ]);
 
   // Crear productos
-  const products = await Promise.all([
+  const products: ProductDTO[] = await Promise.all([
     // Productos de TechCorp
     prisma.product.create({
       data: {
         name: "Cerveza Premium",
         description: "Cerveza artesanal de alta calidad",
-        price: 899.99,
+        priceBaseCurrency: 899.99,
         originalPrice: 999.99,
         stock: 50,
         image: "/assets/products/img/cerveza.png",
@@ -96,7 +101,7 @@ export async function main() {
       data: {
         name: "Pasta Barbacue",
         description: "Pasta especial para barbacoa",
-        price: 1299.99,
+        priceBaseCurrency: 1299.99,
         originalPrice: 1499.99,
         stock: 30,
         image: "/assets/products/img/pasta_barbicue.png",
@@ -111,7 +116,7 @@ export async function main() {
       data: {
         name: "Especias Refinadas",
         description: "Mezcla de especias gourmet",
-        price: 29.99,
+        priceBaseCurrency: 29.99,
         originalPrice: 39.99,
         stock: 100,
         image: "/assets/products/img/especias_refinidas.png",
@@ -126,7 +131,7 @@ export async function main() {
       data: {
         name: "Masa para Pizza",
         description: "Masa fresca para pizza artesanal",
-        price: 49.99,
+        priceBaseCurrency: 49.99,
         originalPrice: 59.99,
         stock: 40,
         image: "/assets/products/img/molo_para_piza.png",
@@ -138,10 +143,28 @@ export async function main() {
     }),
   ]);
 
+  // Crear precios para los productos en diferentes monedas
+  const prices = await Promise.all(
+    products.flatMap((product) =>
+      currencies.map((currency) =>
+        prisma.price.create({
+          data: {
+            productId: product.id,
+            currencyId: currency.id,
+            value:
+              Number(product.priceBaseCurrency) * Number(currency.baseRate),
+            isFixed: currency.isBase,
+          },
+        })
+      )
+    )
+  );
+
   console.log("Seeding completado exitosamente!");
   console.log("Categorías creadas:", categories.length);
   console.log("Compañías creadas:", companies.length);
   console.log("Productos creados:", products.length);
+  console.log("Precios creados:", prices.length);
 }
 
 main()

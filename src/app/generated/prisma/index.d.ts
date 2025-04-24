@@ -33,6 +33,11 @@ export type Product = $Result.DefaultSelection<Prisma.$ProductPayload>
  * 
  */
 export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
+/**
+ * Model Price
+ * 
+ */
+export type Price = $Result.DefaultSelection<Prisma.$PricePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -198,6 +203,16 @@ export class PrismaClient<
     * ```
     */
   get category(): Prisma.CategoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.price`: Exposes CRUD operations for the **Price** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Prices
+    * const prices = await prisma.price.findMany()
+    * ```
+    */
+  get price(): Prisma.PriceDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -641,7 +656,8 @@ export namespace Prisma {
     Currency: 'Currency',
     Company: 'Company',
     Product: 'Product',
-    Category: 'Category'
+    Category: 'Category',
+    Price: 'Price'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -660,7 +676,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "currency" | "company" | "product" | "category"
+      modelProps: "currency" | "company" | "product" | "category" | "price"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -960,6 +976,80 @@ export namespace Prisma {
           }
         }
       }
+      Price: {
+        payload: Prisma.$PricePayload<ExtArgs>
+        fields: Prisma.PriceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PriceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PricePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PriceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PricePayload>
+          }
+          findFirst: {
+            args: Prisma.PriceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PricePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PriceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PricePayload>
+          }
+          findMany: {
+            args: Prisma.PriceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PricePayload>[]
+          }
+          create: {
+            args: Prisma.PriceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PricePayload>
+          }
+          createMany: {
+            args: Prisma.PriceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PriceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PricePayload>[]
+          }
+          delete: {
+            args: Prisma.PriceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PricePayload>
+          }
+          update: {
+            args: Prisma.PriceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PricePayload>
+          }
+          deleteMany: {
+            args: Prisma.PriceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PriceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PriceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PricePayload>[]
+          }
+          upsert: {
+            args: Prisma.PriceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PricePayload>
+          }
+          aggregate: {
+            args: Prisma.PriceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePrice>
+          }
+          groupBy: {
+            args: Prisma.PriceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PriceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PriceCountArgs<ExtArgs>
+            result: $Utils.Optional<PriceCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1048,6 +1138,7 @@ export namespace Prisma {
     company?: CompanyOmit
     product?: ProductOmit
     category?: CategoryOmit
+    price?: PriceOmit
   }
 
   /* Types for Logging */
@@ -1138,6 +1229,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type CurrencyCountOutputType
+   */
+
+  export type CurrencyCountOutputType = {
+    Price: number
+  }
+
+  export type CurrencyCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Price?: boolean | CurrencyCountOutputTypeCountPriceArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CurrencyCountOutputType without action
+   */
+  export type CurrencyCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CurrencyCountOutputType
+     */
+    select?: CurrencyCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CurrencyCountOutputType without action
+   */
+  export type CurrencyCountOutputTypeCountPriceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PriceWhereInput
+  }
+
+
+  /**
    * Count Type CompanyCountOutputType
    */
 
@@ -1165,6 +1287,37 @@ export namespace Prisma {
    */
   export type CompanyCountOutputTypeCountProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProductWhereInput
+  }
+
+
+  /**
+   * Count Type ProductCountOutputType
+   */
+
+  export type ProductCountOutputType = {
+    Price: number
+  }
+
+  export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Price?: boolean | ProductCountOutputTypeCountPriceArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProductCountOutputType without action
+   */
+  export type ProductCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductCountOutputType
+     */
+    select?: ProductCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProductCountOutputType without action
+   */
+  export type ProductCountOutputTypeCountPriceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PriceWhereInput
   }
 
 
@@ -1217,15 +1370,18 @@ export namespace Prisma {
 
   export type CurrencyAvgAggregateOutputType = {
     id: number | null
+    baseRate: Decimal | null
   }
 
   export type CurrencySumAggregateOutputType = {
     id: number | null
+    baseRate: Decimal | null
   }
 
   export type CurrencyMinAggregateOutputType = {
     id: number | null
     name: string | null
+    baseRate: Decimal | null
     isDefault: boolean | null
     isBase: boolean | null
   }
@@ -1233,6 +1389,7 @@ export namespace Prisma {
   export type CurrencyMaxAggregateOutputType = {
     id: number | null
     name: string | null
+    baseRate: Decimal | null
     isDefault: boolean | null
     isBase: boolean | null
   }
@@ -1240,6 +1397,7 @@ export namespace Prisma {
   export type CurrencyCountAggregateOutputType = {
     id: number
     name: number
+    baseRate: number
     isDefault: number
     isBase: number
     _all: number
@@ -1248,15 +1406,18 @@ export namespace Prisma {
 
   export type CurrencyAvgAggregateInputType = {
     id?: true
+    baseRate?: true
   }
 
   export type CurrencySumAggregateInputType = {
     id?: true
+    baseRate?: true
   }
 
   export type CurrencyMinAggregateInputType = {
     id?: true
     name?: true
+    baseRate?: true
     isDefault?: true
     isBase?: true
   }
@@ -1264,6 +1425,7 @@ export namespace Prisma {
   export type CurrencyMaxAggregateInputType = {
     id?: true
     name?: true
+    baseRate?: true
     isDefault?: true
     isBase?: true
   }
@@ -1271,6 +1433,7 @@ export namespace Prisma {
   export type CurrencyCountAggregateInputType = {
     id?: true
     name?: true
+    baseRate?: true
     isDefault?: true
     isBase?: true
     _all?: true
@@ -1365,6 +1528,7 @@ export namespace Prisma {
   export type CurrencyGroupByOutputType = {
     id: number
     name: string
+    baseRate: Decimal
     isDefault: boolean
     isBase: boolean
     _count: CurrencyCountAggregateOutputType | null
@@ -1391,13 +1555,17 @@ export namespace Prisma {
   export type CurrencySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    baseRate?: boolean
     isDefault?: boolean
     isBase?: boolean
+    Price?: boolean | Currency$PriceArgs<ExtArgs>
+    _count?: boolean | CurrencyCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["currency"]>
 
   export type CurrencySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    baseRate?: boolean
     isDefault?: boolean
     isBase?: boolean
   }, ExtArgs["result"]["currency"]>
@@ -1405,6 +1573,7 @@ export namespace Prisma {
   export type CurrencySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    baseRate?: boolean
     isDefault?: boolean
     isBase?: boolean
   }, ExtArgs["result"]["currency"]>
@@ -1412,18 +1581,28 @@ export namespace Prisma {
   export type CurrencySelectScalar = {
     id?: boolean
     name?: boolean
+    baseRate?: boolean
     isDefault?: boolean
     isBase?: boolean
   }
 
-  export type CurrencyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "isDefault" | "isBase", ExtArgs["result"]["currency"]>
+  export type CurrencyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "baseRate" | "isDefault" | "isBase", ExtArgs["result"]["currency"]>
+  export type CurrencyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Price?: boolean | Currency$PriceArgs<ExtArgs>
+    _count?: boolean | CurrencyCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CurrencyIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type CurrencyIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $CurrencyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Currency"
-    objects: {}
+    objects: {
+      Price: Prisma.$PricePayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
+      baseRate: Prisma.Decimal
       isDefault: boolean
       isBase: boolean
     }, ExtArgs["result"]["currency"]>
@@ -1820,6 +1999,7 @@ export namespace Prisma {
    */
   export interface Prisma__CurrencyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    Price<T extends Currency$PriceArgs<ExtArgs> = {}>(args?: Subset<T, Currency$PriceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1851,6 +2031,7 @@ export namespace Prisma {
   interface CurrencyFieldRefs {
     readonly id: FieldRef<"Currency", 'Int'>
     readonly name: FieldRef<"Currency", 'String'>
+    readonly baseRate: FieldRef<"Currency", 'Decimal'>
     readonly isDefault: FieldRef<"Currency", 'Boolean'>
     readonly isBase: FieldRef<"Currency", 'Boolean'>
   }
@@ -1870,6 +2051,10 @@ export namespace Prisma {
      */
     omit?: CurrencyOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
      * Filter, which Currency to fetch.
      */
     where: CurrencyWhereUniqueInput
@@ -1888,6 +2073,10 @@ export namespace Prisma {
      */
     omit?: CurrencyOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
      * Filter, which Currency to fetch.
      */
     where: CurrencyWhereUniqueInput
@@ -1905,6 +2094,10 @@ export namespace Prisma {
      * Omit specific fields from the Currency
      */
     omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
     /**
      * Filter, which Currency to fetch.
      */
@@ -1954,6 +2147,10 @@ export namespace Prisma {
      */
     omit?: CurrencyOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
      * Filter, which Currency to fetch.
      */
     where?: CurrencyWhereInput
@@ -2002,6 +2199,10 @@ export namespace Prisma {
      */
     omit?: CurrencyOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
      * Filter, which Currencies to fetch.
      */
     where?: CurrencyWhereInput
@@ -2045,6 +2246,10 @@ export namespace Prisma {
      */
     omit?: CurrencyOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
      * The data needed to create a Currency.
      */
     data: XOR<CurrencyCreateInput, CurrencyUncheckedCreateInput>
@@ -2058,6 +2263,7 @@ export namespace Prisma {
      * The data used to create many Currencies.
      */
     data: CurrencyCreateManyInput | CurrencyCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -2076,6 +2282,7 @@ export namespace Prisma {
      * The data used to create many Currencies.
      */
     data: CurrencyCreateManyInput | CurrencyCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -2090,6 +2297,10 @@ export namespace Prisma {
      * Omit specific fields from the Currency
      */
     omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
     /**
      * The data needed to update a Currency.
      */
@@ -2157,6 +2368,10 @@ export namespace Prisma {
      */
     omit?: CurrencyOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
      * The filter to search for the Currency to update in case it exists.
      */
     where: CurrencyWhereUniqueInput
@@ -2183,6 +2398,10 @@ export namespace Prisma {
      */
     omit?: CurrencyOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
+    /**
      * Filter which Currency to delete.
      */
     where: CurrencyWhereUniqueInput
@@ -2203,6 +2422,30 @@ export namespace Prisma {
   }
 
   /**
+   * Currency.Price
+   */
+  export type Currency$PriceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceInclude<ExtArgs> | null
+    where?: PriceWhereInput
+    orderBy?: PriceOrderByWithRelationInput | PriceOrderByWithRelationInput[]
+    cursor?: PriceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PriceScalarFieldEnum | PriceScalarFieldEnum[]
+  }
+
+  /**
    * Currency without action
    */
   export type CurrencyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2214,6 +2457,10 @@ export namespace Prisma {
      * Omit specific fields from the Currency
      */
     omit?: CurrencyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CurrencyInclude<ExtArgs> | null
   }
 
 
@@ -3081,6 +3328,7 @@ export namespace Prisma {
      * The data used to create many Companies.
      */
     data: CompanyCreateManyInput | CompanyCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -3099,6 +3347,7 @@ export namespace Prisma {
      * The data used to create many Companies.
      */
     data: CompanyCreateManyInput | CompanyCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -3294,7 +3543,7 @@ export namespace Prisma {
 
   export type ProductAvgAggregateOutputType = {
     id: number | null
-    price: number | null
+    priceBaseCurrency: Decimal | null
     originalPrice: number | null
     stock: number | null
     discountPercentage: number | null
@@ -3304,7 +3553,7 @@ export namespace Prisma {
 
   export type ProductSumAggregateOutputType = {
     id: number | null
-    price: number | null
+    priceBaseCurrency: Decimal | null
     originalPrice: number | null
     stock: number | null
     discountPercentage: number | null
@@ -3316,7 +3565,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     description: string | null
-    price: number | null
+    priceBaseCurrency: Decimal | null
     originalPrice: number | null
     stock: number | null
     image: string | null
@@ -3332,7 +3581,7 @@ export namespace Prisma {
     id: number | null
     name: string | null
     description: string | null
-    price: number | null
+    priceBaseCurrency: Decimal | null
     originalPrice: number | null
     stock: number | null
     image: string | null
@@ -3348,7 +3597,7 @@ export namespace Prisma {
     id: number
     name: number
     description: number
-    price: number
+    priceBaseCurrency: number
     originalPrice: number
     stock: number
     image: number
@@ -3364,7 +3613,7 @@ export namespace Prisma {
 
   export type ProductAvgAggregateInputType = {
     id?: true
-    price?: true
+    priceBaseCurrency?: true
     originalPrice?: true
     stock?: true
     discountPercentage?: true
@@ -3374,7 +3623,7 @@ export namespace Prisma {
 
   export type ProductSumAggregateInputType = {
     id?: true
-    price?: true
+    priceBaseCurrency?: true
     originalPrice?: true
     stock?: true
     discountPercentage?: true
@@ -3386,7 +3635,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    price?: true
+    priceBaseCurrency?: true
     originalPrice?: true
     stock?: true
     image?: true
@@ -3402,7 +3651,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    price?: true
+    priceBaseCurrency?: true
     originalPrice?: true
     stock?: true
     image?: true
@@ -3418,7 +3667,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
-    price?: true
+    priceBaseCurrency?: true
     originalPrice?: true
     stock?: true
     image?: true
@@ -3521,7 +3770,7 @@ export namespace Prisma {
     id: number
     name: string
     description: string
-    price: number
+    priceBaseCurrency: Decimal
     originalPrice: number
     stock: number
     image: string
@@ -3556,7 +3805,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    price?: boolean
+    priceBaseCurrency?: boolean
     originalPrice?: boolean
     stock?: boolean
     image?: boolean
@@ -3568,13 +3817,15 @@ export namespace Prisma {
     updatedAt?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     company?: boolean | CompanyDefaultArgs<ExtArgs>
+    Price?: boolean | Product$PriceArgs<ExtArgs>
+    _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     description?: boolean
-    price?: boolean
+    priceBaseCurrency?: boolean
     originalPrice?: boolean
     stock?: boolean
     image?: boolean
@@ -3592,7 +3843,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    price?: boolean
+    priceBaseCurrency?: boolean
     originalPrice?: boolean
     stock?: boolean
     image?: boolean
@@ -3610,7 +3861,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
-    price?: boolean
+    priceBaseCurrency?: boolean
     originalPrice?: boolean
     stock?: boolean
     image?: boolean
@@ -3622,10 +3873,12 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "price" | "originalPrice" | "stock" | "image" | "discountPercentage" | "freeShipping" | "categoryId" | "companyId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "priceBaseCurrency" | "originalPrice" | "stock" | "image" | "discountPercentage" | "freeShipping" | "categoryId" | "companyId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     company?: boolean | CompanyDefaultArgs<ExtArgs>
+    Price?: boolean | Product$PriceArgs<ExtArgs>
+    _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
@@ -3641,12 +3894,13 @@ export namespace Prisma {
     objects: {
       category: Prisma.$CategoryPayload<ExtArgs>
       company: Prisma.$CompanyPayload<ExtArgs>
+      Price: Prisma.$PricePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
       description: string
-      price: number
+      priceBaseCurrency: Prisma.Decimal
       originalPrice: number
       stock: number
       image: string
@@ -4052,6 +4306,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     company<T extends CompanyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CompanyDefaultArgs<ExtArgs>>): Prisma__CompanyClient<$Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Price<T extends Product$PriceArgs<ExtArgs> = {}>(args?: Subset<T, Product$PriceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4084,7 +4339,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Product", 'Int'>
     readonly name: FieldRef<"Product", 'String'>
     readonly description: FieldRef<"Product", 'String'>
-    readonly price: FieldRef<"Product", 'Float'>
+    readonly priceBaseCurrency: FieldRef<"Product", 'Decimal'>
     readonly originalPrice: FieldRef<"Product", 'Float'>
     readonly stock: FieldRef<"Product", 'Int'>
     readonly image: FieldRef<"Product", 'String'>
@@ -4323,6 +4578,7 @@ export namespace Prisma {
      * The data used to create many Products.
      */
     data: ProductCreateManyInput | ProductCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -4341,6 +4597,7 @@ export namespace Prisma {
      * The data used to create many Products.
      */
     data: ProductCreateManyInput | ProductCreateManyInput[]
+    skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
@@ -4485,6 +4742,30 @@ export namespace Prisma {
      * Limit how many Products to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Product.Price
+   */
+  export type Product$PriceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceInclude<ExtArgs> | null
+    where?: PriceWhereInput
+    orderBy?: PriceOrderByWithRelationInput | PriceOrderByWithRelationInput[]
+    cursor?: PriceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PriceScalarFieldEnum | PriceScalarFieldEnum[]
   }
 
   /**
@@ -5409,6 +5690,7 @@ export namespace Prisma {
      * The data used to create many Categories.
      */
     data: CategoryCreateManyInput | CategoryCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -5427,6 +5709,7 @@ export namespace Prisma {
      * The data used to create many Categories.
      */
     data: CategoryCreateManyInput | CategoryCreateManyInput[]
+    skipDuplicates?: boolean
   }
 
   /**
@@ -5609,10 +5892,1147 @@ export namespace Prisma {
 
 
   /**
+   * Model Price
+   */
+
+  export type AggregatePrice = {
+    _count: PriceCountAggregateOutputType | null
+    _avg: PriceAvgAggregateOutputType | null
+    _sum: PriceSumAggregateOutputType | null
+    _min: PriceMinAggregateOutputType | null
+    _max: PriceMaxAggregateOutputType | null
+  }
+
+  export type PriceAvgAggregateOutputType = {
+    productId: number | null
+    currencyId: number | null
+    value: Decimal | null
+  }
+
+  export type PriceSumAggregateOutputType = {
+    productId: number | null
+    currencyId: number | null
+    value: Decimal | null
+  }
+
+  export type PriceMinAggregateOutputType = {
+    id: string | null
+    productId: number | null
+    currencyId: number | null
+    value: Decimal | null
+    isFixed: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PriceMaxAggregateOutputType = {
+    id: string | null
+    productId: number | null
+    currencyId: number | null
+    value: Decimal | null
+    isFixed: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PriceCountAggregateOutputType = {
+    id: number
+    productId: number
+    currencyId: number
+    value: number
+    isFixed: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PriceAvgAggregateInputType = {
+    productId?: true
+    currencyId?: true
+    value?: true
+  }
+
+  export type PriceSumAggregateInputType = {
+    productId?: true
+    currencyId?: true
+    value?: true
+  }
+
+  export type PriceMinAggregateInputType = {
+    id?: true
+    productId?: true
+    currencyId?: true
+    value?: true
+    isFixed?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PriceMaxAggregateInputType = {
+    id?: true
+    productId?: true
+    currencyId?: true
+    value?: true
+    isFixed?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PriceCountAggregateInputType = {
+    id?: true
+    productId?: true
+    currencyId?: true
+    value?: true
+    isFixed?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PriceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Price to aggregate.
+     */
+    where?: PriceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Prices to fetch.
+     */
+    orderBy?: PriceOrderByWithRelationInput | PriceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PriceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Prices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Prices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Prices
+    **/
+    _count?: true | PriceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PriceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PriceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PriceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PriceMaxAggregateInputType
+  }
+
+  export type GetPriceAggregateType<T extends PriceAggregateArgs> = {
+        [P in keyof T & keyof AggregatePrice]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePrice[P]>
+      : GetScalarType<T[P], AggregatePrice[P]>
+  }
+
+
+
+
+  export type PriceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PriceWhereInput
+    orderBy?: PriceOrderByWithAggregationInput | PriceOrderByWithAggregationInput[]
+    by: PriceScalarFieldEnum[] | PriceScalarFieldEnum
+    having?: PriceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PriceCountAggregateInputType | true
+    _avg?: PriceAvgAggregateInputType
+    _sum?: PriceSumAggregateInputType
+    _min?: PriceMinAggregateInputType
+    _max?: PriceMaxAggregateInputType
+  }
+
+  export type PriceGroupByOutputType = {
+    id: string
+    productId: number
+    currencyId: number
+    value: Decimal
+    isFixed: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: PriceCountAggregateOutputType | null
+    _avg: PriceAvgAggregateOutputType | null
+    _sum: PriceSumAggregateOutputType | null
+    _min: PriceMinAggregateOutputType | null
+    _max: PriceMaxAggregateOutputType | null
+  }
+
+  type GetPriceGroupByPayload<T extends PriceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PriceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PriceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PriceGroupByOutputType[P]>
+            : GetScalarType<T[P], PriceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PriceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    productId?: boolean
+    currencyId?: boolean
+    value?: boolean
+    isFixed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["price"]>
+
+  export type PriceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    productId?: boolean
+    currencyId?: boolean
+    value?: boolean
+    isFixed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["price"]>
+
+  export type PriceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    productId?: boolean
+    currencyId?: boolean
+    value?: boolean
+    isFixed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["price"]>
+
+  export type PriceSelectScalar = {
+    id?: boolean
+    productId?: boolean
+    currencyId?: boolean
+    value?: boolean
+    isFixed?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PriceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productId" | "currencyId" | "value" | "isFixed" | "createdAt" | "updatedAt", ExtArgs["result"]["price"]>
+  export type PriceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
+  }
+  export type PriceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
+  }
+  export type PriceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    currency?: boolean | CurrencyDefaultArgs<ExtArgs>
+  }
+
+  export type $PricePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Price"
+    objects: {
+      product: Prisma.$ProductPayload<ExtArgs>
+      currency: Prisma.$CurrencyPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      productId: number
+      currencyId: number
+      value: Prisma.Decimal
+      isFixed: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["price"]>
+    composites: {}
+  }
+
+  type PriceGetPayload<S extends boolean | null | undefined | PriceDefaultArgs> = $Result.GetResult<Prisma.$PricePayload, S>
+
+  type PriceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PriceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PriceCountAggregateInputType | true
+    }
+
+  export interface PriceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Price'], meta: { name: 'Price' } }
+    /**
+     * Find zero or one Price that matches the filter.
+     * @param {PriceFindUniqueArgs} args - Arguments to find a Price
+     * @example
+     * // Get one Price
+     * const price = await prisma.price.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PriceFindUniqueArgs>(args: SelectSubset<T, PriceFindUniqueArgs<ExtArgs>>): Prisma__PriceClient<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Price that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PriceFindUniqueOrThrowArgs} args - Arguments to find a Price
+     * @example
+     * // Get one Price
+     * const price = await prisma.price.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PriceFindUniqueOrThrowArgs>(args: SelectSubset<T, PriceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PriceClient<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Price that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriceFindFirstArgs} args - Arguments to find a Price
+     * @example
+     * // Get one Price
+     * const price = await prisma.price.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PriceFindFirstArgs>(args?: SelectSubset<T, PriceFindFirstArgs<ExtArgs>>): Prisma__PriceClient<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Price that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriceFindFirstOrThrowArgs} args - Arguments to find a Price
+     * @example
+     * // Get one Price
+     * const price = await prisma.price.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PriceFindFirstOrThrowArgs>(args?: SelectSubset<T, PriceFindFirstOrThrowArgs<ExtArgs>>): Prisma__PriceClient<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Prices that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Prices
+     * const prices = await prisma.price.findMany()
+     * 
+     * // Get first 10 Prices
+     * const prices = await prisma.price.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const priceWithIdOnly = await prisma.price.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PriceFindManyArgs>(args?: SelectSubset<T, PriceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Price.
+     * @param {PriceCreateArgs} args - Arguments to create a Price.
+     * @example
+     * // Create one Price
+     * const Price = await prisma.price.create({
+     *   data: {
+     *     // ... data to create a Price
+     *   }
+     * })
+     * 
+     */
+    create<T extends PriceCreateArgs>(args: SelectSubset<T, PriceCreateArgs<ExtArgs>>): Prisma__PriceClient<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Prices.
+     * @param {PriceCreateManyArgs} args - Arguments to create many Prices.
+     * @example
+     * // Create many Prices
+     * const price = await prisma.price.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PriceCreateManyArgs>(args?: SelectSubset<T, PriceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Prices and returns the data saved in the database.
+     * @param {PriceCreateManyAndReturnArgs} args - Arguments to create many Prices.
+     * @example
+     * // Create many Prices
+     * const price = await prisma.price.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Prices and only return the `id`
+     * const priceWithIdOnly = await prisma.price.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PriceCreateManyAndReturnArgs>(args?: SelectSubset<T, PriceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Price.
+     * @param {PriceDeleteArgs} args - Arguments to delete one Price.
+     * @example
+     * // Delete one Price
+     * const Price = await prisma.price.delete({
+     *   where: {
+     *     // ... filter to delete one Price
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PriceDeleteArgs>(args: SelectSubset<T, PriceDeleteArgs<ExtArgs>>): Prisma__PriceClient<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Price.
+     * @param {PriceUpdateArgs} args - Arguments to update one Price.
+     * @example
+     * // Update one Price
+     * const price = await prisma.price.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PriceUpdateArgs>(args: SelectSubset<T, PriceUpdateArgs<ExtArgs>>): Prisma__PriceClient<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Prices.
+     * @param {PriceDeleteManyArgs} args - Arguments to filter Prices to delete.
+     * @example
+     * // Delete a few Prices
+     * const { count } = await prisma.price.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PriceDeleteManyArgs>(args?: SelectSubset<T, PriceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Prices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Prices
+     * const price = await prisma.price.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PriceUpdateManyArgs>(args: SelectSubset<T, PriceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Prices and returns the data updated in the database.
+     * @param {PriceUpdateManyAndReturnArgs} args - Arguments to update many Prices.
+     * @example
+     * // Update many Prices
+     * const price = await prisma.price.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Prices and only return the `id`
+     * const priceWithIdOnly = await prisma.price.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PriceUpdateManyAndReturnArgs>(args: SelectSubset<T, PriceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Price.
+     * @param {PriceUpsertArgs} args - Arguments to update or create a Price.
+     * @example
+     * // Update or create a Price
+     * const price = await prisma.price.upsert({
+     *   create: {
+     *     // ... data to create a Price
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Price we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PriceUpsertArgs>(args: SelectSubset<T, PriceUpsertArgs<ExtArgs>>): Prisma__PriceClient<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Prices.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriceCountArgs} args - Arguments to filter Prices to count.
+     * @example
+     * // Count the number of Prices
+     * const count = await prisma.price.count({
+     *   where: {
+     *     // ... the filter for the Prices we want to count
+     *   }
+     * })
+    **/
+    count<T extends PriceCountArgs>(
+      args?: Subset<T, PriceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PriceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Price.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PriceAggregateArgs>(args: Subset<T, PriceAggregateArgs>): Prisma.PrismaPromise<GetPriceAggregateType<T>>
+
+    /**
+     * Group by Price.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PriceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PriceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PriceGroupByArgs['orderBy'] }
+        : { orderBy?: PriceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PriceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPriceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Price model
+   */
+  readonly fields: PriceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Price.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PriceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    currency<T extends CurrencyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CurrencyDefaultArgs<ExtArgs>>): Prisma__CurrencyClient<$Result.GetResult<Prisma.$CurrencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Price model
+   */
+  interface PriceFieldRefs {
+    readonly id: FieldRef<"Price", 'String'>
+    readonly productId: FieldRef<"Price", 'Int'>
+    readonly currencyId: FieldRef<"Price", 'Int'>
+    readonly value: FieldRef<"Price", 'Decimal'>
+    readonly isFixed: FieldRef<"Price", 'Boolean'>
+    readonly createdAt: FieldRef<"Price", 'DateTime'>
+    readonly updatedAt: FieldRef<"Price", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Price findUnique
+   */
+  export type PriceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceInclude<ExtArgs> | null
+    /**
+     * Filter, which Price to fetch.
+     */
+    where: PriceWhereUniqueInput
+  }
+
+  /**
+   * Price findUniqueOrThrow
+   */
+  export type PriceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceInclude<ExtArgs> | null
+    /**
+     * Filter, which Price to fetch.
+     */
+    where: PriceWhereUniqueInput
+  }
+
+  /**
+   * Price findFirst
+   */
+  export type PriceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceInclude<ExtArgs> | null
+    /**
+     * Filter, which Price to fetch.
+     */
+    where?: PriceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Prices to fetch.
+     */
+    orderBy?: PriceOrderByWithRelationInput | PriceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Prices.
+     */
+    cursor?: PriceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Prices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Prices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Prices.
+     */
+    distinct?: PriceScalarFieldEnum | PriceScalarFieldEnum[]
+  }
+
+  /**
+   * Price findFirstOrThrow
+   */
+  export type PriceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceInclude<ExtArgs> | null
+    /**
+     * Filter, which Price to fetch.
+     */
+    where?: PriceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Prices to fetch.
+     */
+    orderBy?: PriceOrderByWithRelationInput | PriceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Prices.
+     */
+    cursor?: PriceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Prices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Prices.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Prices.
+     */
+    distinct?: PriceScalarFieldEnum | PriceScalarFieldEnum[]
+  }
+
+  /**
+   * Price findMany
+   */
+  export type PriceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceInclude<ExtArgs> | null
+    /**
+     * Filter, which Prices to fetch.
+     */
+    where?: PriceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Prices to fetch.
+     */
+    orderBy?: PriceOrderByWithRelationInput | PriceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Prices.
+     */
+    cursor?: PriceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Prices from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Prices.
+     */
+    skip?: number
+    distinct?: PriceScalarFieldEnum | PriceScalarFieldEnum[]
+  }
+
+  /**
+   * Price create
+   */
+  export type PriceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Price.
+     */
+    data: XOR<PriceCreateInput, PriceUncheckedCreateInput>
+  }
+
+  /**
+   * Price createMany
+   */
+  export type PriceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Prices.
+     */
+    data: PriceCreateManyInput | PriceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Price createManyAndReturn
+   */
+  export type PriceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * The data used to create many Prices.
+     */
+    data: PriceCreateManyInput | PriceCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Price update
+   */
+  export type PriceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Price.
+     */
+    data: XOR<PriceUpdateInput, PriceUncheckedUpdateInput>
+    /**
+     * Choose, which Price to update.
+     */
+    where: PriceWhereUniqueInput
+  }
+
+  /**
+   * Price updateMany
+   */
+  export type PriceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Prices.
+     */
+    data: XOR<PriceUpdateManyMutationInput, PriceUncheckedUpdateManyInput>
+    /**
+     * Filter which Prices to update
+     */
+    where?: PriceWhereInput
+    /**
+     * Limit how many Prices to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Price updateManyAndReturn
+   */
+  export type PriceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * The data used to update Prices.
+     */
+    data: XOR<PriceUpdateManyMutationInput, PriceUncheckedUpdateManyInput>
+    /**
+     * Filter which Prices to update
+     */
+    where?: PriceWhereInput
+    /**
+     * Limit how many Prices to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Price upsert
+   */
+  export type PriceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Price to update in case it exists.
+     */
+    where: PriceWhereUniqueInput
+    /**
+     * In case the Price found by the `where` argument doesn't exist, create a new Price with this data.
+     */
+    create: XOR<PriceCreateInput, PriceUncheckedCreateInput>
+    /**
+     * In case the Price was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PriceUpdateInput, PriceUncheckedUpdateInput>
+  }
+
+  /**
+   * Price delete
+   */
+  export type PriceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceInclude<ExtArgs> | null
+    /**
+     * Filter which Price to delete.
+     */
+    where: PriceWhereUniqueInput
+  }
+
+  /**
+   * Price deleteMany
+   */
+  export type PriceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Prices to delete
+     */
+    where?: PriceWhereInput
+    /**
+     * Limit how many Prices to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Price without action
+   */
+  export type PriceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Price
+     */
+    select?: PriceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Price
+     */
+    omit?: PriceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PriceInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
   export const TransactionIsolationLevel: {
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
   };
 
@@ -5622,6 +7042,7 @@ export namespace Prisma {
   export const CurrencyScalarFieldEnum: {
     id: 'id',
     name: 'name',
+    baseRate: 'baseRate',
     isDefault: 'isDefault',
     isBase: 'isBase'
   };
@@ -5641,7 +7062,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     description: 'description',
-    price: 'price',
+    priceBaseCurrency: 'priceBaseCurrency',
     originalPrice: 'originalPrice',
     stock: 'stock',
     image: 'image',
@@ -5667,12 +7088,33 @@ export namespace Prisma {
   export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
 
 
+  export const PriceScalarFieldEnum: {
+    id: 'id',
+    productId: 'productId',
+    currencyId: 'currencyId',
+    value: 'value',
+    isFixed: 'isFixed',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PriceScalarFieldEnum = (typeof PriceScalarFieldEnum)[keyof typeof PriceScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
   export const NullsOrder: {
@@ -5696,9 +7138,37 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'String[]'
+   */
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal'
+   */
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+  /**
+   * Reference to a field of type 'Decimal[]'
+   */
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 
@@ -5717,9 +7187,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
   /**
    * Deep Input Types
@@ -5732,15 +7216,19 @@ export namespace Prisma {
     NOT?: CurrencyWhereInput | CurrencyWhereInput[]
     id?: IntFilter<"Currency"> | number
     name?: StringFilter<"Currency"> | string
+    baseRate?: DecimalFilter<"Currency"> | Decimal | DecimalJsLike | number | string
     isDefault?: BoolFilter<"Currency"> | boolean
     isBase?: BoolFilter<"Currency"> | boolean
+    Price?: PriceListRelationFilter
   }
 
   export type CurrencyOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    baseRate?: SortOrder
     isDefault?: SortOrder
     isBase?: SortOrder
+    Price?: PriceOrderByRelationAggregateInput
   }
 
   export type CurrencyWhereUniqueInput = Prisma.AtLeast<{
@@ -5749,13 +7237,16 @@ export namespace Prisma {
     OR?: CurrencyWhereInput[]
     NOT?: CurrencyWhereInput | CurrencyWhereInput[]
     name?: StringFilter<"Currency"> | string
+    baseRate?: DecimalFilter<"Currency"> | Decimal | DecimalJsLike | number | string
     isDefault?: BoolFilter<"Currency"> | boolean
     isBase?: BoolFilter<"Currency"> | boolean
+    Price?: PriceListRelationFilter
   }, "id">
 
   export type CurrencyOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    baseRate?: SortOrder
     isDefault?: SortOrder
     isBase?: SortOrder
     _count?: CurrencyCountOrderByAggregateInput
@@ -5771,6 +7262,7 @@ export namespace Prisma {
     NOT?: CurrencyScalarWhereWithAggregatesInput | CurrencyScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Currency"> | number
     name?: StringWithAggregatesFilter<"Currency"> | string
+    baseRate?: DecimalWithAggregatesFilter<"Currency"> | Decimal | DecimalJsLike | number | string
     isDefault?: BoolWithAggregatesFilter<"Currency"> | boolean
     isBase?: BoolWithAggregatesFilter<"Currency"> | boolean
   }
@@ -5824,7 +7316,7 @@ export namespace Prisma {
     id?: IntFilter<"Product"> | number
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
-    price?: FloatFilter<"Product"> | number
+    priceBaseCurrency?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     originalPrice?: FloatFilter<"Product"> | number
     stock?: IntFilter<"Product"> | number
     image?: StringFilter<"Product"> | string
@@ -5836,13 +7328,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
+    Price?: PriceListRelationFilter
   }
 
   export type ProductOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    price?: SortOrder
+    priceBaseCurrency?: SortOrder
     originalPrice?: SortOrder
     stock?: SortOrder
     image?: SortOrder
@@ -5854,6 +7347,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     category?: CategoryOrderByWithRelationInput
     company?: CompanyOrderByWithRelationInput
+    Price?: PriceOrderByRelationAggregateInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -5863,7 +7357,7 @@ export namespace Prisma {
     NOT?: ProductWhereInput | ProductWhereInput[]
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
-    price?: FloatFilter<"Product"> | number
+    priceBaseCurrency?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     originalPrice?: FloatFilter<"Product"> | number
     stock?: IntFilter<"Product"> | number
     image?: StringFilter<"Product"> | string
@@ -5875,13 +7369,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
+    Price?: PriceListRelationFilter
   }, "id">
 
   export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    price?: SortOrder
+    priceBaseCurrency?: SortOrder
     originalPrice?: SortOrder
     stock?: SortOrder
     image?: SortOrder
@@ -5905,7 +7400,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Product"> | number
     name?: StringWithAggregatesFilter<"Product"> | string
     description?: StringWithAggregatesFilter<"Product"> | string
-    price?: FloatWithAggregatesFilter<"Product"> | number
+    priceBaseCurrency?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     originalPrice?: FloatWithAggregatesFilter<"Product"> | number
     stock?: IntWithAggregatesFilter<"Product"> | number
     image?: StringWithAggregatesFilter<"Product"> | string
@@ -5974,41 +7469,122 @@ export namespace Prisma {
     image?: StringNullableWithAggregatesFilter<"Category"> | string | null
   }
 
+  export type PriceWhereInput = {
+    AND?: PriceWhereInput | PriceWhereInput[]
+    OR?: PriceWhereInput[]
+    NOT?: PriceWhereInput | PriceWhereInput[]
+    id?: StringFilter<"Price"> | string
+    productId?: IntFilter<"Price"> | number
+    currencyId?: IntFilter<"Price"> | number
+    value?: DecimalFilter<"Price"> | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolFilter<"Price"> | boolean
+    createdAt?: DateTimeFilter<"Price"> | Date | string
+    updatedAt?: DateTimeFilter<"Price"> | Date | string
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+    currency?: XOR<CurrencyScalarRelationFilter, CurrencyWhereInput>
+  }
+
+  export type PriceOrderByWithRelationInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    currencyId?: SortOrder
+    value?: SortOrder
+    isFixed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    product?: ProductOrderByWithRelationInput
+    currency?: CurrencyOrderByWithRelationInput
+  }
+
+  export type PriceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    productId_currencyId?: PriceProductIdCurrencyIdCompoundUniqueInput
+    AND?: PriceWhereInput | PriceWhereInput[]
+    OR?: PriceWhereInput[]
+    NOT?: PriceWhereInput | PriceWhereInput[]
+    productId?: IntFilter<"Price"> | number
+    currencyId?: IntFilter<"Price"> | number
+    value?: DecimalFilter<"Price"> | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolFilter<"Price"> | boolean
+    createdAt?: DateTimeFilter<"Price"> | Date | string
+    updatedAt?: DateTimeFilter<"Price"> | Date | string
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+    currency?: XOR<CurrencyScalarRelationFilter, CurrencyWhereInput>
+  }, "id" | "productId_currencyId">
+
+  export type PriceOrderByWithAggregationInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    currencyId?: SortOrder
+    value?: SortOrder
+    isFixed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PriceCountOrderByAggregateInput
+    _avg?: PriceAvgOrderByAggregateInput
+    _max?: PriceMaxOrderByAggregateInput
+    _min?: PriceMinOrderByAggregateInput
+    _sum?: PriceSumOrderByAggregateInput
+  }
+
+  export type PriceScalarWhereWithAggregatesInput = {
+    AND?: PriceScalarWhereWithAggregatesInput | PriceScalarWhereWithAggregatesInput[]
+    OR?: PriceScalarWhereWithAggregatesInput[]
+    NOT?: PriceScalarWhereWithAggregatesInput | PriceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Price"> | string
+    productId?: IntWithAggregatesFilter<"Price"> | number
+    currencyId?: IntWithAggregatesFilter<"Price"> | number
+    value?: DecimalWithAggregatesFilter<"Price"> | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolWithAggregatesFilter<"Price"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"Price"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Price"> | Date | string
+  }
+
   export type CurrencyCreateInput = {
     name: string
+    baseRate: Decimal | DecimalJsLike | number | string
     isDefault?: boolean
     isBase?: boolean
+    Price?: PriceCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyUncheckedCreateInput = {
     id?: number
     name: string
+    baseRate: Decimal | DecimalJsLike | number | string
     isDefault?: boolean
     isBase?: boolean
+    Price?: PriceUncheckedCreateNestedManyWithoutCurrencyInput
   }
 
   export type CurrencyUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    baseRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     isBase?: BoolFieldUpdateOperationsInput | boolean
+    Price?: PriceUpdateManyWithoutCurrencyNestedInput
   }
 
   export type CurrencyUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    baseRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     isBase?: BoolFieldUpdateOperationsInput | boolean
+    Price?: PriceUncheckedUpdateManyWithoutCurrencyNestedInput
   }
 
   export type CurrencyCreateManyInput = {
     id?: number
     name: string
+    baseRate: Decimal | DecimalJsLike | number | string
     isDefault?: boolean
     isBase?: boolean
   }
 
   export type CurrencyUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
+    baseRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     isBase?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -6016,6 +7592,7 @@ export namespace Prisma {
   export type CurrencyUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    baseRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     isBase?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -6059,7 +7636,7 @@ export namespace Prisma {
   export type ProductCreateInput = {
     name: string
     description: string
-    price: number
+    priceBaseCurrency: Decimal | DecimalJsLike | number | string
     originalPrice: number
     stock: number
     image: string
@@ -6069,13 +7646,14 @@ export namespace Prisma {
     updatedAt?: Date | string
     category: CategoryCreateNestedOneWithoutProductsInput
     company: CompanyCreateNestedOneWithoutProductInput
+    Price?: PriceCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
     id?: number
     name: string
     description: string
-    price: number
+    priceBaseCurrency: Decimal | DecimalJsLike | number | string
     originalPrice: number
     stock: number
     image: string
@@ -6085,12 +7663,13 @@ export namespace Prisma {
     companyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    Price?: PriceUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     originalPrice?: FloatFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
@@ -6100,13 +7679,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
     company?: CompanyUpdateOneRequiredWithoutProductNestedInput
+    Price?: PriceUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     originalPrice?: FloatFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
@@ -6116,13 +7696,14 @@ export namespace Prisma {
     companyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Price?: PriceUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductCreateManyInput = {
     id?: number
     name: string
     description: string
-    price: number
+    priceBaseCurrency: Decimal | DecimalJsLike | number | string
     originalPrice: number
     stock: number
     image: string
@@ -6137,7 +7718,7 @@ export namespace Prisma {
   export type ProductUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     originalPrice?: FloatFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
@@ -6151,7 +7732,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     originalPrice?: FloatFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
@@ -6220,10 +7801,78 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type PriceCreateInput = {
+    id?: string
+    value: Decimal | DecimalJsLike | number | string
+    isFixed: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    product: ProductCreateNestedOneWithoutPriceInput
+    currency: CurrencyCreateNestedOneWithoutPriceInput
+  }
+
+  export type PriceUncheckedCreateInput = {
+    id?: string
+    productId: number
+    currencyId: number
+    value: Decimal | DecimalJsLike | number | string
+    isFixed: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PriceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUpdateOneRequiredWithoutPriceNestedInput
+    currency?: CurrencyUpdateOneRequiredWithoutPriceNestedInput
+  }
+
+  export type PriceUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: IntFieldUpdateOperationsInput | number
+    currencyId?: IntFieldUpdateOperationsInput | number
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PriceCreateManyInput = {
+    id?: string
+    productId: number
+    currencyId: number
+    value: Decimal | DecimalJsLike | number | string
+    isFixed: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PriceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PriceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: IntFieldUpdateOperationsInput | number
+    currencyId?: IntFieldUpdateOperationsInput | number
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -6233,8 +7882,8 @@ export namespace Prisma {
 
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -6242,7 +7891,19 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type DecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -6250,20 +7911,33 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type PriceListRelationFilter = {
+    every?: PriceWhereInput
+    some?: PriceWhereInput
+    none?: PriceWhereInput
+  }
+
+  export type PriceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type CurrencyCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    baseRate?: SortOrder
     isDefault?: SortOrder
     isBase?: SortOrder
   }
 
   export type CurrencyAvgOrderByAggregateInput = {
     id?: SortOrder
+    baseRate?: SortOrder
   }
 
   export type CurrencyMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    baseRate?: SortOrder
     isDefault?: SortOrder
     isBase?: SortOrder
   }
@@ -6271,18 +7945,20 @@ export namespace Prisma {
   export type CurrencyMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    baseRate?: SortOrder
     isDefault?: SortOrder
     isBase?: SortOrder
   }
 
   export type CurrencySumOrderByAggregateInput = {
     id?: SortOrder
+    baseRate?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -6297,8 +7973,8 @@ export namespace Prisma {
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -6306,10 +7982,27 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -6355,8 +8048,8 @@ export namespace Prisma {
 
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -6366,8 +8059,8 @@ export namespace Prisma {
 
   export type FloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -6377,8 +8070,8 @@ export namespace Prisma {
 
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -6405,7 +8098,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    price?: SortOrder
+    priceBaseCurrency?: SortOrder
     originalPrice?: SortOrder
     stock?: SortOrder
     image?: SortOrder
@@ -6419,7 +8112,7 @@ export namespace Prisma {
 
   export type ProductAvgOrderByAggregateInput = {
     id?: SortOrder
-    price?: SortOrder
+    priceBaseCurrency?: SortOrder
     originalPrice?: SortOrder
     stock?: SortOrder
     discountPercentage?: SortOrder
@@ -6431,7 +8124,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    price?: SortOrder
+    priceBaseCurrency?: SortOrder
     originalPrice?: SortOrder
     stock?: SortOrder
     image?: SortOrder
@@ -6447,7 +8140,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
-    price?: SortOrder
+    priceBaseCurrency?: SortOrder
     originalPrice?: SortOrder
     stock?: SortOrder
     image?: SortOrder
@@ -6461,7 +8154,7 @@ export namespace Prisma {
 
   export type ProductSumOrderByAggregateInput = {
     id?: SortOrder
-    price?: SortOrder
+    priceBaseCurrency?: SortOrder
     originalPrice?: SortOrder
     stock?: SortOrder
     discountPercentage?: SortOrder
@@ -6471,8 +8164,8 @@ export namespace Prisma {
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -6487,8 +8180,8 @@ export namespace Prisma {
 
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -6503,8 +8196,8 @@ export namespace Prisma {
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -6517,8 +8210,8 @@ export namespace Prisma {
 
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -6526,6 +8219,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
@@ -6563,8 +8257,8 @@ export namespace Prisma {
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -6572,18 +8266,112 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
     not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type ProductScalarRelationFilter = {
+    is?: ProductWhereInput
+    isNot?: ProductWhereInput
+  }
+
+  export type CurrencyScalarRelationFilter = {
+    is?: CurrencyWhereInput
+    isNot?: CurrencyWhereInput
+  }
+
+  export type PriceProductIdCurrencyIdCompoundUniqueInput = {
+    productId: number
+    currencyId: number
+  }
+
+  export type PriceCountOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    currencyId?: SortOrder
+    value?: SortOrder
+    isFixed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PriceAvgOrderByAggregateInput = {
+    productId?: SortOrder
+    currencyId?: SortOrder
+    value?: SortOrder
+  }
+
+  export type PriceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    currencyId?: SortOrder
+    value?: SortOrder
+    isFixed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PriceMinOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    currencyId?: SortOrder
+    value?: SortOrder
+    isFixed?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PriceSumOrderByAggregateInput = {
+    productId?: SortOrder
+    currencyId?: SortOrder
+    value?: SortOrder
+  }
+
+  export type PriceCreateNestedManyWithoutCurrencyInput = {
+    create?: XOR<PriceCreateWithoutCurrencyInput, PriceUncheckedCreateWithoutCurrencyInput> | PriceCreateWithoutCurrencyInput[] | PriceUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: PriceCreateOrConnectWithoutCurrencyInput | PriceCreateOrConnectWithoutCurrencyInput[]
+    createMany?: PriceCreateManyCurrencyInputEnvelope
+    connect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+  }
+
+  export type PriceUncheckedCreateNestedManyWithoutCurrencyInput = {
+    create?: XOR<PriceCreateWithoutCurrencyInput, PriceUncheckedCreateWithoutCurrencyInput> | PriceCreateWithoutCurrencyInput[] | PriceUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: PriceCreateOrConnectWithoutCurrencyInput | PriceCreateOrConnectWithoutCurrencyInput[]
+    createMany?: PriceCreateManyCurrencyInputEnvelope
+    connect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
+  export type DecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type PriceUpdateManyWithoutCurrencyNestedInput = {
+    create?: XOR<PriceCreateWithoutCurrencyInput, PriceUncheckedCreateWithoutCurrencyInput> | PriceCreateWithoutCurrencyInput[] | PriceUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: PriceCreateOrConnectWithoutCurrencyInput | PriceCreateOrConnectWithoutCurrencyInput[]
+    upsert?: PriceUpsertWithWhereUniqueWithoutCurrencyInput | PriceUpsertWithWhereUniqueWithoutCurrencyInput[]
+    createMany?: PriceCreateManyCurrencyInputEnvelope
+    set?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    disconnect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    delete?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    connect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    update?: PriceUpdateWithWhereUniqueWithoutCurrencyInput | PriceUpdateWithWhereUniqueWithoutCurrencyInput[]
+    updateMany?: PriceUpdateManyWithWhereWithoutCurrencyInput | PriceUpdateManyWithWhereWithoutCurrencyInput[]
+    deleteMany?: PriceScalarWhereInput | PriceScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -6592,6 +8380,20 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type PriceUncheckedUpdateManyWithoutCurrencyNestedInput = {
+    create?: XOR<PriceCreateWithoutCurrencyInput, PriceUncheckedCreateWithoutCurrencyInput> | PriceCreateWithoutCurrencyInput[] | PriceUncheckedCreateWithoutCurrencyInput[]
+    connectOrCreate?: PriceCreateOrConnectWithoutCurrencyInput | PriceCreateOrConnectWithoutCurrencyInput[]
+    upsert?: PriceUpsertWithWhereUniqueWithoutCurrencyInput | PriceUpsertWithWhereUniqueWithoutCurrencyInput[]
+    createMany?: PriceCreateManyCurrencyInputEnvelope
+    set?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    disconnect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    delete?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    connect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    update?: PriceUpdateWithWhereUniqueWithoutCurrencyInput | PriceUpdateWithWhereUniqueWithoutCurrencyInput[]
+    updateMany?: PriceUpdateManyWithWhereWithoutCurrencyInput | PriceUpdateManyWithWhereWithoutCurrencyInput[]
+    deleteMany?: PriceScalarWhereInput | PriceScalarWhereInput[]
   }
 
   export type ProductCreateNestedManyWithoutCompanyInput = {
@@ -6648,6 +8450,20 @@ export namespace Prisma {
     connect?: CompanyWhereUniqueInput
   }
 
+  export type PriceCreateNestedManyWithoutProductInput = {
+    create?: XOR<PriceCreateWithoutProductInput, PriceUncheckedCreateWithoutProductInput> | PriceCreateWithoutProductInput[] | PriceUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: PriceCreateOrConnectWithoutProductInput | PriceCreateOrConnectWithoutProductInput[]
+    createMany?: PriceCreateManyProductInputEnvelope
+    connect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+  }
+
+  export type PriceUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<PriceCreateWithoutProductInput, PriceUncheckedCreateWithoutProductInput> | PriceCreateWithoutProductInput[] | PriceUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: PriceCreateOrConnectWithoutProductInput | PriceCreateOrConnectWithoutProductInput[]
+    createMany?: PriceCreateManyProductInputEnvelope
+    connect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+  }
+
   export type FloatFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -6682,6 +8498,34 @@ export namespace Prisma {
     upsert?: CompanyUpsertWithoutProductInput
     connect?: CompanyWhereUniqueInput
     update?: XOR<XOR<CompanyUpdateToOneWithWhereWithoutProductInput, CompanyUpdateWithoutProductInput>, CompanyUncheckedUpdateWithoutProductInput>
+  }
+
+  export type PriceUpdateManyWithoutProductNestedInput = {
+    create?: XOR<PriceCreateWithoutProductInput, PriceUncheckedCreateWithoutProductInput> | PriceCreateWithoutProductInput[] | PriceUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: PriceCreateOrConnectWithoutProductInput | PriceCreateOrConnectWithoutProductInput[]
+    upsert?: PriceUpsertWithWhereUniqueWithoutProductInput | PriceUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: PriceCreateManyProductInputEnvelope
+    set?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    disconnect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    delete?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    connect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    update?: PriceUpdateWithWhereUniqueWithoutProductInput | PriceUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: PriceUpdateManyWithWhereWithoutProductInput | PriceUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: PriceScalarWhereInput | PriceScalarWhereInput[]
+  }
+
+  export type PriceUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<PriceCreateWithoutProductInput, PriceUncheckedCreateWithoutProductInput> | PriceCreateWithoutProductInput[] | PriceUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: PriceCreateOrConnectWithoutProductInput | PriceCreateOrConnectWithoutProductInput[]
+    upsert?: PriceUpsertWithWhereUniqueWithoutProductInput | PriceUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: PriceCreateManyProductInputEnvelope
+    set?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    disconnect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    delete?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    connect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+    update?: PriceUpdateWithWhereUniqueWithoutProductInput | PriceUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: PriceUpdateManyWithWhereWithoutProductInput | PriceUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: PriceScalarWhereInput | PriceScalarWhereInput[]
   }
 
   export type ProductCreateNestedManyWithoutCategoryInput = {
@@ -6730,10 +8574,38 @@ export namespace Prisma {
     deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
   }
 
+  export type ProductCreateNestedOneWithoutPriceInput = {
+    create?: XOR<ProductCreateWithoutPriceInput, ProductUncheckedCreateWithoutPriceInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutPriceInput
+    connect?: ProductWhereUniqueInput
+  }
+
+  export type CurrencyCreateNestedOneWithoutPriceInput = {
+    create?: XOR<CurrencyCreateWithoutPriceInput, CurrencyUncheckedCreateWithoutPriceInput>
+    connectOrCreate?: CurrencyCreateOrConnectWithoutPriceInput
+    connect?: CurrencyWhereUniqueInput
+  }
+
+  export type ProductUpdateOneRequiredWithoutPriceNestedInput = {
+    create?: XOR<ProductCreateWithoutPriceInput, ProductUncheckedCreateWithoutPriceInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutPriceInput
+    upsert?: ProductUpsertWithoutPriceInput
+    connect?: ProductWhereUniqueInput
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutPriceInput, ProductUpdateWithoutPriceInput>, ProductUncheckedUpdateWithoutPriceInput>
+  }
+
+  export type CurrencyUpdateOneRequiredWithoutPriceNestedInput = {
+    create?: XOR<CurrencyCreateWithoutPriceInput, CurrencyUncheckedCreateWithoutPriceInput>
+    connectOrCreate?: CurrencyCreateOrConnectWithoutPriceInput
+    upsert?: CurrencyUpsertWithoutPriceInput
+    connect?: CurrencyWhereUniqueInput
+    update?: XOR<XOR<CurrencyUpdateToOneWithWhereWithoutPriceInput, CurrencyUpdateWithoutPriceInput>, CurrencyUncheckedUpdateWithoutPriceInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -6743,8 +8615,8 @@ export namespace Prisma {
 
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -6755,6 +8627,17 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedDecimalFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -6762,8 +8645,8 @@ export namespace Prisma {
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -6778,8 +8661,8 @@ export namespace Prisma {
 
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -6789,8 +8672,8 @@ export namespace Prisma {
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -6804,6 +8687,22 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedDecimalFilter<$PrismaModel>
+    _sum?: NestedDecimalFilter<$PrismaModel>
+    _min?: NestedDecimalFilter<$PrismaModel>
+    _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
@@ -6814,8 +8713,8 @@ export namespace Prisma {
 
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -6825,8 +8724,8 @@ export namespace Prisma {
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -6836,8 +8735,8 @@ export namespace Prisma {
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -6852,8 +8751,8 @@ export namespace Prisma {
 
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -6868,8 +8767,8 @@ export namespace Prisma {
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -6879,8 +8778,8 @@ export namespace Prisma {
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -6893,8 +8792,8 @@ export namespace Prisma {
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -6907,8 +8806,8 @@ export namespace Prisma {
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -6922,10 +8821,67 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type PriceCreateWithoutCurrencyInput = {
+    id?: string
+    value: Decimal | DecimalJsLike | number | string
+    isFixed: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    product: ProductCreateNestedOneWithoutPriceInput
+  }
+
+  export type PriceUncheckedCreateWithoutCurrencyInput = {
+    id?: string
+    productId: number
+    value: Decimal | DecimalJsLike | number | string
+    isFixed: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PriceCreateOrConnectWithoutCurrencyInput = {
+    where: PriceWhereUniqueInput
+    create: XOR<PriceCreateWithoutCurrencyInput, PriceUncheckedCreateWithoutCurrencyInput>
+  }
+
+  export type PriceCreateManyCurrencyInputEnvelope = {
+    data: PriceCreateManyCurrencyInput | PriceCreateManyCurrencyInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PriceUpsertWithWhereUniqueWithoutCurrencyInput = {
+    where: PriceWhereUniqueInput
+    update: XOR<PriceUpdateWithoutCurrencyInput, PriceUncheckedUpdateWithoutCurrencyInput>
+    create: XOR<PriceCreateWithoutCurrencyInput, PriceUncheckedCreateWithoutCurrencyInput>
+  }
+
+  export type PriceUpdateWithWhereUniqueWithoutCurrencyInput = {
+    where: PriceWhereUniqueInput
+    data: XOR<PriceUpdateWithoutCurrencyInput, PriceUncheckedUpdateWithoutCurrencyInput>
+  }
+
+  export type PriceUpdateManyWithWhereWithoutCurrencyInput = {
+    where: PriceScalarWhereInput
+    data: XOR<PriceUpdateManyMutationInput, PriceUncheckedUpdateManyWithoutCurrencyInput>
+  }
+
+  export type PriceScalarWhereInput = {
+    AND?: PriceScalarWhereInput | PriceScalarWhereInput[]
+    OR?: PriceScalarWhereInput[]
+    NOT?: PriceScalarWhereInput | PriceScalarWhereInput[]
+    id?: StringFilter<"Price"> | string
+    productId?: IntFilter<"Price"> | number
+    currencyId?: IntFilter<"Price"> | number
+    value?: DecimalFilter<"Price"> | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolFilter<"Price"> | boolean
+    createdAt?: DateTimeFilter<"Price"> | Date | string
+    updatedAt?: DateTimeFilter<"Price"> | Date | string
+  }
+
   export type ProductCreateWithoutCompanyInput = {
     name: string
     description: string
-    price: number
+    priceBaseCurrency: Decimal | DecimalJsLike | number | string
     originalPrice: number
     stock: number
     image: string
@@ -6934,13 +8890,14 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     category: CategoryCreateNestedOneWithoutProductsInput
+    Price?: PriceCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutCompanyInput = {
     id?: number
     name: string
     description: string
-    price: number
+    priceBaseCurrency: Decimal | DecimalJsLike | number | string
     originalPrice: number
     stock: number
     image: string
@@ -6949,6 +8906,7 @@ export namespace Prisma {
     categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    Price?: PriceUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutCompanyInput = {
@@ -6958,6 +8916,7 @@ export namespace Prisma {
 
   export type ProductCreateManyCompanyInputEnvelope = {
     data: ProductCreateManyCompanyInput | ProductCreateManyCompanyInput[]
+    skipDuplicates?: boolean
   }
 
   export type ProductUpsertWithWhereUniqueWithoutCompanyInput = {
@@ -6983,7 +8942,7 @@ export namespace Prisma {
     id?: IntFilter<"Product"> | number
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
-    price?: FloatFilter<"Product"> | number
+    priceBaseCurrency?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     originalPrice?: FloatFilter<"Product"> | number
     stock?: IntFilter<"Product"> | number
     image?: StringFilter<"Product"> | string
@@ -7027,6 +8986,34 @@ export namespace Prisma {
   export type CompanyCreateOrConnectWithoutProductInput = {
     where: CompanyWhereUniqueInput
     create: XOR<CompanyCreateWithoutProductInput, CompanyUncheckedCreateWithoutProductInput>
+  }
+
+  export type PriceCreateWithoutProductInput = {
+    id?: string
+    value: Decimal | DecimalJsLike | number | string
+    isFixed: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    currency: CurrencyCreateNestedOneWithoutPriceInput
+  }
+
+  export type PriceUncheckedCreateWithoutProductInput = {
+    id?: string
+    currencyId: number
+    value: Decimal | DecimalJsLike | number | string
+    isFixed: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PriceCreateOrConnectWithoutProductInput = {
+    where: PriceWhereUniqueInput
+    create: XOR<PriceCreateWithoutProductInput, PriceUncheckedCreateWithoutProductInput>
+  }
+
+  export type PriceCreateManyProductInputEnvelope = {
+    data: PriceCreateManyProductInput | PriceCreateManyProductInput[]
+    skipDuplicates?: boolean
   }
 
   export type CategoryUpsertWithoutProductsInput = {
@@ -7075,10 +9062,26 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
   }
 
+  export type PriceUpsertWithWhereUniqueWithoutProductInput = {
+    where: PriceWhereUniqueInput
+    update: XOR<PriceUpdateWithoutProductInput, PriceUncheckedUpdateWithoutProductInput>
+    create: XOR<PriceCreateWithoutProductInput, PriceUncheckedCreateWithoutProductInput>
+  }
+
+  export type PriceUpdateWithWhereUniqueWithoutProductInput = {
+    where: PriceWhereUniqueInput
+    data: XOR<PriceUpdateWithoutProductInput, PriceUncheckedUpdateWithoutProductInput>
+  }
+
+  export type PriceUpdateManyWithWhereWithoutProductInput = {
+    where: PriceScalarWhereInput
+    data: XOR<PriceUpdateManyMutationInput, PriceUncheckedUpdateManyWithoutProductInput>
+  }
+
   export type ProductCreateWithoutCategoryInput = {
     name: string
     description: string
-    price: number
+    priceBaseCurrency: Decimal | DecimalJsLike | number | string
     originalPrice: number
     stock: number
     image: string
@@ -7087,13 +9090,14 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     company: CompanyCreateNestedOneWithoutProductInput
+    Price?: PriceCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutCategoryInput = {
     id?: number
     name: string
     description: string
-    price: number
+    priceBaseCurrency: Decimal | DecimalJsLike | number | string
     originalPrice: number
     stock: number
     image: string
@@ -7102,6 +9106,7 @@ export namespace Prisma {
     companyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    Price?: PriceUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutCategoryInput = {
@@ -7111,6 +9116,7 @@ export namespace Prisma {
 
   export type ProductCreateManyCategoryInputEnvelope = {
     data: ProductCreateManyCategoryInput | ProductCreateManyCategoryInput[]
+    skipDuplicates?: boolean
   }
 
   export type ProductUpsertWithWhereUniqueWithoutCategoryInput = {
@@ -7129,11 +9135,171 @@ export namespace Prisma {
     data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutCategoryInput>
   }
 
+  export type ProductCreateWithoutPriceInput = {
+    name: string
+    description: string
+    priceBaseCurrency: Decimal | DecimalJsLike | number | string
+    originalPrice: number
+    stock: number
+    image: string
+    discountPercentage?: number | null
+    freeShipping?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: CategoryCreateNestedOneWithoutProductsInput
+    company: CompanyCreateNestedOneWithoutProductInput
+  }
+
+  export type ProductUncheckedCreateWithoutPriceInput = {
+    id?: number
+    name: string
+    description: string
+    priceBaseCurrency: Decimal | DecimalJsLike | number | string
+    originalPrice: number
+    stock: number
+    image: string
+    discountPercentage?: number | null
+    freeShipping?: boolean
+    categoryId: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProductCreateOrConnectWithoutPriceInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutPriceInput, ProductUncheckedCreateWithoutPriceInput>
+  }
+
+  export type CurrencyCreateWithoutPriceInput = {
+    name: string
+    baseRate: Decimal | DecimalJsLike | number | string
+    isDefault?: boolean
+    isBase?: boolean
+  }
+
+  export type CurrencyUncheckedCreateWithoutPriceInput = {
+    id?: number
+    name: string
+    baseRate: Decimal | DecimalJsLike | number | string
+    isDefault?: boolean
+    isBase?: boolean
+  }
+
+  export type CurrencyCreateOrConnectWithoutPriceInput = {
+    where: CurrencyWhereUniqueInput
+    create: XOR<CurrencyCreateWithoutPriceInput, CurrencyUncheckedCreateWithoutPriceInput>
+  }
+
+  export type ProductUpsertWithoutPriceInput = {
+    update: XOR<ProductUpdateWithoutPriceInput, ProductUncheckedUpdateWithoutPriceInput>
+    create: XOR<ProductCreateWithoutPriceInput, ProductUncheckedCreateWithoutPriceInput>
+    where?: ProductWhereInput
+  }
+
+  export type ProductUpdateToOneWithWhereWithoutPriceInput = {
+    where?: ProductWhereInput
+    data: XOR<ProductUpdateWithoutPriceInput, ProductUncheckedUpdateWithoutPriceInput>
+  }
+
+  export type ProductUpdateWithoutPriceInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    originalPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
+    freeShipping?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    company?: CompanyUpdateOneRequiredWithoutProductNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutPriceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    originalPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
+    freeShipping?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: IntFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CurrencyUpsertWithoutPriceInput = {
+    update: XOR<CurrencyUpdateWithoutPriceInput, CurrencyUncheckedUpdateWithoutPriceInput>
+    create: XOR<CurrencyCreateWithoutPriceInput, CurrencyUncheckedCreateWithoutPriceInput>
+    where?: CurrencyWhereInput
+  }
+
+  export type CurrencyUpdateToOneWithWhereWithoutPriceInput = {
+    where?: CurrencyWhereInput
+    data: XOR<CurrencyUpdateWithoutPriceInput, CurrencyUncheckedUpdateWithoutPriceInput>
+  }
+
+  export type CurrencyUpdateWithoutPriceInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    baseRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    isBase?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type CurrencyUncheckedUpdateWithoutPriceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    baseRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    isBase?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type PriceCreateManyCurrencyInput = {
+    id?: string
+    productId: number
+    value: Decimal | DecimalJsLike | number | string
+    isFixed: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PriceUpdateWithoutCurrencyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUpdateOneRequiredWithoutPriceNestedInput
+  }
+
+  export type PriceUncheckedUpdateWithoutCurrencyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: IntFieldUpdateOperationsInput | number
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PriceUncheckedUpdateManyWithoutCurrencyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    productId?: IntFieldUpdateOperationsInput | number
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ProductCreateManyCompanyInput = {
     id?: number
     name: string
     description: string
-    price: number
+    priceBaseCurrency: Decimal | DecimalJsLike | number | string
     originalPrice: number
     stock: number
     image: string
@@ -7147,7 +9313,7 @@ export namespace Prisma {
   export type ProductUpdateWithoutCompanyInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     originalPrice?: FloatFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
@@ -7156,13 +9322,30 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    Price?: PriceUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCompanyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    originalPrice?: FloatFieldUpdateOperationsInput | number
+    stock?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
+    freeShipping?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Price?: PriceUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type ProductUncheckedUpdateManyWithoutCompanyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     originalPrice?: FloatFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
@@ -7173,17 +9356,38 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ProductUncheckedUpdateManyWithoutCompanyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
-    originalPrice?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    image?: StringFieldUpdateOperationsInput | string
-    discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
-    freeShipping?: BoolFieldUpdateOperationsInput | boolean
-    categoryId?: IntFieldUpdateOperationsInput | number
+  export type PriceCreateManyProductInput = {
+    id?: string
+    currencyId: number
+    value: Decimal | DecimalJsLike | number | string
+    isFixed: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PriceUpdateWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    currency?: CurrencyUpdateOneRequiredWithoutPriceNestedInput
+  }
+
+  export type PriceUncheckedUpdateWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    currencyId?: IntFieldUpdateOperationsInput | number
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PriceUncheckedUpdateManyWithoutProductInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    currencyId?: IntFieldUpdateOperationsInput | number
+    value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    isFixed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7192,7 +9396,7 @@ export namespace Prisma {
     id?: number
     name: string
     description: string
-    price: number
+    priceBaseCurrency: Decimal | DecimalJsLike | number | string
     originalPrice: number
     stock: number
     image: string
@@ -7206,7 +9410,7 @@ export namespace Prisma {
   export type ProductUpdateWithoutCategoryInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     originalPrice?: FloatFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
@@ -7215,13 +9419,14 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutProductNestedInput
+    Price?: PriceUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     originalPrice?: FloatFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
@@ -7230,13 +9435,14 @@ export namespace Prisma {
     companyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Price?: PriceUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutCategoryInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
-    price?: FloatFieldUpdateOperationsInput | number
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     originalPrice?: FloatFieldUpdateOperationsInput | number
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string

@@ -111,12 +111,16 @@ Prisma.NullTypes = {
  */
 
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
 exports.Prisma.CurrencyScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  baseRate: 'baseRate',
   isDefault: 'isDefault',
   isBase: 'isBase'
 };
@@ -130,7 +134,7 @@ exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
-  price: 'price',
+  priceBaseCurrency: 'priceBaseCurrency',
   originalPrice: 'originalPrice',
   stock: 'stock',
   image: 'image',
@@ -150,9 +154,24 @@ exports.Prisma.CategoryScalarFieldEnum = {
   image: 'image'
 };
 
+exports.Prisma.PriceScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  currencyId: 'currencyId',
+  value: 'value',
+  isFixed: 'isFixed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 
 exports.Prisma.NullsOrder = {
@@ -165,7 +184,8 @@ exports.Prisma.ModelName = {
   Currency: 'Currency',
   Company: 'Company',
   Product: 'Product',
-  Category: 'Category'
+  Category: 'Category',
+  Price: 'Price'
 };
 
 /**

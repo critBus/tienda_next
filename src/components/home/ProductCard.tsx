@@ -16,7 +16,8 @@ export default function ProductCard({ product }: ProductCardProps) {
     // Implementar lógica de carrito aquí
     console.log("Añadir al carrito:", product, quantity);
   };
-  const are_different_prices = product.originalPrice != product.price;
+  const are_different_prices =
+    product.originalPrice != Number(product.priceBaseCurrency);
   const its_new = true;
 
   return (
@@ -37,7 +38,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="flex w-[60%] sm:w-full flex-col gap-2">
           <span className="font-semibold text-[#4E4949]">{product.name}</span>
           <div className="flex flex-row gap-2">
-            <span className="font-bold text-[17px]">${product.price}</span>
+            <span className="font-bold text-[17px]">
+              ${Number(product.priceBaseCurrency)}
+            </span>
             {are_different_prices && (
               <span className="text-sm line-through text-red-500">
                 ${product.originalPrice}
