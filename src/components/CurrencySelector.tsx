@@ -65,7 +65,7 @@ export default function CurrencySelector() {
                 key={currency.id}
                 onClick={() => selectCurrency(currency)}
                 className={`block w-full text-left px-4 py-2 text-sm ${
-                  currency.isDefault
+                  selectedCurrency && currency.id == selectedCurrency.id
                     ? "font-bold text-yellow-600"
                     : "text-gray-700"
                 } hover:bg-gray-100`}

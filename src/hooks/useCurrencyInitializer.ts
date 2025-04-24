@@ -26,5 +26,5 @@ export function useCurrencyInitializer() {
     };
 
     initializeCurrencies();
-  }, []); // Removemos dispatch de las dependencias ya que es estable
+  }, []);
 }
