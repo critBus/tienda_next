@@ -18,10 +18,9 @@ export async function getProducts(): Promise<Product[]> {
   const products: Product[] = products_response.map((product) => ({
     ...product,
     priceBaseCurrency: Number(product.priceBaseCurrency),
-    Price: {
-      ...product.Price,
-      value: Number(product.Price.value),
-    },
+    Price: product.Price.map((price) => ({
+      ...price,
+    })), // Map each price in the array
   }));
   console.log(products[0]);
   return products;

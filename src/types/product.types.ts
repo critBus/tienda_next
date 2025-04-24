@@ -26,5 +26,5 @@ export interface Product {
   category: CategoryDTO;
   company: CompanyDTO;
   priceBaseCurrency: number;
-  Price: Price;
+  Price: Price[]; // Updated to match the schema (array of Price objects)
 }
