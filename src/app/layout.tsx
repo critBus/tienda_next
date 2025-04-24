@@ -1,13 +1,8 @@
-import CellPhoneNavigation from "@/components/CellPhoneNavigation";
-import CopyrightSection from "@/components/CopyrightSection";
-import FooterSection from "@/components/FooterSection";
-import HeaderComponent from "@/components/HeaderComponent";
-import NavigationMenu from "@/components/NavigationMenu";
 import type { Metadata } from "next";
-
 import "./globals.css";
-import CurrencyInitializer from "@/components/CurrencyInitializer";
+
 import Providers from "@/providers/Providers";
+import RootLayoutContent from "@/components/layouts/RootLayoutContent";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,15 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="roboto">
         <Providers>
-          <CurrencyInitializer />
-          <HeaderComponent />
-          <NavigationMenu />
-          {children}
-          <FooterSection />
-          <CopyrightSection />
-          <CellPhoneNavigation />
+          <RootLayoutContent>{children}</RootLayoutContent>
         </Providers>
       </body>
     </html>

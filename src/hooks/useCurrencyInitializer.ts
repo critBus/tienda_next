@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import ApiService from "@/service/ApiService";
@@ -9,7 +8,7 @@ import {
   setError,
 } from "@/store/slices/currencySlice";
 
-export default function CurrencyInitializer() {
+export function useCurrencyInitializer() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +26,5 @@ export default function CurrencyInitializer() {
     };
 
     initializeCurrencies();
-  }, [dispatch]);
-
-  return null;
+  }, []); // Removemos dispatch de las dependencias ya que es estable
 }
