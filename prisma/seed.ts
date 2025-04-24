@@ -1,6 +1,39 @@
 import prisma from "@/libs/prisma";
 
 export async function main() {
+  // Crear monedas
+  const currencies = await Promise.all([
+    prisma.currency.create({
+      data: {
+        name: "USD",
+        isDefault: true,
+        isBase: true,
+      },
+    }),
+    prisma.currency.create({
+      data: {
+        name: "EUR",
+        isDefault: false,
+        isBase: false,
+      },
+    }),
+    prisma.currency.create({
+      data: {
+        name: "GBP",
+        isDefault: false,
+        isBase: false,
+      },
+    }),
+    prisma.currency.create({
+      data: {
+        name: "CUP",
+        isDefault: false,
+        isBase: false,
+      },
+    }),
+  ]);
+  console.log("Monedas creadas:", currencies.length);
+
   // Crear categorías
   const categories = await Promise.all([
     prisma.category.create({

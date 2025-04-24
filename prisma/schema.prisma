@@ -16,8 +16,10 @@ datasource db {
 }
 
 model Currency {
-  id   Int    @id @default(autoincrement())
-  name String
+  id        Int     @id @default(autoincrement())
+  name      String
+  isDefault Boolean @default(false)
+  isBase    Boolean @default(false)
 }
 
 model Company {

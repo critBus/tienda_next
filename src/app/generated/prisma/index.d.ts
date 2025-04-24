@@ -1226,16 +1226,22 @@ export namespace Prisma {
   export type CurrencyMinAggregateOutputType = {
     id: number | null
     name: string | null
+    isDefault: boolean | null
+    isBase: boolean | null
   }
 
   export type CurrencyMaxAggregateOutputType = {
     id: number | null
     name: string | null
+    isDefault: boolean | null
+    isBase: boolean | null
   }
 
   export type CurrencyCountAggregateOutputType = {
     id: number
     name: number
+    isDefault: number
+    isBase: number
     _all: number
   }
 
@@ -1251,16 +1257,22 @@ export namespace Prisma {
   export type CurrencyMinAggregateInputType = {
     id?: true
     name?: true
+    isDefault?: true
+    isBase?: true
   }
 
   export type CurrencyMaxAggregateInputType = {
     id?: true
     name?: true
+    isDefault?: true
+    isBase?: true
   }
 
   export type CurrencyCountAggregateInputType = {
     id?: true
     name?: true
+    isDefault?: true
+    isBase?: true
     _all?: true
   }
 
@@ -1353,6 +1365,8 @@ export namespace Prisma {
   export type CurrencyGroupByOutputType = {
     id: number
     name: string
+    isDefault: boolean
+    isBase: boolean
     _count: CurrencyCountAggregateOutputType | null
     _avg: CurrencyAvgAggregateOutputType | null
     _sum: CurrencySumAggregateOutputType | null
@@ -1377,24 +1391,32 @@ export namespace Prisma {
   export type CurrencySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    isDefault?: boolean
+    isBase?: boolean
   }, ExtArgs["result"]["currency"]>
 
   export type CurrencySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    isDefault?: boolean
+    isBase?: boolean
   }, ExtArgs["result"]["currency"]>
 
   export type CurrencySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    isDefault?: boolean
+    isBase?: boolean
   }, ExtArgs["result"]["currency"]>
 
   export type CurrencySelectScalar = {
     id?: boolean
     name?: boolean
+    isDefault?: boolean
+    isBase?: boolean
   }
 
-  export type CurrencyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["currency"]>
+  export type CurrencyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "isDefault" | "isBase", ExtArgs["result"]["currency"]>
 
   export type $CurrencyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Currency"
@@ -1402,6 +1424,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
+      isDefault: boolean
+      isBase: boolean
     }, ExtArgs["result"]["currency"]>
     composites: {}
   }
@@ -1827,6 +1851,8 @@ export namespace Prisma {
   interface CurrencyFieldRefs {
     readonly id: FieldRef<"Currency", 'Int'>
     readonly name: FieldRef<"Currency", 'String'>
+    readonly isDefault: FieldRef<"Currency", 'Boolean'>
+    readonly isBase: FieldRef<"Currency", 'Boolean'>
   }
     
 
@@ -5595,7 +5621,9 @@ export namespace Prisma {
 
   export const CurrencyScalarFieldEnum: {
     id: 'id',
-    name: 'name'
+    name: 'name',
+    isDefault: 'isDefault',
+    isBase: 'isBase'
   };
 
   export type CurrencyScalarFieldEnum = (typeof CurrencyScalarFieldEnum)[keyof typeof CurrencyScalarFieldEnum]
@@ -5675,16 +5703,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
+   * Reference to a field of type 'Boolean'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
   /**
-   * Reference to a field of type 'Boolean'
+   * Reference to a field of type 'Float'
    */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
@@ -5704,11 +5732,15 @@ export namespace Prisma {
     NOT?: CurrencyWhereInput | CurrencyWhereInput[]
     id?: IntFilter<"Currency"> | number
     name?: StringFilter<"Currency"> | string
+    isDefault?: BoolFilter<"Currency"> | boolean
+    isBase?: BoolFilter<"Currency"> | boolean
   }
 
   export type CurrencyOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    isDefault?: SortOrder
+    isBase?: SortOrder
   }
 
   export type CurrencyWhereUniqueInput = Prisma.AtLeast<{
@@ -5717,11 +5749,15 @@ export namespace Prisma {
     OR?: CurrencyWhereInput[]
     NOT?: CurrencyWhereInput | CurrencyWhereInput[]
     name?: StringFilter<"Currency"> | string
+    isDefault?: BoolFilter<"Currency"> | boolean
+    isBase?: BoolFilter<"Currency"> | boolean
   }, "id">
 
   export type CurrencyOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    isDefault?: SortOrder
+    isBase?: SortOrder
     _count?: CurrencyCountOrderByAggregateInput
     _avg?: CurrencyAvgOrderByAggregateInput
     _max?: CurrencyMaxOrderByAggregateInput
@@ -5735,6 +5771,8 @@ export namespace Prisma {
     NOT?: CurrencyScalarWhereWithAggregatesInput | CurrencyScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Currency"> | number
     name?: StringWithAggregatesFilter<"Currency"> | string
+    isDefault?: BoolWithAggregatesFilter<"Currency"> | boolean
+    isBase?: BoolWithAggregatesFilter<"Currency"> | boolean
   }
 
   export type CompanyWhereInput = {
@@ -5938,34 +5976,48 @@ export namespace Prisma {
 
   export type CurrencyCreateInput = {
     name: string
+    isDefault?: boolean
+    isBase?: boolean
   }
 
   export type CurrencyUncheckedCreateInput = {
     id?: number
     name: string
+    isDefault?: boolean
+    isBase?: boolean
   }
 
   export type CurrencyUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    isBase?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CurrencyUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    isBase?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CurrencyCreateManyInput = {
     id?: number
     name: string
+    isDefault?: boolean
+    isBase?: boolean
   }
 
   export type CurrencyUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    isBase?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CurrencyUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    isDefault?: BoolFieldUpdateOperationsInput | boolean
+    isBase?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CompanyCreateInput = {
@@ -6193,9 +6245,16 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type CurrencyCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    isDefault?: SortOrder
+    isBase?: SortOrder
   }
 
   export type CurrencyAvgOrderByAggregateInput = {
@@ -6205,11 +6264,15 @@ export namespace Prisma {
   export type CurrencyMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    isDefault?: SortOrder
+    isBase?: SortOrder
   }
 
   export type CurrencyMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    isDefault?: SortOrder
+    isBase?: SortOrder
   }
 
   export type CurrencySumOrderByAggregateInput = {
@@ -6247,6 +6310,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type ProductListRelationFilter = {
@@ -6302,11 +6373,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -6435,14 +6501,6 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -6524,6 +6582,10 @@ export namespace Prisma {
     set?: string
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -6600,10 +6662,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -6697,6 +6755,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -6741,6 +6804,14 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -6750,11 +6821,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -6809,14 +6875,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
