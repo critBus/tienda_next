@@ -6416,19 +6416,21 @@ export namespace Prisma {
   }
 
   export type PriceAvgAggregateOutputType = {
+    id: number | null
     productId: number | null
     currencyId: number | null
     value: Decimal | null
   }
 
   export type PriceSumAggregateOutputType = {
+    id: number | null
     productId: number | null
     currencyId: number | null
     value: Decimal | null
   }
 
   export type PriceMinAggregateOutputType = {
-    id: string | null
+    id: number | null
     productId: number | null
     currencyId: number | null
     value: Decimal | null
@@ -6438,7 +6440,7 @@ export namespace Prisma {
   }
 
   export type PriceMaxAggregateOutputType = {
-    id: string | null
+    id: number | null
     productId: number | null
     currencyId: number | null
     value: Decimal | null
@@ -6460,12 +6462,14 @@ export namespace Prisma {
 
 
   export type PriceAvgAggregateInputType = {
+    id?: true
     productId?: true
     currencyId?: true
     value?: true
   }
 
   export type PriceSumAggregateInputType = {
+    id?: true
     productId?: true
     currencyId?: true
     value?: true
@@ -6589,7 +6593,7 @@ export namespace Prisma {
   }
 
   export type PriceGroupByOutputType = {
-    id: string
+    id: number
     productId: number
     currencyId: number
     value: Decimal
@@ -6684,7 +6688,7 @@ export namespace Prisma {
       currency: Prisma.$CurrencyPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: string
+      id: number
       productId: number
       currencyId: number
       value: Prisma.Decimal
@@ -7116,7 +7120,7 @@ export namespace Prisma {
    * Fields of the Price model
    */
   interface PriceFieldRefs {
-    readonly id: FieldRef<"Price", 'String'>
+    readonly id: FieldRef<"Price", 'Int'>
     readonly productId: FieldRef<"Price", 'Int'>
     readonly currencyId: FieldRef<"Price", 'Int'>
     readonly value: FieldRef<"Price", 'Decimal'>
@@ -12549,7 +12553,7 @@ export namespace Prisma {
     AND?: PriceWhereInput | PriceWhereInput[]
     OR?: PriceWhereInput[]
     NOT?: PriceWhereInput | PriceWhereInput[]
-    id?: StringFilter<"Price"> | string
+    id?: IntFilter<"Price"> | number
     productId?: IntFilter<"Price"> | number
     currencyId?: IntFilter<"Price"> | number
     value?: DecimalFilter<"Price"> | Decimal | DecimalJsLike | number | string
@@ -12573,7 +12577,7 @@ export namespace Prisma {
   }
 
   export type PriceWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
+    id?: number
     productId_currencyId?: PriceProductIdCurrencyIdCompoundUniqueInput
     AND?: PriceWhereInput | PriceWhereInput[]
     OR?: PriceWhereInput[]
@@ -12607,7 +12611,7 @@ export namespace Prisma {
     AND?: PriceScalarWhereWithAggregatesInput | PriceScalarWhereWithAggregatesInput[]
     OR?: PriceScalarWhereWithAggregatesInput[]
     NOT?: PriceScalarWhereWithAggregatesInput | PriceScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Price"> | string
+    id?: IntWithAggregatesFilter<"Price"> | number
     productId?: IntWithAggregatesFilter<"Price"> | number
     currencyId?: IntWithAggregatesFilter<"Price"> | number
     value?: DecimalWithAggregatesFilter<"Price"> | Decimal | DecimalJsLike | number | string
@@ -13104,7 +13108,6 @@ export namespace Prisma {
   }
 
   export type PriceCreateInput = {
-    id?: string
     value: Decimal | DecimalJsLike | number | string
     isFixed: boolean
     createdAt?: Date | string
@@ -13114,7 +13117,7 @@ export namespace Prisma {
   }
 
   export type PriceUncheckedCreateInput = {
-    id?: string
+    id?: number
     productId: number
     currencyId: number
     value: Decimal | DecimalJsLike | number | string
@@ -13124,7 +13127,6 @@ export namespace Prisma {
   }
 
   export type PriceUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFixed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13134,7 +13136,7 @@ export namespace Prisma {
   }
 
   export type PriceUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     productId?: IntFieldUpdateOperationsInput | number
     currencyId?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -13144,7 +13146,7 @@ export namespace Prisma {
   }
 
   export type PriceCreateManyInput = {
-    id?: string
+    id?: number
     productId: number
     currencyId: number
     value: Decimal | DecimalJsLike | number | string
@@ -13154,7 +13156,6 @@ export namespace Prisma {
   }
 
   export type PriceUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFixed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13162,7 +13163,7 @@ export namespace Prisma {
   }
 
   export type PriceUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     productId?: IntFieldUpdateOperationsInput | number
     currencyId?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -13768,6 +13769,7 @@ export namespace Prisma {
   }
 
   export type PriceAvgOrderByAggregateInput = {
+    id?: SortOrder
     productId?: SortOrder
     currencyId?: SortOrder
     value?: SortOrder
@@ -13794,6 +13796,7 @@ export namespace Prisma {
   }
 
   export type PriceSumOrderByAggregateInput = {
+    id?: SortOrder
     productId?: SortOrder
     currencyId?: SortOrder
     value?: SortOrder
@@ -14844,7 +14847,6 @@ export namespace Prisma {
   }
 
   export type PriceCreateWithoutCurrencyInput = {
-    id?: string
     value: Decimal | DecimalJsLike | number | string
     isFixed: boolean
     createdAt?: Date | string
@@ -14853,7 +14855,7 @@ export namespace Prisma {
   }
 
   export type PriceUncheckedCreateWithoutCurrencyInput = {
-    id?: string
+    id?: number
     productId: number
     value: Decimal | DecimalJsLike | number | string
     isFixed: boolean
@@ -14891,7 +14893,7 @@ export namespace Prisma {
     AND?: PriceScalarWhereInput | PriceScalarWhereInput[]
     OR?: PriceScalarWhereInput[]
     NOT?: PriceScalarWhereInput | PriceScalarWhereInput[]
-    id?: StringFilter<"Price"> | string
+    id?: IntFilter<"Price"> | number
     productId?: IntFilter<"Price"> | number
     currencyId?: IntFilter<"Price"> | number
     value?: DecimalFilter<"Price"> | Decimal | DecimalJsLike | number | string
@@ -15013,7 +15015,6 @@ export namespace Prisma {
   }
 
   export type PriceCreateWithoutProductInput = {
-    id?: string
     value: Decimal | DecimalJsLike | number | string
     isFixed: boolean
     createdAt?: Date | string
@@ -15022,7 +15023,7 @@ export namespace Prisma {
   }
 
   export type PriceUncheckedCreateWithoutProductInput = {
-    id?: string
+    id?: number
     currencyId: number
     value: Decimal | DecimalJsLike | number | string
     isFixed: boolean
@@ -15840,7 +15841,7 @@ export namespace Prisma {
   }
 
   export type PriceCreateManyCurrencyInput = {
-    id?: string
+    id?: number
     productId: number
     value: Decimal | DecimalJsLike | number | string
     isFixed: boolean
@@ -15849,7 +15850,6 @@ export namespace Prisma {
   }
 
   export type PriceUpdateWithoutCurrencyInput = {
-    id?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFixed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15858,7 +15858,7 @@ export namespace Prisma {
   }
 
   export type PriceUncheckedUpdateWithoutCurrencyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     productId?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFixed?: BoolFieldUpdateOperationsInput | boolean
@@ -15867,7 +15867,7 @@ export namespace Prisma {
   }
 
   export type PriceUncheckedUpdateManyWithoutCurrencyInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     productId?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFixed?: BoolFieldUpdateOperationsInput | boolean
@@ -15939,7 +15939,7 @@ export namespace Prisma {
   }
 
   export type PriceCreateManyProductInput = {
-    id?: string
+    id?: number
     currencyId: number
     value: Decimal | DecimalJsLike | number | string
     isFixed: boolean
@@ -15956,7 +15956,6 @@ export namespace Prisma {
   }
 
   export type PriceUpdateWithoutProductInput = {
-    id?: StringFieldUpdateOperationsInput | string
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFixed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15965,7 +15964,7 @@ export namespace Prisma {
   }
 
   export type PriceUncheckedUpdateWithoutProductInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     currencyId?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFixed?: BoolFieldUpdateOperationsInput | boolean
@@ -15974,7 +15973,7 @@ export namespace Prisma {
   }
 
   export type PriceUncheckedUpdateManyWithoutProductInput = {
-    id?: StringFieldUpdateOperationsInput | string
+    id?: IntFieldUpdateOperationsInput | number
     currencyId?: IntFieldUpdateOperationsInput | number
     value?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isFixed?: BoolFieldUpdateOperationsInput | boolean

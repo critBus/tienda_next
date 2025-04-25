@@ -68,7 +68,7 @@ model Category {
 }
 
 model Price {
-  id         String   @id @default(cuid()) // O Int @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   productId  Int // Clave foránea para Product (o Int si usas IDs enteros)
   currencyId Int // Clave foránea para Currency (o Int si usas IDs enteros)
   value      Decimal  @db.Decimal(12, 2) // Precio. Usa Decimal para precisión monetaria (ajusta precisión y escala según necesites)
