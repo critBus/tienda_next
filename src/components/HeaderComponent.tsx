@@ -4,9 +4,15 @@ import { useState } from "react";
 import Image from "next/image";
 import CurrencySelector from "./CurrencySelector";
 import LocationSelector from "@/components/common/LocationSelector";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
+import { getLocationLabel } from "@/utils/locationLabel";
 
 export default function HeaderComponent() {
   const [cartCount] = useState(3);
+  const selectedLocation = useSelector(
+    (state: RootState) => state.location.selectedLocation
+  );
 
   return (
     <>
@@ -82,6 +88,7 @@ export default function HeaderComponent() {
             height={32}
             className="h-8 w-auto"
           />
+          <div>{getLocationLabel(selectedLocation)}</div>
           <CurrencySelector />
         </div>
         <div className="w-full flex flex-row items-center gap-2">

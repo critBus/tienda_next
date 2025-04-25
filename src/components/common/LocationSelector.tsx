@@ -5,6 +5,7 @@ import { setLocation, LocationType } from "@/store/slices/locationSlice";
 import availableLocations from "@/data/availableLocations.json";
 import { RootState } from "@/store";
 import Image from "next/image";
+import { getLocationLabel } from "@/utils/locationLabel";
 
 interface Props {
   showText?: boolean;
@@ -36,14 +37,6 @@ export default function LocationSelector({ showText = true }: Props) {
     dispatch(setLocation(loc));
     setOpen(false);
   };
-
-  function getLocationLabel(loc: LocationType) {
-    if (loc.type === "country") return "Todo el país";
-    if (loc.type === "province") return loc.name;
-    if (loc.type === "municipality") return loc.name;
-    if (loc.type === "town") return loc.name;
-    return "";
-  }
 
   return (
     <div className="relative">
