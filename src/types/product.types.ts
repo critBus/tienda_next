@@ -22,7 +22,7 @@ export interface Product {
   freeShipping: boolean;
   categoryId: number;
   companyId: number;
-
+  itsNew: boolean;
   category: CategoryDTO;
   company: CompanyDTO;
   priceBaseCurrency: number;

@@ -51,6 +51,7 @@ model Product {
   createdAt          DateTime              @default(now())
   updatedAt          DateTime              @updatedAt
   Price              Price[]
+  itsNew             Boolean               @default(false)
   availableLocations ProductAvailability[]
 
   @@index([categoryId, companyId, name, priceBaseCurrency, priceBaseDiscount, stock])

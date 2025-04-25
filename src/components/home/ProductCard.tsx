@@ -27,8 +27,6 @@ export default function ProductCard({ product }: ProductCardProps) {
     console.log("Añadir al carrito:", product, quantity);
   };
 
-  const its_new = true;
-
   return (
     <div className="relative w-full h-40 sm:h-80 sm:w-52 inline-block bg-white shadow-md rounded-lg">
       <div className="p-2 h-full flex flex-row sm:flex-col sm:items-center gap-1">
@@ -131,7 +129,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
 
-        {its_new && (
+        {product.itsNew && (
           <div className="bg-[#FEF4DB] max-sm:w-8 p-1 rounded-r-md shadow flex items-center justify-center">
             <Image
               src="/assets/products/icons/select.svg"

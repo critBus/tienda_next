@@ -47,7 +47,7 @@ export async function main() {
     prisma.category.create({
       data: {
         name: "Alimentos",
-        image: "/assets/categories/img/alimentos.png",
+        image: "/assets/categories/img/buffet.png",
       }, // Renombrado/Ajustado
     }),
     prisma.category.create({
@@ -112,6 +112,7 @@ export async function main() {
       stock: 50,
       image: "/assets/products/img/cerveza.png",
       discountPercentage: null,
+      itsNew: true,
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Bebidas")!.id,
       companyId: companies[0].id,
@@ -123,6 +124,7 @@ export async function main() {
       priceBaseCurrency: 4.5,
       priceBaseDiscount: 4.0,
       stock: 30,
+      itsNew: true,
       image: "/assets/products/img/pasta_barbicue.png",
       discountPercentage: 11.11,
       freeShipping: false,
@@ -136,6 +138,7 @@ export async function main() {
       priceBaseCurrency: 3.49,
       priceBaseDiscount: null,
       stock: 100,
+      itsNew: false,
       image: "/assets/products/img/especias_refinidas.png",
       discountPercentage: null,
       freeShipping: false,
@@ -149,8 +152,9 @@ export async function main() {
       priceBaseCurrency: 2.99,
       priceBaseDiscount: null,
       stock: 40,
-      image: "/assets/products/img/molo_para_piza.png",
+      image: "/assets/products/img/vainilla.png",
       discountPercentage: null,
+      itsNew: false,
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
       companyId: companies[2].id,
@@ -162,7 +166,8 @@ export async function main() {
       priceBaseCurrency: 1.5,
       priceBaseDiscount: null,
       stock: 200,
-      image: "/assets/products/img/refresco.png", // Necesitarás esta imagen
+      itsNew: true,
+      image: "/assets/products/img/pomos-de-agua.png", // Necesitarás esta imagen
       discountPercentage: null,
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Bebidas")!.id,
