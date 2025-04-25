@@ -1,45 +1,42 @@
 import prisma from "@/libs/prisma";
-import { ProductDTO } from "@/types";
+import { ProductDTO } from "@/types"; // Asegúrate que este tipo es correcto o ajústalo
+import { Decimal } from "@prisma/client/runtime/library";
+
+// Helper para asegurar que el precio base sea un número antes de multiplicar
+function safeMultiply(price: Decimal, rate: Decimal): number {
+  const numPrice = Number(price);
+  const numRate = Number(rate);
+  if (isNaN(numPrice) || isNaN(numRate)) {
+    console.warn(
+      `Advertencia: Multiplicación inválida encontrada. Precio: ${price}, Tasa: ${rate}`
+    );
+    return 0; // O maneja el error como prefieras
+  }
+  // Redondear a 2 decimales como en el schema Decimal(12, 2)
+  return Math.round(numPrice * numRate * 100) / 100;
+}
 
 export async function main() {
-  // Crear monedas
+  console.log("Iniciando el seeding...");
+
+  // --- Crear Monedas ---
   const currencies = await Promise.all([
     prisma.currency.create({
-      data: {
-        name: "USD",
-        baseRate: 1.0,
-        isDefault: true,
-        isBase: true,
-      },
+      data: { name: "USD", baseRate: 1.0, isDefault: true, isBase: true },
     }),
     prisma.currency.create({
-      data: {
-        name: "EUR",
-        baseRate: 0.85,
-        isDefault: false,
-        isBase: false,
-      },
+      data: { name: "EUR", baseRate: 0.92, isDefault: false, isBase: false }, // Tasa actualizada aprox.
     }),
     prisma.currency.create({
-      data: {
-        name: "GBP",
-        baseRate: 0.75,
-        isDefault: false,
-        isBase: false,
-      },
+      data: { name: "GBP", baseRate: 0.8, isDefault: false, isBase: false }, // Tasa actualizada aprox.
     }),
     prisma.currency.create({
-      data: {
-        name: "CUP",
-        baseRate: 24.0,
-        isDefault: false,
-        isBase: false,
-      },
+      data: { name: "CUP", baseRate: 24.0, isDefault: false, isBase: false },
     }),
   ]);
-  console.log("Monedas creadas:", currencies.length);
+  console.log(`Monedas creadas: ${currencies.length}`);
 
-  // Crear categorías
+  // --- Crear Categorías ---
   const categories = await Promise.all([
     prisma.category.create({
       data: {
@@ -49,101 +46,144 @@ export async function main() {
     }),
     prisma.category.create({
       data: {
-        name: "Farmacia",
-        image: "/assets/categories/img/farmacia.png",
-      },
+        name: "Alimentos",
+        image: "/assets/categories/img/alimentos.png",
+      }, // Renombrado/Ajustado
     }),
     prisma.category.create({
-      data: {
-        name: "Bebidas",
-        image: "/assets/categories/img/bebidas.png",
-      },
+      data: { name: "Bebidas", image: "/assets/categories/img/bebidas.png" },
     }),
   ]);
+  console.log(`Categorías creadas: ${categories.length}`);
 
-  // Crear compañías
+  // --- Crear Compañías ---
   const companies = await Promise.all([
-    prisma.company.create({
-      data: {
-        name: "TechCorp",
-      },
-    }),
-    prisma.company.create({
-      data: {
-        name: "FashionStyle",
-      },
-    }),
-    prisma.company.create({
-      data: {
-        name: "HomeDecor",
-      },
-    }),
+    prisma.company.create({ data: { name: "Distribuidora Nacional" } }),
+    prisma.company.create({ data: { name: "Importadora Selecta" } }),
+    prisma.company.create({ data: { name: "Bodega Local" } }),
   ]);
+  console.log(`Compañías creadas: ${companies.length}`);
 
-  // Crear productos
-  const products: ProductDTO[] = await Promise.all([
-    // Productos de TechCorp
-    prisma.product.create({
-      data: {
-        name: "Cerveza Premium",
-        description: "Cerveza artesanal de alta calidad",
-        priceBaseCurrency: 999.99,
-        priceBaseDiscount: 899.99,
-        stock: 50,
-        image: "/assets/products/img/cerveza.png",
-        discountPercentage: 10,
-        freeShipping: true,
-        categoryId: categories[2].id,
-        companyId: companies[0].id,
-      },
-    }),
-    prisma.product.create({
-      data: {
-        name: "Pasta Barbacue",
-        description: "Pasta especial para barbacoa",
-        priceBaseCurrency: 1499.99,
-        priceBaseDiscount: 1299.99,
-        stock: 30,
-        image: "/assets/products/img/pasta_barbicue.png",
-        discountPercentage: 13.33,
-        freeShipping: true,
-        categoryId: categories[1].id,
-        companyId: companies[0].id,
-      },
-    }),
-    // Productos de FashionStyle
-    prisma.product.create({
-      data: {
-        name: "Especias Refinadas",
-        description: "Mezcla de especias gourmet",
-        priceBaseCurrency: 39.99,
-        priceBaseDiscount: 29.99,
-        stock: 100,
-        image: "/assets/products/img/especias_refinidas.png",
-        discountPercentage: 25,
-        freeShipping: false,
-        categoryId: categories[1].id,
-        companyId: companies[1].id,
-      },
-    }),
-    // Productos de HomeDecor
-    prisma.product.create({
-      data: {
-        name: "Masa para Pizza",
-        description: "Masa fresca para pizza artesanal",
-        priceBaseCurrency: 59.99,
-        priceBaseDiscount: 49.99,
-        stock: 40,
-        image: "/assets/products/img/molo_para_piza.png",
-        discountPercentage: 16.67,
-        freeShipping: true,
-        categoryId: categories[1].id,
-        companyId: companies[2].id,
-      },
-    }),
-  ]);
+  // --- Crear Ubicaciones (Ejemplo: Cuba) ---
+  console.log("Creando ubicaciones...");
+  const provinciaHabana = await prisma.province.create({
+    data: { name: "La Habana" },
+  });
+  const provinciaPinar = await prisma.province.create({
+    data: { name: "Pinar del Río" },
+  });
 
-  // Crear precios para los productos en diferentes monedas
+  const municipioPlaza = await prisma.municipality.create({
+    data: { name: "Plaza de la Revolución", provinceId: provinciaHabana.id },
+  });
+  const municipioHabanaVieja = await prisma.municipality.create({
+    data: { name: "La Habana Vieja", provinceId: provinciaHabana.id },
+  });
+  const municipioPinarDelRio = await prisma.municipality.create({
+    data: { name: "Pinar del Río", provinceId: provinciaPinar.id },
+  });
+
+  const puebloVedado = await prisma.town.create({
+    data: { name: "Vedado", municipalityId: municipioPlaza.id },
+  });
+  await prisma.town.create({
+    data: { name: "Nuevo Vedado", municipalityId: municipioPlaza.id },
+  });
+  const puebloCentroHistorico = await prisma.town.create({
+    data: { name: "Centro Histórico", municipalityId: municipioHabanaVieja.id },
+  });
+  await prisma.town.create({
+    data: { name: "Centro Ciudad", municipalityId: municipioPinarDelRio.id },
+  });
+
+  console.log("Ubicaciones creadas: 2 Provincias, 3 Municipios, 4 Pueblos");
+
+  // --- Crear Productos ---
+  console.log("Creando productos...");
+  // Usaremos una variable temporal para almacenar productos antes de Promise.all
+  // para poder referenciarlos fácilmente al crear ProductAvailability
+  const productData = [
+    // Producto 1: Disponible solo en La Habana (Provincia)
+    {
+      name: "Cerveza Premium",
+      description: "Cerveza artesanal de alta calidad",
+      priceBaseCurrency: 5.99,
+      priceBaseDiscount: null,
+      stock: 50,
+      image: "/assets/products/img/cerveza.png",
+      discountPercentage: null,
+      freeShipping: false,
+      categoryId: categories.find((c) => c.name === "Bebidas")!.id,
+      companyId: companies[0].id,
+    },
+    // Producto 2: Disponible solo en el municipio Plaza de la Revolución
+    {
+      name: "Pasta Barbacoa",
+      description: "Pasta especial para barbacoa",
+      priceBaseCurrency: 4.5,
+      priceBaseDiscount: 4.0,
+      stock: 30,
+      image: "/assets/products/img/pasta_barbicue.png",
+      discountPercentage: 11.11,
+      freeShipping: false,
+      categoryId: categories.find((c) => c.name === "Alimentos")!.id,
+      companyId: companies[1].id,
+    },
+    // Producto 3: Disponible solo en el pueblo Vedado
+    {
+      name: "Especias Refinadas",
+      description: "Mezcla de especias gourmet",
+      priceBaseCurrency: 3.49,
+      priceBaseDiscount: null,
+      stock: 100,
+      image: "/assets/products/img/especias_refinidas.png",
+      discountPercentage: null,
+      freeShipping: false,
+      categoryId: categories.find((c) => c.name === "Alimentos")!.id,
+      companyId: companies[1].id,
+    },
+    // Producto 4: Disponible a nivel nacional (sin registro en ProductAvailability)
+    {
+      name: "Masa para Pizza",
+      description: "Masa fresca para pizza artesanal",
+      priceBaseCurrency: 2.99,
+      priceBaseDiscount: null,
+      stock: 40,
+      image: "/assets/products/img/molo_para_piza.png",
+      discountPercentage: null,
+      freeShipping: false,
+      categoryId: categories.find((c) => c.name === "Alimentos")!.id,
+      companyId: companies[2].id,
+    },
+    // Producto 5: Disponible en Pinar del Río (Provincia) y en el pueblo Centro Histórico (Habana Vieja)
+    {
+      name: "Refresco Nacional",
+      description: "Refresco sabor cola",
+      priceBaseCurrency: 1.5,
+      priceBaseDiscount: null,
+      stock: 200,
+      image: "/assets/products/img/refresco.png", // Necesitarás esta imagen
+      discountPercentage: null,
+      freeShipping: false,
+      categoryId: categories.find((c) => c.name === "Bebidas")!.id,
+      companyId: companies[0].id,
+    },
+  ];
+
+  const createdProducts = [];
+  for (const data of productData) {
+    const product = await prisma.product.create({ data });
+    createdProducts.push(product);
+  }
+
+  // Ajusta la conversión a ProductDTO si es necesario, o usa los `createdProducts` directamente
+  const products: ProductDTO[] = createdProducts.map((p) => ({
+    ...p,
+  })); // Asegura tipo Decimal a number si es necesario
+  console.log(`Productos creados: ${products.length}`);
+
+  // --- Crear Precios para los productos ---
+  console.log("Creando precios...");
   const prices = await Promise.all(
     products.flatMap((product) =>
       currencies.map((currency) =>
@@ -151,25 +191,68 @@ export async function main() {
           data: {
             productId: product.id,
             currencyId: currency.id,
-            value:
-              Number(product.priceBaseCurrency) * Number(currency.baseRate),
-            isFixed: currency.isBase,
+            // Usar la función segura para multiplicar
+            value: safeMultiply(product.priceBaseCurrency, currency.baseRate),
+            isFixed: currency.isBase, // El precio es fijo si es la moneda base
           },
         })
       )
     )
   );
+  console.log(`Precios creados: ${prices.length}`);
+
+  // --- Crear Disponibilidad de Productos ---
+  console.log("Creando disponibilidad de productos...");
+  const availabilityEntries = await Promise.all([
+    // Producto 1 (Cerveza): Disponible en Provincia La Habana
+    prisma.productAvailability.create({
+      data: {
+        productId: products.find((p) => p.name === "Cerveza Premium")!.id,
+        provinceId: provinciaHabana.id,
+        // municipalityId y townId son null por defecto
+      },
+    }),
+    // Producto 2 (Pasta Barbacoa): Disponible en Municipio Plaza
+    prisma.productAvailability.create({
+      data: {
+        productId: products.find((p) => p.name === "Pasta Barbacoa")!.id,
+        municipalityId: municipioPlaza.id,
+      },
+    }),
+    // Producto 3 (Especias): Disponible en Pueblo Vedado
+    prisma.productAvailability.create({
+      data: {
+        productId: products.find((p) => p.name === "Especias Refinadas")!.id,
+        townId: puebloVedado.id,
+      },
+    }),
+    // Producto 4 (Masa Pizza): Disponible Nacionalmente - NO SE CREA REGISTRO
+    // Producto 5 (Refresco): Disponible en Provincia Pinar del Río
+    prisma.productAvailability.create({
+      data: {
+        productId: products.find((p) => p.name === "Refresco Nacional")!.id,
+        provinceId: provinciaPinar.id,
+      },
+    }),
+    // Producto 5 (Refresco): También disponible en Pueblo Centro Histórico (Habana Vieja)
+    prisma.productAvailability.create({
+      data: {
+        productId: products.find((p) => p.name === "Refresco Nacional")!.id,
+        townId: puebloCentroHistorico.id,
+      },
+    }),
+  ]);
+  console.log(
+    `Registros de disponibilidad creados: ${availabilityEntries.length}`
+  );
 
   console.log("Seeding completado exitosamente!");
-  console.log("Categorías creadas:", categories.length);
-  console.log("Compañías creadas:", companies.length);
-  console.log("Productos creados:", products.length);
-  console.log("Precios creados:", prices.length);
 }
 
 main()
-  .catch((e) => {
+  .catch(async (e) => {
     console.error("Error durante el seeding:", e);
+    await prisma.$disconnect(); // Asegura desconexión en caso de error
     process.exit(1);
   })
   .finally(async () => {
