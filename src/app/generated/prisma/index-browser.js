@@ -164,6 +164,32 @@ exports.Prisma.PriceScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ProvinceScalarFieldEnum = {
+  id: 'id',
+  name: 'name'
+};
+
+exports.Prisma.MunicipalityScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  provinceId: 'provinceId'
+};
+
+exports.Prisma.TownScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  municipalityId: 'municipalityId'
+};
+
+exports.Prisma.ProductAvailabilityScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  provinceId: 'provinceId',
+  municipalityId: 'municipalityId',
+  townId: 'townId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -185,7 +211,11 @@ exports.Prisma.ModelName = {
   Company: 'Company',
   Product: 'Product',
   Category: 'Category',
-  Price: 'Price'
+  Price: 'Price',
+  Province: 'Province',
+  Municipality: 'Municipality',
+  Town: 'Town',
+  ProductAvailability: 'ProductAvailability'
 };
 
 /**

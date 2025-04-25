@@ -38,6 +38,26 @@ export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
  * 
  */
 export type Price = $Result.DefaultSelection<Prisma.$PricePayload>
+/**
+ * Model Province
+ * 
+ */
+export type Province = $Result.DefaultSelection<Prisma.$ProvincePayload>
+/**
+ * Model Municipality
+ * 
+ */
+export type Municipality = $Result.DefaultSelection<Prisma.$MunicipalityPayload>
+/**
+ * Model Town
+ * 
+ */
+export type Town = $Result.DefaultSelection<Prisma.$TownPayload>
+/**
+ * Model ProductAvailability
+ * 
+ */
+export type ProductAvailability = $Result.DefaultSelection<Prisma.$ProductAvailabilityPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -213,6 +233,46 @@ export class PrismaClient<
     * ```
     */
   get price(): Prisma.PriceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.province`: Exposes CRUD operations for the **Province** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Provinces
+    * const provinces = await prisma.province.findMany()
+    * ```
+    */
+  get province(): Prisma.ProvinceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.municipality`: Exposes CRUD operations for the **Municipality** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Municipalities
+    * const municipalities = await prisma.municipality.findMany()
+    * ```
+    */
+  get municipality(): Prisma.MunicipalityDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.town`: Exposes CRUD operations for the **Town** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Towns
+    * const towns = await prisma.town.findMany()
+    * ```
+    */
+  get town(): Prisma.TownDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.productAvailability`: Exposes CRUD operations for the **ProductAvailability** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProductAvailabilities
+    * const productAvailabilities = await prisma.productAvailability.findMany()
+    * ```
+    */
+  get productAvailability(): Prisma.ProductAvailabilityDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -657,7 +717,11 @@ export namespace Prisma {
     Company: 'Company',
     Product: 'Product',
     Category: 'Category',
-    Price: 'Price'
+    Price: 'Price',
+    Province: 'Province',
+    Municipality: 'Municipality',
+    Town: 'Town',
+    ProductAvailability: 'ProductAvailability'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -676,7 +740,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "currency" | "company" | "product" | "category" | "price"
+      modelProps: "currency" | "company" | "product" | "category" | "price" | "province" | "municipality" | "town" | "productAvailability"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1050,6 +1114,302 @@ export namespace Prisma {
           }
         }
       }
+      Province: {
+        payload: Prisma.$ProvincePayload<ExtArgs>
+        fields: Prisma.ProvinceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProvinceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProvinceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincePayload>
+          }
+          findFirst: {
+            args: Prisma.ProvinceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProvinceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincePayload>
+          }
+          findMany: {
+            args: Prisma.ProvinceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincePayload>[]
+          }
+          create: {
+            args: Prisma.ProvinceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincePayload>
+          }
+          createMany: {
+            args: Prisma.ProvinceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProvinceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincePayload>[]
+          }
+          delete: {
+            args: Prisma.ProvinceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincePayload>
+          }
+          update: {
+            args: Prisma.ProvinceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincePayload>
+          }
+          deleteMany: {
+            args: Prisma.ProvinceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProvinceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProvinceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincePayload>[]
+          }
+          upsert: {
+            args: Prisma.ProvinceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincePayload>
+          }
+          aggregate: {
+            args: Prisma.ProvinceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProvince>
+          }
+          groupBy: {
+            args: Prisma.ProvinceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProvinceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProvinceCountArgs<ExtArgs>
+            result: $Utils.Optional<ProvinceCountAggregateOutputType> | number
+          }
+        }
+      }
+      Municipality: {
+        payload: Prisma.$MunicipalityPayload<ExtArgs>
+        fields: Prisma.MunicipalityFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MunicipalityFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MunicipalityFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityPayload>
+          }
+          findFirst: {
+            args: Prisma.MunicipalityFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MunicipalityFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityPayload>
+          }
+          findMany: {
+            args: Prisma.MunicipalityFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityPayload>[]
+          }
+          create: {
+            args: Prisma.MunicipalityCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityPayload>
+          }
+          createMany: {
+            args: Prisma.MunicipalityCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MunicipalityCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityPayload>[]
+          }
+          delete: {
+            args: Prisma.MunicipalityDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityPayload>
+          }
+          update: {
+            args: Prisma.MunicipalityUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityPayload>
+          }
+          deleteMany: {
+            args: Prisma.MunicipalityDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MunicipalityUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MunicipalityUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityPayload>[]
+          }
+          upsert: {
+            args: Prisma.MunicipalityUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MunicipalityPayload>
+          }
+          aggregate: {
+            args: Prisma.MunicipalityAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMunicipality>
+          }
+          groupBy: {
+            args: Prisma.MunicipalityGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MunicipalityGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MunicipalityCountArgs<ExtArgs>
+            result: $Utils.Optional<MunicipalityCountAggregateOutputType> | number
+          }
+        }
+      }
+      Town: {
+        payload: Prisma.$TownPayload<ExtArgs>
+        fields: Prisma.TownFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TownFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TownPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TownFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TownPayload>
+          }
+          findFirst: {
+            args: Prisma.TownFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TownPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TownFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TownPayload>
+          }
+          findMany: {
+            args: Prisma.TownFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TownPayload>[]
+          }
+          create: {
+            args: Prisma.TownCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TownPayload>
+          }
+          createMany: {
+            args: Prisma.TownCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TownCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TownPayload>[]
+          }
+          delete: {
+            args: Prisma.TownDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TownPayload>
+          }
+          update: {
+            args: Prisma.TownUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TownPayload>
+          }
+          deleteMany: {
+            args: Prisma.TownDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TownUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TownUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TownPayload>[]
+          }
+          upsert: {
+            args: Prisma.TownUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TownPayload>
+          }
+          aggregate: {
+            args: Prisma.TownAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTown>
+          }
+          groupBy: {
+            args: Prisma.TownGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TownGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TownCountArgs<ExtArgs>
+            result: $Utils.Optional<TownCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProductAvailability: {
+        payload: Prisma.$ProductAvailabilityPayload<ExtArgs>
+        fields: Prisma.ProductAvailabilityFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProductAvailabilityFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductAvailabilityPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProductAvailabilityFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductAvailabilityPayload>
+          }
+          findFirst: {
+            args: Prisma.ProductAvailabilityFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductAvailabilityPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProductAvailabilityFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductAvailabilityPayload>
+          }
+          findMany: {
+            args: Prisma.ProductAvailabilityFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductAvailabilityPayload>[]
+          }
+          create: {
+            args: Prisma.ProductAvailabilityCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductAvailabilityPayload>
+          }
+          createMany: {
+            args: Prisma.ProductAvailabilityCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProductAvailabilityCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductAvailabilityPayload>[]
+          }
+          delete: {
+            args: Prisma.ProductAvailabilityDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductAvailabilityPayload>
+          }
+          update: {
+            args: Prisma.ProductAvailabilityUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductAvailabilityPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProductAvailabilityDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProductAvailabilityUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProductAvailabilityUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductAvailabilityPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProductAvailabilityUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProductAvailabilityPayload>
+          }
+          aggregate: {
+            args: Prisma.ProductAvailabilityAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProductAvailability>
+          }
+          groupBy: {
+            args: Prisma.ProductAvailabilityGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProductAvailabilityGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProductAvailabilityCountArgs<ExtArgs>
+            result: $Utils.Optional<ProductAvailabilityCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1139,6 +1499,10 @@ export namespace Prisma {
     product?: ProductOmit
     category?: CategoryOmit
     price?: PriceOmit
+    province?: ProvinceOmit
+    municipality?: MunicipalityOmit
+    town?: TownOmit
+    productAvailability?: ProductAvailabilityOmit
   }
 
   /* Types for Logging */
@@ -1296,10 +1660,12 @@ export namespace Prisma {
 
   export type ProductCountOutputType = {
     Price: number
+    availableLocations: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Price?: boolean | ProductCountOutputTypeCountPriceArgs
+    availableLocations?: boolean | ProductCountOutputTypeCountAvailableLocationsArgs
   }
 
   // Custom InputTypes
@@ -1318,6 +1684,13 @@ export namespace Prisma {
    */
   export type ProductCountOutputTypeCountPriceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PriceWhereInput
+  }
+
+  /**
+   * ProductCountOutputType without action
+   */
+  export type ProductCountOutputTypeCountAvailableLocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductAvailabilityWhereInput
   }
 
 
@@ -1349,6 +1722,117 @@ export namespace Prisma {
    */
   export type CategoryCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ProductWhereInput
+  }
+
+
+  /**
+   * Count Type ProvinceCountOutputType
+   */
+
+  export type ProvinceCountOutputType = {
+    municipalities: number
+    availableProducts: number
+  }
+
+  export type ProvinceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipalities?: boolean | ProvinceCountOutputTypeCountMunicipalitiesArgs
+    availableProducts?: boolean | ProvinceCountOutputTypeCountAvailableProductsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProvinceCountOutputType without action
+   */
+  export type ProvinceCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProvinceCountOutputType
+     */
+    select?: ProvinceCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProvinceCountOutputType without action
+   */
+  export type ProvinceCountOutputTypeCountMunicipalitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MunicipalityWhereInput
+  }
+
+  /**
+   * ProvinceCountOutputType without action
+   */
+  export type ProvinceCountOutputTypeCountAvailableProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductAvailabilityWhereInput
+  }
+
+
+  /**
+   * Count Type MunicipalityCountOutputType
+   */
+
+  export type MunicipalityCountOutputType = {
+    towns: number
+    availableProducts: number
+  }
+
+  export type MunicipalityCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    towns?: boolean | MunicipalityCountOutputTypeCountTownsArgs
+    availableProducts?: boolean | MunicipalityCountOutputTypeCountAvailableProductsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MunicipalityCountOutputType without action
+   */
+  export type MunicipalityCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MunicipalityCountOutputType
+     */
+    select?: MunicipalityCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MunicipalityCountOutputType without action
+   */
+  export type MunicipalityCountOutputTypeCountTownsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TownWhereInput
+  }
+
+  /**
+   * MunicipalityCountOutputType without action
+   */
+  export type MunicipalityCountOutputTypeCountAvailableProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductAvailabilityWhereInput
+  }
+
+
+  /**
+   * Count Type TownCountOutputType
+   */
+
+  export type TownCountOutputType = {
+    availableProducts: number
+  }
+
+  export type TownCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    availableProducts?: boolean | TownCountOutputTypeCountAvailableProductsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TownCountOutputType without action
+   */
+  export type TownCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TownCountOutputType
+     */
+    select?: TownCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TownCountOutputType without action
+   */
+  export type TownCountOutputTypeCountAvailableProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductAvailabilityWhereInput
   }
 
 
@@ -3818,6 +4302,7 @@ export namespace Prisma {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     company?: boolean | CompanyDefaultArgs<ExtArgs>
     Price?: boolean | Product$PriceArgs<ExtArgs>
+    availableLocations?: boolean | Product$availableLocationsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -3878,6 +4363,7 @@ export namespace Prisma {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     company?: boolean | CompanyDefaultArgs<ExtArgs>
     Price?: boolean | Product$PriceArgs<ExtArgs>
+    availableLocations?: boolean | Product$availableLocationsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3895,6 +4381,7 @@ export namespace Prisma {
       category: Prisma.$CategoryPayload<ExtArgs>
       company: Prisma.$CompanyPayload<ExtArgs>
       Price: Prisma.$PricePayload<ExtArgs>[]
+      availableLocations: Prisma.$ProductAvailabilityPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4307,6 +4794,7 @@ export namespace Prisma {
     category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     company<T extends CompanyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CompanyDefaultArgs<ExtArgs>>): Prisma__CompanyClient<$Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Price<T extends Product$PriceArgs<ExtArgs> = {}>(args?: Subset<T, Product$PriceArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PricePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    availableLocations<T extends Product$availableLocationsArgs<ExtArgs> = {}>(args?: Subset<T, Product$availableLocationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4766,6 +5254,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PriceScalarFieldEnum | PriceScalarFieldEnum[]
+  }
+
+  /**
+   * Product.availableLocations
+   */
+  export type Product$availableLocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+    where?: ProductAvailabilityWhereInput
+    orderBy?: ProductAvailabilityOrderByWithRelationInput | ProductAvailabilityOrderByWithRelationInput[]
+    cursor?: ProductAvailabilityWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductAvailabilityScalarFieldEnum | ProductAvailabilityScalarFieldEnum[]
   }
 
   /**
@@ -7026,6 +7538,4529 @@ export namespace Prisma {
 
 
   /**
+   * Model Province
+   */
+
+  export type AggregateProvince = {
+    _count: ProvinceCountAggregateOutputType | null
+    _avg: ProvinceAvgAggregateOutputType | null
+    _sum: ProvinceSumAggregateOutputType | null
+    _min: ProvinceMinAggregateOutputType | null
+    _max: ProvinceMaxAggregateOutputType | null
+  }
+
+  export type ProvinceAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type ProvinceSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type ProvinceMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+  }
+
+  export type ProvinceMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+  }
+
+  export type ProvinceCountAggregateOutputType = {
+    id: number
+    name: number
+    _all: number
+  }
+
+
+  export type ProvinceAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type ProvinceSumAggregateInputType = {
+    id?: true
+  }
+
+  export type ProvinceMinAggregateInputType = {
+    id?: true
+    name?: true
+  }
+
+  export type ProvinceMaxAggregateInputType = {
+    id?: true
+    name?: true
+  }
+
+  export type ProvinceCountAggregateInputType = {
+    id?: true
+    name?: true
+    _all?: true
+  }
+
+  export type ProvinceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Province to aggregate.
+     */
+    where?: ProvinceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Provinces to fetch.
+     */
+    orderBy?: ProvinceOrderByWithRelationInput | ProvinceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProvinceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Provinces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Provinces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Provinces
+    **/
+    _count?: true | ProvinceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProvinceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProvinceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProvinceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProvinceMaxAggregateInputType
+  }
+
+  export type GetProvinceAggregateType<T extends ProvinceAggregateArgs> = {
+        [P in keyof T & keyof AggregateProvince]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProvince[P]>
+      : GetScalarType<T[P], AggregateProvince[P]>
+  }
+
+
+
+
+  export type ProvinceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProvinceWhereInput
+    orderBy?: ProvinceOrderByWithAggregationInput | ProvinceOrderByWithAggregationInput[]
+    by: ProvinceScalarFieldEnum[] | ProvinceScalarFieldEnum
+    having?: ProvinceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProvinceCountAggregateInputType | true
+    _avg?: ProvinceAvgAggregateInputType
+    _sum?: ProvinceSumAggregateInputType
+    _min?: ProvinceMinAggregateInputType
+    _max?: ProvinceMaxAggregateInputType
+  }
+
+  export type ProvinceGroupByOutputType = {
+    id: number
+    name: string
+    _count: ProvinceCountAggregateOutputType | null
+    _avg: ProvinceAvgAggregateOutputType | null
+    _sum: ProvinceSumAggregateOutputType | null
+    _min: ProvinceMinAggregateOutputType | null
+    _max: ProvinceMaxAggregateOutputType | null
+  }
+
+  type GetProvinceGroupByPayload<T extends ProvinceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProvinceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProvinceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProvinceGroupByOutputType[P]>
+            : GetScalarType<T[P], ProvinceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProvinceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    municipalities?: boolean | Province$municipalitiesArgs<ExtArgs>
+    availableProducts?: boolean | Province$availableProductsArgs<ExtArgs>
+    _count?: boolean | ProvinceCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["province"]>
+
+  export type ProvinceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+  }, ExtArgs["result"]["province"]>
+
+  export type ProvinceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+  }, ExtArgs["result"]["province"]>
+
+  export type ProvinceSelectScalar = {
+    id?: boolean
+    name?: boolean
+  }
+
+  export type ProvinceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["province"]>
+  export type ProvinceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipalities?: boolean | Province$municipalitiesArgs<ExtArgs>
+    availableProducts?: boolean | Province$availableProductsArgs<ExtArgs>
+    _count?: boolean | ProvinceCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ProvinceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ProvinceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $ProvincePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Province"
+    objects: {
+      municipalities: Prisma.$MunicipalityPayload<ExtArgs>[]
+      availableProducts: Prisma.$ProductAvailabilityPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+    }, ExtArgs["result"]["province"]>
+    composites: {}
+  }
+
+  type ProvinceGetPayload<S extends boolean | null | undefined | ProvinceDefaultArgs> = $Result.GetResult<Prisma.$ProvincePayload, S>
+
+  type ProvinceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProvinceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProvinceCountAggregateInputType | true
+    }
+
+  export interface ProvinceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Province'], meta: { name: 'Province' } }
+    /**
+     * Find zero or one Province that matches the filter.
+     * @param {ProvinceFindUniqueArgs} args - Arguments to find a Province
+     * @example
+     * // Get one Province
+     * const province = await prisma.province.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProvinceFindUniqueArgs>(args: SelectSubset<T, ProvinceFindUniqueArgs<ExtArgs>>): Prisma__ProvinceClient<$Result.GetResult<Prisma.$ProvincePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Province that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProvinceFindUniqueOrThrowArgs} args - Arguments to find a Province
+     * @example
+     * // Get one Province
+     * const province = await prisma.province.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProvinceFindUniqueOrThrowArgs>(args: SelectSubset<T, ProvinceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProvinceClient<$Result.GetResult<Prisma.$ProvincePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Province that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvinceFindFirstArgs} args - Arguments to find a Province
+     * @example
+     * // Get one Province
+     * const province = await prisma.province.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProvinceFindFirstArgs>(args?: SelectSubset<T, ProvinceFindFirstArgs<ExtArgs>>): Prisma__ProvinceClient<$Result.GetResult<Prisma.$ProvincePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Province that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvinceFindFirstOrThrowArgs} args - Arguments to find a Province
+     * @example
+     * // Get one Province
+     * const province = await prisma.province.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProvinceFindFirstOrThrowArgs>(args?: SelectSubset<T, ProvinceFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProvinceClient<$Result.GetResult<Prisma.$ProvincePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Provinces that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvinceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Provinces
+     * const provinces = await prisma.province.findMany()
+     * 
+     * // Get first 10 Provinces
+     * const provinces = await prisma.province.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const provinceWithIdOnly = await prisma.province.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProvinceFindManyArgs>(args?: SelectSubset<T, ProvinceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProvincePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Province.
+     * @param {ProvinceCreateArgs} args - Arguments to create a Province.
+     * @example
+     * // Create one Province
+     * const Province = await prisma.province.create({
+     *   data: {
+     *     // ... data to create a Province
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProvinceCreateArgs>(args: SelectSubset<T, ProvinceCreateArgs<ExtArgs>>): Prisma__ProvinceClient<$Result.GetResult<Prisma.$ProvincePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Provinces.
+     * @param {ProvinceCreateManyArgs} args - Arguments to create many Provinces.
+     * @example
+     * // Create many Provinces
+     * const province = await prisma.province.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProvinceCreateManyArgs>(args?: SelectSubset<T, ProvinceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Provinces and returns the data saved in the database.
+     * @param {ProvinceCreateManyAndReturnArgs} args - Arguments to create many Provinces.
+     * @example
+     * // Create many Provinces
+     * const province = await prisma.province.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Provinces and only return the `id`
+     * const provinceWithIdOnly = await prisma.province.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProvinceCreateManyAndReturnArgs>(args?: SelectSubset<T, ProvinceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProvincePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Province.
+     * @param {ProvinceDeleteArgs} args - Arguments to delete one Province.
+     * @example
+     * // Delete one Province
+     * const Province = await prisma.province.delete({
+     *   where: {
+     *     // ... filter to delete one Province
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProvinceDeleteArgs>(args: SelectSubset<T, ProvinceDeleteArgs<ExtArgs>>): Prisma__ProvinceClient<$Result.GetResult<Prisma.$ProvincePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Province.
+     * @param {ProvinceUpdateArgs} args - Arguments to update one Province.
+     * @example
+     * // Update one Province
+     * const province = await prisma.province.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProvinceUpdateArgs>(args: SelectSubset<T, ProvinceUpdateArgs<ExtArgs>>): Prisma__ProvinceClient<$Result.GetResult<Prisma.$ProvincePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Provinces.
+     * @param {ProvinceDeleteManyArgs} args - Arguments to filter Provinces to delete.
+     * @example
+     * // Delete a few Provinces
+     * const { count } = await prisma.province.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProvinceDeleteManyArgs>(args?: SelectSubset<T, ProvinceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Provinces.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvinceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Provinces
+     * const province = await prisma.province.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProvinceUpdateManyArgs>(args: SelectSubset<T, ProvinceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Provinces and returns the data updated in the database.
+     * @param {ProvinceUpdateManyAndReturnArgs} args - Arguments to update many Provinces.
+     * @example
+     * // Update many Provinces
+     * const province = await prisma.province.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Provinces and only return the `id`
+     * const provinceWithIdOnly = await prisma.province.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProvinceUpdateManyAndReturnArgs>(args: SelectSubset<T, ProvinceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProvincePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Province.
+     * @param {ProvinceUpsertArgs} args - Arguments to update or create a Province.
+     * @example
+     * // Update or create a Province
+     * const province = await prisma.province.upsert({
+     *   create: {
+     *     // ... data to create a Province
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Province we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProvinceUpsertArgs>(args: SelectSubset<T, ProvinceUpsertArgs<ExtArgs>>): Prisma__ProvinceClient<$Result.GetResult<Prisma.$ProvincePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Provinces.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvinceCountArgs} args - Arguments to filter Provinces to count.
+     * @example
+     * // Count the number of Provinces
+     * const count = await prisma.province.count({
+     *   where: {
+     *     // ... the filter for the Provinces we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProvinceCountArgs>(
+      args?: Subset<T, ProvinceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProvinceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Province.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvinceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProvinceAggregateArgs>(args: Subset<T, ProvinceAggregateArgs>): Prisma.PrismaPromise<GetProvinceAggregateType<T>>
+
+    /**
+     * Group by Province.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvinceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProvinceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProvinceGroupByArgs['orderBy'] }
+        : { orderBy?: ProvinceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProvinceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProvinceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Province model
+   */
+  readonly fields: ProvinceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Province.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProvinceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    municipalities<T extends Province$municipalitiesArgs<ExtArgs> = {}>(args?: Subset<T, Province$municipalitiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    availableProducts<T extends Province$availableProductsArgs<ExtArgs> = {}>(args?: Subset<T, Province$availableProductsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Province model
+   */
+  interface ProvinceFieldRefs {
+    readonly id: FieldRef<"Province", 'Int'>
+    readonly name: FieldRef<"Province", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Province findUnique
+   */
+  export type ProvinceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Province
+     */
+    select?: ProvinceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Province
+     */
+    omit?: ProvinceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvinceInclude<ExtArgs> | null
+    /**
+     * Filter, which Province to fetch.
+     */
+    where: ProvinceWhereUniqueInput
+  }
+
+  /**
+   * Province findUniqueOrThrow
+   */
+  export type ProvinceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Province
+     */
+    select?: ProvinceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Province
+     */
+    omit?: ProvinceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvinceInclude<ExtArgs> | null
+    /**
+     * Filter, which Province to fetch.
+     */
+    where: ProvinceWhereUniqueInput
+  }
+
+  /**
+   * Province findFirst
+   */
+  export type ProvinceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Province
+     */
+    select?: ProvinceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Province
+     */
+    omit?: ProvinceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvinceInclude<ExtArgs> | null
+    /**
+     * Filter, which Province to fetch.
+     */
+    where?: ProvinceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Provinces to fetch.
+     */
+    orderBy?: ProvinceOrderByWithRelationInput | ProvinceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Provinces.
+     */
+    cursor?: ProvinceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Provinces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Provinces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Provinces.
+     */
+    distinct?: ProvinceScalarFieldEnum | ProvinceScalarFieldEnum[]
+  }
+
+  /**
+   * Province findFirstOrThrow
+   */
+  export type ProvinceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Province
+     */
+    select?: ProvinceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Province
+     */
+    omit?: ProvinceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvinceInclude<ExtArgs> | null
+    /**
+     * Filter, which Province to fetch.
+     */
+    where?: ProvinceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Provinces to fetch.
+     */
+    orderBy?: ProvinceOrderByWithRelationInput | ProvinceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Provinces.
+     */
+    cursor?: ProvinceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Provinces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Provinces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Provinces.
+     */
+    distinct?: ProvinceScalarFieldEnum | ProvinceScalarFieldEnum[]
+  }
+
+  /**
+   * Province findMany
+   */
+  export type ProvinceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Province
+     */
+    select?: ProvinceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Province
+     */
+    omit?: ProvinceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvinceInclude<ExtArgs> | null
+    /**
+     * Filter, which Provinces to fetch.
+     */
+    where?: ProvinceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Provinces to fetch.
+     */
+    orderBy?: ProvinceOrderByWithRelationInput | ProvinceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Provinces.
+     */
+    cursor?: ProvinceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Provinces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Provinces.
+     */
+    skip?: number
+    distinct?: ProvinceScalarFieldEnum | ProvinceScalarFieldEnum[]
+  }
+
+  /**
+   * Province create
+   */
+  export type ProvinceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Province
+     */
+    select?: ProvinceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Province
+     */
+    omit?: ProvinceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvinceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Province.
+     */
+    data: XOR<ProvinceCreateInput, ProvinceUncheckedCreateInput>
+  }
+
+  /**
+   * Province createMany
+   */
+  export type ProvinceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Provinces.
+     */
+    data: ProvinceCreateManyInput | ProvinceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Province createManyAndReturn
+   */
+  export type ProvinceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Province
+     */
+    select?: ProvinceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Province
+     */
+    omit?: ProvinceOmit<ExtArgs> | null
+    /**
+     * The data used to create many Provinces.
+     */
+    data: ProvinceCreateManyInput | ProvinceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Province update
+   */
+  export type ProvinceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Province
+     */
+    select?: ProvinceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Province
+     */
+    omit?: ProvinceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvinceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Province.
+     */
+    data: XOR<ProvinceUpdateInput, ProvinceUncheckedUpdateInput>
+    /**
+     * Choose, which Province to update.
+     */
+    where: ProvinceWhereUniqueInput
+  }
+
+  /**
+   * Province updateMany
+   */
+  export type ProvinceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Provinces.
+     */
+    data: XOR<ProvinceUpdateManyMutationInput, ProvinceUncheckedUpdateManyInput>
+    /**
+     * Filter which Provinces to update
+     */
+    where?: ProvinceWhereInput
+    /**
+     * Limit how many Provinces to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Province updateManyAndReturn
+   */
+  export type ProvinceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Province
+     */
+    select?: ProvinceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Province
+     */
+    omit?: ProvinceOmit<ExtArgs> | null
+    /**
+     * The data used to update Provinces.
+     */
+    data: XOR<ProvinceUpdateManyMutationInput, ProvinceUncheckedUpdateManyInput>
+    /**
+     * Filter which Provinces to update
+     */
+    where?: ProvinceWhereInput
+    /**
+     * Limit how many Provinces to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Province upsert
+   */
+  export type ProvinceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Province
+     */
+    select?: ProvinceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Province
+     */
+    omit?: ProvinceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvinceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Province to update in case it exists.
+     */
+    where: ProvinceWhereUniqueInput
+    /**
+     * In case the Province found by the `where` argument doesn't exist, create a new Province with this data.
+     */
+    create: XOR<ProvinceCreateInput, ProvinceUncheckedCreateInput>
+    /**
+     * In case the Province was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProvinceUpdateInput, ProvinceUncheckedUpdateInput>
+  }
+
+  /**
+   * Province delete
+   */
+  export type ProvinceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Province
+     */
+    select?: ProvinceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Province
+     */
+    omit?: ProvinceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvinceInclude<ExtArgs> | null
+    /**
+     * Filter which Province to delete.
+     */
+    where: ProvinceWhereUniqueInput
+  }
+
+  /**
+   * Province deleteMany
+   */
+  export type ProvinceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Provinces to delete
+     */
+    where?: ProvinceWhereInput
+    /**
+     * Limit how many Provinces to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Province.municipalities
+   */
+  export type Province$municipalitiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityInclude<ExtArgs> | null
+    where?: MunicipalityWhereInput
+    orderBy?: MunicipalityOrderByWithRelationInput | MunicipalityOrderByWithRelationInput[]
+    cursor?: MunicipalityWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MunicipalityScalarFieldEnum | MunicipalityScalarFieldEnum[]
+  }
+
+  /**
+   * Province.availableProducts
+   */
+  export type Province$availableProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+    where?: ProductAvailabilityWhereInput
+    orderBy?: ProductAvailabilityOrderByWithRelationInput | ProductAvailabilityOrderByWithRelationInput[]
+    cursor?: ProductAvailabilityWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductAvailabilityScalarFieldEnum | ProductAvailabilityScalarFieldEnum[]
+  }
+
+  /**
+   * Province without action
+   */
+  export type ProvinceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Province
+     */
+    select?: ProvinceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Province
+     */
+    omit?: ProvinceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvinceInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Municipality
+   */
+
+  export type AggregateMunicipality = {
+    _count: MunicipalityCountAggregateOutputType | null
+    _avg: MunicipalityAvgAggregateOutputType | null
+    _sum: MunicipalitySumAggregateOutputType | null
+    _min: MunicipalityMinAggregateOutputType | null
+    _max: MunicipalityMaxAggregateOutputType | null
+  }
+
+  export type MunicipalityAvgAggregateOutputType = {
+    id: number | null
+    provinceId: number | null
+  }
+
+  export type MunicipalitySumAggregateOutputType = {
+    id: number | null
+    provinceId: number | null
+  }
+
+  export type MunicipalityMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    provinceId: number | null
+  }
+
+  export type MunicipalityMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    provinceId: number | null
+  }
+
+  export type MunicipalityCountAggregateOutputType = {
+    id: number
+    name: number
+    provinceId: number
+    _all: number
+  }
+
+
+  export type MunicipalityAvgAggregateInputType = {
+    id?: true
+    provinceId?: true
+  }
+
+  export type MunicipalitySumAggregateInputType = {
+    id?: true
+    provinceId?: true
+  }
+
+  export type MunicipalityMinAggregateInputType = {
+    id?: true
+    name?: true
+    provinceId?: true
+  }
+
+  export type MunicipalityMaxAggregateInputType = {
+    id?: true
+    name?: true
+    provinceId?: true
+  }
+
+  export type MunicipalityCountAggregateInputType = {
+    id?: true
+    name?: true
+    provinceId?: true
+    _all?: true
+  }
+
+  export type MunicipalityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Municipality to aggregate.
+     */
+    where?: MunicipalityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Municipalities to fetch.
+     */
+    orderBy?: MunicipalityOrderByWithRelationInput | MunicipalityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MunicipalityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Municipalities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Municipalities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Municipalities
+    **/
+    _count?: true | MunicipalityCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MunicipalityAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MunicipalitySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MunicipalityMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MunicipalityMaxAggregateInputType
+  }
+
+  export type GetMunicipalityAggregateType<T extends MunicipalityAggregateArgs> = {
+        [P in keyof T & keyof AggregateMunicipality]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMunicipality[P]>
+      : GetScalarType<T[P], AggregateMunicipality[P]>
+  }
+
+
+
+
+  export type MunicipalityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MunicipalityWhereInput
+    orderBy?: MunicipalityOrderByWithAggregationInput | MunicipalityOrderByWithAggregationInput[]
+    by: MunicipalityScalarFieldEnum[] | MunicipalityScalarFieldEnum
+    having?: MunicipalityScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MunicipalityCountAggregateInputType | true
+    _avg?: MunicipalityAvgAggregateInputType
+    _sum?: MunicipalitySumAggregateInputType
+    _min?: MunicipalityMinAggregateInputType
+    _max?: MunicipalityMaxAggregateInputType
+  }
+
+  export type MunicipalityGroupByOutputType = {
+    id: number
+    name: string
+    provinceId: number
+    _count: MunicipalityCountAggregateOutputType | null
+    _avg: MunicipalityAvgAggregateOutputType | null
+    _sum: MunicipalitySumAggregateOutputType | null
+    _min: MunicipalityMinAggregateOutputType | null
+    _max: MunicipalityMaxAggregateOutputType | null
+  }
+
+  type GetMunicipalityGroupByPayload<T extends MunicipalityGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MunicipalityGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MunicipalityGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MunicipalityGroupByOutputType[P]>
+            : GetScalarType<T[P], MunicipalityGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MunicipalitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    provinceId?: boolean
+    province?: boolean | ProvinceDefaultArgs<ExtArgs>
+    towns?: boolean | Municipality$townsArgs<ExtArgs>
+    availableProducts?: boolean | Municipality$availableProductsArgs<ExtArgs>
+    _count?: boolean | MunicipalityCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["municipality"]>
+
+  export type MunicipalitySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    provinceId?: boolean
+    province?: boolean | ProvinceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["municipality"]>
+
+  export type MunicipalitySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    provinceId?: boolean
+    province?: boolean | ProvinceDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["municipality"]>
+
+  export type MunicipalitySelectScalar = {
+    id?: boolean
+    name?: boolean
+    provinceId?: boolean
+  }
+
+  export type MunicipalityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "provinceId", ExtArgs["result"]["municipality"]>
+  export type MunicipalityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    province?: boolean | ProvinceDefaultArgs<ExtArgs>
+    towns?: boolean | Municipality$townsArgs<ExtArgs>
+    availableProducts?: boolean | Municipality$availableProductsArgs<ExtArgs>
+    _count?: boolean | MunicipalityCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type MunicipalityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    province?: boolean | ProvinceDefaultArgs<ExtArgs>
+  }
+  export type MunicipalityIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    province?: boolean | ProvinceDefaultArgs<ExtArgs>
+  }
+
+  export type $MunicipalityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Municipality"
+    objects: {
+      province: Prisma.$ProvincePayload<ExtArgs>
+      towns: Prisma.$TownPayload<ExtArgs>[]
+      availableProducts: Prisma.$ProductAvailabilityPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      provinceId: number
+    }, ExtArgs["result"]["municipality"]>
+    composites: {}
+  }
+
+  type MunicipalityGetPayload<S extends boolean | null | undefined | MunicipalityDefaultArgs> = $Result.GetResult<Prisma.$MunicipalityPayload, S>
+
+  type MunicipalityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MunicipalityFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MunicipalityCountAggregateInputType | true
+    }
+
+  export interface MunicipalityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Municipality'], meta: { name: 'Municipality' } }
+    /**
+     * Find zero or one Municipality that matches the filter.
+     * @param {MunicipalityFindUniqueArgs} args - Arguments to find a Municipality
+     * @example
+     * // Get one Municipality
+     * const municipality = await prisma.municipality.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MunicipalityFindUniqueArgs>(args: SelectSubset<T, MunicipalityFindUniqueArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Municipality that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MunicipalityFindUniqueOrThrowArgs} args - Arguments to find a Municipality
+     * @example
+     * // Get one Municipality
+     * const municipality = await prisma.municipality.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MunicipalityFindUniqueOrThrowArgs>(args: SelectSubset<T, MunicipalityFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Municipality that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityFindFirstArgs} args - Arguments to find a Municipality
+     * @example
+     * // Get one Municipality
+     * const municipality = await prisma.municipality.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MunicipalityFindFirstArgs>(args?: SelectSubset<T, MunicipalityFindFirstArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Municipality that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityFindFirstOrThrowArgs} args - Arguments to find a Municipality
+     * @example
+     * // Get one Municipality
+     * const municipality = await prisma.municipality.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MunicipalityFindFirstOrThrowArgs>(args?: SelectSubset<T, MunicipalityFindFirstOrThrowArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Municipalities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Municipalities
+     * const municipalities = await prisma.municipality.findMany()
+     * 
+     * // Get first 10 Municipalities
+     * const municipalities = await prisma.municipality.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const municipalityWithIdOnly = await prisma.municipality.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MunicipalityFindManyArgs>(args?: SelectSubset<T, MunicipalityFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Municipality.
+     * @param {MunicipalityCreateArgs} args - Arguments to create a Municipality.
+     * @example
+     * // Create one Municipality
+     * const Municipality = await prisma.municipality.create({
+     *   data: {
+     *     // ... data to create a Municipality
+     *   }
+     * })
+     * 
+     */
+    create<T extends MunicipalityCreateArgs>(args: SelectSubset<T, MunicipalityCreateArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Municipalities.
+     * @param {MunicipalityCreateManyArgs} args - Arguments to create many Municipalities.
+     * @example
+     * // Create many Municipalities
+     * const municipality = await prisma.municipality.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MunicipalityCreateManyArgs>(args?: SelectSubset<T, MunicipalityCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Municipalities and returns the data saved in the database.
+     * @param {MunicipalityCreateManyAndReturnArgs} args - Arguments to create many Municipalities.
+     * @example
+     * // Create many Municipalities
+     * const municipality = await prisma.municipality.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Municipalities and only return the `id`
+     * const municipalityWithIdOnly = await prisma.municipality.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MunicipalityCreateManyAndReturnArgs>(args?: SelectSubset<T, MunicipalityCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Municipality.
+     * @param {MunicipalityDeleteArgs} args - Arguments to delete one Municipality.
+     * @example
+     * // Delete one Municipality
+     * const Municipality = await prisma.municipality.delete({
+     *   where: {
+     *     // ... filter to delete one Municipality
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MunicipalityDeleteArgs>(args: SelectSubset<T, MunicipalityDeleteArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Municipality.
+     * @param {MunicipalityUpdateArgs} args - Arguments to update one Municipality.
+     * @example
+     * // Update one Municipality
+     * const municipality = await prisma.municipality.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MunicipalityUpdateArgs>(args: SelectSubset<T, MunicipalityUpdateArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Municipalities.
+     * @param {MunicipalityDeleteManyArgs} args - Arguments to filter Municipalities to delete.
+     * @example
+     * // Delete a few Municipalities
+     * const { count } = await prisma.municipality.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MunicipalityDeleteManyArgs>(args?: SelectSubset<T, MunicipalityDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Municipalities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Municipalities
+     * const municipality = await prisma.municipality.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MunicipalityUpdateManyArgs>(args: SelectSubset<T, MunicipalityUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Municipalities and returns the data updated in the database.
+     * @param {MunicipalityUpdateManyAndReturnArgs} args - Arguments to update many Municipalities.
+     * @example
+     * // Update many Municipalities
+     * const municipality = await prisma.municipality.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Municipalities and only return the `id`
+     * const municipalityWithIdOnly = await prisma.municipality.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MunicipalityUpdateManyAndReturnArgs>(args: SelectSubset<T, MunicipalityUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Municipality.
+     * @param {MunicipalityUpsertArgs} args - Arguments to update or create a Municipality.
+     * @example
+     * // Update or create a Municipality
+     * const municipality = await prisma.municipality.upsert({
+     *   create: {
+     *     // ... data to create a Municipality
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Municipality we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MunicipalityUpsertArgs>(args: SelectSubset<T, MunicipalityUpsertArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Municipalities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityCountArgs} args - Arguments to filter Municipalities to count.
+     * @example
+     * // Count the number of Municipalities
+     * const count = await prisma.municipality.count({
+     *   where: {
+     *     // ... the filter for the Municipalities we want to count
+     *   }
+     * })
+    **/
+    count<T extends MunicipalityCountArgs>(
+      args?: Subset<T, MunicipalityCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MunicipalityCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Municipality.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MunicipalityAggregateArgs>(args: Subset<T, MunicipalityAggregateArgs>): Prisma.PrismaPromise<GetMunicipalityAggregateType<T>>
+
+    /**
+     * Group by Municipality.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MunicipalityGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MunicipalityGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MunicipalityGroupByArgs['orderBy'] }
+        : { orderBy?: MunicipalityGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MunicipalityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMunicipalityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Municipality model
+   */
+  readonly fields: MunicipalityFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Municipality.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MunicipalityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    province<T extends ProvinceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProvinceDefaultArgs<ExtArgs>>): Prisma__ProvinceClient<$Result.GetResult<Prisma.$ProvincePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    towns<T extends Municipality$townsArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$townsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TownPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    availableProducts<T extends Municipality$availableProductsArgs<ExtArgs> = {}>(args?: Subset<T, Municipality$availableProductsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Municipality model
+   */
+  interface MunicipalityFieldRefs {
+    readonly id: FieldRef<"Municipality", 'Int'>
+    readonly name: FieldRef<"Municipality", 'String'>
+    readonly provinceId: FieldRef<"Municipality", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Municipality findUnique
+   */
+  export type MunicipalityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityInclude<ExtArgs> | null
+    /**
+     * Filter, which Municipality to fetch.
+     */
+    where: MunicipalityWhereUniqueInput
+  }
+
+  /**
+   * Municipality findUniqueOrThrow
+   */
+  export type MunicipalityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityInclude<ExtArgs> | null
+    /**
+     * Filter, which Municipality to fetch.
+     */
+    where: MunicipalityWhereUniqueInput
+  }
+
+  /**
+   * Municipality findFirst
+   */
+  export type MunicipalityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityInclude<ExtArgs> | null
+    /**
+     * Filter, which Municipality to fetch.
+     */
+    where?: MunicipalityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Municipalities to fetch.
+     */
+    orderBy?: MunicipalityOrderByWithRelationInput | MunicipalityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Municipalities.
+     */
+    cursor?: MunicipalityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Municipalities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Municipalities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Municipalities.
+     */
+    distinct?: MunicipalityScalarFieldEnum | MunicipalityScalarFieldEnum[]
+  }
+
+  /**
+   * Municipality findFirstOrThrow
+   */
+  export type MunicipalityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityInclude<ExtArgs> | null
+    /**
+     * Filter, which Municipality to fetch.
+     */
+    where?: MunicipalityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Municipalities to fetch.
+     */
+    orderBy?: MunicipalityOrderByWithRelationInput | MunicipalityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Municipalities.
+     */
+    cursor?: MunicipalityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Municipalities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Municipalities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Municipalities.
+     */
+    distinct?: MunicipalityScalarFieldEnum | MunicipalityScalarFieldEnum[]
+  }
+
+  /**
+   * Municipality findMany
+   */
+  export type MunicipalityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityInclude<ExtArgs> | null
+    /**
+     * Filter, which Municipalities to fetch.
+     */
+    where?: MunicipalityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Municipalities to fetch.
+     */
+    orderBy?: MunicipalityOrderByWithRelationInput | MunicipalityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Municipalities.
+     */
+    cursor?: MunicipalityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Municipalities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Municipalities.
+     */
+    skip?: number
+    distinct?: MunicipalityScalarFieldEnum | MunicipalityScalarFieldEnum[]
+  }
+
+  /**
+   * Municipality create
+   */
+  export type MunicipalityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Municipality.
+     */
+    data: XOR<MunicipalityCreateInput, MunicipalityUncheckedCreateInput>
+  }
+
+  /**
+   * Municipality createMany
+   */
+  export type MunicipalityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Municipalities.
+     */
+    data: MunicipalityCreateManyInput | MunicipalityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Municipality createManyAndReturn
+   */
+  export type MunicipalityCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * The data used to create many Municipalities.
+     */
+    data: MunicipalityCreateManyInput | MunicipalityCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Municipality update
+   */
+  export type MunicipalityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Municipality.
+     */
+    data: XOR<MunicipalityUpdateInput, MunicipalityUncheckedUpdateInput>
+    /**
+     * Choose, which Municipality to update.
+     */
+    where: MunicipalityWhereUniqueInput
+  }
+
+  /**
+   * Municipality updateMany
+   */
+  export type MunicipalityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Municipalities.
+     */
+    data: XOR<MunicipalityUpdateManyMutationInput, MunicipalityUncheckedUpdateManyInput>
+    /**
+     * Filter which Municipalities to update
+     */
+    where?: MunicipalityWhereInput
+    /**
+     * Limit how many Municipalities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Municipality updateManyAndReturn
+   */
+  export type MunicipalityUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * The data used to update Municipalities.
+     */
+    data: XOR<MunicipalityUpdateManyMutationInput, MunicipalityUncheckedUpdateManyInput>
+    /**
+     * Filter which Municipalities to update
+     */
+    where?: MunicipalityWhereInput
+    /**
+     * Limit how many Municipalities to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Municipality upsert
+   */
+  export type MunicipalityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Municipality to update in case it exists.
+     */
+    where: MunicipalityWhereUniqueInput
+    /**
+     * In case the Municipality found by the `where` argument doesn't exist, create a new Municipality with this data.
+     */
+    create: XOR<MunicipalityCreateInput, MunicipalityUncheckedCreateInput>
+    /**
+     * In case the Municipality was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MunicipalityUpdateInput, MunicipalityUncheckedUpdateInput>
+  }
+
+  /**
+   * Municipality delete
+   */
+  export type MunicipalityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityInclude<ExtArgs> | null
+    /**
+     * Filter which Municipality to delete.
+     */
+    where: MunicipalityWhereUniqueInput
+  }
+
+  /**
+   * Municipality deleteMany
+   */
+  export type MunicipalityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Municipalities to delete
+     */
+    where?: MunicipalityWhereInput
+    /**
+     * Limit how many Municipalities to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Municipality.towns
+   */
+  export type Municipality$townsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownInclude<ExtArgs> | null
+    where?: TownWhereInput
+    orderBy?: TownOrderByWithRelationInput | TownOrderByWithRelationInput[]
+    cursor?: TownWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TownScalarFieldEnum | TownScalarFieldEnum[]
+  }
+
+  /**
+   * Municipality.availableProducts
+   */
+  export type Municipality$availableProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+    where?: ProductAvailabilityWhereInput
+    orderBy?: ProductAvailabilityOrderByWithRelationInput | ProductAvailabilityOrderByWithRelationInput[]
+    cursor?: ProductAvailabilityWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductAvailabilityScalarFieldEnum | ProductAvailabilityScalarFieldEnum[]
+  }
+
+  /**
+   * Municipality without action
+   */
+  export type MunicipalityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Town
+   */
+
+  export type AggregateTown = {
+    _count: TownCountAggregateOutputType | null
+    _avg: TownAvgAggregateOutputType | null
+    _sum: TownSumAggregateOutputType | null
+    _min: TownMinAggregateOutputType | null
+    _max: TownMaxAggregateOutputType | null
+  }
+
+  export type TownAvgAggregateOutputType = {
+    id: number | null
+    municipalityId: number | null
+  }
+
+  export type TownSumAggregateOutputType = {
+    id: number | null
+    municipalityId: number | null
+  }
+
+  export type TownMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    municipalityId: number | null
+  }
+
+  export type TownMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    municipalityId: number | null
+  }
+
+  export type TownCountAggregateOutputType = {
+    id: number
+    name: number
+    municipalityId: number
+    _all: number
+  }
+
+
+  export type TownAvgAggregateInputType = {
+    id?: true
+    municipalityId?: true
+  }
+
+  export type TownSumAggregateInputType = {
+    id?: true
+    municipalityId?: true
+  }
+
+  export type TownMinAggregateInputType = {
+    id?: true
+    name?: true
+    municipalityId?: true
+  }
+
+  export type TownMaxAggregateInputType = {
+    id?: true
+    name?: true
+    municipalityId?: true
+  }
+
+  export type TownCountAggregateInputType = {
+    id?: true
+    name?: true
+    municipalityId?: true
+    _all?: true
+  }
+
+  export type TownAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Town to aggregate.
+     */
+    where?: TownWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Towns to fetch.
+     */
+    orderBy?: TownOrderByWithRelationInput | TownOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TownWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Towns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Towns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Towns
+    **/
+    _count?: true | TownCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TownAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TownSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TownMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TownMaxAggregateInputType
+  }
+
+  export type GetTownAggregateType<T extends TownAggregateArgs> = {
+        [P in keyof T & keyof AggregateTown]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTown[P]>
+      : GetScalarType<T[P], AggregateTown[P]>
+  }
+
+
+
+
+  export type TownGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TownWhereInput
+    orderBy?: TownOrderByWithAggregationInput | TownOrderByWithAggregationInput[]
+    by: TownScalarFieldEnum[] | TownScalarFieldEnum
+    having?: TownScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TownCountAggregateInputType | true
+    _avg?: TownAvgAggregateInputType
+    _sum?: TownSumAggregateInputType
+    _min?: TownMinAggregateInputType
+    _max?: TownMaxAggregateInputType
+  }
+
+  export type TownGroupByOutputType = {
+    id: number
+    name: string
+    municipalityId: number
+    _count: TownCountAggregateOutputType | null
+    _avg: TownAvgAggregateOutputType | null
+    _sum: TownSumAggregateOutputType | null
+    _min: TownMinAggregateOutputType | null
+    _max: TownMaxAggregateOutputType | null
+  }
+
+  type GetTownGroupByPayload<T extends TownGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TownGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TownGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TownGroupByOutputType[P]>
+            : GetScalarType<T[P], TownGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TownSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    municipalityId?: boolean
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    availableProducts?: boolean | Town$availableProductsArgs<ExtArgs>
+    _count?: boolean | TownCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["town"]>
+
+  export type TownSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    municipalityId?: boolean
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["town"]>
+
+  export type TownSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    municipalityId?: boolean
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["town"]>
+
+  export type TownSelectScalar = {
+    id?: boolean
+    name?: boolean
+    municipalityId?: boolean
+  }
+
+  export type TownOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "municipalityId", ExtArgs["result"]["town"]>
+  export type TownInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+    availableProducts?: boolean | Town$availableProductsArgs<ExtArgs>
+    _count?: boolean | TownCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type TownIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+  }
+  export type TownIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    municipality?: boolean | MunicipalityDefaultArgs<ExtArgs>
+  }
+
+  export type $TownPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Town"
+    objects: {
+      municipality: Prisma.$MunicipalityPayload<ExtArgs>
+      availableProducts: Prisma.$ProductAvailabilityPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      municipalityId: number
+    }, ExtArgs["result"]["town"]>
+    composites: {}
+  }
+
+  type TownGetPayload<S extends boolean | null | undefined | TownDefaultArgs> = $Result.GetResult<Prisma.$TownPayload, S>
+
+  type TownCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TownFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TownCountAggregateInputType | true
+    }
+
+  export interface TownDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Town'], meta: { name: 'Town' } }
+    /**
+     * Find zero or one Town that matches the filter.
+     * @param {TownFindUniqueArgs} args - Arguments to find a Town
+     * @example
+     * // Get one Town
+     * const town = await prisma.town.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TownFindUniqueArgs>(args: SelectSubset<T, TownFindUniqueArgs<ExtArgs>>): Prisma__TownClient<$Result.GetResult<Prisma.$TownPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Town that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TownFindUniqueOrThrowArgs} args - Arguments to find a Town
+     * @example
+     * // Get one Town
+     * const town = await prisma.town.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TownFindUniqueOrThrowArgs>(args: SelectSubset<T, TownFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TownClient<$Result.GetResult<Prisma.$TownPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Town that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TownFindFirstArgs} args - Arguments to find a Town
+     * @example
+     * // Get one Town
+     * const town = await prisma.town.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TownFindFirstArgs>(args?: SelectSubset<T, TownFindFirstArgs<ExtArgs>>): Prisma__TownClient<$Result.GetResult<Prisma.$TownPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Town that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TownFindFirstOrThrowArgs} args - Arguments to find a Town
+     * @example
+     * // Get one Town
+     * const town = await prisma.town.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TownFindFirstOrThrowArgs>(args?: SelectSubset<T, TownFindFirstOrThrowArgs<ExtArgs>>): Prisma__TownClient<$Result.GetResult<Prisma.$TownPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Towns that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TownFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Towns
+     * const towns = await prisma.town.findMany()
+     * 
+     * // Get first 10 Towns
+     * const towns = await prisma.town.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const townWithIdOnly = await prisma.town.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TownFindManyArgs>(args?: SelectSubset<T, TownFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TownPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Town.
+     * @param {TownCreateArgs} args - Arguments to create a Town.
+     * @example
+     * // Create one Town
+     * const Town = await prisma.town.create({
+     *   data: {
+     *     // ... data to create a Town
+     *   }
+     * })
+     * 
+     */
+    create<T extends TownCreateArgs>(args: SelectSubset<T, TownCreateArgs<ExtArgs>>): Prisma__TownClient<$Result.GetResult<Prisma.$TownPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Towns.
+     * @param {TownCreateManyArgs} args - Arguments to create many Towns.
+     * @example
+     * // Create many Towns
+     * const town = await prisma.town.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TownCreateManyArgs>(args?: SelectSubset<T, TownCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Towns and returns the data saved in the database.
+     * @param {TownCreateManyAndReturnArgs} args - Arguments to create many Towns.
+     * @example
+     * // Create many Towns
+     * const town = await prisma.town.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Towns and only return the `id`
+     * const townWithIdOnly = await prisma.town.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TownCreateManyAndReturnArgs>(args?: SelectSubset<T, TownCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TownPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Town.
+     * @param {TownDeleteArgs} args - Arguments to delete one Town.
+     * @example
+     * // Delete one Town
+     * const Town = await prisma.town.delete({
+     *   where: {
+     *     // ... filter to delete one Town
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TownDeleteArgs>(args: SelectSubset<T, TownDeleteArgs<ExtArgs>>): Prisma__TownClient<$Result.GetResult<Prisma.$TownPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Town.
+     * @param {TownUpdateArgs} args - Arguments to update one Town.
+     * @example
+     * // Update one Town
+     * const town = await prisma.town.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TownUpdateArgs>(args: SelectSubset<T, TownUpdateArgs<ExtArgs>>): Prisma__TownClient<$Result.GetResult<Prisma.$TownPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Towns.
+     * @param {TownDeleteManyArgs} args - Arguments to filter Towns to delete.
+     * @example
+     * // Delete a few Towns
+     * const { count } = await prisma.town.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TownDeleteManyArgs>(args?: SelectSubset<T, TownDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Towns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TownUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Towns
+     * const town = await prisma.town.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TownUpdateManyArgs>(args: SelectSubset<T, TownUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Towns and returns the data updated in the database.
+     * @param {TownUpdateManyAndReturnArgs} args - Arguments to update many Towns.
+     * @example
+     * // Update many Towns
+     * const town = await prisma.town.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Towns and only return the `id`
+     * const townWithIdOnly = await prisma.town.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TownUpdateManyAndReturnArgs>(args: SelectSubset<T, TownUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TownPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Town.
+     * @param {TownUpsertArgs} args - Arguments to update or create a Town.
+     * @example
+     * // Update or create a Town
+     * const town = await prisma.town.upsert({
+     *   create: {
+     *     // ... data to create a Town
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Town we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TownUpsertArgs>(args: SelectSubset<T, TownUpsertArgs<ExtArgs>>): Prisma__TownClient<$Result.GetResult<Prisma.$TownPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Towns.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TownCountArgs} args - Arguments to filter Towns to count.
+     * @example
+     * // Count the number of Towns
+     * const count = await prisma.town.count({
+     *   where: {
+     *     // ... the filter for the Towns we want to count
+     *   }
+     * })
+    **/
+    count<T extends TownCountArgs>(
+      args?: Subset<T, TownCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TownCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Town.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TownAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TownAggregateArgs>(args: Subset<T, TownAggregateArgs>): Prisma.PrismaPromise<GetTownAggregateType<T>>
+
+    /**
+     * Group by Town.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TownGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TownGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TownGroupByArgs['orderBy'] }
+        : { orderBy?: TownGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TownGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTownGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Town model
+   */
+  readonly fields: TownFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Town.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TownClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    municipality<T extends MunicipalityDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MunicipalityDefaultArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    availableProducts<T extends Town$availableProductsArgs<ExtArgs> = {}>(args?: Subset<T, Town$availableProductsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Town model
+   */
+  interface TownFieldRefs {
+    readonly id: FieldRef<"Town", 'Int'>
+    readonly name: FieldRef<"Town", 'String'>
+    readonly municipalityId: FieldRef<"Town", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Town findUnique
+   */
+  export type TownFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownInclude<ExtArgs> | null
+    /**
+     * Filter, which Town to fetch.
+     */
+    where: TownWhereUniqueInput
+  }
+
+  /**
+   * Town findUniqueOrThrow
+   */
+  export type TownFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownInclude<ExtArgs> | null
+    /**
+     * Filter, which Town to fetch.
+     */
+    where: TownWhereUniqueInput
+  }
+
+  /**
+   * Town findFirst
+   */
+  export type TownFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownInclude<ExtArgs> | null
+    /**
+     * Filter, which Town to fetch.
+     */
+    where?: TownWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Towns to fetch.
+     */
+    orderBy?: TownOrderByWithRelationInput | TownOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Towns.
+     */
+    cursor?: TownWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Towns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Towns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Towns.
+     */
+    distinct?: TownScalarFieldEnum | TownScalarFieldEnum[]
+  }
+
+  /**
+   * Town findFirstOrThrow
+   */
+  export type TownFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownInclude<ExtArgs> | null
+    /**
+     * Filter, which Town to fetch.
+     */
+    where?: TownWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Towns to fetch.
+     */
+    orderBy?: TownOrderByWithRelationInput | TownOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Towns.
+     */
+    cursor?: TownWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Towns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Towns.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Towns.
+     */
+    distinct?: TownScalarFieldEnum | TownScalarFieldEnum[]
+  }
+
+  /**
+   * Town findMany
+   */
+  export type TownFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownInclude<ExtArgs> | null
+    /**
+     * Filter, which Towns to fetch.
+     */
+    where?: TownWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Towns to fetch.
+     */
+    orderBy?: TownOrderByWithRelationInput | TownOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Towns.
+     */
+    cursor?: TownWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Towns from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Towns.
+     */
+    skip?: number
+    distinct?: TownScalarFieldEnum | TownScalarFieldEnum[]
+  }
+
+  /**
+   * Town create
+   */
+  export type TownCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Town.
+     */
+    data: XOR<TownCreateInput, TownUncheckedCreateInput>
+  }
+
+  /**
+   * Town createMany
+   */
+  export type TownCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Towns.
+     */
+    data: TownCreateManyInput | TownCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Town createManyAndReturn
+   */
+  export type TownCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * The data used to create many Towns.
+     */
+    data: TownCreateManyInput | TownCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Town update
+   */
+  export type TownUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Town.
+     */
+    data: XOR<TownUpdateInput, TownUncheckedUpdateInput>
+    /**
+     * Choose, which Town to update.
+     */
+    where: TownWhereUniqueInput
+  }
+
+  /**
+   * Town updateMany
+   */
+  export type TownUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Towns.
+     */
+    data: XOR<TownUpdateManyMutationInput, TownUncheckedUpdateManyInput>
+    /**
+     * Filter which Towns to update
+     */
+    where?: TownWhereInput
+    /**
+     * Limit how many Towns to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Town updateManyAndReturn
+   */
+  export type TownUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * The data used to update Towns.
+     */
+    data: XOR<TownUpdateManyMutationInput, TownUncheckedUpdateManyInput>
+    /**
+     * Filter which Towns to update
+     */
+    where?: TownWhereInput
+    /**
+     * Limit how many Towns to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Town upsert
+   */
+  export type TownUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Town to update in case it exists.
+     */
+    where: TownWhereUniqueInput
+    /**
+     * In case the Town found by the `where` argument doesn't exist, create a new Town with this data.
+     */
+    create: XOR<TownCreateInput, TownUncheckedCreateInput>
+    /**
+     * In case the Town was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TownUpdateInput, TownUncheckedUpdateInput>
+  }
+
+  /**
+   * Town delete
+   */
+  export type TownDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownInclude<ExtArgs> | null
+    /**
+     * Filter which Town to delete.
+     */
+    where: TownWhereUniqueInput
+  }
+
+  /**
+   * Town deleteMany
+   */
+  export type TownDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Towns to delete
+     */
+    where?: TownWhereInput
+    /**
+     * Limit how many Towns to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Town.availableProducts
+   */
+  export type Town$availableProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+    where?: ProductAvailabilityWhereInput
+    orderBy?: ProductAvailabilityOrderByWithRelationInput | ProductAvailabilityOrderByWithRelationInput[]
+    cursor?: ProductAvailabilityWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductAvailabilityScalarFieldEnum | ProductAvailabilityScalarFieldEnum[]
+  }
+
+  /**
+   * Town without action
+   */
+  export type TownDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProductAvailability
+   */
+
+  export type AggregateProductAvailability = {
+    _count: ProductAvailabilityCountAggregateOutputType | null
+    _avg: ProductAvailabilityAvgAggregateOutputType | null
+    _sum: ProductAvailabilitySumAggregateOutputType | null
+    _min: ProductAvailabilityMinAggregateOutputType | null
+    _max: ProductAvailabilityMaxAggregateOutputType | null
+  }
+
+  export type ProductAvailabilityAvgAggregateOutputType = {
+    id: number | null
+    productId: number | null
+    provinceId: number | null
+    municipalityId: number | null
+    townId: number | null
+  }
+
+  export type ProductAvailabilitySumAggregateOutputType = {
+    id: number | null
+    productId: number | null
+    provinceId: number | null
+    municipalityId: number | null
+    townId: number | null
+  }
+
+  export type ProductAvailabilityMinAggregateOutputType = {
+    id: number | null
+    productId: number | null
+    provinceId: number | null
+    municipalityId: number | null
+    townId: number | null
+    createdAt: Date | null
+  }
+
+  export type ProductAvailabilityMaxAggregateOutputType = {
+    id: number | null
+    productId: number | null
+    provinceId: number | null
+    municipalityId: number | null
+    townId: number | null
+    createdAt: Date | null
+  }
+
+  export type ProductAvailabilityCountAggregateOutputType = {
+    id: number
+    productId: number
+    provinceId: number
+    municipalityId: number
+    townId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ProductAvailabilityAvgAggregateInputType = {
+    id?: true
+    productId?: true
+    provinceId?: true
+    municipalityId?: true
+    townId?: true
+  }
+
+  export type ProductAvailabilitySumAggregateInputType = {
+    id?: true
+    productId?: true
+    provinceId?: true
+    municipalityId?: true
+    townId?: true
+  }
+
+  export type ProductAvailabilityMinAggregateInputType = {
+    id?: true
+    productId?: true
+    provinceId?: true
+    municipalityId?: true
+    townId?: true
+    createdAt?: true
+  }
+
+  export type ProductAvailabilityMaxAggregateInputType = {
+    id?: true
+    productId?: true
+    provinceId?: true
+    municipalityId?: true
+    townId?: true
+    createdAt?: true
+  }
+
+  export type ProductAvailabilityCountAggregateInputType = {
+    id?: true
+    productId?: true
+    provinceId?: true
+    municipalityId?: true
+    townId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ProductAvailabilityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductAvailability to aggregate.
+     */
+    where?: ProductAvailabilityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductAvailabilities to fetch.
+     */
+    orderBy?: ProductAvailabilityOrderByWithRelationInput | ProductAvailabilityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProductAvailabilityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductAvailabilities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductAvailabilities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProductAvailabilities
+    **/
+    _count?: true | ProductAvailabilityCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProductAvailabilityAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProductAvailabilitySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProductAvailabilityMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProductAvailabilityMaxAggregateInputType
+  }
+
+  export type GetProductAvailabilityAggregateType<T extends ProductAvailabilityAggregateArgs> = {
+        [P in keyof T & keyof AggregateProductAvailability]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProductAvailability[P]>
+      : GetScalarType<T[P], AggregateProductAvailability[P]>
+  }
+
+
+
+
+  export type ProductAvailabilityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductAvailabilityWhereInput
+    orderBy?: ProductAvailabilityOrderByWithAggregationInput | ProductAvailabilityOrderByWithAggregationInput[]
+    by: ProductAvailabilityScalarFieldEnum[] | ProductAvailabilityScalarFieldEnum
+    having?: ProductAvailabilityScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProductAvailabilityCountAggregateInputType | true
+    _avg?: ProductAvailabilityAvgAggregateInputType
+    _sum?: ProductAvailabilitySumAggregateInputType
+    _min?: ProductAvailabilityMinAggregateInputType
+    _max?: ProductAvailabilityMaxAggregateInputType
+  }
+
+  export type ProductAvailabilityGroupByOutputType = {
+    id: number
+    productId: number
+    provinceId: number | null
+    municipalityId: number | null
+    townId: number | null
+    createdAt: Date
+    _count: ProductAvailabilityCountAggregateOutputType | null
+    _avg: ProductAvailabilityAvgAggregateOutputType | null
+    _sum: ProductAvailabilitySumAggregateOutputType | null
+    _min: ProductAvailabilityMinAggregateOutputType | null
+    _max: ProductAvailabilityMaxAggregateOutputType | null
+  }
+
+  type GetProductAvailabilityGroupByPayload<T extends ProductAvailabilityGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProductAvailabilityGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProductAvailabilityGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProductAvailabilityGroupByOutputType[P]>
+            : GetScalarType<T[P], ProductAvailabilityGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProductAvailabilitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    productId?: boolean
+    provinceId?: boolean
+    municipalityId?: boolean
+    townId?: boolean
+    createdAt?: boolean
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    province?: boolean | ProductAvailability$provinceArgs<ExtArgs>
+    municipality?: boolean | ProductAvailability$municipalityArgs<ExtArgs>
+    town?: boolean | ProductAvailability$townArgs<ExtArgs>
+  }, ExtArgs["result"]["productAvailability"]>
+
+  export type ProductAvailabilitySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    productId?: boolean
+    provinceId?: boolean
+    municipalityId?: boolean
+    townId?: boolean
+    createdAt?: boolean
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    province?: boolean | ProductAvailability$provinceArgs<ExtArgs>
+    municipality?: boolean | ProductAvailability$municipalityArgs<ExtArgs>
+    town?: boolean | ProductAvailability$townArgs<ExtArgs>
+  }, ExtArgs["result"]["productAvailability"]>
+
+  export type ProductAvailabilitySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    productId?: boolean
+    provinceId?: boolean
+    municipalityId?: boolean
+    townId?: boolean
+    createdAt?: boolean
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    province?: boolean | ProductAvailability$provinceArgs<ExtArgs>
+    municipality?: boolean | ProductAvailability$municipalityArgs<ExtArgs>
+    town?: boolean | ProductAvailability$townArgs<ExtArgs>
+  }, ExtArgs["result"]["productAvailability"]>
+
+  export type ProductAvailabilitySelectScalar = {
+    id?: boolean
+    productId?: boolean
+    provinceId?: boolean
+    municipalityId?: boolean
+    townId?: boolean
+    createdAt?: boolean
+  }
+
+  export type ProductAvailabilityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "productId" | "provinceId" | "municipalityId" | "townId" | "createdAt", ExtArgs["result"]["productAvailability"]>
+  export type ProductAvailabilityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    province?: boolean | ProductAvailability$provinceArgs<ExtArgs>
+    municipality?: boolean | ProductAvailability$municipalityArgs<ExtArgs>
+    town?: boolean | ProductAvailability$townArgs<ExtArgs>
+  }
+  export type ProductAvailabilityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    province?: boolean | ProductAvailability$provinceArgs<ExtArgs>
+    municipality?: boolean | ProductAvailability$municipalityArgs<ExtArgs>
+    town?: boolean | ProductAvailability$townArgs<ExtArgs>
+  }
+  export type ProductAvailabilityIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+    province?: boolean | ProductAvailability$provinceArgs<ExtArgs>
+    municipality?: boolean | ProductAvailability$municipalityArgs<ExtArgs>
+    town?: boolean | ProductAvailability$townArgs<ExtArgs>
+  }
+
+  export type $ProductAvailabilityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProductAvailability"
+    objects: {
+      product: Prisma.$ProductPayload<ExtArgs>
+      province: Prisma.$ProvincePayload<ExtArgs> | null
+      municipality: Prisma.$MunicipalityPayload<ExtArgs> | null
+      town: Prisma.$TownPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      productId: number
+      provinceId: number | null
+      municipalityId: number | null
+      townId: number | null
+      createdAt: Date
+    }, ExtArgs["result"]["productAvailability"]>
+    composites: {}
+  }
+
+  type ProductAvailabilityGetPayload<S extends boolean | null | undefined | ProductAvailabilityDefaultArgs> = $Result.GetResult<Prisma.$ProductAvailabilityPayload, S>
+
+  type ProductAvailabilityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProductAvailabilityFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProductAvailabilityCountAggregateInputType | true
+    }
+
+  export interface ProductAvailabilityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProductAvailability'], meta: { name: 'ProductAvailability' } }
+    /**
+     * Find zero or one ProductAvailability that matches the filter.
+     * @param {ProductAvailabilityFindUniqueArgs} args - Arguments to find a ProductAvailability
+     * @example
+     * // Get one ProductAvailability
+     * const productAvailability = await prisma.productAvailability.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProductAvailabilityFindUniqueArgs>(args: SelectSubset<T, ProductAvailabilityFindUniqueArgs<ExtArgs>>): Prisma__ProductAvailabilityClient<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProductAvailability that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProductAvailabilityFindUniqueOrThrowArgs} args - Arguments to find a ProductAvailability
+     * @example
+     * // Get one ProductAvailability
+     * const productAvailability = await prisma.productAvailability.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProductAvailabilityFindUniqueOrThrowArgs>(args: SelectSubset<T, ProductAvailabilityFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProductAvailabilityClient<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProductAvailability that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductAvailabilityFindFirstArgs} args - Arguments to find a ProductAvailability
+     * @example
+     * // Get one ProductAvailability
+     * const productAvailability = await prisma.productAvailability.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProductAvailabilityFindFirstArgs>(args?: SelectSubset<T, ProductAvailabilityFindFirstArgs<ExtArgs>>): Prisma__ProductAvailabilityClient<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProductAvailability that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductAvailabilityFindFirstOrThrowArgs} args - Arguments to find a ProductAvailability
+     * @example
+     * // Get one ProductAvailability
+     * const productAvailability = await prisma.productAvailability.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProductAvailabilityFindFirstOrThrowArgs>(args?: SelectSubset<T, ProductAvailabilityFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProductAvailabilityClient<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProductAvailabilities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductAvailabilityFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProductAvailabilities
+     * const productAvailabilities = await prisma.productAvailability.findMany()
+     * 
+     * // Get first 10 ProductAvailabilities
+     * const productAvailabilities = await prisma.productAvailability.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const productAvailabilityWithIdOnly = await prisma.productAvailability.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProductAvailabilityFindManyArgs>(args?: SelectSubset<T, ProductAvailabilityFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProductAvailability.
+     * @param {ProductAvailabilityCreateArgs} args - Arguments to create a ProductAvailability.
+     * @example
+     * // Create one ProductAvailability
+     * const ProductAvailability = await prisma.productAvailability.create({
+     *   data: {
+     *     // ... data to create a ProductAvailability
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProductAvailabilityCreateArgs>(args: SelectSubset<T, ProductAvailabilityCreateArgs<ExtArgs>>): Prisma__ProductAvailabilityClient<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProductAvailabilities.
+     * @param {ProductAvailabilityCreateManyArgs} args - Arguments to create many ProductAvailabilities.
+     * @example
+     * // Create many ProductAvailabilities
+     * const productAvailability = await prisma.productAvailability.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProductAvailabilityCreateManyArgs>(args?: SelectSubset<T, ProductAvailabilityCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProductAvailabilities and returns the data saved in the database.
+     * @param {ProductAvailabilityCreateManyAndReturnArgs} args - Arguments to create many ProductAvailabilities.
+     * @example
+     * // Create many ProductAvailabilities
+     * const productAvailability = await prisma.productAvailability.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProductAvailabilities and only return the `id`
+     * const productAvailabilityWithIdOnly = await prisma.productAvailability.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProductAvailabilityCreateManyAndReturnArgs>(args?: SelectSubset<T, ProductAvailabilityCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProductAvailability.
+     * @param {ProductAvailabilityDeleteArgs} args - Arguments to delete one ProductAvailability.
+     * @example
+     * // Delete one ProductAvailability
+     * const ProductAvailability = await prisma.productAvailability.delete({
+     *   where: {
+     *     // ... filter to delete one ProductAvailability
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProductAvailabilityDeleteArgs>(args: SelectSubset<T, ProductAvailabilityDeleteArgs<ExtArgs>>): Prisma__ProductAvailabilityClient<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProductAvailability.
+     * @param {ProductAvailabilityUpdateArgs} args - Arguments to update one ProductAvailability.
+     * @example
+     * // Update one ProductAvailability
+     * const productAvailability = await prisma.productAvailability.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProductAvailabilityUpdateArgs>(args: SelectSubset<T, ProductAvailabilityUpdateArgs<ExtArgs>>): Prisma__ProductAvailabilityClient<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProductAvailabilities.
+     * @param {ProductAvailabilityDeleteManyArgs} args - Arguments to filter ProductAvailabilities to delete.
+     * @example
+     * // Delete a few ProductAvailabilities
+     * const { count } = await prisma.productAvailability.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProductAvailabilityDeleteManyArgs>(args?: SelectSubset<T, ProductAvailabilityDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProductAvailabilities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductAvailabilityUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProductAvailabilities
+     * const productAvailability = await prisma.productAvailability.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProductAvailabilityUpdateManyArgs>(args: SelectSubset<T, ProductAvailabilityUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProductAvailabilities and returns the data updated in the database.
+     * @param {ProductAvailabilityUpdateManyAndReturnArgs} args - Arguments to update many ProductAvailabilities.
+     * @example
+     * // Update many ProductAvailabilities
+     * const productAvailability = await prisma.productAvailability.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProductAvailabilities and only return the `id`
+     * const productAvailabilityWithIdOnly = await prisma.productAvailability.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProductAvailabilityUpdateManyAndReturnArgs>(args: SelectSubset<T, ProductAvailabilityUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProductAvailability.
+     * @param {ProductAvailabilityUpsertArgs} args - Arguments to update or create a ProductAvailability.
+     * @example
+     * // Update or create a ProductAvailability
+     * const productAvailability = await prisma.productAvailability.upsert({
+     *   create: {
+     *     // ... data to create a ProductAvailability
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProductAvailability we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProductAvailabilityUpsertArgs>(args: SelectSubset<T, ProductAvailabilityUpsertArgs<ExtArgs>>): Prisma__ProductAvailabilityClient<$Result.GetResult<Prisma.$ProductAvailabilityPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProductAvailabilities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductAvailabilityCountArgs} args - Arguments to filter ProductAvailabilities to count.
+     * @example
+     * // Count the number of ProductAvailabilities
+     * const count = await prisma.productAvailability.count({
+     *   where: {
+     *     // ... the filter for the ProductAvailabilities we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProductAvailabilityCountArgs>(
+      args?: Subset<T, ProductAvailabilityCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProductAvailabilityCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProductAvailability.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductAvailabilityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProductAvailabilityAggregateArgs>(args: Subset<T, ProductAvailabilityAggregateArgs>): Prisma.PrismaPromise<GetProductAvailabilityAggregateType<T>>
+
+    /**
+     * Group by ProductAvailability.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProductAvailabilityGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProductAvailabilityGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProductAvailabilityGroupByArgs['orderBy'] }
+        : { orderBy?: ProductAvailabilityGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProductAvailabilityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProductAvailabilityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProductAvailability model
+   */
+  readonly fields: ProductAvailabilityFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProductAvailability.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProductAvailabilityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    province<T extends ProductAvailability$provinceArgs<ExtArgs> = {}>(args?: Subset<T, ProductAvailability$provinceArgs<ExtArgs>>): Prisma__ProvinceClient<$Result.GetResult<Prisma.$ProvincePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    municipality<T extends ProductAvailability$municipalityArgs<ExtArgs> = {}>(args?: Subset<T, ProductAvailability$municipalityArgs<ExtArgs>>): Prisma__MunicipalityClient<$Result.GetResult<Prisma.$MunicipalityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    town<T extends ProductAvailability$townArgs<ExtArgs> = {}>(args?: Subset<T, ProductAvailability$townArgs<ExtArgs>>): Prisma__TownClient<$Result.GetResult<Prisma.$TownPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProductAvailability model
+   */
+  interface ProductAvailabilityFieldRefs {
+    readonly id: FieldRef<"ProductAvailability", 'Int'>
+    readonly productId: FieldRef<"ProductAvailability", 'Int'>
+    readonly provinceId: FieldRef<"ProductAvailability", 'Int'>
+    readonly municipalityId: FieldRef<"ProductAvailability", 'Int'>
+    readonly townId: FieldRef<"ProductAvailability", 'Int'>
+    readonly createdAt: FieldRef<"ProductAvailability", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProductAvailability findUnique
+   */
+  export type ProductAvailabilityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductAvailability to fetch.
+     */
+    where: ProductAvailabilityWhereUniqueInput
+  }
+
+  /**
+   * ProductAvailability findUniqueOrThrow
+   */
+  export type ProductAvailabilityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductAvailability to fetch.
+     */
+    where: ProductAvailabilityWhereUniqueInput
+  }
+
+  /**
+   * ProductAvailability findFirst
+   */
+  export type ProductAvailabilityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductAvailability to fetch.
+     */
+    where?: ProductAvailabilityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductAvailabilities to fetch.
+     */
+    orderBy?: ProductAvailabilityOrderByWithRelationInput | ProductAvailabilityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductAvailabilities.
+     */
+    cursor?: ProductAvailabilityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductAvailabilities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductAvailabilities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductAvailabilities.
+     */
+    distinct?: ProductAvailabilityScalarFieldEnum | ProductAvailabilityScalarFieldEnum[]
+  }
+
+  /**
+   * ProductAvailability findFirstOrThrow
+   */
+  export type ProductAvailabilityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductAvailability to fetch.
+     */
+    where?: ProductAvailabilityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductAvailabilities to fetch.
+     */
+    orderBy?: ProductAvailabilityOrderByWithRelationInput | ProductAvailabilityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProductAvailabilities.
+     */
+    cursor?: ProductAvailabilityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductAvailabilities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductAvailabilities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProductAvailabilities.
+     */
+    distinct?: ProductAvailabilityScalarFieldEnum | ProductAvailabilityScalarFieldEnum[]
+  }
+
+  /**
+   * ProductAvailability findMany
+   */
+  export type ProductAvailabilityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+    /**
+     * Filter, which ProductAvailabilities to fetch.
+     */
+    where?: ProductAvailabilityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProductAvailabilities to fetch.
+     */
+    orderBy?: ProductAvailabilityOrderByWithRelationInput | ProductAvailabilityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProductAvailabilities.
+     */
+    cursor?: ProductAvailabilityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProductAvailabilities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProductAvailabilities.
+     */
+    skip?: number
+    distinct?: ProductAvailabilityScalarFieldEnum | ProductAvailabilityScalarFieldEnum[]
+  }
+
+  /**
+   * ProductAvailability create
+   */
+  export type ProductAvailabilityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProductAvailability.
+     */
+    data: XOR<ProductAvailabilityCreateInput, ProductAvailabilityUncheckedCreateInput>
+  }
+
+  /**
+   * ProductAvailability createMany
+   */
+  export type ProductAvailabilityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProductAvailabilities.
+     */
+    data: ProductAvailabilityCreateManyInput | ProductAvailabilityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProductAvailability createManyAndReturn
+   */
+  export type ProductAvailabilityCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProductAvailabilities.
+     */
+    data: ProductAvailabilityCreateManyInput | ProductAvailabilityCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProductAvailability update
+   */
+  export type ProductAvailabilityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProductAvailability.
+     */
+    data: XOR<ProductAvailabilityUpdateInput, ProductAvailabilityUncheckedUpdateInput>
+    /**
+     * Choose, which ProductAvailability to update.
+     */
+    where: ProductAvailabilityWhereUniqueInput
+  }
+
+  /**
+   * ProductAvailability updateMany
+   */
+  export type ProductAvailabilityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProductAvailabilities.
+     */
+    data: XOR<ProductAvailabilityUpdateManyMutationInput, ProductAvailabilityUncheckedUpdateManyInput>
+    /**
+     * Filter which ProductAvailabilities to update
+     */
+    where?: ProductAvailabilityWhereInput
+    /**
+     * Limit how many ProductAvailabilities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProductAvailability updateManyAndReturn
+   */
+  export type ProductAvailabilityUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * The data used to update ProductAvailabilities.
+     */
+    data: XOR<ProductAvailabilityUpdateManyMutationInput, ProductAvailabilityUncheckedUpdateManyInput>
+    /**
+     * Filter which ProductAvailabilities to update
+     */
+    where?: ProductAvailabilityWhereInput
+    /**
+     * Limit how many ProductAvailabilities to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProductAvailability upsert
+   */
+  export type ProductAvailabilityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProductAvailability to update in case it exists.
+     */
+    where: ProductAvailabilityWhereUniqueInput
+    /**
+     * In case the ProductAvailability found by the `where` argument doesn't exist, create a new ProductAvailability with this data.
+     */
+    create: XOR<ProductAvailabilityCreateInput, ProductAvailabilityUncheckedCreateInput>
+    /**
+     * In case the ProductAvailability was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProductAvailabilityUpdateInput, ProductAvailabilityUncheckedUpdateInput>
+  }
+
+  /**
+   * ProductAvailability delete
+   */
+  export type ProductAvailabilityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+    /**
+     * Filter which ProductAvailability to delete.
+     */
+    where: ProductAvailabilityWhereUniqueInput
+  }
+
+  /**
+   * ProductAvailability deleteMany
+   */
+  export type ProductAvailabilityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProductAvailabilities to delete
+     */
+    where?: ProductAvailabilityWhereInput
+    /**
+     * Limit how many ProductAvailabilities to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProductAvailability.province
+   */
+  export type ProductAvailability$provinceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Province
+     */
+    select?: ProvinceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Province
+     */
+    omit?: ProvinceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvinceInclude<ExtArgs> | null
+    where?: ProvinceWhereInput
+  }
+
+  /**
+   * ProductAvailability.municipality
+   */
+  export type ProductAvailability$municipalityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Municipality
+     */
+    select?: MunicipalitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Municipality
+     */
+    omit?: MunicipalityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MunicipalityInclude<ExtArgs> | null
+    where?: MunicipalityWhereInput
+  }
+
+  /**
+   * ProductAvailability.town
+   */
+  export type ProductAvailability$townArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Town
+     */
+    select?: TownSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Town
+     */
+    omit?: TownOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TownInclude<ExtArgs> | null
+    where?: TownWhereInput
+  }
+
+  /**
+   * ProductAvailability without action
+   */
+  export type ProductAvailabilityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProductAvailability
+     */
+    select?: ProductAvailabilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProductAvailability
+     */
+    omit?: ProductAvailabilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductAvailabilityInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -7099,6 +12134,44 @@ export namespace Prisma {
   };
 
   export type PriceScalarFieldEnum = (typeof PriceScalarFieldEnum)[keyof typeof PriceScalarFieldEnum]
+
+
+  export const ProvinceScalarFieldEnum: {
+    id: 'id',
+    name: 'name'
+  };
+
+  export type ProvinceScalarFieldEnum = (typeof ProvinceScalarFieldEnum)[keyof typeof ProvinceScalarFieldEnum]
+
+
+  export const MunicipalityScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    provinceId: 'provinceId'
+  };
+
+  export type MunicipalityScalarFieldEnum = (typeof MunicipalityScalarFieldEnum)[keyof typeof MunicipalityScalarFieldEnum]
+
+
+  export const TownScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    municipalityId: 'municipalityId'
+  };
+
+  export type TownScalarFieldEnum = (typeof TownScalarFieldEnum)[keyof typeof TownScalarFieldEnum]
+
+
+  export const ProductAvailabilityScalarFieldEnum: {
+    id: 'id',
+    productId: 'productId',
+    provinceId: 'provinceId',
+    municipalityId: 'municipalityId',
+    townId: 'townId',
+    createdAt: 'createdAt'
+  };
+
+  export type ProductAvailabilityScalarFieldEnum = (typeof ProductAvailabilityScalarFieldEnum)[keyof typeof ProductAvailabilityScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7329,6 +12402,7 @@ export namespace Prisma {
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
     Price?: PriceListRelationFilter
+    availableLocations?: ProductAvailabilityListRelationFilter
   }
 
   export type ProductOrderByWithRelationInput = {
@@ -7348,6 +12422,7 @@ export namespace Prisma {
     category?: CategoryOrderByWithRelationInput
     company?: CompanyOrderByWithRelationInput
     Price?: PriceOrderByRelationAggregateInput
+    availableLocations?: ProductAvailabilityOrderByRelationAggregateInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -7370,6 +12445,7 @@ export namespace Prisma {
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
     Price?: PriceListRelationFilter
+    availableLocations?: ProductAvailabilityListRelationFilter
   }, "id">
 
   export type ProductOrderByWithAggregationInput = {
@@ -7540,6 +12616,228 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Price"> | Date | string
   }
 
+  export type ProvinceWhereInput = {
+    AND?: ProvinceWhereInput | ProvinceWhereInput[]
+    OR?: ProvinceWhereInput[]
+    NOT?: ProvinceWhereInput | ProvinceWhereInput[]
+    id?: IntFilter<"Province"> | number
+    name?: StringFilter<"Province"> | string
+    municipalities?: MunicipalityListRelationFilter
+    availableProducts?: ProductAvailabilityListRelationFilter
+  }
+
+  export type ProvinceOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    municipalities?: MunicipalityOrderByRelationAggregateInput
+    availableProducts?: ProductAvailabilityOrderByRelationAggregateInput
+  }
+
+  export type ProvinceWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    AND?: ProvinceWhereInput | ProvinceWhereInput[]
+    OR?: ProvinceWhereInput[]
+    NOT?: ProvinceWhereInput | ProvinceWhereInput[]
+    municipalities?: MunicipalityListRelationFilter
+    availableProducts?: ProductAvailabilityListRelationFilter
+  }, "id" | "name">
+
+  export type ProvinceOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    _count?: ProvinceCountOrderByAggregateInput
+    _avg?: ProvinceAvgOrderByAggregateInput
+    _max?: ProvinceMaxOrderByAggregateInput
+    _min?: ProvinceMinOrderByAggregateInput
+    _sum?: ProvinceSumOrderByAggregateInput
+  }
+
+  export type ProvinceScalarWhereWithAggregatesInput = {
+    AND?: ProvinceScalarWhereWithAggregatesInput | ProvinceScalarWhereWithAggregatesInput[]
+    OR?: ProvinceScalarWhereWithAggregatesInput[]
+    NOT?: ProvinceScalarWhereWithAggregatesInput | ProvinceScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Province"> | number
+    name?: StringWithAggregatesFilter<"Province"> | string
+  }
+
+  export type MunicipalityWhereInput = {
+    AND?: MunicipalityWhereInput | MunicipalityWhereInput[]
+    OR?: MunicipalityWhereInput[]
+    NOT?: MunicipalityWhereInput | MunicipalityWhereInput[]
+    id?: IntFilter<"Municipality"> | number
+    name?: StringFilter<"Municipality"> | string
+    provinceId?: IntFilter<"Municipality"> | number
+    province?: XOR<ProvinceScalarRelationFilter, ProvinceWhereInput>
+    towns?: TownListRelationFilter
+    availableProducts?: ProductAvailabilityListRelationFilter
+  }
+
+  export type MunicipalityOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    provinceId?: SortOrder
+    province?: ProvinceOrderByWithRelationInput
+    towns?: TownOrderByRelationAggregateInput
+    availableProducts?: ProductAvailabilityOrderByRelationAggregateInput
+  }
+
+  export type MunicipalityWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name_provinceId?: MunicipalityNameProvinceIdCompoundUniqueInput
+    AND?: MunicipalityWhereInput | MunicipalityWhereInput[]
+    OR?: MunicipalityWhereInput[]
+    NOT?: MunicipalityWhereInput | MunicipalityWhereInput[]
+    name?: StringFilter<"Municipality"> | string
+    provinceId?: IntFilter<"Municipality"> | number
+    province?: XOR<ProvinceScalarRelationFilter, ProvinceWhereInput>
+    towns?: TownListRelationFilter
+    availableProducts?: ProductAvailabilityListRelationFilter
+  }, "id" | "name_provinceId">
+
+  export type MunicipalityOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    provinceId?: SortOrder
+    _count?: MunicipalityCountOrderByAggregateInput
+    _avg?: MunicipalityAvgOrderByAggregateInput
+    _max?: MunicipalityMaxOrderByAggregateInput
+    _min?: MunicipalityMinOrderByAggregateInput
+    _sum?: MunicipalitySumOrderByAggregateInput
+  }
+
+  export type MunicipalityScalarWhereWithAggregatesInput = {
+    AND?: MunicipalityScalarWhereWithAggregatesInput | MunicipalityScalarWhereWithAggregatesInput[]
+    OR?: MunicipalityScalarWhereWithAggregatesInput[]
+    NOT?: MunicipalityScalarWhereWithAggregatesInput | MunicipalityScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Municipality"> | number
+    name?: StringWithAggregatesFilter<"Municipality"> | string
+    provinceId?: IntWithAggregatesFilter<"Municipality"> | number
+  }
+
+  export type TownWhereInput = {
+    AND?: TownWhereInput | TownWhereInput[]
+    OR?: TownWhereInput[]
+    NOT?: TownWhereInput | TownWhereInput[]
+    id?: IntFilter<"Town"> | number
+    name?: StringFilter<"Town"> | string
+    municipalityId?: IntFilter<"Town"> | number
+    municipality?: XOR<MunicipalityScalarRelationFilter, MunicipalityWhereInput>
+    availableProducts?: ProductAvailabilityListRelationFilter
+  }
+
+  export type TownOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    municipalityId?: SortOrder
+    municipality?: MunicipalityOrderByWithRelationInput
+    availableProducts?: ProductAvailabilityOrderByRelationAggregateInput
+  }
+
+  export type TownWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name_municipalityId?: TownNameMunicipalityIdCompoundUniqueInput
+    AND?: TownWhereInput | TownWhereInput[]
+    OR?: TownWhereInput[]
+    NOT?: TownWhereInput | TownWhereInput[]
+    name?: StringFilter<"Town"> | string
+    municipalityId?: IntFilter<"Town"> | number
+    municipality?: XOR<MunicipalityScalarRelationFilter, MunicipalityWhereInput>
+    availableProducts?: ProductAvailabilityListRelationFilter
+  }, "id" | "name_municipalityId">
+
+  export type TownOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    municipalityId?: SortOrder
+    _count?: TownCountOrderByAggregateInput
+    _avg?: TownAvgOrderByAggregateInput
+    _max?: TownMaxOrderByAggregateInput
+    _min?: TownMinOrderByAggregateInput
+    _sum?: TownSumOrderByAggregateInput
+  }
+
+  export type TownScalarWhereWithAggregatesInput = {
+    AND?: TownScalarWhereWithAggregatesInput | TownScalarWhereWithAggregatesInput[]
+    OR?: TownScalarWhereWithAggregatesInput[]
+    NOT?: TownScalarWhereWithAggregatesInput | TownScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Town"> | number
+    name?: StringWithAggregatesFilter<"Town"> | string
+    municipalityId?: IntWithAggregatesFilter<"Town"> | number
+  }
+
+  export type ProductAvailabilityWhereInput = {
+    AND?: ProductAvailabilityWhereInput | ProductAvailabilityWhereInput[]
+    OR?: ProductAvailabilityWhereInput[]
+    NOT?: ProductAvailabilityWhereInput | ProductAvailabilityWhereInput[]
+    id?: IntFilter<"ProductAvailability"> | number
+    productId?: IntFilter<"ProductAvailability"> | number
+    provinceId?: IntNullableFilter<"ProductAvailability"> | number | null
+    municipalityId?: IntNullableFilter<"ProductAvailability"> | number | null
+    townId?: IntNullableFilter<"ProductAvailability"> | number | null
+    createdAt?: DateTimeFilter<"ProductAvailability"> | Date | string
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+    province?: XOR<ProvinceNullableScalarRelationFilter, ProvinceWhereInput> | null
+    municipality?: XOR<MunicipalityNullableScalarRelationFilter, MunicipalityWhereInput> | null
+    town?: XOR<TownNullableScalarRelationFilter, TownWhereInput> | null
+  }
+
+  export type ProductAvailabilityOrderByWithRelationInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    provinceId?: SortOrderInput | SortOrder
+    municipalityId?: SortOrderInput | SortOrder
+    townId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    product?: ProductOrderByWithRelationInput
+    province?: ProvinceOrderByWithRelationInput
+    municipality?: MunicipalityOrderByWithRelationInput
+    town?: TownOrderByWithRelationInput
+  }
+
+  export type ProductAvailabilityWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    productId_provinceId_municipalityId_townId?: ProductAvailabilityProductIdProvinceIdMunicipalityIdTownIdCompoundUniqueInput
+    AND?: ProductAvailabilityWhereInput | ProductAvailabilityWhereInput[]
+    OR?: ProductAvailabilityWhereInput[]
+    NOT?: ProductAvailabilityWhereInput | ProductAvailabilityWhereInput[]
+    productId?: IntFilter<"ProductAvailability"> | number
+    provinceId?: IntNullableFilter<"ProductAvailability"> | number | null
+    municipalityId?: IntNullableFilter<"ProductAvailability"> | number | null
+    townId?: IntNullableFilter<"ProductAvailability"> | number | null
+    createdAt?: DateTimeFilter<"ProductAvailability"> | Date | string
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+    province?: XOR<ProvinceNullableScalarRelationFilter, ProvinceWhereInput> | null
+    municipality?: XOR<MunicipalityNullableScalarRelationFilter, MunicipalityWhereInput> | null
+    town?: XOR<TownNullableScalarRelationFilter, TownWhereInput> | null
+  }, "id" | "productId_provinceId_municipalityId_townId">
+
+  export type ProductAvailabilityOrderByWithAggregationInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    provinceId?: SortOrderInput | SortOrder
+    municipalityId?: SortOrderInput | SortOrder
+    townId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ProductAvailabilityCountOrderByAggregateInput
+    _avg?: ProductAvailabilityAvgOrderByAggregateInput
+    _max?: ProductAvailabilityMaxOrderByAggregateInput
+    _min?: ProductAvailabilityMinOrderByAggregateInput
+    _sum?: ProductAvailabilitySumOrderByAggregateInput
+  }
+
+  export type ProductAvailabilityScalarWhereWithAggregatesInput = {
+    AND?: ProductAvailabilityScalarWhereWithAggregatesInput | ProductAvailabilityScalarWhereWithAggregatesInput[]
+    OR?: ProductAvailabilityScalarWhereWithAggregatesInput[]
+    NOT?: ProductAvailabilityScalarWhereWithAggregatesInput | ProductAvailabilityScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ProductAvailability"> | number
+    productId?: IntWithAggregatesFilter<"ProductAvailability"> | number
+    provinceId?: IntNullableWithAggregatesFilter<"ProductAvailability"> | number | null
+    municipalityId?: IntNullableWithAggregatesFilter<"ProductAvailability"> | number | null
+    townId?: IntNullableWithAggregatesFilter<"ProductAvailability"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"ProductAvailability"> | Date | string
+  }
+
   export type CurrencyCreateInput = {
     name: string
     baseRate: Decimal | DecimalJsLike | number | string
@@ -7647,6 +12945,7 @@ export namespace Prisma {
     category: CategoryCreateNestedOneWithoutProductsInput
     company: CompanyCreateNestedOneWithoutProductInput
     Price?: PriceCreateNestedManyWithoutProductInput
+    availableLocations?: ProductAvailabilityCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateInput = {
@@ -7664,6 +12963,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Price?: PriceUncheckedCreateNestedManyWithoutProductInput
+    availableLocations?: ProductAvailabilityUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductUpdateInput = {
@@ -7680,6 +12980,7 @@ export namespace Prisma {
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
     company?: CompanyUpdateOneRequiredWithoutProductNestedInput
     Price?: PriceUpdateManyWithoutProductNestedInput
+    availableLocations?: ProductAvailabilityUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
@@ -7697,6 +12998,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Price?: PriceUncheckedUpdateManyWithoutProductNestedInput
+    availableLocations?: ProductAvailabilityUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductCreateManyInput = {
@@ -7867,6 +13169,190 @@ export namespace Prisma {
     isFixed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProvinceCreateInput = {
+    name: string
+    municipalities?: MunicipalityCreateNestedManyWithoutProvinceInput
+    availableProducts?: ProductAvailabilityCreateNestedManyWithoutProvinceInput
+  }
+
+  export type ProvinceUncheckedCreateInput = {
+    id?: number
+    name: string
+    municipalities?: MunicipalityUncheckedCreateNestedManyWithoutProvinceInput
+    availableProducts?: ProductAvailabilityUncheckedCreateNestedManyWithoutProvinceInput
+  }
+
+  export type ProvinceUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    municipalities?: MunicipalityUpdateManyWithoutProvinceNestedInput
+    availableProducts?: ProductAvailabilityUpdateManyWithoutProvinceNestedInput
+  }
+
+  export type ProvinceUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    municipalities?: MunicipalityUncheckedUpdateManyWithoutProvinceNestedInput
+    availableProducts?: ProductAvailabilityUncheckedUpdateManyWithoutProvinceNestedInput
+  }
+
+  export type ProvinceCreateManyInput = {
+    id?: number
+    name: string
+  }
+
+  export type ProvinceUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProvinceUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MunicipalityCreateInput = {
+    name: string
+    province: ProvinceCreateNestedOneWithoutMunicipalitiesInput
+    towns?: TownCreateNestedManyWithoutMunicipalityInput
+    availableProducts?: ProductAvailabilityCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityUncheckedCreateInput = {
+    id?: number
+    name: string
+    provinceId: number
+    towns?: TownUncheckedCreateNestedManyWithoutMunicipalityInput
+    availableProducts?: ProductAvailabilityUncheckedCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    province?: ProvinceUpdateOneRequiredWithoutMunicipalitiesNestedInput
+    towns?: TownUpdateManyWithoutMunicipalityNestedInput
+    availableProducts?: ProductAvailabilityUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type MunicipalityUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    provinceId?: IntFieldUpdateOperationsInput | number
+    towns?: TownUncheckedUpdateManyWithoutMunicipalityNestedInput
+    availableProducts?: ProductAvailabilityUncheckedUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type MunicipalityCreateManyInput = {
+    id?: number
+    name: string
+    provinceId: number
+  }
+
+  export type MunicipalityUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MunicipalityUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    provinceId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TownCreateInput = {
+    name: string
+    municipality: MunicipalityCreateNestedOneWithoutTownsInput
+    availableProducts?: ProductAvailabilityCreateNestedManyWithoutTownInput
+  }
+
+  export type TownUncheckedCreateInput = {
+    id?: number
+    name: string
+    municipalityId: number
+    availableProducts?: ProductAvailabilityUncheckedCreateNestedManyWithoutTownInput
+  }
+
+  export type TownUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    municipality?: MunicipalityUpdateOneRequiredWithoutTownsNestedInput
+    availableProducts?: ProductAvailabilityUpdateManyWithoutTownNestedInput
+  }
+
+  export type TownUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    municipalityId?: IntFieldUpdateOperationsInput | number
+    availableProducts?: ProductAvailabilityUncheckedUpdateManyWithoutTownNestedInput
+  }
+
+  export type TownCreateManyInput = {
+    id?: number
+    name: string
+    municipalityId: number
+  }
+
+  export type TownUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TownUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    municipalityId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ProductAvailabilityCreateInput = {
+    createdAt?: Date | string
+    product: ProductCreateNestedOneWithoutAvailableLocationsInput
+    province?: ProvinceCreateNestedOneWithoutAvailableProductsInput
+    municipality?: MunicipalityCreateNestedOneWithoutAvailableProductsInput
+    town?: TownCreateNestedOneWithoutAvailableProductsInput
+  }
+
+  export type ProductAvailabilityUncheckedCreateInput = {
+    id?: number
+    productId: number
+    provinceId?: number | null
+    municipalityId?: number | null
+    townId?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ProductAvailabilityUpdateInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUpdateOneRequiredWithoutAvailableLocationsNestedInput
+    province?: ProvinceUpdateOneWithoutAvailableProductsNestedInput
+    municipality?: MunicipalityUpdateOneWithoutAvailableProductsNestedInput
+    town?: TownUpdateOneWithoutAvailableProductsNestedInput
+  }
+
+  export type ProductAvailabilityUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
+    municipalityId?: NullableIntFieldUpdateOperationsInput | number | null
+    townId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductAvailabilityCreateManyInput = {
+    id?: number
+    productId: number
+    provinceId?: number | null
+    municipalityId?: number | null
+    townId?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ProductAvailabilityUpdateManyMutationInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductAvailabilityUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
+    municipalityId?: NullableIntFieldUpdateOperationsInput | number | null
+    townId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -8078,9 +13564,19 @@ export namespace Prisma {
     isNot?: CompanyWhereInput
   }
 
+  export type ProductAvailabilityListRelationFilter = {
+    every?: ProductAvailabilityWhereInput
+    some?: ProductAvailabilityWhereInput
+    none?: ProductAvailabilityWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type ProductAvailabilityOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type ProductCountOrderByAggregateInput = {
@@ -8303,6 +13799,217 @@ export namespace Prisma {
     value?: SortOrder
   }
 
+  export type MunicipalityListRelationFilter = {
+    every?: MunicipalityWhereInput
+    some?: MunicipalityWhereInput
+    none?: MunicipalityWhereInput
+  }
+
+  export type MunicipalityOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ProvinceCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type ProvinceAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ProvinceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type ProvinceMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+  }
+
+  export type ProvinceSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ProvinceScalarRelationFilter = {
+    is?: ProvinceWhereInput
+    isNot?: ProvinceWhereInput
+  }
+
+  export type TownListRelationFilter = {
+    every?: TownWhereInput
+    some?: TownWhereInput
+    none?: TownWhereInput
+  }
+
+  export type TownOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type MunicipalityNameProvinceIdCompoundUniqueInput = {
+    name: string
+    provinceId: number
+  }
+
+  export type MunicipalityCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    provinceId?: SortOrder
+  }
+
+  export type MunicipalityAvgOrderByAggregateInput = {
+    id?: SortOrder
+    provinceId?: SortOrder
+  }
+
+  export type MunicipalityMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    provinceId?: SortOrder
+  }
+
+  export type MunicipalityMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    provinceId?: SortOrder
+  }
+
+  export type MunicipalitySumOrderByAggregateInput = {
+    id?: SortOrder
+    provinceId?: SortOrder
+  }
+
+  export type MunicipalityScalarRelationFilter = {
+    is?: MunicipalityWhereInput
+    isNot?: MunicipalityWhereInput
+  }
+
+  export type TownNameMunicipalityIdCompoundUniqueInput = {
+    name: string
+    municipalityId: number
+  }
+
+  export type TownCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    municipalityId?: SortOrder
+  }
+
+  export type TownAvgOrderByAggregateInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+  }
+
+  export type TownMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    municipalityId?: SortOrder
+  }
+
+  export type TownMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    municipalityId?: SortOrder
+  }
+
+  export type TownSumOrderByAggregateInput = {
+    id?: SortOrder
+    municipalityId?: SortOrder
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type ProvinceNullableScalarRelationFilter = {
+    is?: ProvinceWhereInput | null
+    isNot?: ProvinceWhereInput | null
+  }
+
+  export type MunicipalityNullableScalarRelationFilter = {
+    is?: MunicipalityWhereInput | null
+    isNot?: MunicipalityWhereInput | null
+  }
+
+  export type TownNullableScalarRelationFilter = {
+    is?: TownWhereInput | null
+    isNot?: TownWhereInput | null
+  }
+
+  export type ProductAvailabilityProductIdProvinceIdMunicipalityIdTownIdCompoundUniqueInput = {
+    productId: number
+    provinceId: number
+    municipalityId: number
+    townId: number
+  }
+
+  export type ProductAvailabilityCountOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    provinceId?: SortOrder
+    municipalityId?: SortOrder
+    townId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProductAvailabilityAvgOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    provinceId?: SortOrder
+    municipalityId?: SortOrder
+    townId?: SortOrder
+  }
+
+  export type ProductAvailabilityMaxOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    provinceId?: SortOrder
+    municipalityId?: SortOrder
+    townId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProductAvailabilityMinOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    provinceId?: SortOrder
+    municipalityId?: SortOrder
+    townId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ProductAvailabilitySumOrderByAggregateInput = {
+    id?: SortOrder
+    productId?: SortOrder
+    provinceId?: SortOrder
+    municipalityId?: SortOrder
+    townId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type PriceCreateNestedManyWithoutCurrencyInput = {
     create?: XOR<PriceCreateWithoutCurrencyInput, PriceUncheckedCreateWithoutCurrencyInput> | PriceCreateWithoutCurrencyInput[] | PriceUncheckedCreateWithoutCurrencyInput[]
     connectOrCreate?: PriceCreateOrConnectWithoutCurrencyInput | PriceCreateOrConnectWithoutCurrencyInput[]
@@ -8430,11 +14137,25 @@ export namespace Prisma {
     connect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
   }
 
+  export type ProductAvailabilityCreateNestedManyWithoutProductInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutProductInput, ProductAvailabilityUncheckedCreateWithoutProductInput> | ProductAvailabilityCreateWithoutProductInput[] | ProductAvailabilityUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutProductInput | ProductAvailabilityCreateOrConnectWithoutProductInput[]
+    createMany?: ProductAvailabilityCreateManyProductInputEnvelope
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+  }
+
   export type PriceUncheckedCreateNestedManyWithoutProductInput = {
     create?: XOR<PriceCreateWithoutProductInput, PriceUncheckedCreateWithoutProductInput> | PriceCreateWithoutProductInput[] | PriceUncheckedCreateWithoutProductInput[]
     connectOrCreate?: PriceCreateOrConnectWithoutProductInput | PriceCreateOrConnectWithoutProductInput[]
     createMany?: PriceCreateManyProductInputEnvelope
     connect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
+  }
+
+  export type ProductAvailabilityUncheckedCreateNestedManyWithoutProductInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutProductInput, ProductAvailabilityUncheckedCreateWithoutProductInput> | ProductAvailabilityCreateWithoutProductInput[] | ProductAvailabilityUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutProductInput | ProductAvailabilityCreateOrConnectWithoutProductInput[]
+    createMany?: ProductAvailabilityCreateManyProductInputEnvelope
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
   }
 
   export type NullableFloatFieldUpdateOperationsInput = {
@@ -8479,6 +14200,20 @@ export namespace Prisma {
     deleteMany?: PriceScalarWhereInput | PriceScalarWhereInput[]
   }
 
+  export type ProductAvailabilityUpdateManyWithoutProductNestedInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutProductInput, ProductAvailabilityUncheckedCreateWithoutProductInput> | ProductAvailabilityCreateWithoutProductInput[] | ProductAvailabilityUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutProductInput | ProductAvailabilityCreateOrConnectWithoutProductInput[]
+    upsert?: ProductAvailabilityUpsertWithWhereUniqueWithoutProductInput | ProductAvailabilityUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: ProductAvailabilityCreateManyProductInputEnvelope
+    set?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    disconnect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    delete?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    update?: ProductAvailabilityUpdateWithWhereUniqueWithoutProductInput | ProductAvailabilityUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: ProductAvailabilityUpdateManyWithWhereWithoutProductInput | ProductAvailabilityUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: ProductAvailabilityScalarWhereInput | ProductAvailabilityScalarWhereInput[]
+  }
+
   export type PriceUncheckedUpdateManyWithoutProductNestedInput = {
     create?: XOR<PriceCreateWithoutProductInput, PriceUncheckedCreateWithoutProductInput> | PriceCreateWithoutProductInput[] | PriceUncheckedCreateWithoutProductInput[]
     connectOrCreate?: PriceCreateOrConnectWithoutProductInput | PriceCreateOrConnectWithoutProductInput[]
@@ -8491,6 +14226,20 @@ export namespace Prisma {
     update?: PriceUpdateWithWhereUniqueWithoutProductInput | PriceUpdateWithWhereUniqueWithoutProductInput[]
     updateMany?: PriceUpdateManyWithWhereWithoutProductInput | PriceUpdateManyWithWhereWithoutProductInput[]
     deleteMany?: PriceScalarWhereInput | PriceScalarWhereInput[]
+  }
+
+  export type ProductAvailabilityUncheckedUpdateManyWithoutProductNestedInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutProductInput, ProductAvailabilityUncheckedCreateWithoutProductInput> | ProductAvailabilityCreateWithoutProductInput[] | ProductAvailabilityUncheckedCreateWithoutProductInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutProductInput | ProductAvailabilityCreateOrConnectWithoutProductInput[]
+    upsert?: ProductAvailabilityUpsertWithWhereUniqueWithoutProductInput | ProductAvailabilityUpsertWithWhereUniqueWithoutProductInput[]
+    createMany?: ProductAvailabilityCreateManyProductInputEnvelope
+    set?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    disconnect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    delete?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    update?: ProductAvailabilityUpdateWithWhereUniqueWithoutProductInput | ProductAvailabilityUpdateWithWhereUniqueWithoutProductInput[]
+    updateMany?: ProductAvailabilityUpdateManyWithWhereWithoutProductInput | ProductAvailabilityUpdateManyWithWhereWithoutProductInput[]
+    deleteMany?: ProductAvailabilityScalarWhereInput | ProductAvailabilityScalarWhereInput[]
   }
 
   export type ProductCreateNestedManyWithoutCategoryInput = {
@@ -8565,6 +14314,314 @@ export namespace Prisma {
     upsert?: CurrencyUpsertWithoutPriceInput
     connect?: CurrencyWhereUniqueInput
     update?: XOR<XOR<CurrencyUpdateToOneWithWhereWithoutPriceInput, CurrencyUpdateWithoutPriceInput>, CurrencyUncheckedUpdateWithoutPriceInput>
+  }
+
+  export type MunicipalityCreateNestedManyWithoutProvinceInput = {
+    create?: XOR<MunicipalityCreateWithoutProvinceInput, MunicipalityUncheckedCreateWithoutProvinceInput> | MunicipalityCreateWithoutProvinceInput[] | MunicipalityUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutProvinceInput | MunicipalityCreateOrConnectWithoutProvinceInput[]
+    createMany?: MunicipalityCreateManyProvinceInputEnvelope
+    connect?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+  }
+
+  export type ProductAvailabilityCreateNestedManyWithoutProvinceInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutProvinceInput, ProductAvailabilityUncheckedCreateWithoutProvinceInput> | ProductAvailabilityCreateWithoutProvinceInput[] | ProductAvailabilityUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutProvinceInput | ProductAvailabilityCreateOrConnectWithoutProvinceInput[]
+    createMany?: ProductAvailabilityCreateManyProvinceInputEnvelope
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+  }
+
+  export type MunicipalityUncheckedCreateNestedManyWithoutProvinceInput = {
+    create?: XOR<MunicipalityCreateWithoutProvinceInput, MunicipalityUncheckedCreateWithoutProvinceInput> | MunicipalityCreateWithoutProvinceInput[] | MunicipalityUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutProvinceInput | MunicipalityCreateOrConnectWithoutProvinceInput[]
+    createMany?: MunicipalityCreateManyProvinceInputEnvelope
+    connect?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+  }
+
+  export type ProductAvailabilityUncheckedCreateNestedManyWithoutProvinceInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutProvinceInput, ProductAvailabilityUncheckedCreateWithoutProvinceInput> | ProductAvailabilityCreateWithoutProvinceInput[] | ProductAvailabilityUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutProvinceInput | ProductAvailabilityCreateOrConnectWithoutProvinceInput[]
+    createMany?: ProductAvailabilityCreateManyProvinceInputEnvelope
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+  }
+
+  export type MunicipalityUpdateManyWithoutProvinceNestedInput = {
+    create?: XOR<MunicipalityCreateWithoutProvinceInput, MunicipalityUncheckedCreateWithoutProvinceInput> | MunicipalityCreateWithoutProvinceInput[] | MunicipalityUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutProvinceInput | MunicipalityCreateOrConnectWithoutProvinceInput[]
+    upsert?: MunicipalityUpsertWithWhereUniqueWithoutProvinceInput | MunicipalityUpsertWithWhereUniqueWithoutProvinceInput[]
+    createMany?: MunicipalityCreateManyProvinceInputEnvelope
+    set?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    disconnect?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    delete?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    connect?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    update?: MunicipalityUpdateWithWhereUniqueWithoutProvinceInput | MunicipalityUpdateWithWhereUniqueWithoutProvinceInput[]
+    updateMany?: MunicipalityUpdateManyWithWhereWithoutProvinceInput | MunicipalityUpdateManyWithWhereWithoutProvinceInput[]
+    deleteMany?: MunicipalityScalarWhereInput | MunicipalityScalarWhereInput[]
+  }
+
+  export type ProductAvailabilityUpdateManyWithoutProvinceNestedInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutProvinceInput, ProductAvailabilityUncheckedCreateWithoutProvinceInput> | ProductAvailabilityCreateWithoutProvinceInput[] | ProductAvailabilityUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutProvinceInput | ProductAvailabilityCreateOrConnectWithoutProvinceInput[]
+    upsert?: ProductAvailabilityUpsertWithWhereUniqueWithoutProvinceInput | ProductAvailabilityUpsertWithWhereUniqueWithoutProvinceInput[]
+    createMany?: ProductAvailabilityCreateManyProvinceInputEnvelope
+    set?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    disconnect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    delete?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    update?: ProductAvailabilityUpdateWithWhereUniqueWithoutProvinceInput | ProductAvailabilityUpdateWithWhereUniqueWithoutProvinceInput[]
+    updateMany?: ProductAvailabilityUpdateManyWithWhereWithoutProvinceInput | ProductAvailabilityUpdateManyWithWhereWithoutProvinceInput[]
+    deleteMany?: ProductAvailabilityScalarWhereInput | ProductAvailabilityScalarWhereInput[]
+  }
+
+  export type MunicipalityUncheckedUpdateManyWithoutProvinceNestedInput = {
+    create?: XOR<MunicipalityCreateWithoutProvinceInput, MunicipalityUncheckedCreateWithoutProvinceInput> | MunicipalityCreateWithoutProvinceInput[] | MunicipalityUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutProvinceInput | MunicipalityCreateOrConnectWithoutProvinceInput[]
+    upsert?: MunicipalityUpsertWithWhereUniqueWithoutProvinceInput | MunicipalityUpsertWithWhereUniqueWithoutProvinceInput[]
+    createMany?: MunicipalityCreateManyProvinceInputEnvelope
+    set?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    disconnect?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    delete?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    connect?: MunicipalityWhereUniqueInput | MunicipalityWhereUniqueInput[]
+    update?: MunicipalityUpdateWithWhereUniqueWithoutProvinceInput | MunicipalityUpdateWithWhereUniqueWithoutProvinceInput[]
+    updateMany?: MunicipalityUpdateManyWithWhereWithoutProvinceInput | MunicipalityUpdateManyWithWhereWithoutProvinceInput[]
+    deleteMany?: MunicipalityScalarWhereInput | MunicipalityScalarWhereInput[]
+  }
+
+  export type ProductAvailabilityUncheckedUpdateManyWithoutProvinceNestedInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutProvinceInput, ProductAvailabilityUncheckedCreateWithoutProvinceInput> | ProductAvailabilityCreateWithoutProvinceInput[] | ProductAvailabilityUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutProvinceInput | ProductAvailabilityCreateOrConnectWithoutProvinceInput[]
+    upsert?: ProductAvailabilityUpsertWithWhereUniqueWithoutProvinceInput | ProductAvailabilityUpsertWithWhereUniqueWithoutProvinceInput[]
+    createMany?: ProductAvailabilityCreateManyProvinceInputEnvelope
+    set?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    disconnect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    delete?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    update?: ProductAvailabilityUpdateWithWhereUniqueWithoutProvinceInput | ProductAvailabilityUpdateWithWhereUniqueWithoutProvinceInput[]
+    updateMany?: ProductAvailabilityUpdateManyWithWhereWithoutProvinceInput | ProductAvailabilityUpdateManyWithWhereWithoutProvinceInput[]
+    deleteMany?: ProductAvailabilityScalarWhereInput | ProductAvailabilityScalarWhereInput[]
+  }
+
+  export type ProvinceCreateNestedOneWithoutMunicipalitiesInput = {
+    create?: XOR<ProvinceCreateWithoutMunicipalitiesInput, ProvinceUncheckedCreateWithoutMunicipalitiesInput>
+    connectOrCreate?: ProvinceCreateOrConnectWithoutMunicipalitiesInput
+    connect?: ProvinceWhereUniqueInput
+  }
+
+  export type TownCreateNestedManyWithoutMunicipalityInput = {
+    create?: XOR<TownCreateWithoutMunicipalityInput, TownUncheckedCreateWithoutMunicipalityInput> | TownCreateWithoutMunicipalityInput[] | TownUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: TownCreateOrConnectWithoutMunicipalityInput | TownCreateOrConnectWithoutMunicipalityInput[]
+    createMany?: TownCreateManyMunicipalityInputEnvelope
+    connect?: TownWhereUniqueInput | TownWhereUniqueInput[]
+  }
+
+  export type ProductAvailabilityCreateNestedManyWithoutMunicipalityInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutMunicipalityInput, ProductAvailabilityUncheckedCreateWithoutMunicipalityInput> | ProductAvailabilityCreateWithoutMunicipalityInput[] | ProductAvailabilityUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutMunicipalityInput | ProductAvailabilityCreateOrConnectWithoutMunicipalityInput[]
+    createMany?: ProductAvailabilityCreateManyMunicipalityInputEnvelope
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+  }
+
+  export type TownUncheckedCreateNestedManyWithoutMunicipalityInput = {
+    create?: XOR<TownCreateWithoutMunicipalityInput, TownUncheckedCreateWithoutMunicipalityInput> | TownCreateWithoutMunicipalityInput[] | TownUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: TownCreateOrConnectWithoutMunicipalityInput | TownCreateOrConnectWithoutMunicipalityInput[]
+    createMany?: TownCreateManyMunicipalityInputEnvelope
+    connect?: TownWhereUniqueInput | TownWhereUniqueInput[]
+  }
+
+  export type ProductAvailabilityUncheckedCreateNestedManyWithoutMunicipalityInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutMunicipalityInput, ProductAvailabilityUncheckedCreateWithoutMunicipalityInput> | ProductAvailabilityCreateWithoutMunicipalityInput[] | ProductAvailabilityUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutMunicipalityInput | ProductAvailabilityCreateOrConnectWithoutMunicipalityInput[]
+    createMany?: ProductAvailabilityCreateManyMunicipalityInputEnvelope
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+  }
+
+  export type ProvinceUpdateOneRequiredWithoutMunicipalitiesNestedInput = {
+    create?: XOR<ProvinceCreateWithoutMunicipalitiesInput, ProvinceUncheckedCreateWithoutMunicipalitiesInput>
+    connectOrCreate?: ProvinceCreateOrConnectWithoutMunicipalitiesInput
+    upsert?: ProvinceUpsertWithoutMunicipalitiesInput
+    connect?: ProvinceWhereUniqueInput
+    update?: XOR<XOR<ProvinceUpdateToOneWithWhereWithoutMunicipalitiesInput, ProvinceUpdateWithoutMunicipalitiesInput>, ProvinceUncheckedUpdateWithoutMunicipalitiesInput>
+  }
+
+  export type TownUpdateManyWithoutMunicipalityNestedInput = {
+    create?: XOR<TownCreateWithoutMunicipalityInput, TownUncheckedCreateWithoutMunicipalityInput> | TownCreateWithoutMunicipalityInput[] | TownUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: TownCreateOrConnectWithoutMunicipalityInput | TownCreateOrConnectWithoutMunicipalityInput[]
+    upsert?: TownUpsertWithWhereUniqueWithoutMunicipalityInput | TownUpsertWithWhereUniqueWithoutMunicipalityInput[]
+    createMany?: TownCreateManyMunicipalityInputEnvelope
+    set?: TownWhereUniqueInput | TownWhereUniqueInput[]
+    disconnect?: TownWhereUniqueInput | TownWhereUniqueInput[]
+    delete?: TownWhereUniqueInput | TownWhereUniqueInput[]
+    connect?: TownWhereUniqueInput | TownWhereUniqueInput[]
+    update?: TownUpdateWithWhereUniqueWithoutMunicipalityInput | TownUpdateWithWhereUniqueWithoutMunicipalityInput[]
+    updateMany?: TownUpdateManyWithWhereWithoutMunicipalityInput | TownUpdateManyWithWhereWithoutMunicipalityInput[]
+    deleteMany?: TownScalarWhereInput | TownScalarWhereInput[]
+  }
+
+  export type ProductAvailabilityUpdateManyWithoutMunicipalityNestedInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutMunicipalityInput, ProductAvailabilityUncheckedCreateWithoutMunicipalityInput> | ProductAvailabilityCreateWithoutMunicipalityInput[] | ProductAvailabilityUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutMunicipalityInput | ProductAvailabilityCreateOrConnectWithoutMunicipalityInput[]
+    upsert?: ProductAvailabilityUpsertWithWhereUniqueWithoutMunicipalityInput | ProductAvailabilityUpsertWithWhereUniqueWithoutMunicipalityInput[]
+    createMany?: ProductAvailabilityCreateManyMunicipalityInputEnvelope
+    set?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    disconnect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    delete?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    update?: ProductAvailabilityUpdateWithWhereUniqueWithoutMunicipalityInput | ProductAvailabilityUpdateWithWhereUniqueWithoutMunicipalityInput[]
+    updateMany?: ProductAvailabilityUpdateManyWithWhereWithoutMunicipalityInput | ProductAvailabilityUpdateManyWithWhereWithoutMunicipalityInput[]
+    deleteMany?: ProductAvailabilityScalarWhereInput | ProductAvailabilityScalarWhereInput[]
+  }
+
+  export type TownUncheckedUpdateManyWithoutMunicipalityNestedInput = {
+    create?: XOR<TownCreateWithoutMunicipalityInput, TownUncheckedCreateWithoutMunicipalityInput> | TownCreateWithoutMunicipalityInput[] | TownUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: TownCreateOrConnectWithoutMunicipalityInput | TownCreateOrConnectWithoutMunicipalityInput[]
+    upsert?: TownUpsertWithWhereUniqueWithoutMunicipalityInput | TownUpsertWithWhereUniqueWithoutMunicipalityInput[]
+    createMany?: TownCreateManyMunicipalityInputEnvelope
+    set?: TownWhereUniqueInput | TownWhereUniqueInput[]
+    disconnect?: TownWhereUniqueInput | TownWhereUniqueInput[]
+    delete?: TownWhereUniqueInput | TownWhereUniqueInput[]
+    connect?: TownWhereUniqueInput | TownWhereUniqueInput[]
+    update?: TownUpdateWithWhereUniqueWithoutMunicipalityInput | TownUpdateWithWhereUniqueWithoutMunicipalityInput[]
+    updateMany?: TownUpdateManyWithWhereWithoutMunicipalityInput | TownUpdateManyWithWhereWithoutMunicipalityInput[]
+    deleteMany?: TownScalarWhereInput | TownScalarWhereInput[]
+  }
+
+  export type ProductAvailabilityUncheckedUpdateManyWithoutMunicipalityNestedInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutMunicipalityInput, ProductAvailabilityUncheckedCreateWithoutMunicipalityInput> | ProductAvailabilityCreateWithoutMunicipalityInput[] | ProductAvailabilityUncheckedCreateWithoutMunicipalityInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutMunicipalityInput | ProductAvailabilityCreateOrConnectWithoutMunicipalityInput[]
+    upsert?: ProductAvailabilityUpsertWithWhereUniqueWithoutMunicipalityInput | ProductAvailabilityUpsertWithWhereUniqueWithoutMunicipalityInput[]
+    createMany?: ProductAvailabilityCreateManyMunicipalityInputEnvelope
+    set?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    disconnect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    delete?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    update?: ProductAvailabilityUpdateWithWhereUniqueWithoutMunicipalityInput | ProductAvailabilityUpdateWithWhereUniqueWithoutMunicipalityInput[]
+    updateMany?: ProductAvailabilityUpdateManyWithWhereWithoutMunicipalityInput | ProductAvailabilityUpdateManyWithWhereWithoutMunicipalityInput[]
+    deleteMany?: ProductAvailabilityScalarWhereInput | ProductAvailabilityScalarWhereInput[]
+  }
+
+  export type MunicipalityCreateNestedOneWithoutTownsInput = {
+    create?: XOR<MunicipalityCreateWithoutTownsInput, MunicipalityUncheckedCreateWithoutTownsInput>
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutTownsInput
+    connect?: MunicipalityWhereUniqueInput
+  }
+
+  export type ProductAvailabilityCreateNestedManyWithoutTownInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutTownInput, ProductAvailabilityUncheckedCreateWithoutTownInput> | ProductAvailabilityCreateWithoutTownInput[] | ProductAvailabilityUncheckedCreateWithoutTownInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutTownInput | ProductAvailabilityCreateOrConnectWithoutTownInput[]
+    createMany?: ProductAvailabilityCreateManyTownInputEnvelope
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+  }
+
+  export type ProductAvailabilityUncheckedCreateNestedManyWithoutTownInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutTownInput, ProductAvailabilityUncheckedCreateWithoutTownInput> | ProductAvailabilityCreateWithoutTownInput[] | ProductAvailabilityUncheckedCreateWithoutTownInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutTownInput | ProductAvailabilityCreateOrConnectWithoutTownInput[]
+    createMany?: ProductAvailabilityCreateManyTownInputEnvelope
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+  }
+
+  export type MunicipalityUpdateOneRequiredWithoutTownsNestedInput = {
+    create?: XOR<MunicipalityCreateWithoutTownsInput, MunicipalityUncheckedCreateWithoutTownsInput>
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutTownsInput
+    upsert?: MunicipalityUpsertWithoutTownsInput
+    connect?: MunicipalityWhereUniqueInput
+    update?: XOR<XOR<MunicipalityUpdateToOneWithWhereWithoutTownsInput, MunicipalityUpdateWithoutTownsInput>, MunicipalityUncheckedUpdateWithoutTownsInput>
+  }
+
+  export type ProductAvailabilityUpdateManyWithoutTownNestedInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutTownInput, ProductAvailabilityUncheckedCreateWithoutTownInput> | ProductAvailabilityCreateWithoutTownInput[] | ProductAvailabilityUncheckedCreateWithoutTownInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutTownInput | ProductAvailabilityCreateOrConnectWithoutTownInput[]
+    upsert?: ProductAvailabilityUpsertWithWhereUniqueWithoutTownInput | ProductAvailabilityUpsertWithWhereUniqueWithoutTownInput[]
+    createMany?: ProductAvailabilityCreateManyTownInputEnvelope
+    set?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    disconnect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    delete?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    update?: ProductAvailabilityUpdateWithWhereUniqueWithoutTownInput | ProductAvailabilityUpdateWithWhereUniqueWithoutTownInput[]
+    updateMany?: ProductAvailabilityUpdateManyWithWhereWithoutTownInput | ProductAvailabilityUpdateManyWithWhereWithoutTownInput[]
+    deleteMany?: ProductAvailabilityScalarWhereInput | ProductAvailabilityScalarWhereInput[]
+  }
+
+  export type ProductAvailabilityUncheckedUpdateManyWithoutTownNestedInput = {
+    create?: XOR<ProductAvailabilityCreateWithoutTownInput, ProductAvailabilityUncheckedCreateWithoutTownInput> | ProductAvailabilityCreateWithoutTownInput[] | ProductAvailabilityUncheckedCreateWithoutTownInput[]
+    connectOrCreate?: ProductAvailabilityCreateOrConnectWithoutTownInput | ProductAvailabilityCreateOrConnectWithoutTownInput[]
+    upsert?: ProductAvailabilityUpsertWithWhereUniqueWithoutTownInput | ProductAvailabilityUpsertWithWhereUniqueWithoutTownInput[]
+    createMany?: ProductAvailabilityCreateManyTownInputEnvelope
+    set?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    disconnect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    delete?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    connect?: ProductAvailabilityWhereUniqueInput | ProductAvailabilityWhereUniqueInput[]
+    update?: ProductAvailabilityUpdateWithWhereUniqueWithoutTownInput | ProductAvailabilityUpdateWithWhereUniqueWithoutTownInput[]
+    updateMany?: ProductAvailabilityUpdateManyWithWhereWithoutTownInput | ProductAvailabilityUpdateManyWithWhereWithoutTownInput[]
+    deleteMany?: ProductAvailabilityScalarWhereInput | ProductAvailabilityScalarWhereInput[]
+  }
+
+  export type ProductCreateNestedOneWithoutAvailableLocationsInput = {
+    create?: XOR<ProductCreateWithoutAvailableLocationsInput, ProductUncheckedCreateWithoutAvailableLocationsInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutAvailableLocationsInput
+    connect?: ProductWhereUniqueInput
+  }
+
+  export type ProvinceCreateNestedOneWithoutAvailableProductsInput = {
+    create?: XOR<ProvinceCreateWithoutAvailableProductsInput, ProvinceUncheckedCreateWithoutAvailableProductsInput>
+    connectOrCreate?: ProvinceCreateOrConnectWithoutAvailableProductsInput
+    connect?: ProvinceWhereUniqueInput
+  }
+
+  export type MunicipalityCreateNestedOneWithoutAvailableProductsInput = {
+    create?: XOR<MunicipalityCreateWithoutAvailableProductsInput, MunicipalityUncheckedCreateWithoutAvailableProductsInput>
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutAvailableProductsInput
+    connect?: MunicipalityWhereUniqueInput
+  }
+
+  export type TownCreateNestedOneWithoutAvailableProductsInput = {
+    create?: XOR<TownCreateWithoutAvailableProductsInput, TownUncheckedCreateWithoutAvailableProductsInput>
+    connectOrCreate?: TownCreateOrConnectWithoutAvailableProductsInput
+    connect?: TownWhereUniqueInput
+  }
+
+  export type ProductUpdateOneRequiredWithoutAvailableLocationsNestedInput = {
+    create?: XOR<ProductCreateWithoutAvailableLocationsInput, ProductUncheckedCreateWithoutAvailableLocationsInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutAvailableLocationsInput
+    upsert?: ProductUpsertWithoutAvailableLocationsInput
+    connect?: ProductWhereUniqueInput
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutAvailableLocationsInput, ProductUpdateWithoutAvailableLocationsInput>, ProductUncheckedUpdateWithoutAvailableLocationsInput>
+  }
+
+  export type ProvinceUpdateOneWithoutAvailableProductsNestedInput = {
+    create?: XOR<ProvinceCreateWithoutAvailableProductsInput, ProvinceUncheckedCreateWithoutAvailableProductsInput>
+    connectOrCreate?: ProvinceCreateOrConnectWithoutAvailableProductsInput
+    upsert?: ProvinceUpsertWithoutAvailableProductsInput
+    disconnect?: ProvinceWhereInput | boolean
+    delete?: ProvinceWhereInput | boolean
+    connect?: ProvinceWhereUniqueInput
+    update?: XOR<XOR<ProvinceUpdateToOneWithWhereWithoutAvailableProductsInput, ProvinceUpdateWithoutAvailableProductsInput>, ProvinceUncheckedUpdateWithoutAvailableProductsInput>
+  }
+
+  export type MunicipalityUpdateOneWithoutAvailableProductsNestedInput = {
+    create?: XOR<MunicipalityCreateWithoutAvailableProductsInput, MunicipalityUncheckedCreateWithoutAvailableProductsInput>
+    connectOrCreate?: MunicipalityCreateOrConnectWithoutAvailableProductsInput
+    upsert?: MunicipalityUpsertWithoutAvailableProductsInput
+    disconnect?: MunicipalityWhereInput | boolean
+    delete?: MunicipalityWhereInput | boolean
+    connect?: MunicipalityWhereUniqueInput
+    update?: XOR<XOR<MunicipalityUpdateToOneWithWhereWithoutAvailableProductsInput, MunicipalityUpdateWithoutAvailableProductsInput>, MunicipalityUncheckedUpdateWithoutAvailableProductsInput>
+  }
+
+  export type TownUpdateOneWithoutAvailableProductsNestedInput = {
+    create?: XOR<TownCreateWithoutAvailableProductsInput, TownUncheckedCreateWithoutAvailableProductsInput>
+    connectOrCreate?: TownCreateOrConnectWithoutAvailableProductsInput
+    upsert?: TownUpsertWithoutAvailableProductsInput
+    disconnect?: TownWhereInput | boolean
+    delete?: TownWhereInput | boolean
+    connect?: TownWhereUniqueInput
+    update?: XOR<XOR<TownUpdateToOneWithWhereWithoutAvailableProductsInput, TownUpdateWithoutAvailableProductsInput>, TownUncheckedUpdateWithoutAvailableProductsInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -8770,6 +14827,22 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type PriceCreateWithoutCurrencyInput = {
     id?: string
     value: Decimal | DecimalJsLike | number | string
@@ -8840,6 +14913,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     category: CategoryCreateNestedOneWithoutProductsInput
     Price?: PriceCreateNestedManyWithoutProductInput
+    availableLocations?: ProductAvailabilityCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutCompanyInput = {
@@ -8856,6 +14930,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Price?: PriceUncheckedCreateNestedManyWithoutProductInput
+    availableLocations?: ProductAvailabilityUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutCompanyInput = {
@@ -8965,6 +15040,31 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ProductAvailabilityCreateWithoutProductInput = {
+    createdAt?: Date | string
+    province?: ProvinceCreateNestedOneWithoutAvailableProductsInput
+    municipality?: MunicipalityCreateNestedOneWithoutAvailableProductsInput
+    town?: TownCreateNestedOneWithoutAvailableProductsInput
+  }
+
+  export type ProductAvailabilityUncheckedCreateWithoutProductInput = {
+    id?: number
+    provinceId?: number | null
+    municipalityId?: number | null
+    townId?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ProductAvailabilityCreateOrConnectWithoutProductInput = {
+    where: ProductAvailabilityWhereUniqueInput
+    create: XOR<ProductAvailabilityCreateWithoutProductInput, ProductAvailabilityUncheckedCreateWithoutProductInput>
+  }
+
+  export type ProductAvailabilityCreateManyProductInputEnvelope = {
+    data: ProductAvailabilityCreateManyProductInput | ProductAvailabilityCreateManyProductInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CategoryUpsertWithoutProductsInput = {
     update: XOR<CategoryUpdateWithoutProductsInput, CategoryUncheckedUpdateWithoutProductsInput>
     create: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
@@ -9027,6 +15127,34 @@ export namespace Prisma {
     data: XOR<PriceUpdateManyMutationInput, PriceUncheckedUpdateManyWithoutProductInput>
   }
 
+  export type ProductAvailabilityUpsertWithWhereUniqueWithoutProductInput = {
+    where: ProductAvailabilityWhereUniqueInput
+    update: XOR<ProductAvailabilityUpdateWithoutProductInput, ProductAvailabilityUncheckedUpdateWithoutProductInput>
+    create: XOR<ProductAvailabilityCreateWithoutProductInput, ProductAvailabilityUncheckedCreateWithoutProductInput>
+  }
+
+  export type ProductAvailabilityUpdateWithWhereUniqueWithoutProductInput = {
+    where: ProductAvailabilityWhereUniqueInput
+    data: XOR<ProductAvailabilityUpdateWithoutProductInput, ProductAvailabilityUncheckedUpdateWithoutProductInput>
+  }
+
+  export type ProductAvailabilityUpdateManyWithWhereWithoutProductInput = {
+    where: ProductAvailabilityScalarWhereInput
+    data: XOR<ProductAvailabilityUpdateManyMutationInput, ProductAvailabilityUncheckedUpdateManyWithoutProductInput>
+  }
+
+  export type ProductAvailabilityScalarWhereInput = {
+    AND?: ProductAvailabilityScalarWhereInput | ProductAvailabilityScalarWhereInput[]
+    OR?: ProductAvailabilityScalarWhereInput[]
+    NOT?: ProductAvailabilityScalarWhereInput | ProductAvailabilityScalarWhereInput[]
+    id?: IntFilter<"ProductAvailability"> | number
+    productId?: IntFilter<"ProductAvailability"> | number
+    provinceId?: IntNullableFilter<"ProductAvailability"> | number | null
+    municipalityId?: IntNullableFilter<"ProductAvailability"> | number | null
+    townId?: IntNullableFilter<"ProductAvailability"> | number | null
+    createdAt?: DateTimeFilter<"ProductAvailability"> | Date | string
+  }
+
   export type ProductCreateWithoutCategoryInput = {
     name: string
     description: string
@@ -9040,6 +15168,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     company: CompanyCreateNestedOneWithoutProductInput
     Price?: PriceCreateNestedManyWithoutProductInput
+    availableLocations?: ProductAvailabilityCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutCategoryInput = {
@@ -9056,6 +15185,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Price?: PriceUncheckedCreateNestedManyWithoutProductInput
+    availableLocations?: ProductAvailabilityUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutCategoryInput = {
@@ -9097,6 +15227,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     category: CategoryCreateNestedOneWithoutProductsInput
     company: CompanyCreateNestedOneWithoutProductInput
+    availableLocations?: ProductAvailabilityCreateNestedManyWithoutProductInput
   }
 
   export type ProductUncheckedCreateWithoutPriceInput = {
@@ -9113,6 +15244,7 @@ export namespace Prisma {
     companyId: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    availableLocations?: ProductAvailabilityUncheckedCreateNestedManyWithoutProductInput
   }
 
   export type ProductCreateOrConnectWithoutPriceInput = {
@@ -9164,6 +15296,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
     company?: CompanyUpdateOneRequiredWithoutProductNestedInput
+    availableLocations?: ProductAvailabilityUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutPriceInput = {
@@ -9180,6 +15313,7 @@ export namespace Prisma {
     companyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    availableLocations?: ProductAvailabilityUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type CurrencyUpsertWithoutPriceInput = {
@@ -9206,6 +15340,503 @@ export namespace Prisma {
     baseRate?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     isDefault?: BoolFieldUpdateOperationsInput | boolean
     isBase?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type MunicipalityCreateWithoutProvinceInput = {
+    name: string
+    towns?: TownCreateNestedManyWithoutMunicipalityInput
+    availableProducts?: ProductAvailabilityCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityUncheckedCreateWithoutProvinceInput = {
+    id?: number
+    name: string
+    towns?: TownUncheckedCreateNestedManyWithoutMunicipalityInput
+    availableProducts?: ProductAvailabilityUncheckedCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityCreateOrConnectWithoutProvinceInput = {
+    where: MunicipalityWhereUniqueInput
+    create: XOR<MunicipalityCreateWithoutProvinceInput, MunicipalityUncheckedCreateWithoutProvinceInput>
+  }
+
+  export type MunicipalityCreateManyProvinceInputEnvelope = {
+    data: MunicipalityCreateManyProvinceInput | MunicipalityCreateManyProvinceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProductAvailabilityCreateWithoutProvinceInput = {
+    createdAt?: Date | string
+    product: ProductCreateNestedOneWithoutAvailableLocationsInput
+    municipality?: MunicipalityCreateNestedOneWithoutAvailableProductsInput
+    town?: TownCreateNestedOneWithoutAvailableProductsInput
+  }
+
+  export type ProductAvailabilityUncheckedCreateWithoutProvinceInput = {
+    id?: number
+    productId: number
+    municipalityId?: number | null
+    townId?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ProductAvailabilityCreateOrConnectWithoutProvinceInput = {
+    where: ProductAvailabilityWhereUniqueInput
+    create: XOR<ProductAvailabilityCreateWithoutProvinceInput, ProductAvailabilityUncheckedCreateWithoutProvinceInput>
+  }
+
+  export type ProductAvailabilityCreateManyProvinceInputEnvelope = {
+    data: ProductAvailabilityCreateManyProvinceInput | ProductAvailabilityCreateManyProvinceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MunicipalityUpsertWithWhereUniqueWithoutProvinceInput = {
+    where: MunicipalityWhereUniqueInput
+    update: XOR<MunicipalityUpdateWithoutProvinceInput, MunicipalityUncheckedUpdateWithoutProvinceInput>
+    create: XOR<MunicipalityCreateWithoutProvinceInput, MunicipalityUncheckedCreateWithoutProvinceInput>
+  }
+
+  export type MunicipalityUpdateWithWhereUniqueWithoutProvinceInput = {
+    where: MunicipalityWhereUniqueInput
+    data: XOR<MunicipalityUpdateWithoutProvinceInput, MunicipalityUncheckedUpdateWithoutProvinceInput>
+  }
+
+  export type MunicipalityUpdateManyWithWhereWithoutProvinceInput = {
+    where: MunicipalityScalarWhereInput
+    data: XOR<MunicipalityUpdateManyMutationInput, MunicipalityUncheckedUpdateManyWithoutProvinceInput>
+  }
+
+  export type MunicipalityScalarWhereInput = {
+    AND?: MunicipalityScalarWhereInput | MunicipalityScalarWhereInput[]
+    OR?: MunicipalityScalarWhereInput[]
+    NOT?: MunicipalityScalarWhereInput | MunicipalityScalarWhereInput[]
+    id?: IntFilter<"Municipality"> | number
+    name?: StringFilter<"Municipality"> | string
+    provinceId?: IntFilter<"Municipality"> | number
+  }
+
+  export type ProductAvailabilityUpsertWithWhereUniqueWithoutProvinceInput = {
+    where: ProductAvailabilityWhereUniqueInput
+    update: XOR<ProductAvailabilityUpdateWithoutProvinceInput, ProductAvailabilityUncheckedUpdateWithoutProvinceInput>
+    create: XOR<ProductAvailabilityCreateWithoutProvinceInput, ProductAvailabilityUncheckedCreateWithoutProvinceInput>
+  }
+
+  export type ProductAvailabilityUpdateWithWhereUniqueWithoutProvinceInput = {
+    where: ProductAvailabilityWhereUniqueInput
+    data: XOR<ProductAvailabilityUpdateWithoutProvinceInput, ProductAvailabilityUncheckedUpdateWithoutProvinceInput>
+  }
+
+  export type ProductAvailabilityUpdateManyWithWhereWithoutProvinceInput = {
+    where: ProductAvailabilityScalarWhereInput
+    data: XOR<ProductAvailabilityUpdateManyMutationInput, ProductAvailabilityUncheckedUpdateManyWithoutProvinceInput>
+  }
+
+  export type ProvinceCreateWithoutMunicipalitiesInput = {
+    name: string
+    availableProducts?: ProductAvailabilityCreateNestedManyWithoutProvinceInput
+  }
+
+  export type ProvinceUncheckedCreateWithoutMunicipalitiesInput = {
+    id?: number
+    name: string
+    availableProducts?: ProductAvailabilityUncheckedCreateNestedManyWithoutProvinceInput
+  }
+
+  export type ProvinceCreateOrConnectWithoutMunicipalitiesInput = {
+    where: ProvinceWhereUniqueInput
+    create: XOR<ProvinceCreateWithoutMunicipalitiesInput, ProvinceUncheckedCreateWithoutMunicipalitiesInput>
+  }
+
+  export type TownCreateWithoutMunicipalityInput = {
+    name: string
+    availableProducts?: ProductAvailabilityCreateNestedManyWithoutTownInput
+  }
+
+  export type TownUncheckedCreateWithoutMunicipalityInput = {
+    id?: number
+    name: string
+    availableProducts?: ProductAvailabilityUncheckedCreateNestedManyWithoutTownInput
+  }
+
+  export type TownCreateOrConnectWithoutMunicipalityInput = {
+    where: TownWhereUniqueInput
+    create: XOR<TownCreateWithoutMunicipalityInput, TownUncheckedCreateWithoutMunicipalityInput>
+  }
+
+  export type TownCreateManyMunicipalityInputEnvelope = {
+    data: TownCreateManyMunicipalityInput | TownCreateManyMunicipalityInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProductAvailabilityCreateWithoutMunicipalityInput = {
+    createdAt?: Date | string
+    product: ProductCreateNestedOneWithoutAvailableLocationsInput
+    province?: ProvinceCreateNestedOneWithoutAvailableProductsInput
+    town?: TownCreateNestedOneWithoutAvailableProductsInput
+  }
+
+  export type ProductAvailabilityUncheckedCreateWithoutMunicipalityInput = {
+    id?: number
+    productId: number
+    provinceId?: number | null
+    townId?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ProductAvailabilityCreateOrConnectWithoutMunicipalityInput = {
+    where: ProductAvailabilityWhereUniqueInput
+    create: XOR<ProductAvailabilityCreateWithoutMunicipalityInput, ProductAvailabilityUncheckedCreateWithoutMunicipalityInput>
+  }
+
+  export type ProductAvailabilityCreateManyMunicipalityInputEnvelope = {
+    data: ProductAvailabilityCreateManyMunicipalityInput | ProductAvailabilityCreateManyMunicipalityInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ProvinceUpsertWithoutMunicipalitiesInput = {
+    update: XOR<ProvinceUpdateWithoutMunicipalitiesInput, ProvinceUncheckedUpdateWithoutMunicipalitiesInput>
+    create: XOR<ProvinceCreateWithoutMunicipalitiesInput, ProvinceUncheckedCreateWithoutMunicipalitiesInput>
+    where?: ProvinceWhereInput
+  }
+
+  export type ProvinceUpdateToOneWithWhereWithoutMunicipalitiesInput = {
+    where?: ProvinceWhereInput
+    data: XOR<ProvinceUpdateWithoutMunicipalitiesInput, ProvinceUncheckedUpdateWithoutMunicipalitiesInput>
+  }
+
+  export type ProvinceUpdateWithoutMunicipalitiesInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    availableProducts?: ProductAvailabilityUpdateManyWithoutProvinceNestedInput
+  }
+
+  export type ProvinceUncheckedUpdateWithoutMunicipalitiesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    availableProducts?: ProductAvailabilityUncheckedUpdateManyWithoutProvinceNestedInput
+  }
+
+  export type TownUpsertWithWhereUniqueWithoutMunicipalityInput = {
+    where: TownWhereUniqueInput
+    update: XOR<TownUpdateWithoutMunicipalityInput, TownUncheckedUpdateWithoutMunicipalityInput>
+    create: XOR<TownCreateWithoutMunicipalityInput, TownUncheckedCreateWithoutMunicipalityInput>
+  }
+
+  export type TownUpdateWithWhereUniqueWithoutMunicipalityInput = {
+    where: TownWhereUniqueInput
+    data: XOR<TownUpdateWithoutMunicipalityInput, TownUncheckedUpdateWithoutMunicipalityInput>
+  }
+
+  export type TownUpdateManyWithWhereWithoutMunicipalityInput = {
+    where: TownScalarWhereInput
+    data: XOR<TownUpdateManyMutationInput, TownUncheckedUpdateManyWithoutMunicipalityInput>
+  }
+
+  export type TownScalarWhereInput = {
+    AND?: TownScalarWhereInput | TownScalarWhereInput[]
+    OR?: TownScalarWhereInput[]
+    NOT?: TownScalarWhereInput | TownScalarWhereInput[]
+    id?: IntFilter<"Town"> | number
+    name?: StringFilter<"Town"> | string
+    municipalityId?: IntFilter<"Town"> | number
+  }
+
+  export type ProductAvailabilityUpsertWithWhereUniqueWithoutMunicipalityInput = {
+    where: ProductAvailabilityWhereUniqueInput
+    update: XOR<ProductAvailabilityUpdateWithoutMunicipalityInput, ProductAvailabilityUncheckedUpdateWithoutMunicipalityInput>
+    create: XOR<ProductAvailabilityCreateWithoutMunicipalityInput, ProductAvailabilityUncheckedCreateWithoutMunicipalityInput>
+  }
+
+  export type ProductAvailabilityUpdateWithWhereUniqueWithoutMunicipalityInput = {
+    where: ProductAvailabilityWhereUniqueInput
+    data: XOR<ProductAvailabilityUpdateWithoutMunicipalityInput, ProductAvailabilityUncheckedUpdateWithoutMunicipalityInput>
+  }
+
+  export type ProductAvailabilityUpdateManyWithWhereWithoutMunicipalityInput = {
+    where: ProductAvailabilityScalarWhereInput
+    data: XOR<ProductAvailabilityUpdateManyMutationInput, ProductAvailabilityUncheckedUpdateManyWithoutMunicipalityInput>
+  }
+
+  export type MunicipalityCreateWithoutTownsInput = {
+    name: string
+    province: ProvinceCreateNestedOneWithoutMunicipalitiesInput
+    availableProducts?: ProductAvailabilityCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityUncheckedCreateWithoutTownsInput = {
+    id?: number
+    name: string
+    provinceId: number
+    availableProducts?: ProductAvailabilityUncheckedCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityCreateOrConnectWithoutTownsInput = {
+    where: MunicipalityWhereUniqueInput
+    create: XOR<MunicipalityCreateWithoutTownsInput, MunicipalityUncheckedCreateWithoutTownsInput>
+  }
+
+  export type ProductAvailabilityCreateWithoutTownInput = {
+    createdAt?: Date | string
+    product: ProductCreateNestedOneWithoutAvailableLocationsInput
+    province?: ProvinceCreateNestedOneWithoutAvailableProductsInput
+    municipality?: MunicipalityCreateNestedOneWithoutAvailableProductsInput
+  }
+
+  export type ProductAvailabilityUncheckedCreateWithoutTownInput = {
+    id?: number
+    productId: number
+    provinceId?: number | null
+    municipalityId?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ProductAvailabilityCreateOrConnectWithoutTownInput = {
+    where: ProductAvailabilityWhereUniqueInput
+    create: XOR<ProductAvailabilityCreateWithoutTownInput, ProductAvailabilityUncheckedCreateWithoutTownInput>
+  }
+
+  export type ProductAvailabilityCreateManyTownInputEnvelope = {
+    data: ProductAvailabilityCreateManyTownInput | ProductAvailabilityCreateManyTownInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MunicipalityUpsertWithoutTownsInput = {
+    update: XOR<MunicipalityUpdateWithoutTownsInput, MunicipalityUncheckedUpdateWithoutTownsInput>
+    create: XOR<MunicipalityCreateWithoutTownsInput, MunicipalityUncheckedCreateWithoutTownsInput>
+    where?: MunicipalityWhereInput
+  }
+
+  export type MunicipalityUpdateToOneWithWhereWithoutTownsInput = {
+    where?: MunicipalityWhereInput
+    data: XOR<MunicipalityUpdateWithoutTownsInput, MunicipalityUncheckedUpdateWithoutTownsInput>
+  }
+
+  export type MunicipalityUpdateWithoutTownsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    province?: ProvinceUpdateOneRequiredWithoutMunicipalitiesNestedInput
+    availableProducts?: ProductAvailabilityUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type MunicipalityUncheckedUpdateWithoutTownsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    provinceId?: IntFieldUpdateOperationsInput | number
+    availableProducts?: ProductAvailabilityUncheckedUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type ProductAvailabilityUpsertWithWhereUniqueWithoutTownInput = {
+    where: ProductAvailabilityWhereUniqueInput
+    update: XOR<ProductAvailabilityUpdateWithoutTownInput, ProductAvailabilityUncheckedUpdateWithoutTownInput>
+    create: XOR<ProductAvailabilityCreateWithoutTownInput, ProductAvailabilityUncheckedCreateWithoutTownInput>
+  }
+
+  export type ProductAvailabilityUpdateWithWhereUniqueWithoutTownInput = {
+    where: ProductAvailabilityWhereUniqueInput
+    data: XOR<ProductAvailabilityUpdateWithoutTownInput, ProductAvailabilityUncheckedUpdateWithoutTownInput>
+  }
+
+  export type ProductAvailabilityUpdateManyWithWhereWithoutTownInput = {
+    where: ProductAvailabilityScalarWhereInput
+    data: XOR<ProductAvailabilityUpdateManyMutationInput, ProductAvailabilityUncheckedUpdateManyWithoutTownInput>
+  }
+
+  export type ProductCreateWithoutAvailableLocationsInput = {
+    name: string
+    description: string
+    priceBaseCurrency: Decimal | DecimalJsLike | number | string
+    priceBaseDiscount?: number | null
+    stock: number
+    image: string
+    discountPercentage?: number | null
+    freeShipping?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    category: CategoryCreateNestedOneWithoutProductsInput
+    company: CompanyCreateNestedOneWithoutProductInput
+    Price?: PriceCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductUncheckedCreateWithoutAvailableLocationsInput = {
+    id?: number
+    name: string
+    description: string
+    priceBaseCurrency: Decimal | DecimalJsLike | number | string
+    priceBaseDiscount?: number | null
+    stock: number
+    image: string
+    discountPercentage?: number | null
+    freeShipping?: boolean
+    categoryId: number
+    companyId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Price?: PriceUncheckedCreateNestedManyWithoutProductInput
+  }
+
+  export type ProductCreateOrConnectWithoutAvailableLocationsInput = {
+    where: ProductWhereUniqueInput
+    create: XOR<ProductCreateWithoutAvailableLocationsInput, ProductUncheckedCreateWithoutAvailableLocationsInput>
+  }
+
+  export type ProvinceCreateWithoutAvailableProductsInput = {
+    name: string
+    municipalities?: MunicipalityCreateNestedManyWithoutProvinceInput
+  }
+
+  export type ProvinceUncheckedCreateWithoutAvailableProductsInput = {
+    id?: number
+    name: string
+    municipalities?: MunicipalityUncheckedCreateNestedManyWithoutProvinceInput
+  }
+
+  export type ProvinceCreateOrConnectWithoutAvailableProductsInput = {
+    where: ProvinceWhereUniqueInput
+    create: XOR<ProvinceCreateWithoutAvailableProductsInput, ProvinceUncheckedCreateWithoutAvailableProductsInput>
+  }
+
+  export type MunicipalityCreateWithoutAvailableProductsInput = {
+    name: string
+    province: ProvinceCreateNestedOneWithoutMunicipalitiesInput
+    towns?: TownCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityUncheckedCreateWithoutAvailableProductsInput = {
+    id?: number
+    name: string
+    provinceId: number
+    towns?: TownUncheckedCreateNestedManyWithoutMunicipalityInput
+  }
+
+  export type MunicipalityCreateOrConnectWithoutAvailableProductsInput = {
+    where: MunicipalityWhereUniqueInput
+    create: XOR<MunicipalityCreateWithoutAvailableProductsInput, MunicipalityUncheckedCreateWithoutAvailableProductsInput>
+  }
+
+  export type TownCreateWithoutAvailableProductsInput = {
+    name: string
+    municipality: MunicipalityCreateNestedOneWithoutTownsInput
+  }
+
+  export type TownUncheckedCreateWithoutAvailableProductsInput = {
+    id?: number
+    name: string
+    municipalityId: number
+  }
+
+  export type TownCreateOrConnectWithoutAvailableProductsInput = {
+    where: TownWhereUniqueInput
+    create: XOR<TownCreateWithoutAvailableProductsInput, TownUncheckedCreateWithoutAvailableProductsInput>
+  }
+
+  export type ProductUpsertWithoutAvailableLocationsInput = {
+    update: XOR<ProductUpdateWithoutAvailableLocationsInput, ProductUncheckedUpdateWithoutAvailableLocationsInput>
+    create: XOR<ProductCreateWithoutAvailableLocationsInput, ProductUncheckedCreateWithoutAvailableLocationsInput>
+    where?: ProductWhereInput
+  }
+
+  export type ProductUpdateToOneWithWhereWithoutAvailableLocationsInput = {
+    where?: ProductWhereInput
+    data: XOR<ProductUpdateWithoutAvailableLocationsInput, ProductUncheckedUpdateWithoutAvailableLocationsInput>
+  }
+
+  export type ProductUpdateWithoutAvailableLocationsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
+    stock?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
+    freeShipping?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    company?: CompanyUpdateOneRequiredWithoutProductNestedInput
+    Price?: PriceUpdateManyWithoutProductNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutAvailableLocationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
+    stock?: IntFieldUpdateOperationsInput | number
+    image?: StringFieldUpdateOperationsInput | string
+    discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
+    freeShipping?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: IntFieldUpdateOperationsInput | number
+    companyId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Price?: PriceUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type ProvinceUpsertWithoutAvailableProductsInput = {
+    update: XOR<ProvinceUpdateWithoutAvailableProductsInput, ProvinceUncheckedUpdateWithoutAvailableProductsInput>
+    create: XOR<ProvinceCreateWithoutAvailableProductsInput, ProvinceUncheckedCreateWithoutAvailableProductsInput>
+    where?: ProvinceWhereInput
+  }
+
+  export type ProvinceUpdateToOneWithWhereWithoutAvailableProductsInput = {
+    where?: ProvinceWhereInput
+    data: XOR<ProvinceUpdateWithoutAvailableProductsInput, ProvinceUncheckedUpdateWithoutAvailableProductsInput>
+  }
+
+  export type ProvinceUpdateWithoutAvailableProductsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    municipalities?: MunicipalityUpdateManyWithoutProvinceNestedInput
+  }
+
+  export type ProvinceUncheckedUpdateWithoutAvailableProductsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    municipalities?: MunicipalityUncheckedUpdateManyWithoutProvinceNestedInput
+  }
+
+  export type MunicipalityUpsertWithoutAvailableProductsInput = {
+    update: XOR<MunicipalityUpdateWithoutAvailableProductsInput, MunicipalityUncheckedUpdateWithoutAvailableProductsInput>
+    create: XOR<MunicipalityCreateWithoutAvailableProductsInput, MunicipalityUncheckedCreateWithoutAvailableProductsInput>
+    where?: MunicipalityWhereInput
+  }
+
+  export type MunicipalityUpdateToOneWithWhereWithoutAvailableProductsInput = {
+    where?: MunicipalityWhereInput
+    data: XOR<MunicipalityUpdateWithoutAvailableProductsInput, MunicipalityUncheckedUpdateWithoutAvailableProductsInput>
+  }
+
+  export type MunicipalityUpdateWithoutAvailableProductsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    province?: ProvinceUpdateOneRequiredWithoutMunicipalitiesNestedInput
+    towns?: TownUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type MunicipalityUncheckedUpdateWithoutAvailableProductsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    provinceId?: IntFieldUpdateOperationsInput | number
+    towns?: TownUncheckedUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type TownUpsertWithoutAvailableProductsInput = {
+    update: XOR<TownUpdateWithoutAvailableProductsInput, TownUncheckedUpdateWithoutAvailableProductsInput>
+    create: XOR<TownCreateWithoutAvailableProductsInput, TownUncheckedCreateWithoutAvailableProductsInput>
+    where?: TownWhereInput
+  }
+
+  export type TownUpdateToOneWithWhereWithoutAvailableProductsInput = {
+    where?: TownWhereInput
+    data: XOR<TownUpdateWithoutAvailableProductsInput, TownUncheckedUpdateWithoutAvailableProductsInput>
+  }
+
+  export type TownUpdateWithoutAvailableProductsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    municipality?: MunicipalityUpdateOneRequiredWithoutTownsNestedInput
+  }
+
+  export type TownUncheckedUpdateWithoutAvailableProductsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    municipalityId?: IntFieldUpdateOperationsInput | number
   }
 
   export type PriceCreateManyCurrencyInput = {
@@ -9272,6 +15903,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
     Price?: PriceUpdateManyWithoutProductNestedInput
+    availableLocations?: ProductAvailabilityUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCompanyInput = {
@@ -9288,6 +15920,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Price?: PriceUncheckedUpdateManyWithoutProductNestedInput
+    availableLocations?: ProductAvailabilityUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutCompanyInput = {
@@ -9312,6 +15945,14 @@ export namespace Prisma {
     isFixed: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type ProductAvailabilityCreateManyProductInput = {
+    id?: number
+    provinceId?: number | null
+    municipalityId?: number | null
+    townId?: number | null
+    createdAt?: Date | string
   }
 
   export type PriceUpdateWithoutProductInput = {
@@ -9339,6 +15980,29 @@ export namespace Prisma {
     isFixed?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductAvailabilityUpdateWithoutProductInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    province?: ProvinceUpdateOneWithoutAvailableProductsNestedInput
+    municipality?: MunicipalityUpdateOneWithoutAvailableProductsNestedInput
+    town?: TownUpdateOneWithoutAvailableProductsNestedInput
+  }
+
+  export type ProductAvailabilityUncheckedUpdateWithoutProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
+    municipalityId?: NullableIntFieldUpdateOperationsInput | number | null
+    townId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductAvailabilityUncheckedUpdateManyWithoutProductInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
+    municipalityId?: NullableIntFieldUpdateOperationsInput | number | null
+    townId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductCreateManyCategoryInput = {
@@ -9369,6 +16033,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutProductNestedInput
     Price?: PriceUpdateManyWithoutProductNestedInput
+    availableLocations?: ProductAvailabilityUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCategoryInput = {
@@ -9385,6 +16050,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Price?: PriceUncheckedUpdateManyWithoutProductNestedInput
+    availableLocations?: ProductAvailabilityUncheckedUpdateManyWithoutProductNestedInput
   }
 
   export type ProductUncheckedUpdateManyWithoutCategoryInput = {
@@ -9400,6 +16066,143 @@ export namespace Prisma {
     companyId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MunicipalityCreateManyProvinceInput = {
+    id?: number
+    name: string
+  }
+
+  export type ProductAvailabilityCreateManyProvinceInput = {
+    id?: number
+    productId: number
+    municipalityId?: number | null
+    townId?: number | null
+    createdAt?: Date | string
+  }
+
+  export type MunicipalityUpdateWithoutProvinceInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    towns?: TownUpdateManyWithoutMunicipalityNestedInput
+    availableProducts?: ProductAvailabilityUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type MunicipalityUncheckedUpdateWithoutProvinceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    towns?: TownUncheckedUpdateManyWithoutMunicipalityNestedInput
+    availableProducts?: ProductAvailabilityUncheckedUpdateManyWithoutMunicipalityNestedInput
+  }
+
+  export type MunicipalityUncheckedUpdateManyWithoutProvinceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductAvailabilityUpdateWithoutProvinceInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUpdateOneRequiredWithoutAvailableLocationsNestedInput
+    municipality?: MunicipalityUpdateOneWithoutAvailableProductsNestedInput
+    town?: TownUpdateOneWithoutAvailableProductsNestedInput
+  }
+
+  export type ProductAvailabilityUncheckedUpdateWithoutProvinceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    municipalityId?: NullableIntFieldUpdateOperationsInput | number | null
+    townId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductAvailabilityUncheckedUpdateManyWithoutProvinceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    municipalityId?: NullableIntFieldUpdateOperationsInput | number | null
+    townId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TownCreateManyMunicipalityInput = {
+    id?: number
+    name: string
+  }
+
+  export type ProductAvailabilityCreateManyMunicipalityInput = {
+    id?: number
+    productId: number
+    provinceId?: number | null
+    townId?: number | null
+    createdAt?: Date | string
+  }
+
+  export type TownUpdateWithoutMunicipalityInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    availableProducts?: ProductAvailabilityUpdateManyWithoutTownNestedInput
+  }
+
+  export type TownUncheckedUpdateWithoutMunicipalityInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    availableProducts?: ProductAvailabilityUncheckedUpdateManyWithoutTownNestedInput
+  }
+
+  export type TownUncheckedUpdateManyWithoutMunicipalityInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProductAvailabilityUpdateWithoutMunicipalityInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUpdateOneRequiredWithoutAvailableLocationsNestedInput
+    province?: ProvinceUpdateOneWithoutAvailableProductsNestedInput
+    town?: TownUpdateOneWithoutAvailableProductsNestedInput
+  }
+
+  export type ProductAvailabilityUncheckedUpdateWithoutMunicipalityInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
+    townId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductAvailabilityUncheckedUpdateManyWithoutMunicipalityInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
+    townId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductAvailabilityCreateManyTownInput = {
+    id?: number
+    productId: number
+    provinceId?: number | null
+    municipalityId?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ProductAvailabilityUpdateWithoutTownInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    product?: ProductUpdateOneRequiredWithoutAvailableLocationsNestedInput
+    province?: ProvinceUpdateOneWithoutAvailableProductsNestedInput
+    municipality?: MunicipalityUpdateOneWithoutAvailableProductsNestedInput
+  }
+
+  export type ProductAvailabilityUncheckedUpdateWithoutTownInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
+    municipalityId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProductAvailabilityUncheckedUpdateManyWithoutTownInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    productId?: IntFieldUpdateOperationsInput | number
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
+    municipalityId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

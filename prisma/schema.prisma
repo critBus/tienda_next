@@ -41,9 +41,9 @@ model Product {
   discountPercentage Float?
   freeShipping       Boolean               @default(false)
   category           Category              @relation(fields: [categoryId], references: [id])
-  categoryId         Int
+  categoryId         Int                   @index // Index for filtering by categoryId
   company            Company               @relation(fields: [companyId], references: [id])
-  companyId          Int
+  companyId          Int                   @index // Index for filtering by companyId
   createdAt          DateTime              @default(now())
   updatedAt          DateTime              @updatedAt
   Price              Price[]
@@ -88,7 +88,7 @@ model Municipality {
   id                Int                   @id @default(autoincrement())
   name              String // El nombre puede repetirse en distintas provincias
   province          Province              @relation(fields: [provinceId], references: [id], onDelete: Restrict) // Evita borrar provincia si tiene municipios
-  provinceId        Int
+  provinceId        Int                   @index // Index for filtering by provinceId
   towns             Town[]
   // Relación inversa para ProductAvailability
   availableProducts ProductAvailability[]
@@ -100,7 +100,7 @@ model Town {
   id                Int                   @id @default(autoincrement())
   name              String // El nombre puede repetirse en distintos municipios
   municipality      Municipality          @relation(fields: [municipalityId], references: [id], onDelete: Restrict) // Evita borrar municipio si tiene pueblos
-  municipalityId    Int
+  municipalityId    Int                   @index // Index for filtering by municipalityId
   // Relación inversa para ProductAvailability
   availableProducts ProductAvailability[]
 
@@ -111,17 +111,17 @@ model Town {
 model ProductAvailability {
   id        Int     @id @default(autoincrement())
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade) // Si se borra el producto, se borra la disponibilidad
-  productId Int
+  productId Int     @index // Index for filtering by productId
 
   // Un registro de disponibilidad puede aplicar a UNA provincia, O a UN municipio, O a UN pueblo.
   // Solo uno de estos campos debería tener valor por registro.
   // Prisma no fuerza esta restricción a nivel de BD, deberás manejarla en tu lógica de aplicación.
   province       Province?     @relation(fields: [provinceId], references: [id], onDelete: Cascade) // Si se borra la provincia, se borra esta disponibilidad específica
-  provinceId     Int?
+  provinceId     Int?          @index // Index for filtering by provinceId
   municipality   Municipality? @relation(fields: [municipalityId], references: [id], onDelete: Cascade) // Si se borra el municipio, se borra esta disponibilidad específica
-  municipalityId Int?
+  municipalityId Int?          @index // Index for filtering by municipalityId
   town           Town?         @relation(fields: [townId], references: [id], onDelete: Cascade) // Si se borra el pueblo, se borra esta disponibilidad específica
-  townId         Int?
+  townId         Int?          @index // Index for filtering by townId
 
   createdAt DateTime @default(now())
 
