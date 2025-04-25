@@ -20,13 +20,13 @@ export default function ProductCard({ product }: ProductCardProps) {
   const convertedPrice = product.Price.find(
     (price) => price.currencyId === selectedCurrency?.id
   )?.value;
+  const originalPrice = convertedPrice || Number(product.priceBaseCurrency);
 
   const addToCart = () => {
     // Implementar lógica de carrito aquí
     console.log("Añadir al carrito:", product, quantity);
   };
-  const are_different_prices =
-    product.originalPrice != Number(product.priceBaseCurrency);
+
   const its_new = true;
 
   return (
@@ -48,11 +48,16 @@ export default function ProductCard({ product }: ProductCardProps) {
           <span className="font-semibold text-[#4E4949]">{product.name}</span>
           <div className="flex flex-row gap-2">
             <span className="font-bold text-[17px]">
-              {convertedPrice || Number(product.priceBaseCurrency)}
+              {product.discountPercentage
+                ? (
+                    originalPrice -
+                    originalPrice * (product.discountPercentage / 100)
+                  ).toFixed(2)
+                : originalPrice.toFixed(2)}
             </span>
-            {are_different_prices && (
+            {product.discountPercentage && (
               <span className="text-sm line-through text-red-500">
-                {product.originalPrice}
+                {originalPrice.toFixed(2)}
               </span>
             )}
 

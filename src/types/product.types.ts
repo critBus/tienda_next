@@ -16,7 +16,7 @@ export interface Product {
   updatedAt: Date;
   image: string;
   description: string;
-  originalPrice: number;
+  priceBaseDiscount: number;
   stock: number;
   discountPercentage: number | null;
   freeShipping: boolean;

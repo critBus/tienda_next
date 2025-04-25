@@ -3544,7 +3544,7 @@ export namespace Prisma {
   export type ProductAvgAggregateOutputType = {
     id: number | null
     priceBaseCurrency: Decimal | null
-    originalPrice: number | null
+    priceBaseDiscount: number | null
     stock: number | null
     discountPercentage: number | null
     categoryId: number | null
@@ -3554,7 +3554,7 @@ export namespace Prisma {
   export type ProductSumAggregateOutputType = {
     id: number | null
     priceBaseCurrency: Decimal | null
-    originalPrice: number | null
+    priceBaseDiscount: number | null
     stock: number | null
     discountPercentage: number | null
     categoryId: number | null
@@ -3566,7 +3566,7 @@ export namespace Prisma {
     name: string | null
     description: string | null
     priceBaseCurrency: Decimal | null
-    originalPrice: number | null
+    priceBaseDiscount: number | null
     stock: number | null
     image: string | null
     discountPercentage: number | null
@@ -3582,7 +3582,7 @@ export namespace Prisma {
     name: string | null
     description: string | null
     priceBaseCurrency: Decimal | null
-    originalPrice: number | null
+    priceBaseDiscount: number | null
     stock: number | null
     image: string | null
     discountPercentage: number | null
@@ -3598,7 +3598,7 @@ export namespace Prisma {
     name: number
     description: number
     priceBaseCurrency: number
-    originalPrice: number
+    priceBaseDiscount: number
     stock: number
     image: number
     discountPercentage: number
@@ -3614,7 +3614,7 @@ export namespace Prisma {
   export type ProductAvgAggregateInputType = {
     id?: true
     priceBaseCurrency?: true
-    originalPrice?: true
+    priceBaseDiscount?: true
     stock?: true
     discountPercentage?: true
     categoryId?: true
@@ -3624,7 +3624,7 @@ export namespace Prisma {
   export type ProductSumAggregateInputType = {
     id?: true
     priceBaseCurrency?: true
-    originalPrice?: true
+    priceBaseDiscount?: true
     stock?: true
     discountPercentage?: true
     categoryId?: true
@@ -3636,7 +3636,7 @@ export namespace Prisma {
     name?: true
     description?: true
     priceBaseCurrency?: true
-    originalPrice?: true
+    priceBaseDiscount?: true
     stock?: true
     image?: true
     discountPercentage?: true
@@ -3652,7 +3652,7 @@ export namespace Prisma {
     name?: true
     description?: true
     priceBaseCurrency?: true
-    originalPrice?: true
+    priceBaseDiscount?: true
     stock?: true
     image?: true
     discountPercentage?: true
@@ -3668,7 +3668,7 @@ export namespace Prisma {
     name?: true
     description?: true
     priceBaseCurrency?: true
-    originalPrice?: true
+    priceBaseDiscount?: true
     stock?: true
     image?: true
     discountPercentage?: true
@@ -3771,7 +3771,7 @@ export namespace Prisma {
     name: string
     description: string
     priceBaseCurrency: Decimal
-    originalPrice: number
+    priceBaseDiscount: number | null
     stock: number
     image: string
     discountPercentage: number | null
@@ -3806,7 +3806,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     priceBaseCurrency?: boolean
-    originalPrice?: boolean
+    priceBaseDiscount?: boolean
     stock?: boolean
     image?: boolean
     discountPercentage?: boolean
@@ -3826,7 +3826,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     priceBaseCurrency?: boolean
-    originalPrice?: boolean
+    priceBaseDiscount?: boolean
     stock?: boolean
     image?: boolean
     discountPercentage?: boolean
@@ -3844,7 +3844,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     priceBaseCurrency?: boolean
-    originalPrice?: boolean
+    priceBaseDiscount?: boolean
     stock?: boolean
     image?: boolean
     discountPercentage?: boolean
@@ -3862,7 +3862,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     priceBaseCurrency?: boolean
-    originalPrice?: boolean
+    priceBaseDiscount?: boolean
     stock?: boolean
     image?: boolean
     discountPercentage?: boolean
@@ -3873,7 +3873,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "priceBaseCurrency" | "originalPrice" | "stock" | "image" | "discountPercentage" | "freeShipping" | "categoryId" | "companyId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "priceBaseCurrency" | "priceBaseDiscount" | "stock" | "image" | "discountPercentage" | "freeShipping" | "categoryId" | "companyId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     company?: boolean | CompanyDefaultArgs<ExtArgs>
@@ -3901,7 +3901,7 @@ export namespace Prisma {
       name: string
       description: string
       priceBaseCurrency: Prisma.Decimal
-      originalPrice: number
+      priceBaseDiscount: number | null
       stock: number
       image: string
       discountPercentage: number | null
@@ -4340,7 +4340,7 @@ export namespace Prisma {
     readonly name: FieldRef<"Product", 'String'>
     readonly description: FieldRef<"Product", 'String'>
     readonly priceBaseCurrency: FieldRef<"Product", 'Decimal'>
-    readonly originalPrice: FieldRef<"Product", 'Float'>
+    readonly priceBaseDiscount: FieldRef<"Product", 'Float'>
     readonly stock: FieldRef<"Product", 'Int'>
     readonly image: FieldRef<"Product", 'String'>
     readonly discountPercentage: FieldRef<"Product", 'Float'>
@@ -7063,7 +7063,7 @@ export namespace Prisma {
     name: 'name',
     description: 'description',
     priceBaseCurrency: 'priceBaseCurrency',
-    originalPrice: 'originalPrice',
+    priceBaseDiscount: 'priceBaseDiscount',
     stock: 'stock',
     image: 'image',
     discountPercentage: 'discountPercentage',
@@ -7317,7 +7317,7 @@ export namespace Prisma {
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
     priceBaseCurrency?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFilter<"Product"> | number
+    priceBaseDiscount?: FloatNullableFilter<"Product"> | number | null
     stock?: IntFilter<"Product"> | number
     image?: StringFilter<"Product"> | string
     discountPercentage?: FloatNullableFilter<"Product"> | number | null
@@ -7336,7 +7336,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     priceBaseCurrency?: SortOrder
-    originalPrice?: SortOrder
+    priceBaseDiscount?: SortOrderInput | SortOrder
     stock?: SortOrder
     image?: SortOrder
     discountPercentage?: SortOrderInput | SortOrder
@@ -7358,7 +7358,7 @@ export namespace Prisma {
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
     priceBaseCurrency?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFilter<"Product"> | number
+    priceBaseDiscount?: FloatNullableFilter<"Product"> | number | null
     stock?: IntFilter<"Product"> | number
     image?: StringFilter<"Product"> | string
     discountPercentage?: FloatNullableFilter<"Product"> | number | null
@@ -7377,7 +7377,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     priceBaseCurrency?: SortOrder
-    originalPrice?: SortOrder
+    priceBaseDiscount?: SortOrderInput | SortOrder
     stock?: SortOrder
     image?: SortOrder
     discountPercentage?: SortOrderInput | SortOrder
@@ -7401,7 +7401,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Product"> | string
     description?: StringWithAggregatesFilter<"Product"> | string
     priceBaseCurrency?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatWithAggregatesFilter<"Product"> | number
+    priceBaseDiscount?: FloatNullableWithAggregatesFilter<"Product"> | number | null
     stock?: IntWithAggregatesFilter<"Product"> | number
     image?: StringWithAggregatesFilter<"Product"> | string
     discountPercentage?: FloatNullableWithAggregatesFilter<"Product"> | number | null
@@ -7637,7 +7637,7 @@ export namespace Prisma {
     name: string
     description: string
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
-    originalPrice: number
+    priceBaseDiscount?: number | null
     stock: number
     image: string
     discountPercentage?: number | null
@@ -7654,7 +7654,7 @@ export namespace Prisma {
     name: string
     description: string
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
-    originalPrice: number
+    priceBaseDiscount?: number | null
     stock: number
     image: string
     discountPercentage?: number | null
@@ -7670,7 +7670,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFieldUpdateOperationsInput | number
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -7687,7 +7687,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFieldUpdateOperationsInput | number
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -7704,7 +7704,7 @@ export namespace Prisma {
     name: string
     description: string
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
-    originalPrice: number
+    priceBaseDiscount?: number | null
     stock: number
     image: string
     discountPercentage?: number | null
@@ -7719,7 +7719,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFieldUpdateOperationsInput | number
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -7733,7 +7733,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFieldUpdateOperationsInput | number
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -8046,17 +8046,6 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type FloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -8099,7 +8088,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     priceBaseCurrency?: SortOrder
-    originalPrice?: SortOrder
+    priceBaseDiscount?: SortOrder
     stock?: SortOrder
     image?: SortOrder
     discountPercentage?: SortOrder
@@ -8113,7 +8102,7 @@ export namespace Prisma {
   export type ProductAvgOrderByAggregateInput = {
     id?: SortOrder
     priceBaseCurrency?: SortOrder
-    originalPrice?: SortOrder
+    priceBaseDiscount?: SortOrder
     stock?: SortOrder
     discountPercentage?: SortOrder
     categoryId?: SortOrder
@@ -8125,7 +8114,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     priceBaseCurrency?: SortOrder
-    originalPrice?: SortOrder
+    priceBaseDiscount?: SortOrder
     stock?: SortOrder
     image?: SortOrder
     discountPercentage?: SortOrder
@@ -8141,7 +8130,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     priceBaseCurrency?: SortOrder
-    originalPrice?: SortOrder
+    priceBaseDiscount?: SortOrder
     stock?: SortOrder
     image?: SortOrder
     discountPercentage?: SortOrder
@@ -8155,27 +8144,11 @@ export namespace Prisma {
   export type ProductSumOrderByAggregateInput = {
     id?: SortOrder
     priceBaseCurrency?: SortOrder
-    originalPrice?: SortOrder
+    priceBaseDiscount?: SortOrder
     stock?: SortOrder
     discountPercentage?: SortOrder
     categoryId?: SortOrder
     companyId?: SortOrder
-  }
-
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8464,14 +8437,6 @@ export namespace Prisma {
     connect?: PriceWhereUniqueInput | PriceWhereUniqueInput[]
   }
 
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type NullableFloatFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -8733,22 +8698,6 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
-  }
-
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -8882,7 +8831,7 @@ export namespace Prisma {
     name: string
     description: string
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
-    originalPrice: number
+    priceBaseDiscount?: number | null
     stock: number
     image: string
     discountPercentage?: number | null
@@ -8898,7 +8847,7 @@ export namespace Prisma {
     name: string
     description: string
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
-    originalPrice: number
+    priceBaseDiscount?: number | null
     stock: number
     image: string
     discountPercentage?: number | null
@@ -8943,7 +8892,7 @@ export namespace Prisma {
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
     priceBaseCurrency?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFilter<"Product"> | number
+    priceBaseDiscount?: FloatNullableFilter<"Product"> | number | null
     stock?: IntFilter<"Product"> | number
     image?: StringFilter<"Product"> | string
     discountPercentage?: FloatNullableFilter<"Product"> | number | null
@@ -9082,7 +9031,7 @@ export namespace Prisma {
     name: string
     description: string
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
-    originalPrice: number
+    priceBaseDiscount?: number | null
     stock: number
     image: string
     discountPercentage?: number | null
@@ -9098,7 +9047,7 @@ export namespace Prisma {
     name: string
     description: string
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
-    originalPrice: number
+    priceBaseDiscount?: number | null
     stock: number
     image: string
     discountPercentage?: number | null
@@ -9139,7 +9088,7 @@ export namespace Prisma {
     name: string
     description: string
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
-    originalPrice: number
+    priceBaseDiscount?: number | null
     stock: number
     image: string
     discountPercentage?: number | null
@@ -9155,7 +9104,7 @@ export namespace Prisma {
     name: string
     description: string
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
-    originalPrice: number
+    priceBaseDiscount?: number | null
     stock: number
     image: string
     discountPercentage?: number | null
@@ -9206,7 +9155,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFieldUpdateOperationsInput | number
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -9222,7 +9171,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFieldUpdateOperationsInput | number
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -9300,7 +9249,7 @@ export namespace Prisma {
     name: string
     description: string
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
-    originalPrice: number
+    priceBaseDiscount?: number | null
     stock: number
     image: string
     discountPercentage?: number | null
@@ -9314,7 +9263,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFieldUpdateOperationsInput | number
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -9330,7 +9279,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFieldUpdateOperationsInput | number
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -9346,7 +9295,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFieldUpdateOperationsInput | number
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -9397,7 +9346,7 @@ export namespace Prisma {
     name: string
     description: string
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
-    originalPrice: number
+    priceBaseDiscount?: number | null
     stock: number
     image: string
     discountPercentage?: number | null
@@ -9411,7 +9360,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFieldUpdateOperationsInput | number
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -9427,7 +9376,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFieldUpdateOperationsInput | number
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
@@ -9443,7 +9392,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    originalPrice?: FloatFieldUpdateOperationsInput | number
+    priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null

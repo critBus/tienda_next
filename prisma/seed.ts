@@ -87,8 +87,8 @@ export async function main() {
       data: {
         name: "Cerveza Premium",
         description: "Cerveza artesanal de alta calidad",
-        priceBaseCurrency: 899.99,
-        originalPrice: 999.99,
+        priceBaseCurrency: 999.99,
+        priceBaseDiscount: 899.99,
         stock: 50,
         image: "/assets/products/img/cerveza.png",
         discountPercentage: 10,
@@ -101,8 +101,8 @@ export async function main() {
       data: {
         name: "Pasta Barbacue",
         description: "Pasta especial para barbacoa",
-        priceBaseCurrency: 1299.99,
-        originalPrice: 1499.99,
+        priceBaseCurrency: 1499.99,
+        priceBaseDiscount: 1299.99,
         stock: 30,
         image: "/assets/products/img/pasta_barbicue.png",
         discountPercentage: 13.33,
@@ -116,8 +116,8 @@ export async function main() {
       data: {
         name: "Especias Refinadas",
         description: "Mezcla de especias gourmet",
-        priceBaseCurrency: 29.99,
-        originalPrice: 39.99,
+        priceBaseCurrency: 39.99,
+        priceBaseDiscount: 29.99,
         stock: 100,
         image: "/assets/products/img/especias_refinidas.png",
         discountPercentage: 25,
@@ -131,8 +131,8 @@ export async function main() {
       data: {
         name: "Masa para Pizza",
         description: "Masa fresca para pizza artesanal",
-        priceBaseCurrency: 49.99,
-        originalPrice: 59.99,
+        priceBaseCurrency: 59.99,
+        priceBaseDiscount: 49.99,
         stock: 40,
         image: "/assets/products/img/molo_para_piza.png",
         discountPercentage: 16.67,

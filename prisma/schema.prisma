@@ -35,7 +35,7 @@ model Product {
   name               String
   description        String
   priceBaseCurrency  Decimal  @db.Decimal(12, 2)
-  originalPrice      Float
+  priceBaseDiscount  Float?
   stock              Int
   image              String
   discountPercentage Float?
