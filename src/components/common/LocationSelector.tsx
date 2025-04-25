@@ -73,6 +73,19 @@ export default function LocationSelector({ showText = true }: Props) {
             Todo el país
           </div>
           <div className="border-t my-1" />
+          <button
+            className="w-full flex items-center gap-2 px-2 py-1 rounded bg-[#F6F6F6] hover:bg-[#E5EAF0] mt-1"
+            onClick={handleUseCurrentLocation}
+          >
+            <Image
+              src="/assets/header/location.svg"
+              alt="Ubicación actual"
+              width={16}
+              height={16}
+            />
+            Usar mi ubicación actual
+          </button>
+          <div className="border-t my-1" />
           <div className="font-bold text-xs mb-1">Provincias</div>
           {availableLocations.provinces.map((prov) => (
             <div key={prov.id}>
@@ -122,19 +135,6 @@ export default function LocationSelector({ showText = true }: Props) {
               ))}
             </div>
           ))}
-          <div className="border-t my-1" />
-          <button
-            className="w-full flex items-center gap-2 px-2 py-1 rounded bg-[#F6F6F6] hover:bg-[#E5EAF0] mt-1"
-            onClick={handleUseCurrentLocation}
-          >
-            <Image
-              src="/assets/header/location.svg"
-              alt="Ubicación actual"
-              width={16}
-              height={16}
-            />
-            Usar mi ubicación actual
-          </button>
         </div>
       )}
     </div>
