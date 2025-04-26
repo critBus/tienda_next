@@ -3,6 +3,8 @@ import { CompanyDTO } from "./company.types";
 
 // 1. Importamos el tipo original y lo renombramos
 import { Product as ProductPrisma } from "@/app/generated/prisma/index";
+import { ProductImage } from "@/app/generated/prisma/index";
+import { Province, Municipality, Town } from "@/app/generated/prisma/index";
 
 import { Price } from "./price.types";
 
@@ -27,4 +29,13 @@ export interface Product {
   company: CompanyDTO;
   priceBaseCurrency: number;
   Price: Price[]; // Updated to match the schema (array of Price objects)
+}
+
+export interface ProductDetail extends Product {
+  availableLocations: {
+    province?: Province;
+    municipality?: Municipality;
+    town?: Town;
+  }[];
+  ProductImage: ProductImage[];
 }
