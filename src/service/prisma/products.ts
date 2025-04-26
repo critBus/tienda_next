@@ -34,7 +34,7 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function getById(id: number): Promise<ProductDetail | null> {
   const find_product = await prisma.product.findUnique({
-    where: { id: Number(id) },
+    where: { id: id },
     include: {
       category: true,
       company: true,
