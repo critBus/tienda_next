@@ -1,64 +1,45 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import useProductPrice from "@/hooks/useProductPrice";
 
+import { ProductDetail as ProductDetailType } from "@/types";
+import ApiService from "@/service/ApiService";
+
 const ProductDetail = ({ id }: { id: number }) => {
-  const [product, setProduct] = useState({
-    id: id,
-    name: "Cerveza Premium",
-    description: "Cerveza artesanal de alta calidad",
-    priceBaseCurrency: 5.99,
-    priceBaseDiscount: 4,
-    stock: 50,
-    image: "/assets/products/img/cerveza.png",
-    discountPercentage: 10,
-    itsNew: true,
-    freeShipping: false,
-    brand: "La Marca",
-    company: { id: 1, name: "Distribuidora Nacional" },
-    images: [
-      {
-        id: 1,
-        image: "/assets/products/img/cerveza.png",
-      },
-      {
-        id: 2,
-        image: "/assets/products/img/cerveza.png",
-      },
-      {
-        id: 3,
-        image: "/assets/products/img/cerveza.png",
-      },
-    ],
-    Price: [
-      {
-        id: 1,
-        productId: 1,
-        currencyId: 1,
-        value: 125,
-        isFixed: true,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        currency: {
-          id: 1,
-          name: "GBP",
-          baseRate: 0.8,
-          isDefault: false,
-          isBase: false,
-        },
-      },
-    ],
-  });
+  const [product, setProduct] = useState<ProductDetailType | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const data = await ApiService.product.getById(id);
+        setProduct(data);
+      } catch (err) {
+        console.error(err);
+        setError("Error al cargar el producto.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  if (loading) return <div>Cargando...</div>;
+  if (error) return <div>{error}</div>;
+  if (!product) return <div>Producto no encontrado.</div>;
+
   const { convertedPrice, originalPrice, symbol } = useProductPrice(product);
+
   return (
     <div className="flex flex-col">
       <div className="bg-[#dfd9d9] flex flex-row gap-2 px-3 pt-8 pb-6">
         <div className="w-[20%] flex flex-col gap-2">
-          {product.images.map(({ image, id }) => (
+          {product.ProductImage.map(({ image, id }) => (
             <Image
-              className="block w-full  bg-amber-50 rounded-2xl shadow-sm 
-            hover:scale-110"
+              className="block w-full bg-amber-50 rounded-2xl shadow-sm hover:scale-110"
               src={image}
               alt="imagen del producto"
               width={100}
@@ -74,7 +55,6 @@ const ProductDetail = ({ id }: { id: number }) => {
             alt="imagen del producto"
             width={400}
             height={400}
-            key={id}
           />
         </div>
       </div>
