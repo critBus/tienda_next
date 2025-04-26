@@ -1,7 +1,6 @@
 import prisma from "@/libs/prisma";
 import { ProductDTO } from "@/types"; // Asegúrate que este tipo es correcto o ajústalo
 import { Decimal } from "@prisma/client/runtime/library";
-import Image from "next/image";
 
 // Helper para asegurar que el precio base sea un número antes de multiplicar
 function safeMultiply(price: Decimal, rate: Decimal): number {
@@ -276,12 +275,14 @@ export async function main() {
   const createdProducts = [];
   for (const data of productData) {
     const images = data.ProductImage;
+
+    // Crear el producto
     const product = await prisma.product.create({
       data: {
         name: data.name,
         description: data.description,
         priceBaseCurrency: data.priceBaseCurrency,
-        priceBaseDiscount: data.discountPercentage,
+        priceBaseDiscount: data.priceBaseDiscount,
         stock: data.stock,
         itsNew: data.itsNew,
         image: data.image,
@@ -291,12 +292,17 @@ export async function main() {
         companyId: data.companyId,
       },
     });
+
     createdProducts.push(product);
-    images.forEach(({ cover, image }) => {
-      prisma.productImage.create({
-        data: { cover, image, productId: product.id },
-      });
-    });
+
+    // Crear las imágenes asociadas al producto
+    await Promise.all(
+      images.map(({ cover, image }) =>
+        prisma.productImage.create({
+          data: { cover, image, productId: product.id },
+        })
+      )
+    );
   }
 
   // Ajusta la conversión a ProductDTO si es necesario, o usa los `createdProducts` directamente
