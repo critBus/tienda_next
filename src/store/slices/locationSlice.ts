@@ -9,10 +9,7 @@ export type LocationType =
 const STORAGE_KEY = "selectedLocation";
 
 function loadInitialLocation(): LocationType {
-  if (typeof window !== "undefined") {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) return JSON.parse(stored);
-  }
+  // Devuelve un valor predeterminado para evitar desajustes de hidratación
   return { type: "country" };
 }
 
@@ -30,8 +27,16 @@ const locationSlice = createSlice({
         localStorage.setItem(STORAGE_KEY, JSON.stringify(action.payload));
       }
     },
+    hydrateLocation(state) {
+      if (typeof window !== "undefined") {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          state.selectedLocation = JSON.parse(stored);
+        }
+      }
+    },
   },
 });
 
-export const { setLocation } = locationSlice.actions;
+export const { setLocation, hydrateLocation } = locationSlice.actions;
 export default locationSlice.reducer;
