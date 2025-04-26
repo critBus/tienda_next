@@ -5,18 +5,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { setSelectedCurrency } from "@/store/slices/currencySlice";
 import { CurrencyDTO } from "@/types";
+import { createSelector } from "@reduxjs/toolkit";
+
+// Memoizar el selector
+const selectCurrencyState = (state: RootState) => state.currency;
+const selectCurrencyData = createSelector(selectCurrencyState, (currency) => ({
+  currencies: currency.currencies,
+  selectedCurrency: currency.selectedCurrency,
+  isLoading: currency.isLoading,
+}));
 
 export default function CurrencySelector() {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const { currencies, selectedCurrency, isLoading } = useSelector(
-    (state: RootState) => ({
-      currencies: state.currency.currencies,
-      selectedCurrency: state.currency.selectedCurrency,
-      isLoading: state.currency.isLoading,
-    })
-  );
+  const { currencies, selectedCurrency, isLoading } =
+    useSelector(selectCurrencyData);
 
   const selectCurrency = (currency: CurrencyDTO) => {
     dispatch(setSelectedCurrency(currency));

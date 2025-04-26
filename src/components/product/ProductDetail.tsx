@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import useProductPrice from "@/hooks/useProductPrice";
-import { Price, Currency } from "../../app/generated/prisma/index";
+
 const ProductDetail = ({ id }: { id: number }) => {
   const [product, setProduct] = useState({
     id: id,
