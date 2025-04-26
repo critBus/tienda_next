@@ -122,7 +122,8 @@ exports.Prisma.CurrencyScalarFieldEnum = {
   name: 'name',
   baseRate: 'baseRate',
   isDefault: 'isDefault',
-  isBase: 'isBase'
+  isBase: 'isBase',
+  symbol: 'symbol'
 };
 
 exports.Prisma.CompanyScalarFieldEnum = {
@@ -144,7 +145,15 @@ exports.Prisma.ProductScalarFieldEnum = {
   companyId: 'companyId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  itsNew: 'itsNew'
+  itsNew: 'itsNew',
+  brand: 'brand'
+};
+
+exports.Prisma.ProductImageScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  cover: 'cover',
+  image: 'image'
 };
 
 exports.Prisma.CategoryScalarFieldEnum = {
@@ -211,6 +220,7 @@ exports.Prisma.ModelName = {
   Currency: 'Currency',
   Company: 'Company',
   Product: 'Product',
+  ProductImage: 'ProductImage',
   Category: 'Category',
   Price: 'Price',
   Province: 'Province',

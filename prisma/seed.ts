@@ -1,6 +1,7 @@
 import prisma from "@/libs/prisma";
 import { ProductDTO } from "@/types"; // Asegúrate que este tipo es correcto o ajústalo
 import { Decimal } from "@prisma/client/runtime/library";
+import Image from "next/image";
 
 // Helper para asegurar que el precio base sea un número antes de multiplicar
 function safeMultiply(price: Decimal, rate: Decimal): number {
@@ -22,16 +23,40 @@ export async function main() {
   // --- Crear Monedas ---
   const currencies = await Promise.all([
     prisma.currency.create({
-      data: { name: "USD", baseRate: 1.0, isDefault: true, isBase: true },
+      data: {
+        name: "USD",
+        baseRate: 1.0,
+        isDefault: true,
+        isBase: true,
+        symbol: "$",
+      },
     }),
     prisma.currency.create({
-      data: { name: "EUR", baseRate: 0.92, isDefault: false, isBase: false }, // Tasa actualizada aprox.
+      data: {
+        name: "EUR",
+        baseRate: 0.92,
+        isDefault: false,
+        isBase: false,
+        symbol: "$",
+      }, // Tasa actualizada aprox.
     }),
     prisma.currency.create({
-      data: { name: "GBP", baseRate: 0.8, isDefault: false, isBase: false }, // Tasa actualizada aprox.
+      data: {
+        name: "GBP",
+        baseRate: 0.8,
+        isDefault: false,
+        isBase: false,
+        symbol: "$",
+      }, // Tasa actualizada aprox.
     }),
     prisma.currency.create({
-      data: { name: "CUP", baseRate: 24.0, isDefault: false, isBase: false },
+      data: {
+        name: "CUP",
+        baseRate: 24.0,
+        isDefault: false,
+        isBase: false,
+        symbol: "$",
+      },
     }),
   ]);
   console.log(`Monedas creadas: ${currencies.length}`);
@@ -116,6 +141,21 @@ export async function main() {
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Bebidas")!.id,
       companyId: companies[0].id,
+      brand: "Marca1",
+      ProductImage: [
+        {
+          cover: true,
+          image: "/assets/products/img/cerveza.png",
+        },
+        {
+          cover: false,
+          image: "/assets/products/img/cerveza.png",
+        },
+        {
+          cover: false,
+          image: "/assets/products/img/cerveza.png",
+        },
+      ],
     },
     // Producto 2: Disponible solo en el municipio Plaza de la Revolución
     {
@@ -130,6 +170,21 @@ export async function main() {
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
       companyId: companies[1].id,
+      brand: "Marca2",
+      ProductImage: [
+        {
+          cover: true,
+          image: "/assets/products/img/pasta_barbicue.png",
+        },
+        {
+          cover: false,
+          image: "/assets/products/img/pasta_barbicue.png",
+        },
+        {
+          cover: false,
+          image: "/assets/products/img/pasta_barbicue.png",
+        },
+      ],
     },
     // Producto 3: Disponible solo en el pueblo Vedado
     {
@@ -144,6 +199,21 @@ export async function main() {
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
       companyId: companies[1].id,
+      brand: "Marca1",
+      ProductImage: [
+        {
+          cover: true,
+          image: "/assets/products/img/especias_refinidas.png",
+        },
+        {
+          cover: false,
+          image: "/assets/products/img/especias_refinidas.png",
+        },
+        {
+          cover: false,
+          image: "/assets/products/img/especias_refinidas.png",
+        },
+      ],
     },
     // Producto 4: Disponible a nivel nacional (sin registro en ProductAvailability)
     {
@@ -158,6 +228,20 @@ export async function main() {
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
       companyId: companies[2].id,
+      ProductImage: [
+        {
+          cover: true,
+          image: "/assets/products/img/vainilla.png",
+        },
+        {
+          cover: false,
+          image: "/assets/products/img/vainilla.png",
+        },
+        {
+          cover: false,
+          image: "/assets/products/img/vainilla.png",
+        },
+      ],
     },
     // Producto 5: Disponible en Pinar del Río (Provincia) y en el pueblo Centro Histórico (Habana Vieja)
     {
@@ -172,13 +256,47 @@ export async function main() {
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Bebidas")!.id,
       companyId: companies[0].id,
+      ProductImage: [
+        {
+          cover: true,
+          image: "/assets/products/img/pomos-de-agua.png",
+        },
+        {
+          cover: false,
+          image: "/assets/products/img/pomos-de-agua.png",
+        },
+        {
+          cover: false,
+          image: "/assets/products/img/pomos-de-agua.png",
+        },
+      ],
     },
   ];
 
   const createdProducts = [];
   for (const data of productData) {
-    const product = await prisma.product.create({ data });
+    const images = data.ProductImage;
+    const product = await prisma.product.create({
+      data: {
+        name: data.name,
+        description: data.description,
+        priceBaseCurrency: data.priceBaseCurrency,
+        priceBaseDiscount: data.discountPercentage,
+        stock: data.stock,
+        itsNew: data.itsNew,
+        image: data.image,
+        discountPercentage: data.discountPercentage,
+        freeShipping: data.freeShipping,
+        categoryId: data.categoryId,
+        companyId: data.companyId,
+      },
+    });
     createdProducts.push(product);
+    images.forEach(({ cover, image }) => {
+      prisma.productImage.create({
+        data: { cover, image, productId: product.id },
+      });
+    });
   }
 
   // Ajusta la conversión a ProductDTO si es necesario, o usa los `createdProducts` directamente

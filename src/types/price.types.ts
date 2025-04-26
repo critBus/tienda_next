@@ -3,7 +3,7 @@ import { CurrencyDTO } from "./currency.types";
 
 export type PriceDTO = PricePrisma;
 export interface Price {
-  id: string;
+  id: number;
   createdAt: Date;
   updatedAt: Date;
   productId: number;

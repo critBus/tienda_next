@@ -4,4 +4,5 @@ export interface CurrencyDTO {
   baseRate: number;
   isDefault: boolean;
   isBase: boolean;
+  symbol: string;
 }
