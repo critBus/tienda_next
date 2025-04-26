@@ -1,3 +1,55 @@
-export async function GET(request: Request) {
-  return Response.json({});
+import { NextResponse } from "next/server";
+import prisma from "@/libs/prisma";
+
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const { id } = params;
+
+  try {
+    // Buscar el producto por ID
+    const product = await prisma.product.findUnique({
+      where: { id: parseInt(id) },
+      include: {
+        category: true,
+        company: true,
+        Price: true,
+        availableLocations: {
+          include: {
+            province: true,
+            municipality: true,
+            town: true,
+          },
+        },
+        ProductImage: true,
+      },
+    });
+
+    // Si no se encuentra el producto, devolver un error
+    if (!product) {
+      return NextResponse.json(
+        {
+          status: "fail",
+          message: "Producto no encontrado",
+        },
+        { status: 404 }
+      );
+    }
+
+    // Respuesta en formato JSend
+    return NextResponse.json({
+      status: "success",
+      data: product,
+    });
+  } catch (error) {
+    console.error("Error al obtener el producto:", error);
+    return NextResponse.json(
+      {
+        status: "error",
+        message: "Error interno del servidor",
+      },
+      { status: 500 }
+    );
+  }
 }
