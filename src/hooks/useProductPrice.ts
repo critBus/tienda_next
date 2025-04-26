@@ -5,10 +5,17 @@ interface PropsExpected {
   Price: Price[];
   priceBaseCurrency: number;
 }
-export default function useProductPrice(product: PropsExpected) {
+export default function useProductPrice(product: PropsExpected | null) {
   const selectedCurrency = useSelector(
     (state: RootState) => state.currency.selectedCurrency
   );
+  if (!product) {
+    return {
+      convertedPrice: 0,
+      originalPrice: 0,
+      symbol: "$",
+    };
+  }
   const price = product.Price.find(
     (price) => price.currencyId === selectedCurrency?.id
   );
@@ -17,6 +24,6 @@ export default function useProductPrice(product: PropsExpected) {
   return {
     convertedPrice,
     originalPrice,
-    symbol: price?.currency.symbol ?? "$",
+    symbol: selectedCurrency?.symbol ?? "$",
   };
 }

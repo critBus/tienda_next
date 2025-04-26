@@ -18,7 +18,7 @@ export interface Product {
   updatedAt: Date;
   image: string;
   description: string;
-  priceBaseDiscount: number;
+  priceBaseDiscount: number | null;
   stock: number;
   discountPercentage: number | null;
   freeShipping: boolean;
@@ -28,14 +28,15 @@ export interface Product {
   category: CategoryDTO;
   company: CompanyDTO;
   priceBaseCurrency: number;
+  brand: string | null;
   Price: Price[]; // Updated to match the schema (array of Price objects)
 }
 
 export interface ProductDetail extends Product {
   availableLocations: {
-    province?: Province;
-    municipality?: Municipality;
-    town?: Town;
+    province: Province | null;
+    municipality: Municipality | null;
+    town: Town | null;
   }[];
   ProductImage: ProductImage[];
 }

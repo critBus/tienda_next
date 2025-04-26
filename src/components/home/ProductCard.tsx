@@ -3,8 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Product } from "@/types";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store"; // Adjust the path if necessary
+import useProductPrice from "@/hooks/useProductPrice";
 
 interface ProductCardProps {
   product: Product;
@@ -13,14 +12,7 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
 
-  const selectedCurrency = useSelector(
-    (state: RootState) => state.currency.selectedCurrency
-  );
-
-  const convertedPrice = product.Price.find(
-    (price) => price.currencyId === selectedCurrency?.id
-  )?.value;
-  const originalPrice = convertedPrice || Number(product.priceBaseCurrency);
+  const { originalPrice } = useProductPrice(product);
 
   const addToCart = () => {
     // Implementar lógica de carrito aquí

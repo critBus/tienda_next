@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import prisma from "@/libs/prisma";
+
+import PrismaService from "@/service/PrismaService";
 
 export async function GET(
   request: Request,
@@ -9,22 +10,7 @@ export async function GET(
 
   try {
     // Buscar el producto por ID
-    const product = await prisma.product.findUnique({
-      where: { id: parseInt(id) },
-      include: {
-        category: true,
-        company: true,
-        Price: true,
-        availableLocations: {
-          include: {
-            province: true,
-            municipality: true,
-            town: true,
-          },
-        },
-        ProductImage: true,
-      },
-    });
+    const product = await PrismaService.products.getById(parseInt(id));
 
     // Si no se encuentra el producto, devolver un error
     if (!product) {

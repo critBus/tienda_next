@@ -1,5 +1,5 @@
 import prisma from "@/libs/prisma";
-import { Product, ProductDTO } from "@/types";
+import { Product, ProductDetail } from "@/types";
 
 export async function getProducts(): Promise<Product[]> {
   console.log("intenta llamar a obtener los productos");
@@ -32,8 +32,42 @@ export async function getProducts(): Promise<Product[]> {
   return products;
 }
 
-export async function getProductById(id: number): Promise<ProductDTO | null> {
-  return prisma.product.findUnique({
-    where: { id },
+export async function getById(id: number): Promise<ProductDetail | null> {
+  const find_product = await prisma.product.findUnique({
+    where: { id: Number(id) },
+    include: {
+      category: true,
+      company: true,
+      Price: {
+        include: {
+          currency: true,
+        },
+      },
+      availableLocations: {
+        include: {
+          province: true,
+          municipality: true,
+          town: true,
+        },
+      },
+      ProductImage: true,
+    },
   });
+  if (!find_product) {
+    return null;
+  }
+  const product = {
+    ...find_product,
+    priceBaseCurrency: Number(find_product.priceBaseCurrency),
+    priceBaseDiscount: Number(find_product.priceBaseDiscount),
+    Price: find_product.Price.map((price) => ({
+      ...price,
+      value: Number(price.value),
+      currency: {
+        ...price.currency,
+        baseRate: Number(price.currency.baseRate),
+      },
+    })),
+  };
+  return product;
 }

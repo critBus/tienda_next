@@ -1,37 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import useProductPrice from "@/hooks/useProductPrice";
 
 import { ProductDetail as ProductDetailType } from "@/types";
-import ApiService from "@/service/ApiService";
 
-const ProductDetail = ({ id }: { id: number }) => {
-  const [product, setProduct] = useState<ProductDetailType | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const data = await ApiService.product.getById(id);
-        setProduct(data);
-      } catch (err) {
-        console.error(err);
-        setError("Error al cargar el producto.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProduct();
-  }, [id]);
-
-  if (loading) return <div>Cargando...</div>;
-  if (error) return <div>{error}</div>;
-  if (!product) return <div>Producto no encontrado.</div>;
-
-  const { convertedPrice, originalPrice, symbol } = useProductPrice(product);
+const ProductDetail = ({ product }: { product: ProductDetailType }) => {
+  const { originalPrice, symbol } = useProductPrice(product);
 
   return (
     <div className="flex flex-col">
