@@ -158,26 +158,35 @@ export default function LocationSelector({ showText = true }: Props) {
 
               {expandedProvince === prov.id &&
                 prov.municipalities?.slice(0, 6).map((mun) => (
-                  <div key={mun.id} className="ml-4">
-                    <div
-                      className="cursor-pointer hover:bg-gray-100 px-2 py-1 rounded flex justify-between"
-                      onClick={() => {
-                        handleSelect({
-                          provinceId: prov.id,
-                          municipalityId: mun.id,
-                        });
-                        setExpandedMunicipality((prev) =>
-                          prev === mun.id ? null : mun.id
-                        );
-                      }}
-                    >
-                      {mun.name}
-                      {mun.towns && (
-                        <span>
-                          {expandedMunicipality === mun.id ? "-" : "+"}
-                        </span>
-                      )}
+                  <div key={mun.id}>
+                    <div className="cursor-pointer flex flex-row">
+                      <div
+                        className="w-[80%] pl-4 cursor-pointer hover:bg-gray-100 px-2 py-1 rounded flex justify-between"
+                        onClick={() => {
+                          handleSelect({
+                            provinceId: prov.id,
+                            municipalityId: mun.id,
+                          });
+                        }}
+                      >
+                        {mun.name}
+                      </div>
+                      <div
+                        className="w-[20%] m-1 bg-gray-300 flex items-center justify-center rounded cursor-pointer hover:bg-gray-400"
+                        onClick={() => {
+                          setExpandedMunicipality((prev) =>
+                            prev === mun.id ? null : mun.id
+                          );
+                        }}
+                      >
+                        {mun.towns && (
+                          <span>
+                            {expandedMunicipality === mun.id ? "-" : "+"}
+                          </span>
+                        )}
+                      </div>
                     </div>
+
                     {expandedMunicipality === mun.id &&
                       mun.towns?.slice(0, 6).map((town) => (
                         <div key={town.id} className="ml-4">
