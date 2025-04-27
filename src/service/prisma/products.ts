@@ -1,20 +1,31 @@
 import prisma from "@/libs/prisma";
 import { Product, ProductDetail } from "@/types";
 
-export async function getProducts(): Promise<Product[]> {
-  console.log("intenta llamar a obtener los productos");
-  const products_response = await prisma.product.findMany({
-    include: {
-      category: true,
-      company: true,
-      Price: {
-        include: {
-          currency: true,
-        },
-      },
-    },
-  });
-  // console.log(products_response[0]);
+import {
+  Product as ProductPrisma,
+  Price as PricePrisma,
+  Currency,
+  Category,
+  Company,
+  ProductAvailability,
+} from "@/app/generated/prisma/index";
+
+interface FilterType {
+  provinceId?: number | null;
+  municipalityId?: number | null;
+  townId?: number | null;
+}
+interface PricePrismaResponse extends PricePrisma {
+  currency: Currency;
+}
+interface ProductPrismaResponse extends ProductPrisma {
+  Price: PricePrismaResponse[];
+  category: Category;
+  company: Company;
+  availableLocations: ProductAvailability[];
+}
+
+function parseProducts(products_response: ProductPrismaResponse[]): Product[] {
   const products: Product[] = products_response.map((product) => ({
     ...product,
     priceBaseCurrency: Number(product.priceBaseCurrency),
@@ -28,8 +39,64 @@ export async function getProducts(): Promise<Product[]> {
       },
     })), // Map each price in the array
   }));
-  // console.log(products[0]);
   return products;
+}
+
+export async function getProducts(location: FilterType): Promise<Product[]> {
+  const or_filter: FilterType[] = [
+    { provinceId: null, municipalityId: null, townId: null },
+    location,
+  ];
+  if (location.municipalityId && location.provinceId) {
+    or_filter.push({
+      provinceId: location.provinceId,
+      municipalityId: null,
+      townId: null,
+    });
+  }
+  if (location.townId && location.municipalityId && location.provinceId) {
+    or_filter.push({
+      provinceId: location.provinceId,
+      municipalityId: location.municipalityId,
+      townId: null,
+    });
+  }
+  const product_response = await prisma.product.findMany({
+    where: {
+      availableLocations: {
+        some: {
+          OR: or_filter,
+        },
+      },
+    },
+    include: {
+      availableLocations: true,
+      category: true,
+      company: true,
+      Price: {
+        include: {
+          currency: true,
+        },
+      },
+    },
+  });
+  return parseProducts(product_response);
+}
+export async function all(): Promise<Product[]> {
+  console.log("intenta llamar a obtener los productos");
+  const products_response = await prisma.product.findMany({
+    include: {
+      availableLocations: true,
+      category: true,
+      company: true,
+      Price: {
+        include: {
+          currency: true,
+        },
+      },
+    },
+  });
+  return parseProducts(products_response);
 }
 
 export async function getById(id: number): Promise<ProductDetail | null> {

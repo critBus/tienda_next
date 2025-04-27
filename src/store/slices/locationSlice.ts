@@ -1,19 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type LocationType =
-  | { type: "country" }
-  | { type: "province"; id: number; name: string }
-  | { type: "municipality"; id: number; name: string }
-  | { type: "town"; id: number; name: string };
+export interface FilterType {
+  provinceId?: number | null;
+  municipalityId?: number | null;
+  townId?: number | null;
+}
 
 const STORAGE_KEY = "selectedLocation";
 
-function loadInitialLocation(): LocationType {
-  // Devuelve un valor predeterminado para evitar desajustes de hidratación
-  return { type: "country" };
+function loadInitialLocation(): FilterType {
+  return {};
 }
 
-const initialState: { selectedLocation: LocationType } = {
+const initialState: { selectedLocation: FilterType } = {
   selectedLocation: loadInitialLocation(),
 };
 
@@ -21,7 +20,7 @@ const locationSlice = createSlice({
   name: "location",
   initialState,
   reducers: {
-    setLocation(state, action: PayloadAction<LocationType>) {
+    setLocation(state, action: PayloadAction<FilterType>) {
       state.selectedLocation = action.payload;
       if (typeof window !== "undefined") {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(action.payload));

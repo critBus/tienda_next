@@ -3,7 +3,7 @@ import ProductsSection from "./ProductsSection";
 import PrismaService from "@/service/PrismaService";
 
 export default async function BestSellingProducts() {
-  const products: Product[] = await PrismaService.products.getProducts();
+  const products: Product[] = await PrismaService.products.all();
   return (
     <ProductsSection
       title="Productos más Vendidos"
