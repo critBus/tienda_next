@@ -20,6 +20,8 @@ export interface Product {
   description: string;
   priceBaseDiscount: number | null;
   stock: number;
+  ignoreStock: boolean;
+  published: boolean;
   discountPercentage: number | null;
   freeShipping: boolean;
   categoryId: number;

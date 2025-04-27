@@ -11,10 +11,20 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
+  const [showDialog, setShowDialog] = useState(false); // State for dialog visibility
 
   const { originalPrice } = useProductPrice(product);
 
   const addToCart = () => {
+    console.log(`product.ignoreStock ${product.ignoreStock}`);
+    console.log(`product.stock ${product.stock}`);
+    console.log(`quantity ${quantity}`);
+    console.log(`quantity > product.stock ${quantity > product.stock}`);
+    if (!product.ignoreStock && quantity > product.stock) {
+      console.log("Cantidad excede el stock disponible");
+      setShowDialog(true); // Show dialog if quantity exceeds stock
+      return;
+    }
     // Implementar lógica de carrito aquí
     console.log("Añadir al carrito:", product, quantity);
   };
@@ -157,6 +167,23 @@ export default function ProductCard({ product }: ProductCardProps) {
           className="h-4 w-4"
         />
       </div>
+
+      {/* Dialog */}
+      {showDialog && (
+        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-4 rounded-md shadow-md">
+            <p className="text-red-500 font-bold">
+              La cantidad seleccionada excede el stock disponible.
+            </p>
+            <button
+              onClick={() => setShowDialog(false)}
+              className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md"
+            >
+              Cerrar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
