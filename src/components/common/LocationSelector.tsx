@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setLocation, FilterType } from "@/store/slices/locationSlice";
+import { setLocation, LocationType } from "@/store/slices/locationSlice";
 import availableLocations from "@/data/availableLocations.json";
 import { RootState } from "@/store";
 import Image from "next/image";
@@ -31,7 +31,7 @@ export default function LocationSelector({ showText = true }: Props) {
 
   const [stableLocations] = useState(getStableLocations());
 
-  const handleSelect = (location: FilterType) => {
+  const handleSelect = (location: LocationType) => {
     console.log("Selected location:", location);
     dispatch(setLocation(location));
     setOpen(false);
@@ -136,7 +136,10 @@ export default function LocationSelector({ showText = true }: Props) {
                 <div
                   className="w-[80%] cursor-pointer hover:bg-gray-100 px-2 py-1 rounded flex justify-between"
                   onClick={() => {
-                    handleSelect({ provinceId: prov.id });
+                    handleSelect({
+                      provinceId: prov.id,
+                      provinceName: prov.name,
+                    });
                   }}
                 >
                   {prov.name}
@@ -165,7 +168,9 @@ export default function LocationSelector({ showText = true }: Props) {
                         onClick={() => {
                           handleSelect({
                             provinceId: prov.id,
+                            provinceName: prov.name,
                             municipalityId: mun.id,
+                            municipalityName: mun.name,
                           });
                         }}
                       >
@@ -195,8 +200,11 @@ export default function LocationSelector({ showText = true }: Props) {
                             onClick={() =>
                               handleSelect({
                                 provinceId: prov.id,
+                                provinceName: prov.name,
                                 municipalityId: mun.id,
+                                municipalityName: mun.name,
                                 townId: town.id,
+                                townName: town.name,
                               })
                             }
                           >

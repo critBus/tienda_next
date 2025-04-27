@@ -5,14 +5,22 @@ export interface FilterType {
   municipalityId?: number | null;
   townId?: number | null;
 }
+export interface LocationType {
+  provinceId?: number | null;
+  provinceName?: string | null;
+  municipalityId?: number | null;
+  municipalityName?: string | null;
+  townId?: number | null;
+  townName?: string | null;
+}
 
 const STORAGE_KEY = "selectedLocation";
 
-function loadInitialLocation(): FilterType {
+function loadInitialLocation(): LocationType {
   return {};
 }
 
-const initialState: { selectedLocation: FilterType } = {
+const initialState: { selectedLocation: LocationType } = {
   selectedLocation: loadInitialLocation(),
 };
 
@@ -20,7 +28,7 @@ const locationSlice = createSlice({
   name: "location",
   initialState,
   reducers: {
-    setLocation(state, action: PayloadAction<FilterType>) {
+    setLocation(state, action: PayloadAction<LocationType>) {
       state.selectedLocation = action.payload;
       if (typeof window !== "undefined") {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(action.payload));

@@ -1,9 +1,8 @@
 import { LocationType } from "@/store/slices/locationSlice";
 
 export function getLocationLabel(loc: LocationType) {
-  if (loc.type === "country") return "Todo el país";
-  if (loc.type === "province") return loc.name;
-  if (loc.type === "municipality") return loc.name;
-  if (loc.type === "town") return loc.name;
-  return "";
+  if (loc.townName) return loc.townName;
+  if (loc.municipalityName) return loc.municipalityName;
+  if (loc.provinceName) return loc.provinceName;
+  return "Todo el país";
 }
