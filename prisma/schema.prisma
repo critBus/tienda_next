@@ -42,6 +42,8 @@ model Product {
   priceBaseCurrency  Decimal               @db.Decimal(12, 2)
   priceBaseDiscount  Float?
   stock              Int
+  ignoreStock        Boolean               @default(true)
+  published          Boolean               @default(false)
   image              String
   discountPercentage Float?
   freeShipping       Boolean               @default(false)

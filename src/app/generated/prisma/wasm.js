@@ -138,6 +138,8 @@ exports.Prisma.ProductScalarFieldEnum = {
   priceBaseCurrency: 'priceBaseCurrency',
   priceBaseDiscount: 'priceBaseDiscount',
   stock: 'stock',
+  ignoreStock: 'ignoreStock',
+  published: 'published',
   image: 'image',
   discountPercentage: 'discountPercentage',
   freeShipping: 'freeShipping',

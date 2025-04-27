@@ -4165,6 +4165,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | null
     priceBaseDiscount: number | null
     stock: number | null
+    ignoreStock: boolean | null
+    published: boolean | null
     image: string | null
     discountPercentage: number | null
     freeShipping: boolean | null
@@ -4183,6 +4185,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | null
     priceBaseDiscount: number | null
     stock: number | null
+    ignoreStock: boolean | null
+    published: boolean | null
     image: string | null
     discountPercentage: number | null
     freeShipping: boolean | null
@@ -4201,6 +4205,8 @@ export namespace Prisma {
     priceBaseCurrency: number
     priceBaseDiscount: number
     stock: number
+    ignoreStock: number
+    published: number
     image: number
     discountPercentage: number
     freeShipping: number
@@ -4241,6 +4247,8 @@ export namespace Prisma {
     priceBaseCurrency?: true
     priceBaseDiscount?: true
     stock?: true
+    ignoreStock?: true
+    published?: true
     image?: true
     discountPercentage?: true
     freeShipping?: true
@@ -4259,6 +4267,8 @@ export namespace Prisma {
     priceBaseCurrency?: true
     priceBaseDiscount?: true
     stock?: true
+    ignoreStock?: true
+    published?: true
     image?: true
     discountPercentage?: true
     freeShipping?: true
@@ -4277,6 +4287,8 @@ export namespace Prisma {
     priceBaseCurrency?: true
     priceBaseDiscount?: true
     stock?: true
+    ignoreStock?: true
+    published?: true
     image?: true
     discountPercentage?: true
     freeShipping?: true
@@ -4382,6 +4394,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal
     priceBaseDiscount: number | null
     stock: number
+    ignoreStock: boolean
+    published: boolean
     image: string
     discountPercentage: number | null
     freeShipping: boolean
@@ -4419,6 +4433,8 @@ export namespace Prisma {
     priceBaseCurrency?: boolean
     priceBaseDiscount?: boolean
     stock?: boolean
+    ignoreStock?: boolean
+    published?: boolean
     image?: boolean
     discountPercentage?: boolean
     freeShipping?: boolean
@@ -4443,6 +4459,8 @@ export namespace Prisma {
     priceBaseCurrency?: boolean
     priceBaseDiscount?: boolean
     stock?: boolean
+    ignoreStock?: boolean
+    published?: boolean
     image?: boolean
     discountPercentage?: boolean
     freeShipping?: boolean
@@ -4463,6 +4481,8 @@ export namespace Prisma {
     priceBaseCurrency?: boolean
     priceBaseDiscount?: boolean
     stock?: boolean
+    ignoreStock?: boolean
+    published?: boolean
     image?: boolean
     discountPercentage?: boolean
     freeShipping?: boolean
@@ -4483,6 +4503,8 @@ export namespace Prisma {
     priceBaseCurrency?: boolean
     priceBaseDiscount?: boolean
     stock?: boolean
+    ignoreStock?: boolean
+    published?: boolean
     image?: boolean
     discountPercentage?: boolean
     freeShipping?: boolean
@@ -4494,7 +4516,7 @@ export namespace Prisma {
     brand?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "priceBaseCurrency" | "priceBaseDiscount" | "stock" | "image" | "discountPercentage" | "freeShipping" | "categoryId" | "companyId" | "createdAt" | "updatedAt" | "itsNew" | "brand", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "priceBaseCurrency" | "priceBaseDiscount" | "stock" | "ignoreStock" | "published" | "image" | "discountPercentage" | "freeShipping" | "categoryId" | "companyId" | "createdAt" | "updatedAt" | "itsNew" | "brand", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     company?: boolean | CompanyDefaultArgs<ExtArgs>
@@ -4528,6 +4550,8 @@ export namespace Prisma {
       priceBaseCurrency: Prisma.Decimal
       priceBaseDiscount: number | null
       stock: number
+      ignoreStock: boolean
+      published: boolean
       image: string
       discountPercentage: number | null
       freeShipping: boolean
@@ -4971,6 +4995,8 @@ export namespace Prisma {
     readonly priceBaseCurrency: FieldRef<"Product", 'Decimal'>
     readonly priceBaseDiscount: FieldRef<"Product", 'Float'>
     readonly stock: FieldRef<"Product", 'Int'>
+    readonly ignoreStock: FieldRef<"Product", 'Boolean'>
+    readonly published: FieldRef<"Product", 'Boolean'>
     readonly image: FieldRef<"Product", 'String'>
     readonly discountPercentage: FieldRef<"Product", 'Float'>
     readonly freeShipping: FieldRef<"Product", 'Boolean'>
@@ -13355,6 +13381,8 @@ export namespace Prisma {
     priceBaseCurrency: 'priceBaseCurrency',
     priceBaseDiscount: 'priceBaseDiscount',
     stock: 'stock',
+    ignoreStock: 'ignoreStock',
+    published: 'published',
     image: 'image',
     discountPercentage: 'discountPercentage',
     freeShipping: 'freeShipping',
@@ -13664,6 +13692,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: FloatNullableFilter<"Product"> | number | null
     stock?: IntFilter<"Product"> | number
+    ignoreStock?: BoolFilter<"Product"> | boolean
+    published?: BoolFilter<"Product"> | boolean
     image?: StringFilter<"Product"> | string
     discountPercentage?: FloatNullableFilter<"Product"> | number | null
     freeShipping?: BoolFilter<"Product"> | boolean
@@ -13687,6 +13717,8 @@ export namespace Prisma {
     priceBaseCurrency?: SortOrder
     priceBaseDiscount?: SortOrderInput | SortOrder
     stock?: SortOrder
+    ignoreStock?: SortOrder
+    published?: SortOrder
     image?: SortOrder
     discountPercentage?: SortOrderInput | SortOrder
     freeShipping?: SortOrder
@@ -13713,6 +13745,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: FloatNullableFilter<"Product"> | number | null
     stock?: IntFilter<"Product"> | number
+    ignoreStock?: BoolFilter<"Product"> | boolean
+    published?: BoolFilter<"Product"> | boolean
     image?: StringFilter<"Product"> | string
     discountPercentage?: FloatNullableFilter<"Product"> | number | null
     freeShipping?: BoolFilter<"Product"> | boolean
@@ -13736,6 +13770,8 @@ export namespace Prisma {
     priceBaseCurrency?: SortOrder
     priceBaseDiscount?: SortOrderInput | SortOrder
     stock?: SortOrder
+    ignoreStock?: SortOrder
+    published?: SortOrder
     image?: SortOrder
     discountPercentage?: SortOrderInput | SortOrder
     freeShipping?: SortOrder
@@ -13762,6 +13798,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: FloatNullableWithAggregatesFilter<"Product"> | number | null
     stock?: IntWithAggregatesFilter<"Product"> | number
+    ignoreStock?: BoolWithAggregatesFilter<"Product"> | boolean
+    published?: BoolWithAggregatesFilter<"Product"> | boolean
     image?: StringWithAggregatesFilter<"Product"> | string
     discountPercentage?: FloatNullableWithAggregatesFilter<"Product"> | number | null
     freeShipping?: BoolWithAggregatesFilter<"Product"> | boolean
@@ -14281,6 +14319,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -14302,6 +14342,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -14322,6 +14364,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -14343,6 +14387,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -14364,6 +14410,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -14381,6 +14429,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -14397,6 +14447,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -15018,6 +15070,8 @@ export namespace Prisma {
     priceBaseCurrency?: SortOrder
     priceBaseDiscount?: SortOrder
     stock?: SortOrder
+    ignoreStock?: SortOrder
+    published?: SortOrder
     image?: SortOrder
     discountPercentage?: SortOrder
     freeShipping?: SortOrder
@@ -15046,6 +15100,8 @@ export namespace Prisma {
     priceBaseCurrency?: SortOrder
     priceBaseDiscount?: SortOrder
     stock?: SortOrder
+    ignoreStock?: SortOrder
+    published?: SortOrder
     image?: SortOrder
     discountPercentage?: SortOrder
     freeShipping?: SortOrder
@@ -15064,6 +15120,8 @@ export namespace Prisma {
     priceBaseCurrency?: SortOrder
     priceBaseDiscount?: SortOrder
     stock?: SortOrder
+    ignoreStock?: SortOrder
+    published?: SortOrder
     image?: SortOrder
     discountPercentage?: SortOrder
     freeShipping?: SortOrder
@@ -16417,6 +16475,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -16437,6 +16497,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -16486,6 +16548,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: FloatNullableFilter<"Product"> | number | null
     stock?: IntFilter<"Product"> | number
+    ignoreStock?: BoolFilter<"Product"> | boolean
+    published?: BoolFilter<"Product"> | boolean
     image?: StringFilter<"Product"> | string
     discountPercentage?: FloatNullableFilter<"Product"> | number | null
     freeShipping?: BoolFilter<"Product"> | boolean
@@ -16726,6 +16790,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -16746,6 +16812,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -16781,6 +16849,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -16801,6 +16871,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -16820,6 +16892,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -16840,6 +16914,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -16885,6 +16961,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -16905,6 +16983,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -16962,6 +17042,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -16982,6 +17064,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -17326,6 +17410,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -17346,6 +17432,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -17431,6 +17519,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -17451,6 +17541,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -17574,6 +17666,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -17590,6 +17684,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -17610,6 +17706,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -17630,6 +17728,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -17736,6 +17836,8 @@ export namespace Prisma {
     priceBaseCurrency: Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: number | null
     stock: number
+    ignoreStock?: boolean
+    published?: boolean
     image: string
     discountPercentage?: number | null
     freeShipping?: boolean
@@ -17752,6 +17854,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -17772,6 +17876,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
@@ -17792,6 +17898,8 @@ export namespace Prisma {
     priceBaseCurrency?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     priceBaseDiscount?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
+    ignoreStock?: BoolFieldUpdateOperationsInput | boolean
+    published?: BoolFieldUpdateOperationsInput | boolean
     image?: StringFieldUpdateOperationsInput | string
     discountPercentage?: NullableFloatFieldUpdateOperationsInput | number | null
     freeShipping?: BoolFieldUpdateOperationsInput | boolean
