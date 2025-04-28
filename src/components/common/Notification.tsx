@@ -31,7 +31,7 @@ export default function Notification({
 
   return (
     <div
-      className={`fixed top-4 right-4 z-50 flex items-center p-4 mb-4 border-t-4 rounded-lg shadow-lg ${typeStyles[type]}`}
+      className={`flex items-center p-4 mb-4 border-t-4 rounded-lg shadow-lg ${typeStyles[type]}`}
       role="alert"
     >
       <svg
