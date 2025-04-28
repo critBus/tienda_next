@@ -24,13 +24,13 @@ export default function ProductCard({ product }: ProductCardProps) {
     console.log(`quantity ${quantity}`);
     console.log(`quantity > product.stock ${quantity > product.stock}`);
     if (!product.ignoreStock && quantity > product.stock) {
-      dispatch(
-        addNotification({
-          message: "Cantidad excede el stock disponible.",
-          type: "error",
-          duration: 3000,
-        })
-      );
+      // dispatch(
+      //   addNotification({
+      //     message: "Cantidad excede el stock disponible.",
+      //     type: "error",
+      //     duration: 3000,
+      //   })
+      // );
       setShowDialog(true); // Show dialog if quantity exceeds stock
       return;
     }
