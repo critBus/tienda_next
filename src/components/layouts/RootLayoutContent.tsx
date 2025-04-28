@@ -5,6 +5,7 @@ import CopyrightSection from "@/components/CopyrightSection";
 import FooterSection from "@/components/FooterSection";
 import HeaderComponent from "@/components/HeaderComponent";
 import NavigationMenu from "@/components/NavigationMenu";
+import NotificationManager from "../common/NotificationManager";
 export default function RootLayoutContent({
   children,
 }: {
@@ -16,6 +17,7 @@ export default function RootLayoutContent({
     <>
       <HeaderComponent />
       <NavigationMenu />
+      <NotificationManager />
       {children}
       <FooterSection />
       <CopyrightSection />

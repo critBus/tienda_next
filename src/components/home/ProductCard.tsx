@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import Image from "next/image";
 import { Product } from "@/types";
 import useProductPrice from "@/hooks/useProductPrice";
+import { addNotification } from "@/store/slices/notificationSlice";
 
 interface ProductCardProps {
   product: Product;
@@ -12,6 +14,7 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
   const [showDialog, setShowDialog] = useState(false); // State for dialog visibility
+  const dispatch = useDispatch();
 
   const { originalPrice } = useProductPrice(product);
 
@@ -21,10 +24,23 @@ export default function ProductCard({ product }: ProductCardProps) {
     console.log(`quantity ${quantity}`);
     console.log(`quantity > product.stock ${quantity > product.stock}`);
     if (!product.ignoreStock && quantity > product.stock) {
-      console.log("Cantidad excede el stock disponible");
+      dispatch(
+        addNotification({
+          message: "Cantidad excede el stock disponible.",
+          type: "error",
+          duration: 3000,
+        })
+      );
       setShowDialog(true); // Show dialog if quantity exceeds stock
       return;
     }
+    dispatch(
+      addNotification({
+        message: "Producto añadido al carrito.",
+        type: "success",
+        duration: 3000,
+      })
+    );
     // Implementar lógica de carrito aquí
     console.log("Añadir al carrito:", product, quantity);
   };
