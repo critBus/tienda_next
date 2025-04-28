@@ -14,7 +14,7 @@ export default function Notification({
   duration = 3000,
 }: NotificationProps) {
   const [visible, setVisible] = useState(true);
-  //   console.log("Notification component rendered");
+
   useEffect(() => {
     const timer = setTimeout(() => setVisible(false), duration);
     return () => clearTimeout(timer);
@@ -31,9 +31,8 @@ export default function Notification({
 
   return (
     <div
-      className={`flex items-center p-4 mb-4 border-t-4 rounded-lg shadow-lg ${typeStyles[type]}`}
+      className={`fixed top-4 right-4 z-50 flex items-center p-4 mb-4 border-t-4 rounded-lg shadow-lg ${typeStyles[type]}`}
       role="alert"
-      style={{ position: "fixed", top: "1rem", right: "1rem", zIndex: 1000 }}
     >
       <svg
         className="shrink-0 w-4 h-4"
