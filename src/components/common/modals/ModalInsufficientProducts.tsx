@@ -67,10 +67,7 @@ const ModalInsufficientProducts = ({
                         className="text-[12px] h-full grow roboto-bold 
                 border-[0.5px] border-[#908B8B] rounded-md  flex items-center 
                 justify-center mt-6 hover:scale-110 transition-all hover:cursor-pointer"
-                        onClick={() => {
-                          yesAdd();
-                          setIsOpen(false);
-                        }}
+                        onClick={() => setIsOpen(false)}
                       >
                         Cancelar
                       </button>
@@ -80,7 +77,10 @@ const ModalInsufficientProducts = ({
                   flex items-center justify-center mt-6
                   hover:scale-110 transition-all hover:cursor-pointer
                   "
-                        onClick={() => setIsOpen(false)}
+                        onClick={() => {
+                          yesAdd();
+                          setIsOpen(false);
+                        }}
                       >
                         Sí, añadir
                       </button>

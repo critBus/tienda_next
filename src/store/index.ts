@@ -11,6 +11,13 @@ export const store = configureStore({
     notification: notificationSlice,
     cart: cartSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredPaths: ["cart.items"], // Ignore paths with non-serializable values
+        ignoredActions: ["cart/addToCart", "cart/hydrateCart"], // Ignore specific actions
+      },
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

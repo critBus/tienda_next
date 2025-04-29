@@ -22,7 +22,8 @@
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
     "redux": "^5.0.1",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "superjson": "^2.2.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
