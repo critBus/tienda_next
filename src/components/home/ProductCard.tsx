@@ -7,7 +7,8 @@ import { Product } from "@/types";
 import useProductPrice from "@/hooks/useProductPrice";
 import { addNotification } from "@/store/slices/notificationSlice";
 import { addToCart as addToCartAction } from "@/store/slices/cartSlice";
-import ModalInsufficientProducts from "../common/ModalInsufficientProducts";
+import ModalInsufficientProducts from "../common/modals/ModalInsufficientProducts";
+import ModalNoProductsLeft from "../common/modals/ModalNoProductsLeft";
 
 interface ProductCardProps {
   product: Product;
@@ -15,20 +16,27 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
-  const [showDialog, setShowDialog] = useState(false); // State for dialog visibility
+  const [showDialogInsufficient, setShowDialogInsufficient] = useState(false); // State for dialog visibility
+  const [showDialogNotLeft, setShowDialogNotLeft] = useState(false); // State for dialog visibility
   const dispatch = useDispatch();
 
   const { originalPrice } = useProductPrice(product);
-
-  const addToCart = () => {
+  const tryAddingToCart = () => {
     console.log(`product.ignoreStock ${product.ignoreStock}`);
     console.log(`product.stock ${product.stock}`);
     console.log(`quantity ${quantity}`);
     console.log(`quantity > product.stock ${quantity > product.stock}`);
     if (!product.ignoreStock && quantity > product.stock) {
-      setShowDialog(true); // Show dialog if quantity exceeds stock
+      if (product.stock == 0) {
+        setShowDialogNotLeft(true);
+        return;
+      }
+      setShowDialogInsufficient(true); // Show dialog if quantity exceeds stock
       return;
     }
+    addToCart();
+  };
+  const addToCart = () => {
     dispatch(
       addToCartAction({
         product,
@@ -114,7 +122,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               </button>
             </div>
             <button
-              onClick={addToCart}
+              onClick={tryAddingToCart}
               className="bg-[#FCD26D] flex flex-row gap-2 items-center justify-center bg-[#F6F6F6] border-2 border-[#E5EAF0] rounded-md px-2 py-1"
             >
               <Image
@@ -186,8 +194,14 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Dialog showDialog*/}
       <ModalInsufficientProducts
-        isOpen={showDialog}
-        setIsOpen={setShowDialog}
+        isOpen={showDialogInsufficient}
+        setIsOpen={setShowDialogInsufficient}
+        stock={product.stock}
+        yesAdd={addToCart}
+      />
+      <ModalNoProductsLeft
+        isOpen={showDialogNotLeft}
+        setIsOpen={setShowDialogNotLeft}
       />
     </div>
   );

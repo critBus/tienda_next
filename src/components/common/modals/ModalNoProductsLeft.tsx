@@ -4,7 +4,7 @@ interface ModalProps {
   isOpen: boolean; // Indica si el modal está abierto o cerrado
   setIsOpen: (isOpen: boolean) => void; // Función para cambiar el estado del modal
 }
-const ModalInsufficientProducts = ({ isOpen, setIsOpen }: ModalProps) => {
+const ModalNoProductsLeft = ({ isOpen, setIsOpen }: ModalProps) => {
   return (
     <div>
       {isOpen && (
@@ -50,8 +50,7 @@ const ModalInsufficientProducts = ({ isOpen, setIsOpen }: ModalProps) => {
                       Cantidad de productos insuficientes
                     </span>
                     <span className="roboto mx-6 mt-2 text-[#7A7474] text-[12px]">
-                      Solo quedan 4 unidades del producto que está solicitando
-                      ¿Desea añadir al carrito las 4 unidades que quedan?
+                      Ya no quedan productos de este tipo, por favor elija otros
                     </span>
                     <div className="flex flex-wrap flex-row gap-4 h-[48px]">
                       {/* px-6 py-2 */}
@@ -62,16 +61,6 @@ const ModalInsufficientProducts = ({ isOpen, setIsOpen }: ModalProps) => {
                         onClick={() => setIsOpen(false)}
                       >
                         Cancelar
-                      </button>
-                      <button
-                        className="text-[12px] text-white bg-[#4F6A8E] h-full grow 
-                  roboto-bold border-[0.5px] border-[#908B8B] rounded-md  
-                  flex items-center justify-center mt-6
-                  hover:scale-110 transition-all hover:cursor-pointer
-                  "
-                        onClick={() => setIsOpen(false)}
-                      >
-                        Sí, añadir
                       </button>
                     </div>
                   </div>
@@ -85,4 +74,4 @@ const ModalInsufficientProducts = ({ isOpen, setIsOpen }: ModalProps) => {
   );
 };
 
-export default ModalInsufficientProducts;
+export default ModalNoProductsLeft;
