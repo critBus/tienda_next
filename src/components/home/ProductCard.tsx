@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Product } from "@/types";
 import useProductPrice from "@/hooks/useProductPrice";
 import { addNotification } from "@/store/slices/notificationSlice";
+import { addToCart as addToCartAction } from "@/store/slices/cartSlice";
 
 interface ProductCardProps {
   product: Product;
@@ -24,16 +25,15 @@ export default function ProductCard({ product }: ProductCardProps) {
     console.log(`quantity ${quantity}`);
     console.log(`quantity > product.stock ${quantity > product.stock}`);
     if (!product.ignoreStock && quantity > product.stock) {
-      // dispatch(
-      //   addNotification({
-      //     message: "Cantidad excede el stock disponible.",
-      //     type: "error",
-      //     duration: 3000,
-      //   })
-      // );
       setShowDialog(true); // Show dialog if quantity exceeds stock
       return;
     }
+    dispatch(
+      addToCartAction({
+        product,
+        quantity,
+      })
+    );
     dispatch(
       addNotification({
         message: "Producto añadido al carrito.",
@@ -41,7 +41,6 @@ export default function ProductCard({ product }: ProductCardProps) {
         duration: 3000,
       })
     );
-    // Implementar lógica de carrito aquí
     console.log("Añadir al carrito:", product, quantity);
   };
 
