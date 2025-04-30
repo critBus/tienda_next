@@ -1,24 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import Image from "next/image";
 import CurrencySelector from "./CurrencySelector";
 import LocationSelector from "@/components/common/LocationSelector";
 import { RootState } from "@/store";
 import { getLocationLabel } from "@/utils/locationLabel";
-import { hydrateLocation } from "@/store/slices/locationSlice";
 
 export default function HeaderComponent() {
   const [cartCount] = useState(3);
   const selectedLocation = useSelector(
     (state: RootState) => state.location.selectedLocation
   );
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(hydrateLocation());
-  }, [dispatch]);
 
   return (
     <>
