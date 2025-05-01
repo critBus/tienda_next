@@ -117,24 +117,24 @@ export default function ProductCard({ product }: ProductCardProps) {
               <div className="w-4 bg-[#CFCECE] border-[#CFCECE] border-t-1 border-b-1 h-[60%] flex justify-center items-center">
                 <span className="text-[10px] font-bold">{quantity}</span>
               </div>
-              <button
-                onClick={() => setQuantity(quantity + 1)}
-                className="border-2 border-black rounded-md px-2 py-1 flex items-center justify-center"
-                disabled={isAddDisabled}
-                title={
-                  isAddDisabled
-                    ? `No puedes agregar más de ${stockInfo.remainingStock} unidades.`
-                    : ""
-                }
+              <Tooltip
+                text="No se puede agregar mas"
+                showTooltip={isAddDisabled}
               >
-                <Image
-                  src="/assets/products/icons/add.svg"
-                  alt="Más"
-                  width={16}
-                  height={16}
-                  className="h-4 w-4"
-                />
-              </button>
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="border-2 border-black rounded-md px-2 py-1 flex items-center justify-center"
+                  disabled={isAddDisabled}
+                >
+                  <Image
+                    src="/assets/products/icons/add.svg"
+                    alt="Más"
+                    width={16}
+                    height={16}
+                    className="h-4 w-4"
+                  />
+                </button>
+              </Tooltip>
             </div>
             <Tooltip text="No se puede agregar mas" showTooltip={isAddDisabled}>
               <button
