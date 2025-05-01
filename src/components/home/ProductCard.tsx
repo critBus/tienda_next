@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import { Product } from "@/types";
 import useProductPrice from "@/hooks/useProductPrice";
 import { addNotification } from "@/store/slices/notificationSlice";
 import { addToCart as addToCartAction } from "@/store/slices/cartSlice";
+import { selectProductStockInfo } from "@/store/selectors/productStockSelectors";
 import ModalInsufficientProducts from "../common/modals/ModalInsufficientProducts";
 import ModalNoProductsLeft from "../common/modals/ModalNoProductsLeft";
 
@@ -21,6 +22,13 @@ export default function ProductCard({ product }: ProductCardProps) {
   const dispatch = useDispatch();
 
   const { originalPrice } = useProductPrice(product);
+  const stockInfo = useSelector((state: any) =>
+    selectProductStockInfo(state.cart, product.id, product.stock)
+  );
+
+  const isAddDisabled =
+    !stockInfo.isAvailable || quantity > stockInfo.remainingStock;
+
   const tryAddingToCart = () => {
     console.log(`product.ignoreStock ${product.ignoreStock}`);
     console.log(`product.stock ${product.stock}`);
@@ -111,6 +119,12 @@ export default function ProductCard({ product }: ProductCardProps) {
               <button
                 onClick={() => setQuantity(quantity + 1)}
                 className="border-2 border-black rounded-md px-2 py-1 flex items-center justify-center"
+                disabled={isAddDisabled}
+                title={
+                  isAddDisabled
+                    ? `No puedes agregar más de ${stockInfo.remainingStock} unidades.`
+                    : ""
+                }
               >
                 <Image
                   src="/assets/products/icons/add.svg"
@@ -123,7 +137,15 @@ export default function ProductCard({ product }: ProductCardProps) {
             </div>
             <button
               onClick={tryAddingToCart}
-              className="bg-[#FCD26D] flex flex-row gap-2 items-center justify-center bg-[#F6F6F6] border-2 border-[#E5EAF0] rounded-md px-2 py-1"
+              className={`bg-[#FCD26D] flex flex-row gap-2 items-center justify-center bg-[#F6F6F6] border-2 border-[#E5EAF0] rounded-md px-2 py-1 ${
+                isAddDisabled ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={isAddDisabled}
+              title={
+                isAddDisabled
+                  ? `No puedes agregar más de ${stockInfo.remainingStock} unidades.`
+                  : ""
+              }
             >
               <Image
                 src="/assets/products/icons/shopping-cart.svg"
