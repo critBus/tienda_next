@@ -136,7 +136,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 />
               </button>
             </div>
-            <Tooltip text="No se puede agregar mas" cssClass="">
+            <Tooltip text="No se puede agregar mas" showTooltip={isAddDisabled}>
               <button
                 onClick={tryAddingToCart}
                 className={`  flex flex-row gap-2 items-center justify-center bg-[#FCD26D]  border-2 border-[#E5EAF0] rounded-md px-2 py-1 ${
