@@ -10,6 +10,7 @@ import { addToCart as addToCartAction } from "@/store/slices/cartSlice";
 import { selectProductStockInfo } from "@/store/selectors/productStockSelectors";
 import ModalInsufficientProducts from "../common/modals/ModalInsufficientProducts";
 import ModalNoProductsLeft from "../common/modals/ModalNoProductsLeft";
+import Tooltip from "../common/Tooltip";
 
 interface ProductCardProps {
   product: Product;
@@ -135,27 +136,29 @@ export default function ProductCard({ product }: ProductCardProps) {
                 />
               </button>
             </div>
-            <button
-              onClick={tryAddingToCart}
-              className={`bg-[#FCD26D] flex flex-row gap-2 items-center justify-center bg-[#F6F6F6] border-2 border-[#E5EAF0] rounded-md px-2 py-1 ${
-                isAddDisabled ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-              disabled={isAddDisabled}
-              title={
-                isAddDisabled
-                  ? `No puedes agregar más de ${stockInfo.remainingStock} unidades.`
-                  : ""
-              }
-            >
-              <Image
-                src="/assets/products/icons/shopping-cart.svg"
-                alt="Carrito"
-                width={16}
-                height={16}
-                className="h-4 w-4"
-              />
-              <span className="text-[#624602]">Añadir</span>
-            </button>
+            <Tooltip text="No se puede agregar mas" cssClass="">
+              <button
+                onClick={tryAddingToCart}
+                className={`  flex flex-row gap-2 items-center justify-center bg-[#FCD26D]  border-2 border-[#E5EAF0] rounded-md px-2 py-1 ${
+                  isAddDisabled ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={isAddDisabled}
+                // title={
+                //   isAddDisabled
+                //     ? `No puedes agregar más de ${stockInfo.remainingStock} unidades.`
+                //     : ""
+                // }
+              >
+                <Image
+                  src="/assets/products/icons/shopping-cart.svg"
+                  alt="Carrito"
+                  width={16}
+                  height={16}
+                  className="h-4 w-4"
+                />
+                <span className="text-[#624602]">Añadir</span>
+              </button>
+            </Tooltip>
           </div>
         </div>
       </div>
