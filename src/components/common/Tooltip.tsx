@@ -5,22 +5,23 @@ const Tooltip = ({
   text,
   cssClass = "",
   showTooltip = true,
+  forceVisible = false,
 }: {
   children: React.ReactNode;
   text: string;
   cssClass?: string;
   showTooltip?: boolean;
+  forceVisible?: boolean;
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleClick = () => {
-    console.log("Tooltip clicked!");
+  if (forceVisible) {
     setIsVisible(true);
     setTimeout(() => setIsVisible(false), 3000); // Tooltip visible for 3 seconds
-  };
+  }
 
   return (
-    <div className={`relative group ${cssClass}`} onClick={handleClick}>
+    <div className={`relative group ${cssClass}`}>
       {children}
       {isVisible && (
         <div className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 bg-gray-800 text-white text-xs rounded py-1 px-2 z-10 whitespace-nowrap">
