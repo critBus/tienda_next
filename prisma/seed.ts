@@ -368,6 +368,11 @@ export async function main() {
     }),
     prisma.productAvailability.create({
       data: {
+        productId: products.find((p) => p.name === "Cerveza Premium")!.id,
+      },
+    }),
+    prisma.productAvailability.create({
+      data: {
         productId: products.find((p) => p.name === "Pasta Barbacoa")!.id,
         municipalityId: municipioPlaza.id,
       },

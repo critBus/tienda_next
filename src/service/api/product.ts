@@ -48,3 +48,28 @@ export const getProducts = async (
     return Promise.reject(error);
   }
 };
+
+export const recommended = async (
+  location?: FilterType
+): Promise<Product[]> => {
+  try {
+    const params = location
+      ? {
+          provinceId: location.provinceId,
+          municipalityId: location.municipalityId,
+          townId: location.townId,
+        }
+      : {};
+
+    const response = await api.get(`${URL}/recommended`, { params });
+
+    const data: ApiResponse<Product[]> = response.data;
+    if (data.status !== SUCCES) {
+      return Promise.reject(data);
+    }
+    return data.data;
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(error);
+  }
+};

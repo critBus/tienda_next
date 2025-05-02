@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getProducts } from "@/service/api/product";
+
 import ProductsSection from "./ProductsSection";
 import { Product } from "@/types";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import ApiService from "@/service/ApiService";
 
 export default function RecommendedProducts() {
   const selectedLocation = useSelector(
@@ -20,9 +21,9 @@ export default function RecommendedProducts() {
     async function fetchProducts() {
       try {
         setLoading(true);
-        const products = await getProducts(selectedLocation);
+        const products = await ApiService.product.recommended(selectedLocation);
         setRecommendedProducts(products);
-      } catch (err) {
+      } catch {
         setError("Error al cargar los productos recomendados.");
       } finally {
         setLoading(false);
