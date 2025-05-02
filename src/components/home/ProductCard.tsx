@@ -171,17 +171,33 @@ export default function ProductCard({ product }: ProductCardProps) {
                   className={` border-2   rounded-md px-2 py-1 flex items-center justify-center
                      ${
                        isAddDisabled
-                         ? "opacity-50 cursor-not-allowed  border-[#9e9d9b]"
+                         ? "cursor-not-allowed  border-[#9e9d9b]"
                          : "hover:scale-110 border-black"
                      }`}
                 >
-                  <Image
-                    src="/assets/products/icons/add.svg"
-                    alt="Más"
-                    width={16}
-                    height={16}
+                  <svg
+                    width="15"
+                    height="14"
+                    viewBox="0 0 15 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                     className="h-4 w-4"
-                  />
+                  >
+                    <path
+                      d="M4 7L11 7"
+                      stroke={isAddDisabled ? "#9e9d9b" : "#000000"}
+                      strokeWidth="1.3125"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M7.5 10.5L7.5 3.5"
+                      stroke={isAddDisabled ? "#9e9d9b" : "#000000"}
+                      strokeWidth="1.3125"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </button>
               </Tooltip>
             </div>
@@ -213,8 +229,8 @@ export default function ProductCard({ product }: ProductCardProps) {
                   alt="Carrito"
                   width={16}
                   height={16}
-                  className="h-4 w-4"
                 />
+
                 <span className="text-[#624602]">Añadir</span>
               </button>
             </Tooltip>
