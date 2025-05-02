@@ -24,7 +24,11 @@ model Currency {
   Price     Price[]
   symbol    String
 
-  @@index([name, baseRate, isDefault, isBase])
+  @@index([name, isDefault])
+  @@index([name, isBase])
+  @@index([isDefault])
+  @@index([isBase])
+  @@index([symbol])
 }
 
 model Company {
@@ -59,7 +63,23 @@ model Product {
   availableLocations ProductAvailability[]
   ProductImage       ProductImage[]
 
-  @@index([categoryId, companyId, name, priceBaseCurrency, priceBaseDiscount, stock])
+  viewCount           Int   @default(0)
+  purchaseCount       Int   @default(0)
+  recommendationScore Float @default(0.0)
+
+  @@index([name])
+  @@index([priceBaseCurrency])
+  @@index([priceBaseDiscount])
+  @@index([stock])
+  @@index([ignoreStock])
+  @@index([published])
+  @@index([discountPercentage])
+  @@index([freeShipping])
+  @@index([categoryId])
+  @@index([companyId])
+  @@index([createdAt])
+  @@index([brand])
+  @@index([recommendationScore])
 }
 
 model ProductImage {
@@ -68,6 +88,9 @@ model ProductImage {
   cover     Boolean @default(false)
   image     String
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId, cover])
+  @@index([cover])
 }
 
 model Category {
@@ -96,7 +119,12 @@ model Price {
 
   // Índice único para asegurar que solo hay un precio por producto y moneda
   @@unique([productId, currencyId])
-  @@index([productId, currencyId, value, isFixed])
+  @@index([productId, isFixed])
+  @@index([productId, currencyId, value])
+  @@index([currencyId, value])
+  @@index([value])
+  @@index([isFixed])
+  @@index([updatedAt])
 }
 
 model Province {
@@ -120,6 +148,7 @@ model Municipality {
 
   @@unique([name, provinceId]) // Un municipio es único dentro de una provincia
   @@index([name, provinceId])
+  @@index([provinceId])
 }
 
 model Town {
@@ -132,6 +161,7 @@ model Town {
 
   @@unique([name, municipalityId]) // Un pueblo es único dentro de un municipio
   @@index([name, municipalityId])
+  @@index([municipalityId])
 }
 
 // Modelo de Unión para indicar dónde está disponible un producto
@@ -155,5 +185,29 @@ model ProductAvailability {
   // Índice para asegurar que un producto no tenga múltiples entradas *exactamente* iguales
   // (ej. dos veces disponible en la misma provincia). Podrías necesitar refinar esto.
   @@unique([productId, provinceId, municipalityId, townId])
-  @@index([productId, provinceId, municipalityId, townId])
+  @@index([productId])
+  @@index([provinceId, municipalityId, townId])
+  @@index([municipalityId, townId])
+  @@index([townId])
+  @@index([createdAt])
 }
+
+// model Order {
+//   id        Int         @id @default(autoincrement())
+//   userId    Int // Relación con un modelo User (ajusta según tu esquema)
+//   createdAt DateTime    @default(now())
+//   items     OrderItem[]
+
+//   @@index([userId, createdAt])
+// }
+
+// model OrderItem {
+//   id        Int     @id @default(autoincrement())
+//   orderId   Int
+//   productId Int
+//   quantity  Int
+//   order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+//   product   Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+//   @@index([orderId, productId, quantity])
+// }

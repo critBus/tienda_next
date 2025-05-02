@@ -124,8 +124,6 @@ export async function main() {
 
   // --- Crear Productos ---
   console.log("Creando productos...");
-  // Usaremos una variable temporal para almacenar productos antes de Promise.all
-  // para poder referenciarlos fácilmente al crear ProductAvailability
   const productData = [
     // Producto 1: Disponible solo en La Habana (Provincia)
     {
@@ -143,6 +141,8 @@ export async function main() {
       categoryId: categories.find((c) => c.name === "Bebidas")!.id,
       companyId: companies[0].id,
       brand: "Marca1",
+      viewCount: 100,
+      purchaseCount: 20,
       ProductImage: [
         {
           cover: true,
@@ -174,6 +174,8 @@ export async function main() {
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
       companyId: companies[1].id,
       brand: "Marca2",
+      viewCount: 50,
+      purchaseCount: 10,
       ProductImage: [
         {
           cover: true,
@@ -199,28 +201,30 @@ export async function main() {
       stock: 100,
       ignoreStock: false,
       itsNew: false,
-      image: "/assets/products/img/especias_refinidas.png",
+      image: "/assets/products/img/especias_refinadas.png",
       discountPercentage: null,
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
       companyId: companies[1].id,
       brand: "Marca1",
+      viewCount: 80,
+      purchaseCount: 15,
       ProductImage: [
         {
           cover: true,
-          image: "/assets/products/img/especias_refinidas.png",
+          image: "/assets/products/img/especias_refinadas.png",
         },
         {
           cover: false,
-          image: "/assets/products/img/especias_refinidas.png",
+          image: "/assets/products/img/especias_refinadas.png",
         },
         {
           cover: false,
-          image: "/assets/products/img/especias_refinidas.png",
+          image: "/assets/products/img/especias_refinadas.png",
         },
       ],
     },
-    // Producto 4: Disponible a nivel nacional (sin registro en ProductAvailability)
+    // Producto 4: Disponible a nivel nacional
     {
       name: "Masa para Pizza",
       description: "Masa fresca para pizza artesanal",
@@ -235,6 +239,8 @@ export async function main() {
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
       companyId: companies[2].id,
+      viewCount: 120,
+      purchaseCount: 30,
       ProductImage: [
         {
           cover: true,
@@ -250,7 +256,7 @@ export async function main() {
         },
       ],
     },
-    // Producto 5: Disponible en Pinar del Río (Provincia) y en el pueblo Centro Histórico (Habana Vieja)
+    // Producto 5: Disponible en Pinar del Río y Centro Histórico
     {
       name: "Refresco Nacional",
       description: "Refresco sabor cola",
@@ -260,11 +266,13 @@ export async function main() {
       ignoreStock: false,
       published: true,
       itsNew: true,
-      image: "/assets/products/img/pomos-de-agua.png", // Necesitarás esta imagen
+      image: "/assets/products/img/pomos-de-agua.png",
       discountPercentage: null,
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Bebidas")!.id,
       companyId: companies[0].id,
+      viewCount: 150,
+      purchaseCount: 40,
       ProductImage: [
         {
           cover: true,
@@ -286,7 +294,12 @@ export async function main() {
   for (const data of productData) {
     const images = data.ProductImage;
 
-    // Crear el producto
+    // Calcular recommendationScore
+    const viewCount = data.viewCount || 0;
+    const purchaseCount = data.purchaseCount || 0;
+    const recommendationScore = 0.3 * viewCount + 0.7 * purchaseCount;
+
+    // Crear el producto con los nuevos campos
     const product = await prisma.product.create({
       data: {
         name: data.name,
@@ -294,12 +307,18 @@ export async function main() {
         priceBaseCurrency: data.priceBaseCurrency,
         priceBaseDiscount: data.priceBaseDiscount,
         stock: data.stock,
+        ignoreStock: data.ignoreStock,
+        published: data.published,
         itsNew: data.itsNew,
         image: data.image,
         discountPercentage: data.discountPercentage,
         freeShipping: data.freeShipping,
         categoryId: data.categoryId,
         companyId: data.companyId,
+        brand: data.brand,
+        viewCount,
+        purchaseCount,
+        recommendationScore,
       },
     });
 
@@ -315,11 +334,10 @@ export async function main() {
     );
   }
 
-  // Ajusta la conversión a ProductDTO si es necesario, o usa los `createdProducts` directamente
   const products: ProductDTO[] = createdProducts.map((p) => ({
     ...p,
   })); // Asegura tipo Decimal a number si es necesario
-  console.log(`Productos creados: ${products.length}`);
+  console.log(`Productos creadas: ${products.length}`);
 
   // --- Crear Precios para los productos ---
   console.log("Creando precios...");
@@ -330,9 +348,8 @@ export async function main() {
           data: {
             productId: product.id,
             currencyId: currency.id,
-            // Usar la función segura para multiplicar
             value: safeMultiply(product.priceBaseCurrency, currency.baseRate),
-            isFixed: currency.isBase, // El precio es fijo si es la moneda base
+            isFixed: currency.isBase,
           },
         })
       )
@@ -343,37 +360,30 @@ export async function main() {
   // --- Crear Disponibilidad de Productos ---
   console.log("Creando disponibilidad de productos...");
   const availabilityEntries = await Promise.all([
-    // Producto 1 (Cerveza): Disponible en Provincia La Habana
     prisma.productAvailability.create({
       data: {
         productId: products.find((p) => p.name === "Cerveza Premium")!.id,
         provinceId: provinciaHabana.id,
-        // municipalityId y townId son null por defecto
       },
     }),
-    // Producto 2 (Pasta Barbacoa): Disponible en Municipio Plaza
     prisma.productAvailability.create({
       data: {
         productId: products.find((p) => p.name === "Pasta Barbacoa")!.id,
         municipalityId: municipioPlaza.id,
       },
     }),
-    // Producto 3 (Especias): Disponible en Pueblo Vedado
     prisma.productAvailability.create({
       data: {
         productId: products.find((p) => p.name === "Especias Refinadas")!.id,
         townId: puebloVedado.id,
       },
     }),
-    // Producto 4 (Masa Pizza): Disponible Nacionalmente - NO SE CREA REGISTRO
-    // Producto 5 (Refresco): Disponible en Provincia Pinar del Río
     prisma.productAvailability.create({
       data: {
         productId: products.find((p) => p.name === "Refresco Nacional")!.id,
         provinceId: provinciaPinar.id,
       },
     }),
-    // Producto 5 (Refresco): También disponible en Pueblo Centro Histórico (Habana Vieja)
     prisma.productAvailability.create({
       data: {
         productId: products.find((p) => p.name === "Refresco Nacional")!.id,
@@ -391,7 +401,7 @@ export async function main() {
 main()
   .catch(async (e) => {
     console.error("Error durante el seeding:", e);
-    await prisma.$disconnect(); // Asegura desconexión en caso de error
+    await prisma.$disconnect();
     process.exit(1);
   })
   .finally(async () => {
