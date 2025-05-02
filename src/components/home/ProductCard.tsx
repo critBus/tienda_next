@@ -123,11 +123,26 @@ export default function ProductCard({ product }: ProductCardProps) {
               <Tooltip
                 text="No se puede agregar mas"
                 showTooltip={isAddDisabled}
+                forceVisible={forceTooltipPlus}
               >
                 <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="border-2 border-black rounded-md px-2 py-1 flex items-center justify-center"
-                  disabled={isAddDisabled}
+                  onClick={() => {
+                    if (!isAddDisabled) {
+                      setQuantity(quantity + 1);
+                    } else {
+                      setForceTooltipPlus(true);
+                      setTimeout(() => {
+                        setForceTooltipPlus(false);
+                      }, 3000);
+                      console.log("va a mostrar el tooltip");
+                    }
+                  }}
+                  className={`border-2 border-black rounded-md px-2 py-1 flex items-center justify-center
+                     ${
+                       isAddDisabled
+                         ? "opacity-50 cursor-not-allowed bg-[#9e9d9b]"
+                         : "hover:scale-110"
+                     }`}
                 >
                   <Image
                     src="/assets/products/icons/add.svg"
@@ -142,16 +157,16 @@ export default function ProductCard({ product }: ProductCardProps) {
             <Tooltip
               text="No se puede agregar mas"
               showTooltip={isAddDisabled}
-              forceVisible={forceTooltipPlus}
+              forceVisible={forceTooltipAddCart}
             >
               <button
                 onClick={() => {
                   if (!isAddDisabled) {
                     tryAddingToCart();
                   } else {
-                    setForceTooltipPlus(true);
+                    setForceTooltipAddCart(true);
                     setTimeout(() => {
-                      setForceTooltipPlus(false);
+                      setForceTooltipAddCart(false);
                     }, 3000);
                     console.log("va a mostrar el tooltip");
                   }
@@ -161,12 +176,6 @@ export default function ProductCard({ product }: ProductCardProps) {
                     ? "opacity-50 cursor-not-allowed bg-[#9e9d9b]"
                     : "bg-[#FCD26D]"
                 }`}
-                // disabled={isAddDisabled}
-                // title={
-                //   isAddDisabled
-                //     ? `No puedes agregar más de ${stockInfo.remainingStock} unidades.`
-                //     : ""
-                // }
               >
                 <Image
                   src="/assets/products/icons/shopping-cart.svg"
