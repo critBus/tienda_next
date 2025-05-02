@@ -18,6 +18,9 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
+  const [forceTooltipPlus, setForceTooltipPlus] = useState(false);
+  const [forceTooltipLess, setForceTooltipLess] = useState(false);
+  const [forceTooltipAddCart, setForceTooltipAddCart] = useState(false);
   const [showDialogInsufficient, setShowDialogInsufficient] = useState(false); // State for dialog visibility
   const [showDialogNotLeft, setShowDialogNotLeft] = useState(false); // State for dialog visibility
   const dispatch = useDispatch();
@@ -136,13 +139,29 @@ export default function ProductCard({ product }: ProductCardProps) {
                 </button>
               </Tooltip>
             </div>
-            <Tooltip text="No se puede agregar mas" showTooltip={isAddDisabled}>
+            <Tooltip
+              text="No se puede agregar mas"
+              showTooltip={isAddDisabled}
+              forceVisible={forceTooltipPlus}
+            >
               <button
-                onClick={tryAddingToCart}
-                className={`  flex flex-row gap-2 items-center justify-center bg-[#FCD26D]  border-2 border-[#E5EAF0] rounded-md px-2 py-1 ${
-                  isAddDisabled ? "opacity-50 cursor-not-allowed" : ""
+                onClick={() => {
+                  if (!isAddDisabled) {
+                    tryAddingToCart();
+                  } else {
+                    setForceTooltipPlus(true);
+                    setTimeout(() => {
+                      setForceTooltipPlus(false);
+                    }, 3000);
+                    console.log("va a mostrar el tooltip");
+                  }
+                }}
+                className={`  flex flex-row gap-2 items-center justify-center   border-2 border-[#E5EAF0] rounded-md px-2 py-1 ${
+                  isAddDisabled
+                    ? "opacity-50 cursor-not-allowed bg-[#9e9d9b]"
+                    : "bg-[#FCD26D]"
                 }`}
-                disabled={isAddDisabled}
+                // disabled={isAddDisabled}
                 // title={
                 //   isAddDisabled
                 //     ? `No puedes agregar más de ${stockInfo.remainingStock} unidades.`
