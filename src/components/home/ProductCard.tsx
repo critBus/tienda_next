@@ -106,33 +106,48 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
           <div className="flex flex-row gap-2">
             <div className="flex flex-row justify-center items-center">
-              <button
-                onClick={() => {
-                  if (!isLessDisabled) {
-                    setQuantity(Math.max(1, quantity - 1));
-                  }
-                }}
-                className={`border-2  rounded-md px-2 py-1 flex items-center justify-center ${
-                  isLessDisabled ? "border-[#9e9d9b]" : " border-black"
-                }`}
+              <Tooltip
+                text="No se puede restar mas"
+                showTooltip={isLessDisabled}
+                forceVisible={forceTooltipLess}
               >
-                <svg
-                  width="15"
-                  height="14"
-                  viewBox="0 0 15 14"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
+                <button
+                  onClick={() => {
+                    if (!isLessDisabled) {
+                      setQuantity(Math.max(1, quantity - 1));
+                    } else {
+                      setForceTooltipLess(true);
+                      setTimeout(() => {
+                        setForceTooltipLess(false);
+                      }, 3000);
+                      // console.log("va a mostrar el tooltip");
+                    }
+                  }}
+                  className={`border-2  rounded-md px-2 py-1 flex items-center justify-center ${
+                    isLessDisabled
+                      ? "border-[#9e9d9b] cursor-not-allowed"
+                      : "hover:scale-110 border-black"
+                  }`}
                 >
-                  <path
-                    d="M4 7L11 7"
-                    stroke={isLessDisabled ? "#9e9d9b" : "#000000"}
-                    strokeWidth="1.3125"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    width="15"
+                    height="14"
+                    viewBox="0 0 15 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                  >
+                    <path
+                      d="M4 7L11 7"
+                      stroke={isLessDisabled ? "#9e9d9b" : "#000000"}
+                      strokeWidth="1.3125"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </Tooltip>
+
               <div className="w-4 bg-[#CFCECE] border-[#CFCECE] border-t-1 border-b-1 h-[60%] flex justify-center items-center">
                 <span className="text-[10px] font-bold">{quantity}</span>
               </div>
