@@ -32,6 +32,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   const isAddDisabled =
     !stockInfo.isAvailable || quantity > stockInfo.remainingStock;
+  const isLessDisabled = !stockInfo.isAvailable || quantity <= 1;
 
   const tryAddingToCart = () => {
     console.log(`product.ignoreStock ${product.ignoreStock}`);
@@ -106,16 +107,31 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div className="flex flex-row gap-2">
             <div className="flex flex-row justify-center items-center">
               <button
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="border-2 border-[#E5EAF0] rounded-md px-2 py-1 flex items-center justify-center"
+                onClick={() => {
+                  if (!isLessDisabled) {
+                    setQuantity(Math.max(1, quantity - 1));
+                  }
+                }}
+                className={`border-2  rounded-md px-2 py-1 flex items-center justify-center ${
+                  isLessDisabled ? "border-[#9e9d9b]" : " border-black"
+                }`}
               >
-                <Image
-                  src="/assets/products/icons/less.svg"
-                  alt="Menos"
-                  width={16}
-                  height={16}
+                <svg
+                  width="15"
+                  height="14"
+                  viewBox="0 0 15 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4"
-                />
+                >
+                  <path
+                    d="M4 7L11 7"
+                    stroke={isLessDisabled ? "#9e9d9b" : "#000000"}
+                    strokeWidth="1.3125"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </button>
               <div className="w-4 bg-[#CFCECE] border-[#CFCECE] border-t-1 border-b-1 h-[60%] flex justify-center items-center">
                 <span className="text-[10px] font-bold">{quantity}</span>
@@ -137,11 +153,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                       console.log("va a mostrar el tooltip");
                     }
                   }}
-                  className={`border-2 border-black rounded-md px-2 py-1 flex items-center justify-center
+                  className={` border-2   rounded-md px-2 py-1 flex items-center justify-center
                      ${
                        isAddDisabled
-                         ? "opacity-50 cursor-not-allowed bg-[#9e9d9b]"
-                         : "hover:scale-110"
+                         ? "opacity-50 cursor-not-allowed  border-[#9e9d9b]"
+                         : "hover:scale-110 border-black"
                      }`}
                 >
                   <Image
