@@ -7,6 +7,7 @@ import CategoryImageLink from "./CategoryImageLink";
 import "./CategoryNavigation.css";
 import ApiService from "@/service/ApiService";
 import { Category } from "@/types";
+import CategorySectionSkeleton from "../common/loaders/CategorySectionSkeleton";
 
 interface RowCategory {
   id: string;
@@ -45,7 +46,7 @@ export default function CategoryNavigation() {
   }, []);
 
   if (isLoading) {
-    return <div>Cargando categorías...</div>;
+    return <CategorySectionSkeleton />;
   }
 
   return (
