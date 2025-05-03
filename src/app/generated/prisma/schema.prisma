@@ -73,6 +73,8 @@ model Product {
   @@index([stock])
   @@index([ignoreStock])
   @@index([published])
+  @@index([purchaseCount])
+  @@index([viewCount])
   @@index([discountPercentage])
   @@index([freeShipping])
   @@index([categoryId])
@@ -80,6 +82,9 @@ model Product {
   @@index([createdAt])
   @@index([brand])
   @@index([recommendationScore])
+  @@index([published, purchaseCount])
+  @@index([published, recommendationScore])
+  @@index([published, createdAt])
 }
 
 model ProductImage {

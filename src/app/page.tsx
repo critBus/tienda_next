@@ -1,5 +1,5 @@
 import LatestAdditions from "@/components/home/LatestAdditions";
-import LinkingYourPurchases from "@/components/home/LinkingYourPurchases";
+
 import RecommendedProducts from "@/components/home/RecommendedProducts";
 import SecurePaymentImg from "@/components/home/SecurePaymentImg";
 import ShippingCuba from "@/components/home/ShippingCuba";
@@ -19,7 +19,7 @@ export default function Home() {
       <LatestAdditions />
       <ShippingCuba />
       <Subscriptions />
-      <LinkingYourPurchases />
+      {/* <LinkingYourPurchases /> */}
     </main>
   );
 }
