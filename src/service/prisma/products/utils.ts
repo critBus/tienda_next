@@ -1,5 +1,5 @@
 import { Product } from "@/types";
-
+import prisma from "@/libs/prisma";
 import {
   Product as ProductPrisma,
   Price as PricePrisma,
@@ -70,4 +70,38 @@ export function getLocationFilter({
   console.log("or_filter");
   console.log(or_filter);
   return or_filter;
+}
+
+export async function searchByLocationAndOrder({
+  location = null,
+  descOrder,
+}: {
+  location?: FilterType | null;
+  descOrder: string;
+}): Promise<Product[]> {
+  const products_response = await prisma.product.findMany({
+    where: {
+      published: true, // Solo productos publicados
+      availableLocations: {
+        some: {
+          OR: getLocationFilter({ location }),
+        },
+      },
+    },
+    orderBy: {
+      [descOrder]: "desc",
+    },
+    take: 10,
+    include: {
+      availableLocations: true,
+      category: true,
+      company: true,
+      Price: {
+        include: {
+          currency: true,
+        },
+      },
+    },
+  });
+  return parseProducts(products_response);
 }

@@ -65,3 +65,9 @@ export const bestSelling = async (
 ): Promise<Product[]> => {
   return getListLocationProducts({ url: `${URL}/bestSelling`, location });
 };
+
+export const latestAdditions = async (
+  location?: FilterType
+): Promise<Product[]> => {
+  return getListLocationProducts({ url: `${URL}/latestAdditions`, location });
+};
