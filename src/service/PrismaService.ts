@@ -1,5 +1,5 @@
-import * as ProductService from "./prisma/products";
 import * as CategoryService from "./prisma/category";
+import ProductService from "./prisma/products";
 
 export default {
   products: ProductService,

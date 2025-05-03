@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
 
     const products =
       provinceId || municipalityId || townId
-        ? await PrismaService.products.getProducts(location)
+        ? await PrismaService.products.byLocation(location)
         : await PrismaService.products.all();
 
     return NextResponse.json({

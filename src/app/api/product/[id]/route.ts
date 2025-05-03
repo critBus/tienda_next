@@ -10,7 +10,7 @@ export async function GET(
 
   try {
     // Buscar el producto por ID
-    const product = await PrismaService.products.getById(parseInt(id));
+    const product = await PrismaService.products.byId(parseInt(id));
 
     // Si no se encuentra el producto, devolver un error
     if (!product) {
