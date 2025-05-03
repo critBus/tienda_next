@@ -3,7 +3,7 @@ import prisma from "@/libs/prisma";
 import { getLocationFilter, parseProducts } from "./utils";
 import { FilterType } from "@/store/slices/locationSlice";
 
-export async function recommended({
+export async function bestSelling({
   location = null,
 }: {
   location?: FilterType | null;
@@ -18,7 +18,7 @@ export async function recommended({
       },
     },
     orderBy: {
-      recommendationScore: "desc",
+      purchaseCount: "desc",
     },
     take: 10,
     include: {

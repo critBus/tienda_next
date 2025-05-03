@@ -1,4 +1,4 @@
-import { Product, ProductDetail } from "@/types";
+import { Product } from "@/types";
 
 import {
   Product as ProductPrisma,
@@ -8,12 +8,8 @@ import {
   Company,
   ProductAvailability,
 } from "@/app/generated/prisma/index";
+import { FilterType } from "@/store/slices/locationSlice";
 
-interface FilterType {
-  provinceId?: number | null;
-  municipalityId?: number | null;
-  townId?: number | null;
-}
 interface PricePrismaResponse extends PricePrisma {
   currency: Currency;
 }
@@ -41,4 +37,37 @@ export function parseProducts(
     })), // Map each price in the array
   }));
   return products;
+}
+
+export function getLocationFilter({
+  location = null,
+}: {
+  location?: FilterType | null;
+}): FilterType[] {
+  const or_filter: FilterType[] = [
+    { provinceId: null, municipalityId: null, townId: null },
+  ];
+  if (location) {
+    if (location.municipalityId || location.provinceId || location.townId) {
+      or_filter.push(location);
+    }
+
+    if (location.municipalityId && location.provinceId) {
+      or_filter.push({
+        provinceId: location.provinceId,
+        municipalityId: null,
+        townId: null,
+      });
+    }
+    if (location.townId && location.municipalityId && location.provinceId) {
+      or_filter.push({
+        provinceId: location.provinceId,
+        municipalityId: location.municipalityId,
+        townId: null,
+      });
+    }
+  }
+  console.log("or_filter");
+  console.log(or_filter);
+  return or_filter;
 }
