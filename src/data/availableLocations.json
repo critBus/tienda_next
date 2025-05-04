@@ -1,38 +1,50 @@
 {
-    "provinces": [
-      {
-        "id": 1,
-        "name": "Provincia A",
-        "municipalities": [
-          {
-            "id": 11,
-            "name": "Municipio A1",
-            "towns": [
-              { "id": 111, "name": "Pueblo A1-1" },
-              { "id": 112, "name": "Pueblo A1-2" }
-            ]
-          },
-          {
-            "id": 12,
-            "name": "Municipio A2",
-            "towns": [
-              { "id": 121, "name": "Pueblo A2-1" }
-            ]
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "name": "Provincia B",
-        "municipalities": [
-          {
-            "id": 21,
-            "name": "Municipio B1",
-            "towns": [
-              { "id": 211, "name": "Pueblo B1-1" }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+  "provinces": [
+    {
+      "id": 1,
+      "name": "La Habana",
+      "municipalities": [
+        {
+          "id": 1,
+          "name": "Plaza de la Revolución",
+          "towns": [
+            {
+              "id": 1,
+              "name": "Vedado"
+            },
+            {
+              "id": 2,
+              "name": "Nuevo Vedado"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "La Habana Vieja",
+          "towns": [
+            {
+              "id": 3,
+              "name": "Centro Histórico"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Pinar del Río",
+      "municipalities": [
+        {
+          "id": 3,
+          "name": "Pinar del Río",
+          "towns": [
+            {
+              "id": 4,
+              "name": "Centro Ciudad"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -288,6 +288,56 @@ export async function main() {
         },
       ],
     },
+    // Additional products to reach 10 in puebloVedado
+    {
+      name: "Aceite de Oliva",
+      description: "Aceite de oliva extra virgen",
+      priceBaseCurrency: 6.99,
+      priceBaseDiscount: null,
+      published: true,
+      stock: 60,
+      ignoreStock: false,
+      itsNew: true,
+      image: "/assets/products/img/aceite_oliva.png",
+      discountPercentage: null,
+      freeShipping: false,
+      categoryId: categories.find((c) => c.name === "Alimentos")!.id,
+      companyId: companies[2].id,
+      brand: "Marca3",
+      viewCount: 70,
+      purchaseCount: 25,
+      ProductImage: [
+        {
+          cover: true,
+          image: "/assets/products/img/aceite_oliva.png",
+        },
+      ],
+    },
+    {
+      name: "Harina de Trigo",
+      description: "Harina de trigo para repostería",
+      priceBaseCurrency: 2.5,
+      priceBaseDiscount: null,
+      published: true,
+      stock: 80,
+      ignoreStock: false,
+      itsNew: false,
+      image: "/assets/products/img/harina_trigo.png",
+      discountPercentage: null,
+      freeShipping: true,
+      categoryId: categories.find((c) => c.name === "Alimentos")!.id,
+      companyId: companies[0].id,
+      brand: "Marca4",
+      viewCount: 90,
+      purchaseCount: 35,
+      ProductImage: [
+        {
+          cover: true,
+          image: "/assets/products/img/harina_trigo.png",
+        },
+      ],
+    },
+    // Add more products as needed to reach 10 in puebloVedado
   ];
 
   const createdProducts = [];
@@ -375,12 +425,15 @@ export async function main() {
       data: {
         productId: products.find((p) => p.name === "Pasta Barbacoa")!.id,
         municipalityId: municipioPlaza.id,
+        provinceId: municipioPlaza.provinceId,
       },
     }),
     prisma.productAvailability.create({
       data: {
         productId: products.find((p) => p.name === "Especias Refinadas")!.id,
         townId: puebloVedado.id,
+        municipalityId: puebloVedado.municipalityId,
+        provinceId: municipioPlaza.provinceId,
       },
     }),
     prisma.productAvailability.create({
@@ -393,8 +446,21 @@ export async function main() {
       data: {
         productId: products.find((p) => p.name === "Refresco Nacional")!.id,
         townId: puebloCentroHistorico.id,
+        municipalityId: puebloCentroHistorico.municipalityId,
+        provinceId: municipioHabanaVieja.provinceId,
       },
     }),
+    // Ensure 10 products are available in puebloVedado
+    createdProducts.slice(0, 10).map((product) =>
+      prisma.productAvailability.create({
+        data: {
+          productId: product.id,
+          townId: puebloVedado.id,
+          municipalityId: puebloVedado.municipalityId,
+          provinceId: municipioPlaza.provinceId,
+        },
+      })
+    ),
   ]);
   console.log(
     `Registros de disponibilidad creados: ${availabilityEntries.length}`
