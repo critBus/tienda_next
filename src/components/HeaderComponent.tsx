@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import CurrencySelector from "./CurrencySelector";
@@ -9,7 +8,9 @@ import { RootState } from "@/store";
 import { getLocationLabel } from "@/utils/locationLabel";
 
 export default function HeaderComponent() {
-  const [cartCount] = useState(3);
+  const cartCount = useSelector((state: RootState) =>
+    state.cart.items.reduce((total, item) => total + item.quantity, 0)
+  ); // Calculate total items in the cart
   const selectedLocation = useSelector(
     (state: RootState) => state.location.selectedLocation
   );
@@ -70,7 +71,10 @@ export default function HeaderComponent() {
               className="h-8 w-10 text-gray-500 hover:text-gray-700 transition-colors"
             />
             {cartCount > 0 && (
-              <div className="absolute top-0 right-0 mt-[-8px] mr-[-8px] bg-red-500 text-white text-xs font-bold rounded-full px-2 py-1">
+              <div
+                className="absolute top-0 right-0 mt-[-8px] mr-[-8px]
+               bg-red-500 text-white text-xs font-bold rounded-full px-2 py-1"
+              >
                 <span className="text-[12px]">{cartCount}</span>
               </div>
             )}
