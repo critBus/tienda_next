@@ -25,7 +25,7 @@ export default function ProductsSection({
 
         {/* Lista de productos */}
         {products && products.length > 0 ? (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          <div className="flex justify-center flex-col sm:flex-row sm:flex-wrap gap-6">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
