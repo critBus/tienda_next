@@ -11,6 +11,7 @@ import { selectProductStockInfo } from "@/store/selectors/productStockSelectors"
 import ModalInsufficientProducts from "../common/modals/ModalInsufficientProducts";
 import ModalNoProductsLeft from "../common/modals/ModalNoProductsLeft";
 import Tooltip from "../common/Tooltip";
+import { RootState } from "@/store";
 
 interface ProductCardProps {
   product: Product;
@@ -26,7 +27,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const dispatch = useDispatch();
 
   const { originalPrice } = useProductPrice(product);
-  const stockInfo = useSelector((state: any) =>
+  const stockInfo = useSelector((state: RootState) =>
     selectProductStockInfo(state.cart, product.id, product.stock)
   );
 
