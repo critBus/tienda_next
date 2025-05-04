@@ -22,7 +22,6 @@ export default function RecommendedProducts() {
     async function fetchProducts() {
       try {
         setLoading(true);
-        await new Promise((resolve) => setTimeout(resolve, 5 * 1000));
         const products = await ApiService.product.recommended(selectedLocation);
         setRecommendedProducts(products);
       } catch {
