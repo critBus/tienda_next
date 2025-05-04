@@ -65,13 +65,13 @@ export default function ProductCard({ product }: ProductCardProps) {
     );
     console.log("Añadir al carrito:", product, quantity);
   };
-
+  //sm:h-[50%] sm:h-80
   return (
-    <div className="relative w-full h-40 sm:h-80 sm:w-52 inline-block bg-white shadow-md rounded-lg">
-      <div className="p-2 h-full flex flex-row sm:flex-col sm:items-center gap-1">
-        <div className="relative w-[40%] sm:w-[80%] inline-block">
+    <div className="relative w-full max-sm:h-40  sm:w-52 inline-block bg-white shadow-md rounded-lg">
+      <div className="sm:place-content-between p-2 h-full flex flex-row sm:flex-col sm:items-center gap-1">
+        <div className="sm:h-[50%] relative w-[40%] sm:w-[80%] inline-block">
           <Image
-            className="block w-full h-full"
+            className="block w-full h-full sm:h-40"
             src={product.image}
             alt={product.name}
             width={200}
@@ -81,7 +81,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.company.name}
           </span>
         </div>
-        <div className="flex w-[60%] sm:w-full flex-col gap-2">
+        <div className=" sm:place-content-between max-sm:justify-center flex w-[60%]  sm:w-full flex-col gap-2">
           <span className="font-semibold text-[#4E4949]">{product.name}</span>
           <div className="flex flex-row gap-2">
             <span className="font-bold text-[17px]">
