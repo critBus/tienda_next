@@ -6,6 +6,7 @@ import { Product } from "@/types";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import ApiService from "@/service/ApiService";
+import SkeletonProductSection from "../common/loaders/SkeletonProductSection";
 
 export default function BestSellingProducts() {
   const selectedLocation = useSelector(
@@ -34,7 +35,7 @@ export default function BestSellingProducts() {
     fetchProducts();
   }, [selectedLocation]);
 
-  if (loading) return <p>Cargando productos...</p>;
+  if (loading) return <SkeletonProductSection />;
   if (error) return <p>{error}</p>;
   return (
     <ProductsSection
