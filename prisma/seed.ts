@@ -201,7 +201,7 @@ export async function main() {
       stock: 100,
       ignoreStock: false,
       itsNew: false,
-      image: "/assets/products/img/especias_refinadas.png",
+      image: "/assets/products/img/especias_refinidas.png",
       discountPercentage: null,
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
@@ -212,15 +212,15 @@ export async function main() {
       ProductImage: [
         {
           cover: true,
-          image: "/assets/products/img/especias_refinadas.png",
+          image: "/assets/products/img/especias_refinidas.png",
         },
         {
           cover: false,
-          image: "/assets/products/img/especias_refinadas.png",
+          image: "/assets/products/img/especias_refinidas.png",
         },
         {
           cover: false,
-          image: "/assets/products/img/especias_refinadas.png",
+          image: "/assets/products/img/especias_refinidas.png",
         },
       ],
     },
@@ -298,7 +298,7 @@ export async function main() {
       stock: 60,
       ignoreStock: false,
       itsNew: true,
-      image: "/assets/products/img/aceite_oliva.png",
+      image: "/assets/products/img/rico_drato.png",
       discountPercentage: null,
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
@@ -309,7 +309,7 @@ export async function main() {
       ProductImage: [
         {
           cover: true,
-          image: "/assets/products/img/aceite_oliva.png",
+          image: "/assets/products/img/rico_drato.png",
         },
       ],
     },
@@ -322,7 +322,7 @@ export async function main() {
       stock: 80,
       ignoreStock: false,
       itsNew: false,
-      image: "/assets/products/img/harina_trigo.png",
+      image: "/assets/products/img/vejetales.png",
       discountPercentage: null,
       freeShipping: true,
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
@@ -333,7 +333,7 @@ export async function main() {
       ProductImage: [
         {
           cover: true,
-          image: "/assets/products/img/harina_trigo.png",
+          image: "/assets/products/img/vejetales.png",
         },
       ],
     },
@@ -346,7 +346,7 @@ export async function main() {
       published: true,
       stock: 100,
       ignoreStock: false,
-      image: "/assets/products/img/cafe_gourmet.png",
+      image: "/assets/products/img/vejetales.png",
       discountPercentage: 10,
       itsNew: true,
       freeShipping: true,
@@ -356,7 +356,7 @@ export async function main() {
       viewCount: 200,
       purchaseCount: 50,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/cafe_gourmet.png" },
+        { cover: true, image: "/assets/products/img/vejetales.png" },
       ],
     },
     {
@@ -367,7 +367,7 @@ export async function main() {
       published: true,
       stock: 80,
       ignoreStock: false,
-      image: "/assets/products/img/chocolate_artesanal.png",
+      image: "/assets/products/img/vejetales.png",
       discountPercentage: 5,
       itsNew: false,
       freeShipping: false,
@@ -377,7 +377,7 @@ export async function main() {
       viewCount: 150,
       purchaseCount: 40,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/chocolate_artesanal.png" },
+        { cover: true, image: "/assets/products/img/vejetales.png" },
       ],
     },
     {
@@ -388,7 +388,7 @@ export async function main() {
       published: true,
       stock: 120,
       ignoreStock: false,
-      image: "/assets/products/img/te_verde.png",
+      image: "/assets/products/img/vejetales.png",
       discountPercentage: null,
       itsNew: true,
       freeShipping: true,
@@ -398,7 +398,7 @@ export async function main() {
       viewCount: 100,
       purchaseCount: 30,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/te_verde.png" },
+        { cover: true, image: "/assets/products/img/vejetales.png" },
       ],
     },
     {
@@ -409,7 +409,7 @@ export async function main() {
       published: true,
       stock: 60,
       ignoreStock: false,
-      image: "/assets/products/img/mermelada_fresa.png",
+      image: "/assets/products/img/vejetales.png",
       discountPercentage: null,
       itsNew: false,
       freeShipping: false,
@@ -419,7 +419,7 @@ export async function main() {
       viewCount: 80,
       purchaseCount: 20,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/mermelada_fresa.png" },
+        { cover: true, image: "/assets/products/img/vejetales.png" },
       ],
     },
     {
@@ -430,7 +430,7 @@ export async function main() {
       published: true,
       stock: 50,
       ignoreStock: false,
-      image: "/assets/products/img/pan_integral.png",
+      image: "/assets/products/img/vejetales.png",
       discountPercentage: null,
       itsNew: true,
       freeShipping: false,
@@ -440,7 +440,7 @@ export async function main() {
       viewCount: 70,
       purchaseCount: 15,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/pan_integral.png" },
+        { cover: true, image: "/assets/products/img/vejetales.png" },
       ],
     },
     {
@@ -451,7 +451,7 @@ export async function main() {
       published: true,
       stock: 40,
       ignoreStock: false,
-      image: "/assets/products/img/queso_cheddar.png",
+      image: "/assets/products/img/vejetales.png",
       discountPercentage: 15,
       itsNew: false,
       freeShipping: true,
@@ -461,7 +461,7 @@ export async function main() {
       viewCount: 90,
       purchaseCount: 25,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/queso_cheddar.png" },
+        { cover: true, image: "/assets/products/img/vejetales.png" },
       ],
     },
     {
@@ -472,7 +472,7 @@ export async function main() {
       published: true,
       stock: 70,
       ignoreStock: false,
-      image: "/assets/products/img/yogur_natural.png",
+      image: "/assets/products/img/vejetales.png",
       discountPercentage: null,
       itsNew: true,
       freeShipping: false,
@@ -482,7 +482,7 @@ export async function main() {
       viewCount: 60,
       purchaseCount: 10,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/yogur_natural.png" },
+        { cover: true, image: "/assets/products/img/vejetales.png" },
       ],
     },
     {
@@ -493,7 +493,7 @@ export async function main() {
       published: true,
       stock: 90,
       ignoreStock: false,
-      image: "/assets/products/img/aceitunas_verdes.png",
+      image: "/assets/products/img/vejetales.png",
       discountPercentage: null,
       itsNew: false,
       freeShipping: true,
@@ -503,7 +503,7 @@ export async function main() {
       viewCount: 110,
       purchaseCount: 35,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/aceitunas_verdes.png" },
+        { cover: true, image: "/assets/products/img/vejetales.png" },
       ],
     },
     {
@@ -514,7 +514,7 @@ export async function main() {
       published: true,
       stock: 30,
       ignoreStock: false,
-      image: "/assets/products/img/mantequilla_artesanal.png",
+      image: "/assets/products/img/vejetales.png",
       discountPercentage: 10,
       itsNew: true,
       freeShipping: false,
@@ -526,7 +526,7 @@ export async function main() {
       ProductImage: [
         {
           cover: true,
-          image: "/assets/products/img/mantequilla_artesanal.png",
+          image: "/assets/products/img/vejetales.png",
         },
       ],
     },
@@ -538,7 +538,7 @@ export async function main() {
       published: true,
       stock: 100,
       ignoreStock: false,
-      image: "/assets/products/img/jugo_naranja.png",
+      image: "/assets/products/img/vejetales.png",
       discountPercentage: null,
       itsNew: false,
       freeShipping: true,
@@ -548,7 +548,7 @@ export async function main() {
       viewCount: 140,
       purchaseCount: 45,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/jugo_naranja.png" },
+        { cover: true, image: "/assets/products/img/vejetales.png" },
       ],
     },
   ];

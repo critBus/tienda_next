@@ -16,6 +16,6 @@ echo Creating database %PGDATABASE%...
 
 echo Database reset completed successfully!
 
-npx prisma migrate dev&&npx prisma db seed&&pnpm generate:locations&&pnpm run dev
+
 
 cmd /k
