@@ -338,6 +338,219 @@ export async function main() {
       ],
     },
     // Add more products as needed to reach 10 in puebloVedado
+    {
+      name: "Café Gourmet",
+      description: "Café de alta calidad, ideal para baristas",
+      priceBaseCurrency: 8.99,
+      priceBaseDiscount: null,
+      published: true,
+      stock: 100,
+      ignoreStock: false,
+      image: "/assets/products/img/cafe_gourmet.png",
+      discountPercentage: 10,
+      itsNew: true,
+      freeShipping: true,
+      categoryId: categories.find((c) => c.name === "Alimentos")!.id,
+      companyId: companies[0].id,
+      brand: "Marca5",
+      viewCount: 200,
+      purchaseCount: 50,
+      ProductImage: [
+        { cover: true, image: "/assets/products/img/cafe_gourmet.png" },
+      ],
+    },
+    {
+      name: "Chocolate Artesanal",
+      description: "Chocolate hecho a mano con cacao puro",
+      priceBaseCurrency: 4.99,
+      priceBaseDiscount: null,
+      published: true,
+      stock: 80,
+      ignoreStock: false,
+      image: "/assets/products/img/chocolate_artesanal.png",
+      discountPercentage: 5,
+      itsNew: false,
+      freeShipping: false,
+      categoryId: categories.find((c) => c.name === "Alimentos")!.id,
+      companyId: companies[1].id,
+      brand: "Marca6",
+      viewCount: 150,
+      purchaseCount: 40,
+      ProductImage: [
+        { cover: true, image: "/assets/products/img/chocolate_artesanal.png" },
+      ],
+    },
+    {
+      name: "Té Verde",
+      description: "Té verde orgánico en hojas",
+      priceBaseCurrency: 3.49,
+      priceBaseDiscount: null,
+      published: true,
+      stock: 120,
+      ignoreStock: false,
+      image: "/assets/products/img/te_verde.png",
+      discountPercentage: null,
+      itsNew: true,
+      freeShipping: true,
+      categoryId: categories.find((c) => c.name === "Bebidas")!.id,
+      companyId: companies[2].id,
+      brand: "Marca7",
+      viewCount: 100,
+      purchaseCount: 30,
+      ProductImage: [
+        { cover: true, image: "/assets/products/img/te_verde.png" },
+      ],
+    },
+    {
+      name: "Mermelada de Fresa",
+      description: "Mermelada casera con fresas frescas",
+      priceBaseCurrency: 2.99,
+      priceBaseDiscount: null,
+      published: true,
+      stock: 60,
+      ignoreStock: false,
+      image: "/assets/products/img/mermelada_fresa.png",
+      discountPercentage: null,
+      itsNew: false,
+      freeShipping: false,
+      categoryId: categories.find((c) => c.name === "Alimentos")!.id,
+      companyId: companies[0].id,
+      brand: "Marca8",
+      viewCount: 80,
+      purchaseCount: 20,
+      ProductImage: [
+        { cover: true, image: "/assets/products/img/mermelada_fresa.png" },
+      ],
+    },
+    {
+      name: "Pan Integral",
+      description: "Pan integral fresco y saludable",
+      priceBaseCurrency: 1.99,
+      priceBaseDiscount: null,
+      published: true,
+      stock: 50,
+      ignoreStock: false,
+      image: "/assets/products/img/pan_integral.png",
+      discountPercentage: null,
+      itsNew: true,
+      freeShipping: false,
+      categoryId: categories.find((c) => c.name === "Alimentos")!.id,
+      companyId: companies[1].id,
+      brand: "Marca9",
+      viewCount: 70,
+      purchaseCount: 15,
+      ProductImage: [
+        { cover: true, image: "/assets/products/img/pan_integral.png" },
+      ],
+    },
+    {
+      name: "Queso Cheddar",
+      description: "Queso cheddar madurado",
+      priceBaseCurrency: 6.49,
+      priceBaseDiscount: null,
+      published: true,
+      stock: 40,
+      ignoreStock: false,
+      image: "/assets/products/img/queso_cheddar.png",
+      discountPercentage: 15,
+      itsNew: false,
+      freeShipping: true,
+      categoryId: categories.find((c) => c.name === "Alimentos")!.id,
+      companyId: companies[2].id,
+      brand: "Marca10",
+      viewCount: 90,
+      purchaseCount: 25,
+      ProductImage: [
+        { cover: true, image: "/assets/products/img/queso_cheddar.png" },
+      ],
+    },
+    {
+      name: "Yogur Natural",
+      description: "Yogur natural sin azúcar añadido",
+      priceBaseCurrency: 2.49,
+      priceBaseDiscount: null,
+      published: true,
+      stock: 70,
+      ignoreStock: false,
+      image: "/assets/products/img/yogur_natural.png",
+      discountPercentage: null,
+      itsNew: true,
+      freeShipping: false,
+      categoryId: categories.find((c) => c.name === "Alimentos")!.id,
+      companyId: companies[0].id,
+      brand: "Marca11",
+      viewCount: 60,
+      purchaseCount: 10,
+      ProductImage: [
+        { cover: true, image: "/assets/products/img/yogur_natural.png" },
+      ],
+    },
+    {
+      name: "Aceitunas Verdes",
+      description: "Aceitunas verdes en salmuera",
+      priceBaseCurrency: 3.99,
+      priceBaseDiscount: null,
+      published: true,
+      stock: 90,
+      ignoreStock: false,
+      image: "/assets/products/img/aceitunas_verdes.png",
+      discountPercentage: null,
+      itsNew: false,
+      freeShipping: true,
+      categoryId: categories.find((c) => c.name === "Alimentos")!.id,
+      companyId: companies[1].id,
+      brand: "Marca12",
+      viewCount: 110,
+      purchaseCount: 35,
+      ProductImage: [
+        { cover: true, image: "/assets/products/img/aceitunas_verdes.png" },
+      ],
+    },
+    {
+      name: "Mantequilla Artesanal",
+      description: "Mantequilla hecha a mano con leche fresca",
+      priceBaseCurrency: 5.49,
+      priceBaseDiscount: null,
+      published: true,
+      stock: 30,
+      ignoreStock: false,
+      image: "/assets/products/img/mantequilla_artesanal.png",
+      discountPercentage: 10,
+      itsNew: true,
+      freeShipping: false,
+      categoryId: categories.find((c) => c.name === "Alimentos")!.id,
+      companyId: companies[2].id,
+      brand: "Marca13",
+      viewCount: 50,
+      purchaseCount: 20,
+      ProductImage: [
+        {
+          cover: true,
+          image: "/assets/products/img/mantequilla_artesanal.png",
+        },
+      ],
+    },
+    {
+      name: "Jugo de Naranja",
+      description: "Jugo de naranja natural recién exprimido",
+      priceBaseCurrency: 3.29,
+      priceBaseDiscount: null,
+      published: true,
+      stock: 100,
+      ignoreStock: false,
+      image: "/assets/products/img/jugo_naranja.png",
+      discountPercentage: null,
+      itsNew: false,
+      freeShipping: true,
+      categoryId: categories.find((c) => c.name === "Bebidas")!.id,
+      companyId: companies[0].id,
+      brand: "Marca14",
+      viewCount: 140,
+      purchaseCount: 45,
+      ProductImage: [
+        { cover: true, image: "/assets/products/img/jugo_naranja.png" },
+      ],
+    },
   ];
 
   const createdProducts = [];
@@ -409,61 +622,76 @@ export async function main() {
 
   // --- Crear Disponibilidad de Productos ---
   console.log("Creando disponibilidad de productos...");
+
+  async function createProductAvailability(data: {
+    productId: number;
+    provinceId?: number;
+    municipalityId?: number;
+    townId?: number;
+  }) {
+    const existingEntry = await prisma.productAvailability.findFirst({
+      where: {
+        productId: data.productId,
+        provinceId: data.provinceId || null,
+        municipalityId: data.municipalityId || null,
+        townId: data.townId || null,
+      },
+    });
+
+    if (!existingEntry) {
+      return prisma.productAvailability.create({ data });
+    } else {
+      console.log(
+        `La disponibilidad ya existe para el producto ${data.productId} en la ubicación especificada.`
+      );
+      return null;
+    }
+  }
+
   const availabilityEntries = await Promise.all([
-    prisma.productAvailability.create({
-      data: {
-        productId: products.find((p) => p.name === "Cerveza Premium")!.id,
-        provinceId: provinciaHabana.id,
-      },
+    createProductAvailability({
+      productId: products.find((p) => p.name === "Cerveza Premium")!.id,
+      provinceId: provinciaHabana.id,
     }),
-    prisma.productAvailability.create({
-      data: {
-        productId: products.find((p) => p.name === "Cerveza Premium")!.id,
-      },
+    createProductAvailability({
+      productId: products.find((p) => p.name === "Cerveza Premium")!.id,
     }),
-    prisma.productAvailability.create({
-      data: {
-        productId: products.find((p) => p.name === "Pasta Barbacoa")!.id,
-        municipalityId: municipioPlaza.id,
-        provinceId: municipioPlaza.provinceId,
-      },
+    createProductAvailability({
+      productId: products.find((p) => p.name === "Pasta Barbacoa")!.id,
+      municipalityId: municipioPlaza.id,
+      provinceId: municipioPlaza.provinceId,
     }),
-    prisma.productAvailability.create({
-      data: {
-        productId: products.find((p) => p.name === "Especias Refinadas")!.id,
-        townId: puebloVedado.id,
-        municipalityId: puebloVedado.municipalityId,
-        provinceId: municipioPlaza.provinceId,
-      },
+    createProductAvailability({
+      productId: products.find((p) => p.name === "Especias Refinadas")!.id,
+      townId: puebloVedado.id,
+      municipalityId: puebloVedado.municipalityId,
+      provinceId: municipioPlaza.provinceId,
     }),
-    prisma.productAvailability.create({
-      data: {
-        productId: products.find((p) => p.name === "Refresco Nacional")!.id,
-        provinceId: provinciaPinar.id,
-      },
+    createProductAvailability({
+      productId: products.find((p) => p.name === "Refresco Nacional")!.id,
+      provinceId: provinciaPinar.id,
     }),
-    prisma.productAvailability.create({
-      data: {
-        productId: products.find((p) => p.name === "Refresco Nacional")!.id,
-        townId: puebloCentroHistorico.id,
-        municipalityId: puebloCentroHistorico.municipalityId,
-        provinceId: municipioHabanaVieja.provinceId,
-      },
+    createProductAvailability({
+      productId: products.find((p) => p.name === "Refresco Nacional")!.id,
+      townId: puebloCentroHistorico.id,
+      municipalityId: puebloCentroHistorico.municipalityId,
+      provinceId: municipioHabanaVieja.provinceId,
     }),
-    // Ensure 10 products are available in puebloVedado
-    createdProducts.slice(0, 10).map((product) =>
-      prisma.productAvailability.create({
-        data: {
-          productId: product.id,
-          townId: puebloVedado.id,
-          municipalityId: puebloVedado.municipalityId,
-          provinceId: municipioPlaza.provinceId,
-        },
-      })
-    ),
   ]);
+
+  for (const product of createdProducts) {
+    await createProductAvailability({
+      productId: product.id,
+      townId: puebloVedado.id,
+      municipalityId: puebloVedado.municipalityId,
+      provinceId: municipioPlaza.provinceId,
+    });
+  }
+
   console.log(
-    `Registros de disponibilidad creados: ${availabilityEntries.length}`
+    `Registros de disponibilidad creados: ${
+      availabilityEntries.filter((entry) => entry !== null).length
+    }`
   );
 
   console.log("Seeding completado exitosamente!");
