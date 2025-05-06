@@ -19,7 +19,7 @@ export function createPersistStorage(): WebStorage {
     };
   }
 
-  return createWebStorage("local");
+  return createWebStorage("session"); //return createWebStorage("local");
 }
 
 const storage = createPersistStorage();
