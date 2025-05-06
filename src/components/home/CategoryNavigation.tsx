@@ -28,10 +28,15 @@ export default function CategoryNavigation() {
         setCategories(categories);
 
         const rows = [];
-        for (let i = 0; i < categories.length; i += 4) {
+        const max = 4;
+        for (let i = 0; i < categories.length; i += max) {
+          const row_categories = [];
+          for (let j = i; j < max; j++) {
+            row_categories.push(categories[j]);
+          }
           rows.push({
             id: `row-${i}`,
-            categories: categories.slice(i, i + 4),
+            categories: row_categories, // categories.slice(i, i + 4),
           });
         }
         setRowCategories(rows);

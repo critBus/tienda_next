@@ -4,6 +4,8 @@ const URL = "/categories";
 export const all = async (): Promise<Category[]> => {
   try {
     const response = await api.get(URL);
+    // console.log("Categorias");
+    // console.log(response);
 
     const data: ApiResponse<Category[]> = response.data;
     if (data.status != SUCCES) {
