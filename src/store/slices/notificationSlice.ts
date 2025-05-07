@@ -26,8 +26,8 @@ const notificationSlice = createSlice({
       const id = Date.now(); // Generate a unique ID
       const newNotification: Notification = { id, ...action.payload };
       state.notifications.push(newNotification);
-      console.log("Notification added:");
-      console.log(newNotification);
+      // console.log("Notification added:");
+      // console.log(newNotification);
     },
     removeNotification: (state, action: PayloadAction<number>) => {
       state.notifications = state.notifications.filter(

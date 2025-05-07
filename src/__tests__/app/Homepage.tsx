@@ -1,4 +1,4 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, render, screen, fireEvent } from "@testing-library/react";
 
 import HomePage from "@/app/page";
 import ProviderRootLayout from "@/components/layouts/ProviderRootLayout";
@@ -82,14 +82,14 @@ jest.mock("axios", () => {
       categoryId: 1,
       companyId: 1,
       itsNew: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      // createdAt: new Date(),
+      // updatedAt: new Date(),
       brand: "Marca1",
       category: {
         id: 1,
         name: "Bebidas",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        // createdAt: new Date(),
+        // updatedAt: new Date(),
         image: "/assets/categories/img/bebidas.png",
       },
       company: {
@@ -103,8 +103,8 @@ jest.mock("axios", () => {
           currencyId: 1,
           value: 5.99,
           isFixed: true,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          // createdAt: new Date(),
+          // updatedAt: new Date(),
         },
       ],
     },
@@ -123,14 +123,14 @@ jest.mock("axios", () => {
       categoryId: 1,
       companyId: 1,
       itsNew: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      // createdAt: new Date(),
+      // updatedAt: new Date(),
       brand: "Marca2",
       category: {
         id: 1,
         name: "Alimentos",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        // createdAt: new Date(),
+        // updatedAt: new Date(),
         image: "/assets/categories/img/buffet.png",
       },
       company: {
@@ -144,8 +144,8 @@ jest.mock("axios", () => {
           currencyId: 1,
           value: 4.5,
           isFixed: true,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          // createdAt: new Date(),
+          // updatedAt: new Date(),
         },
       ],
     },
@@ -207,6 +207,13 @@ describe("HomePage Tests", () => {
   it("renders add to cart", async () => {
     await setup();
     const element = screen.queryByTestId("id-test-cart-count");
-    expect(element).not.toBeInTheDocument(); //.toBeNull();
+    expect(element).not.toBeInTheDocument();
+  });
+  it("adds a product to the cart when clicking the add button", async () => {
+    await setup();
+    const addButtons = screen.getAllByText("Añadir");
+    expect(addButtons.length).toBeGreaterThan(0); // Ensure there are buttons
+    fireEvent.click(addButtons[0]); // Click the first "Añadir" button
+    // Add your assertions here to verify the product was added to the cart
   });
 });

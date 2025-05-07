@@ -36,10 +36,10 @@ export default function ProductCard({ product }: ProductCardProps) {
   const isLessDisabled = !stockInfo.isAvailable || quantity <= 1;
 
   const tryAddingToCart = () => {
-    console.log(`product.ignoreStock ${product.ignoreStock}`);
-    console.log(`product.stock ${product.stock}`);
-    console.log(`quantity ${quantity}`);
-    console.log(`quantity > product.stock ${quantity > product.stock}`);
+    // console.log(`product.ignoreStock ${product.ignoreStock}`);
+    // console.log(`product.stock ${product.stock}`);
+    // console.log(`quantity ${quantity}`);
+    // console.log(`quantity > product.stock ${quantity > product.stock}`);
     if (!product.ignoreStock && quantity > product.stock) {
       if (product.stock == 0) {
         setShowDialogNotLeft(true);
@@ -64,7 +64,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         duration: 3000,
       })
     );
-    console.log("Añadir al carrito:", product, quantity);
+    // console.log("Añadir al carrito:", product, quantity);
   };
   //sm:h-[50%] sm:h-80
   return (
