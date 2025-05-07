@@ -206,7 +206,7 @@ describe("HomePage Tests", () => {
   });
   it("renders add to cart", async () => {
     await setup();
-    const element = screen.getByTestId("id-test-cart-count");
-    expect(element).not.toBeInTheDocument();
+    const element = screen.queryByTestId("id-test-cart-count");
+    expect(element).not.toBeInTheDocument(); //.toBeNull();
   });
 });
