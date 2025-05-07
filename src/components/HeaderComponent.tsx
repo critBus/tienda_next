@@ -75,7 +75,9 @@ export default function HeaderComponent() {
                 className="absolute top-0 right-0 mt-[-8px] mr-[-8px]
                bg-red-500 text-white text-xs font-bold rounded-full px-2 py-1"
               >
-                <span className="text-[12px]">{cartCount}</span>
+                <span className="text-[12px]" data-testid="id-test-cart-count">
+                  {cartCount}
+                </span>
               </div>
             )}
           </div>

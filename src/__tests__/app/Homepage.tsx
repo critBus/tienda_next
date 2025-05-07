@@ -1,5 +1,5 @@
 import { act, render, screen } from "@testing-library/react";
-import axios from "axios";
+
 import HomePage from "@/app/page";
 import ProviderRootLayout from "@/components/layouts/ProviderRootLayout";
 
@@ -187,8 +187,7 @@ describe("HomePage Tests", () => {
   afterEach(() => {
     jest.clearAllMocks(); // Clear mocks after each test
   });
-
-  it("renders recommended products", async () => {
+  const setup = async () => {
     await act(async () => {
       render(
         <ProviderRootLayout>
@@ -196,7 +195,18 @@ describe("HomePage Tests", () => {
         </ProviderRootLayout>
       );
     });
-
+  };
+  it("renders recommended products", async () => {
+    await setup();
     expect(screen.getByText("Productos recomendados")).toBeInTheDocument();
+  });
+  it("renders Best Selling products", async () => {
+    await setup();
+    expect(screen.getByText("Productos más Vendidos")).toBeInTheDocument();
+  });
+  it("renders add to cart", async () => {
+    await setup();
+    const element = screen.getByTestId("id-test-cart-count");
+    expect(element).not.toBeInTheDocument();
   });
 });
