@@ -151,13 +151,6 @@ jest.mock("axios", () => {
     },
   ];
 
-  // const mockPush = jest.fn();
-  // mockPush.mockReturnValue({
-  //   data: {
-  //     status: "success",
-  //     data: fake_products,
-  //   },
-  // });
   const mockedCreateAxios = jest.fn();
   const restponseGet = (url: string) => {
     let data = fake_products;
@@ -188,6 +181,7 @@ describe("HomePage Tests", () => {
     jest.clearAllMocks(); // Clear mocks after each test
   });
   const setup = async () => {
+    /* eslint-disable testing-library/no-unnecessary-act */
     await act(async () => {
       render(
         <ProviderRootLayout>
@@ -195,6 +189,7 @@ describe("HomePage Tests", () => {
         </ProviderRootLayout>
       );
     });
+    /* eslint-enable testing-library/no-unnecessary-act */
   };
   it("renders recommended products", async () => {
     await setup();
