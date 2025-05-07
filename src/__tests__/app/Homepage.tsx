@@ -214,6 +214,11 @@ describe("HomePage Tests", () => {
     const addButtons = screen.getAllByText("Añadir");
     expect(addButtons.length).toBeGreaterThan(0); // Ensure there are buttons
     fireEvent.click(addButtons[0]); // Click the first "Añadir" button
-    // Add your assertions here to verify the product was added to the cart
+    const element = screen.queryByTestId("id-test-cart-count");
+    expect(element).toBeInTheDocument();
+    expect(element).toHaveTextContent("1"); // Check if the cart count is 1
+
+    fireEvent.click(addButtons[0]); // Click the first "Añadir" button again
+    expect(element).toHaveTextContent("2"); // Check if the cart count is 2
   });
 });
