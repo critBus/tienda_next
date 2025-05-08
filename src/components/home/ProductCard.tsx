@@ -42,20 +42,42 @@ export default function ProductCard({ product }: ProductCardProps) {
     !stockInfo.isAvailable || quantity >= stockInfo.remainingStock;
 
   const isLessDisabled = !stockInfo.isAvailable || quantity <= 1;
+  const [isAddCartDisable, setIsAddCartDisable] = useState(
+    !stockInfo.isAvailable || quantity > stockInfo.remainingStock
+  );
+  useEffect(() => {
+    // console.log("set estado setIsAddCartDisable +++++++++++");
+    // console.log(`stockInfo.isAvailable ${stockInfo.isAvailable}`);
+    // console.log(`stockInfo.remainingStock ${stockInfo.remainingStock}`);
+    // console.log(`quantity ${quantity}`);
+    // console.log(
+    //   `quantity > stockInfo.remainingStock ${
+    //     quantity > stockInfo.remainingStock
+    //   }`
+    // );
+    // console.log(
+    //   `estado ${!stockInfo.isAvailable || quantity > stockInfo.remainingStock}`
+    // );
+    setIsAddCartDisable(
+      !stockInfo.isAvailable || quantity > stockInfo.remainingStock
+    );
+  }, [stockInfo, quantity]);
+  // const isAddCartDisable =
+  //   !stockInfo.isAvailable || quantity > stockInfo.remainingStock;
 
   const tryAddingToCart = () => {
-    console.log("-------------");
-    console.log(`product.ignoreStock ${product.ignoreStock}`);
-    console.log(`product.stock ${product.stock}`);
-    console.log(`quantity ${quantity}`);
-    console.log(`quantity > product.stock ${quantity > product.stock}`);
+    // console.log("-------------");
+    // console.log(`product.ignoreStock ${product.ignoreStock}`);
+    // console.log(`product.stock ${product.stock}`);
+    // console.log(`quantity ${quantity}`);
+    // console.log(`quantity > product.stock ${quantity > product.stock}`);
     if (!product.ignoreStock && quantity > product.stock) {
       if (product.stock == 0) {
         setShowDialogNotLeft(true);
-        console.log("no quedan");
+        // console.log("no quedan");
         return;
       }
-      console.log("insuficiente");
+      // console.log("insuficiente");
       setShowDialogInsufficient(true); // Show dialog if quantity exceeds stock
       return;
     }
@@ -239,12 +261,13 @@ export default function ProductCard({ product }: ProductCardProps) {
             </div>
             <Tooltip
               text="No se puede agregar mas"
-              showTooltip={isAddDisabled}
+              showTooltip={isAddCartDisable}
               forceVisible={forceTooltipAddCart}
             >
               <button
+                data-testid="idtest-button-cart-add"
                 onClick={() => {
-                  if (!isAddDisabled) {
+                  if (!isAddCartDisable) {
                     tryAddingToCart();
                   } else {
                     setForceTooltipAddCart(true);
@@ -255,7 +278,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   }
                 }}
                 className={`  flex flex-row gap-2 items-center justify-center   border-2 border-[#E5EAF0] rounded-md px-2 py-1 ${
-                  isAddDisabled
+                  isAddCartDisable
                     ? "opacity-50 cursor-not-allowed bg-[#9e9d9b]"
                     : "bg-[#FCD26D]"
                 }`}

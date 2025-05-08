@@ -192,14 +192,14 @@ const mockProduct = {
   categoryId: 1,
   companyId: 1,
   itsNew: true,
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  //   createdAt: new Date(),
+  //   updatedAt: new Date(),
   brand: "Marca1",
   category: {
     id: 1,
     name: "Bebidas",
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    // createdAt: new Date(),
+    // updatedAt: new Date(),
     image: "/assets/categories/img/bebidas.png",
   },
   company: {
@@ -213,8 +213,8 @@ const mockProduct = {
       currencyId: 1,
       value: 5.99,
       isFixed: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      //   createdAt: new Date(),
+      //   updatedAt: new Date(),
       currency: {
         id: 1,
         name: "USD",
@@ -280,16 +280,18 @@ describe("ProductCard Component", () => {
     expect(incrementButton).toHaveClass("cursor-not-allowed");
   });
 
-  //   it("disables add to cart button when stock is insufficient", async () => {
-  //     await setup();
-  //     const incrementButton = screen.getByTestId("idtest-button-add");
-  //     fireEvent.click(incrementButton);
+  it("disables add to cart button when stock is insufficient", async () => {
+    await setup();
+    const incrementButton = screen.getByTestId("idtest-button-add");
+    fireEvent.click(incrementButton);
 
-  //     const addToCartButton = screen.getByText("Añadir");
-  //     fireEvent.click(addToCartButton);
-  //     expect(screen.getByText("No se puede agregar mas")).toBeInTheDocument();
-  //     // expect(addToCartButton).toBeDisabled();
-  //   });
+    const addToCartButton = screen.getByTestId("idtest-button-cart-add");
+    expect(addToCartButton).not.toHaveClass("cursor-not-allowed");
+    fireEvent.click(addToCartButton);
+    expect(addToCartButton).toHaveClass("cursor-not-allowed");
+    //   expect(screen.getByText("No se puede agregar mas")).toBeInTheDocument();
+    // expect(addToCartButton).toBeDisabled();
+  });
 
   //   it("shows insufficient stock modal when quantity exceeds stock", () => {
   //     const store = setupStore();
