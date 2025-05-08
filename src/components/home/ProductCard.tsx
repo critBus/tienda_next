@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import { Product } from "@/types";
@@ -30,21 +30,32 @@ export default function ProductCard({ product }: ProductCardProps) {
   const stockInfo = useSelector((state: RootState) =>
     selectProductStockInfo(state.cart, product.id, product.stock)
   );
-
+  // const [isAddDisabled, setIsAddDisabled] = useState(
+  //   !stockInfo.isAvailable || quantity > stockInfo.remainingStock
+  // );
+  // useEffect(() => {
+  // setIsAddDisabled(
+  //   !stockInfo.isAvailable || quantity > stockInfo.remainingStock
+  // );
+  // }, [stockInfo, quantity]);
   const isAddDisabled =
-    !stockInfo.isAvailable || quantity > stockInfo.remainingStock;
+    !stockInfo.isAvailable || quantity >= stockInfo.remainingStock;
+
   const isLessDisabled = !stockInfo.isAvailable || quantity <= 1;
 
   const tryAddingToCart = () => {
-    // console.log(`product.ignoreStock ${product.ignoreStock}`);
-    // console.log(`product.stock ${product.stock}`);
-    // console.log(`quantity ${quantity}`);
-    // console.log(`quantity > product.stock ${quantity > product.stock}`);
+    console.log("-------------");
+    console.log(`product.ignoreStock ${product.ignoreStock}`);
+    console.log(`product.stock ${product.stock}`);
+    console.log(`quantity ${quantity}`);
+    console.log(`quantity > product.stock ${quantity > product.stock}`);
     if (!product.ignoreStock && quantity > product.stock) {
       if (product.stock == 0) {
         setShowDialogNotLeft(true);
+        console.log("no quedan");
         return;
       }
+      console.log("insuficiente");
       setShowDialogInsufficient(true); // Show dialog if quantity exceeds stock
       return;
     }
@@ -64,6 +75,22 @@ export default function ProductCard({ product }: ProductCardProps) {
         duration: 3000,
       })
     );
+    // setIsAddDisabled(
+    //   !stockInfo.isAvailable ||
+    //     quantity > product.stock - (stockInfo.cartQuantity + quantity)
+    // );
+    // console.log("-------------");
+    // console.log(`stockInfo.cartQuantity ${stockInfo.cartQuantity}`);
+    // console.log(`quantity ${quantity}`);
+    // console.log(`product.stock ${product.stock}`);
+    // console.log(
+    //   `stockInfo.cartQuantity + quantity ${stockInfo.cartQuantity + quantity}`
+    // );
+    // console.log(
+    //   `quantity > product.stock - (stockInfo.cartQuantity + quantity) ${
+    //     quantity > product.stock - (stockInfo.cartQuantity + quantity)
+    //   }`
+    // );
     // console.log("Añadir al carrito:", product, quantity);
   };
   //sm:h-[50%] sm:h-80
@@ -113,6 +140,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 forceVisible={forceTooltipLess}
               >
                 <button
+                  data-testid="idtest-button-less"
                   onClick={() => {
                     if (!isLessDisabled) {
                       setQuantity(Math.max(1, quantity - 1));
@@ -150,7 +178,12 @@ export default function ProductCard({ product }: ProductCardProps) {
               </Tooltip>
 
               <div className="w-4 bg-[#CFCECE] border-[#CFCECE] border-t-1 border-b-1 h-[60%] flex justify-center items-center">
-                <span className="text-[10px] font-bold">{quantity}</span>
+                <span
+                  className="text-[10px] font-bold"
+                  data-testid="idtest-quantity"
+                >
+                  {quantity}
+                </span>
               </div>
               <Tooltip
                 text="No se puede agregar mas"
@@ -158,15 +191,17 @@ export default function ProductCard({ product }: ProductCardProps) {
                 forceVisible={forceTooltipPlus}
               >
                 <button
+                  data-testid="idtest-button-add"
                   onClick={() => {
                     if (!isAddDisabled) {
+                      // console.log(`+quantity ${quantity}`);
                       setQuantity(quantity + 1);
                     } else {
                       setForceTooltipPlus(true);
                       setTimeout(() => {
                         setForceTooltipPlus(false);
                       }, 3000);
-                      console.log("va a mostrar el tooltip");
+                      // console.log("va a mostrar el tooltip");
                     }
                   }}
                   className={` border-2   rounded-md px-2 py-1 flex items-center justify-center
