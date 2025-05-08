@@ -42,28 +42,28 @@ export default function ProductCard({ product }: ProductCardProps) {
     !stockInfo.isAvailable || quantity >= stockInfo.remainingStock;
 
   const isLessDisabled = !stockInfo.isAvailable || quantity <= 1;
-  const [isAddCartDisable, setIsAddCartDisable] = useState(
-    !stockInfo.isAvailable || quantity > stockInfo.remainingStock
-  );
-  useEffect(() => {
-    // console.log("set estado setIsAddCartDisable +++++++++++");
-    // console.log(`stockInfo.isAvailable ${stockInfo.isAvailable}`);
-    // console.log(`stockInfo.remainingStock ${stockInfo.remainingStock}`);
-    // console.log(`quantity ${quantity}`);
-    // console.log(
-    //   `quantity > stockInfo.remainingStock ${
-    //     quantity > stockInfo.remainingStock
-    //   }`
-    // );
-    // console.log(
-    //   `estado ${!stockInfo.isAvailable || quantity > stockInfo.remainingStock}`
-    // );
-    setIsAddCartDisable(
-      !stockInfo.isAvailable || quantity > stockInfo.remainingStock
-    );
-  }, [stockInfo, quantity]);
-  // const isAddCartDisable =
-  //   !stockInfo.isAvailable || quantity > stockInfo.remainingStock;
+  // const [isAddCartDisable, setIsAddCartDisable] = useState(
+  //   !stockInfo.isAvailable || quantity > stockInfo.remainingStock
+  // );
+  // useEffect(() => {
+  //   // console.log("set estado setIsAddCartDisable +++++++++++");
+  //   // console.log(`stockInfo.isAvailable ${stockInfo.isAvailable}`);
+  //   // console.log(`stockInfo.remainingStock ${stockInfo.remainingStock}`);
+  //   // console.log(`quantity ${quantity}`);
+  //   // console.log(
+  //   //   `quantity > stockInfo.remainingStock ${
+  //   //     quantity > stockInfo.remainingStock
+  //   //   }`
+  //   // );
+  //   // console.log(
+  //   //   `estado ${!stockInfo.isAvailable || quantity > stockInfo.remainingStock}`
+  //   // );
+  //   setIsAddCartDisable(
+  //     !stockInfo.isAvailable || quantity > stockInfo.remainingStock
+  //   );
+  // }, [stockInfo, quantity]);
+  const isAddCartDisable =
+    !stockInfo.isAvailable || quantity > stockInfo.remainingStock;
 
   const tryAddingToCart = () => {
     // console.log("-------------");
