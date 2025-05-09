@@ -3,7 +3,11 @@ import { Provider } from "react-redux";
 import ProductCard from "./ProductCard";
 
 import ProviderRootLayout from "../layouts/ProviderRootLayout";
-import { persistor } from "@/store";
+import { createStore } from "@/store";
+
+const AllProviders = ({ children }: { children: React.ReactNode }) => (
+  <Provider store={createStore()}>{children}</Provider>
+);
 
 jest.mock("axios", () => {
   const fake_currencies = [
@@ -228,55 +232,28 @@ const mockProduct = {
   ],
 };
 
-describe.skip("ProductCard Component", () => {
+describe("ProductCard Component", () => {
   afterEach(async () => {
     console.log("va a limpiar los store");
     jest.clearAllMocks(); // Clear mocks after each test
-    // document.getElementsByTagName("html")[0].innerHTML = "";
-    // cache.clear();
-    jest.resetModules();
-    jest.clearAllTimers();
-    localStorage.clear();
-    sessionStorage.clear();
-    await persistor.purge();
-    // const keys = await caches.keys();
-    // for (let index = 0; index < keys.length; index++) {
-    //   const key = keys[index];
-    //   await caches.delete(key);
-    // }
-
-    // Create logging service for tests
-    // loggingService = new LoggingService();
   });
-  const setup = async () => {
-    /* eslint-disable testing-library/no-unnecessary-act */
-    await act(async () => {
-      render(
-        <ProviderRootLayout>
-          <ProductCard product={mockProduct} />
-        </ProviderRootLayout>
-      );
+  const setup = () => {
+    render(<ProductCard product={mockProduct} />, {
+      wrapper: AllProviders,
     });
-    /* eslint-enable testing-library/no-unnecessary-act */
   };
 
   it("renders product details correctly", async () => {
-    await setup();
+    setup();
 
     expect(screen.getByText(mockProduct.name)).toBeInTheDocument();
     expect(screen.getByText(mockProduct.company.name)).toBeInTheDocument();
     expect(screen.getByText("Envio Gratis")).toBeInTheDocument();
     expect(screen.getByText("-20%")).toBeInTheDocument();
-
-    jest.resetModules();
-    jest.clearAllTimers();
-    localStorage.clear();
-    sessionStorage.clear();
-    await persistor.purge();
   });
 
   it("increments and decrements quantity correctly", async () => {
-    await setup();
+    setup();
 
     const incrementButton = screen.getByTestId("idtest-button-add");
     const decrementButton = screen.getByTestId("idtest-button-less");
@@ -293,30 +270,18 @@ describe.skip("ProductCard Component", () => {
 
     fireEvent.click(decrementButton);
     expect(quantityDisplay).toHaveTextContent("1");
-
-    jest.resetModules();
-    jest.clearAllTimers();
-    localStorage.clear();
-    sessionStorage.clear();
-    await persistor.purge();
   });
 
   it("disables add button when stock is insufficient", async () => {
-    await setup();
+    setup();
     const incrementButton = screen.getByTestId("idtest-button-add");
     expect(incrementButton).not.toHaveClass("cursor-not-allowed");
     fireEvent.click(incrementButton);
     expect(incrementButton).toHaveClass("cursor-not-allowed");
-
-    jest.resetModules();
-    jest.clearAllTimers();
-    localStorage.clear();
-    sessionStorage.clear();
-    await persistor.purge();
   });
 
   it("disables add to cart button when stock is insufficient", async () => {
-    await setup();
+    setup();
     const incrementButton = screen.getByTestId("idtest-button-add");
     expect(incrementButton).not.toHaveClass("cursor-not-allowed");
     fireEvent.click(incrementButton);
@@ -325,17 +290,9 @@ describe.skip("ProductCard Component", () => {
     expect(addToCartButton).not.toHaveClass("cursor-not-allowed");
     fireEvent.click(addToCartButton);
     expect(addToCartButton).toHaveClass("cursor-not-allowed");
-    //   expect(screen.getByText("No se puede agregar mas")).toBeInTheDocument();
-    // expect(addToCartButton).toBeDisabled();
-
-    jest.resetModules();
-    jest.clearAllTimers();
-    localStorage.clear();
-    sessionStorage.clear();
-    await persistor.purge();
   });
   it("2disables add to cart button when stock is insufficient", async () => {
-    await setup();
+    setup();
     const incrementButton = screen.getByTestId("idtest-button-add");
     expect(incrementButton).not.toHaveClass("cursor-not-allowed");
     fireEvent.click(incrementButton);
@@ -346,12 +303,6 @@ describe.skip("ProductCard Component", () => {
     expect(addToCartButton).toHaveClass("cursor-not-allowed");
     //   expect(screen.getByText("No se puede agregar mas")).toBeInTheDocument();
     // expect(addToCartButton).toBeDisabled();
-
-    jest.resetModules();
-    jest.clearAllTimers();
-    localStorage.clear();
-    sessionStorage.clear();
-    await persistor.purge();
   });
 
   //   it("disables add button after click in add to cart when stock is insufficient", async () => {

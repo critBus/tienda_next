@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "generate:locations": "tsx src/commands/generateAvailableLocations.ts",
-    "test": "jest  --passWithNoTests",
+    "test": "cross-env NODE_ENV=test dotenv -e .env.test -- jest",
     "test:watch": "jest --watchAll"
   },
   "prisma": {
