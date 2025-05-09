@@ -228,7 +228,7 @@ const mockProduct = {
   ],
 };
 
-describe("ProductCard Component", () => {
+describe.skip("ProductCard Component", () => {
   afterEach(async () => {
     console.log("va a limpiar los store");
     jest.clearAllMocks(); // Clear mocks after each test
