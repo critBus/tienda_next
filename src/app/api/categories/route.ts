@@ -10,8 +10,8 @@ export async function GET() {
       data: categories,
       code: 200,
     });
-  } catch (error) {
-    console.error("Error al obtener categorías:", error);
+  } catch {
+    // (error) console.error("Error al obtener categorías:", error);
     return NextResponse.json(
       {
         status: ERROR,
