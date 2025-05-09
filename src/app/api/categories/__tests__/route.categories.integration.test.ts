@@ -1,5 +1,10 @@
+/**
+ * @jest-environment node
+ */
+
 import { GET } from "../route";
 import prisma from "@/libs/prisma";
+import { SUCCES } from "@/types";
 
 describe("GET /api/categories (integration)", () => {
   beforeAll(async () => {
@@ -20,7 +25,7 @@ describe("GET /api/categories (integration)", () => {
     const response = await GET();
     // Extrae el json de la respuesta
     const json = await response.json();
-    expect(json.status).toBe("SUCCES");
+    expect(json.status).toBe(SUCCES);
     expect(json.data.length).toBe(2);
     expect(json.data[0]).toHaveProperty("name", "cat1");
   });

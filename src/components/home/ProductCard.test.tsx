@@ -234,7 +234,7 @@ const mockProduct = {
 
 describe("ProductCard Component", () => {
   afterEach(async () => {
-    console.log("va a limpiar los store");
+    // console.log("va a limpiar los store");
     jest.clearAllMocks(); // Clear mocks after each test
   });
   const setup = () => {
