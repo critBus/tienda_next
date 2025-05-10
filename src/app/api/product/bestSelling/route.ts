@@ -7,7 +7,9 @@ export async function GET(req: NextRequest) {
     const provinceId = searchParams.get("provinceId");
     const municipalityId = searchParams.get("municipalityId");
     const townId = searchParams.get("townId");
-
+    // console.log(`provinceId ${provinceId}`);
+    // console.log(`municipalityId ${municipalityId}`);
+    // console.log(`townId ${townId}`);
     const location = {
       provinceId: provinceId ? Number(provinceId) : null,
       municipalityId: municipalityId ? Number(municipalityId) : null,

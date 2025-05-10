@@ -67,8 +67,8 @@ export function getLocationFilter({
       });
     }
   }
-  console.log("or_filter");
-  console.log(or_filter);
+  // console.log("or_filter");
+  // console.log(or_filter);
   return or_filter;
 }
 
