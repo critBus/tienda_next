@@ -290,31 +290,19 @@ describe("ProductCard Component", () => {
     expect(addToCartButton).not.toHaveClass("cursor-not-allowed");
     fireEvent.click(addToCartButton);
     expect(addToCartButton).toHaveClass("cursor-not-allowed");
+    expect(incrementButton).toHaveClass("cursor-not-allowed");
   });
-  it("2disables add to cart button when stock is insufficient", async () => {
+
+  it("disables add button after click in add to cart when stock is insufficient", async () => {
     setup();
     const incrementButton = screen.getByTestId("idtest-button-add");
     expect(incrementButton).not.toHaveClass("cursor-not-allowed");
-    fireEvent.click(incrementButton);
-
     const addToCartButton = screen.getByTestId("idtest-button-cart-add");
     expect(addToCartButton).not.toHaveClass("cursor-not-allowed");
     fireEvent.click(addToCartButton);
-    expect(addToCartButton).toHaveClass("cursor-not-allowed");
-    //   expect(screen.getByText("No se puede agregar mas")).toBeInTheDocument();
-    // expect(addToCartButton).toBeDisabled();
+    expect(incrementButton).toHaveClass("cursor-not-allowed");
+    expect(addToCartButton).not.toHaveClass("cursor-not-allowed");
   });
-
-  //   it("disables add button after click in add to cart when stock is insufficient", async () => {
-  //     await setup();
-  //     const incrementButton = screen.getByTestId("idtest-button-add");
-  //     expect(incrementButton).not.toHaveClass("cursor-not-allowed");
-  //       const addToCartButton = screen.getByTestId("idtest-button-cart-add");
-  //       expect(addToCartButton).not.toHaveClass("cursor-not-allowed");
-  //       fireEvent.click(addToCartButton);
-  //       expect(incrementButton).toHaveClass("cursor-not-allowed");
-  //       expect(addToCartButton).not.toHaveClass("cursor-not-allowed");
-  //   });
 
   //   it("shows insufficient stock modal when quantity exceeds stock", () => {
   //     const store = setupStore();
