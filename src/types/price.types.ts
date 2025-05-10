@@ -12,3 +12,5 @@ export interface Price {
   isFixed: boolean;
   currency: CurrencyDTO;
 }
+
+export type PriceSerializer = Omit<Price, "createdAt" | "updatedAt">;

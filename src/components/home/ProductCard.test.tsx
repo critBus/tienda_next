@@ -1,9 +1,9 @@
-import { act, render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 import ProductCard from "./ProductCard";
 
-import ProviderRootLayout from "../layouts/ProviderRootLayout";
 import { createStore } from "@/store";
+import { Product, ProductSerializer } from "@/types";
 
 const AllProviders = ({ children }: { children: React.ReactNode }) => (
   <Provider store={createStore()}>{children}</Provider>
@@ -182,7 +182,7 @@ jest.mock("axios", () => {
   };
 }); // Mock axios
 
-const mockProduct = {
+const mockProduct: ProductSerializer = {
   id: 1,
   name: "Cerveza Premium",
   description: "Cerveza artesanal de alta calidad",
@@ -192,11 +192,11 @@ const mockProduct = {
   ignoreStock: false,
   published: true,
   image: "/assets/products/img/cerveza.png",
-  discountPercentage: 20,
-  freeShipping: true,
+  discountPercentage: null,
+  freeShipping: false,
   categoryId: 1,
   companyId: 1,
-  itsNew: true,
+  itsNew: false,
   //   createdAt: new Date(),
   //   updatedAt: new Date(),
   brand: "Marca1",
@@ -237,19 +237,58 @@ describe("ProductCard Component", () => {
     // console.log("va a limpiar los store");
     jest.clearAllMocks(); // Clear mocks after each test
   });
-  const setup = () => {
-    render(<ProductCard product={mockProduct} />, {
+  const setup = (
+    data: {
+      discountPercentage?: number | null;
+      itsNew?: boolean;
+      freeShipping?: boolean;
+    } = {}
+  ) => {
+    const {
+      discountPercentage = null,
+      itsNew = false,
+      freeShipping = false,
+    } = data;
+    const productCopy = {
+      ...mockProduct,
+      discountPercentage, // Aquí asignas el valor dinámico
+      itsNew,
+      freeShipping,
+    };
+    productCopy.discountPercentage = discountPercentage;
+    productCopy.itsNew = itsNew;
+    productCopy.freeShipping = freeShipping;
+    render(<ProductCard product={productCopy} />, {
       wrapper: AllProviders,
     });
   };
 
   it("renders product details correctly", async () => {
-    setup();
+    setup({
+      discountPercentage: 20,
+      itsNew: true,
+      freeShipping: true,
+    });
 
     expect(screen.getByText(mockProduct.name)).toBeInTheDocument();
     expect(screen.getByText(mockProduct.company.name)).toBeInTheDocument();
     expect(screen.getByText("Envio Gratis")).toBeInTheDocument();
     expect(screen.getByText("-20%")).toBeInTheDocument();
+    expect(screen.getByText("NUEVO")).toBeInTheDocument();
+  });
+
+  it("renders product details correctly (not extra)", async () => {
+    setup({
+      discountPercentage: null,
+      itsNew: false,
+      freeShipping: false,
+    });
+
+    expect(screen.getByText(mockProduct.name)).toBeInTheDocument();
+    expect(screen.getByText(mockProduct.company.name)).toBeInTheDocument();
+    expect(screen.queryByText("Envio Gratis")).not.toBeInTheDocument();
+    expect(screen.queryByText("-20%")).not.toBeInTheDocument();
+    expect(screen.queryByText("NUEVO")).not.toBeInTheDocument();
   });
 
   it("increments and decrements quantity correctly", async () => {
@@ -303,23 +342,4 @@ describe("ProductCard Component", () => {
     expect(incrementButton).toHaveClass("cursor-not-allowed");
     expect(addToCartButton).not.toHaveClass("cursor-not-allowed");
   });
-
-  //   it("shows insufficient stock modal when quantity exceeds stock", () => {
-  //     const store = setupStore();
-  //     render(
-  //       <Provider store={store}>
-  //         <ProductCard product={mockProduct} />
-  //       </Provider>
-  //     );
-
-  //     const incrementButton = screen.getAllByRole("button")[1];
-  //     for (let i = 0; i < 11; i++) {
-  //       fireEvent.click(incrementButton);
-  //     }
-
-  //     const addToCartButton = screen.getByText("Añadir");
-  //     fireEvent.click(addToCartButton);
-
-  //     expect(screen.getByText("Stock insuficiente")).toBeInTheDocument();
-  //   });
 });

@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
-import { Product } from "@/types";
+import { ProductSerializer } from "@/types";
 import useProductPrice from "@/hooks/useProductPrice";
 import { addNotification } from "@/store/slices/notificationSlice";
 import { addToCart as addToCartAction } from "@/store/slices/cartSlice";
@@ -14,7 +14,7 @@ import Tooltip from "../common/Tooltip";
 import { RootState } from "@/store";
 
 interface ProductCardProps {
-  product: Product;
+  product: ProductSerializer;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
@@ -30,38 +30,12 @@ export default function ProductCard({ product }: ProductCardProps) {
   const stockInfo = useSelector((state: RootState) =>
     selectProductStockInfo(state.cart, product.id, product.stock)
   );
-  // const [isAddDisabled, setIsAddDisabled] = useState(
-  //   !stockInfo.isAvailable || quantity > stockInfo.remainingStock
-  // );
-  // useEffect(() => {
-  // setIsAddDisabled(
-  //   !stockInfo.isAvailable || quantity > stockInfo.remainingStock
-  // );
-  // }, [stockInfo, quantity]);
+
   const isAddDisabled =
     !stockInfo.isAvailable || quantity >= stockInfo.remainingStock;
 
   const isLessDisabled = !stockInfo.isAvailable || quantity <= 1;
-  // const [isAddCartDisable, setIsAddCartDisable] = useState(
-  //   !stockInfo.isAvailable || quantity > stockInfo.remainingStock
-  // );
-  // useEffect(() => {
-  //   // console.log("set estado setIsAddCartDisable +++++++++++");
-  //   // console.log(`stockInfo.isAvailable ${stockInfo.isAvailable}`);
-  //   // console.log(`stockInfo.remainingStock ${stockInfo.remainingStock}`);
-  //   // console.log(`quantity ${quantity}`);
-  //   // console.log(
-  //   //   `quantity > stockInfo.remainingStock ${
-  //   //     quantity > stockInfo.remainingStock
-  //   //   }`
-  //   // );
-  //   // console.log(
-  //   //   `estado ${!stockInfo.isAvailable || quantity > stockInfo.remainingStock}`
-  //   // );
-  //   setIsAddCartDisable(
-  //     !stockInfo.isAvailable || quantity > stockInfo.remainingStock
-  //   );
-  // }, [stockInfo, quantity]);
+
   const isAddCartDisable =
     !stockInfo.isAvailable || quantity > stockInfo.remainingStock;
 

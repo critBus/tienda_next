@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Product } from "@/types";
+import { ProductSerializer } from "@/types";
 
 export interface CartItem {
-  product: Product;
+  product: ProductSerializer;
   quantity: number;
 }
 

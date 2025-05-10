@@ -8,3 +8,8 @@ export type CategoryDTO = CategoryPrisma;
 export interface Category extends CategoryPrisma {
   link: string;
 }
+
+export type CategorySerializer = Omit<
+  CategoryPrisma,
+  "createdAt" | "updatedAt"
+>;
