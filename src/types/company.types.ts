@@ -1,1 +1,4 @@
-export type { Company as CompanyDTO } from "@/app/generated/prisma/index";
+export interface CompanyDTO {
+  id: number;
+  name: string;
+}

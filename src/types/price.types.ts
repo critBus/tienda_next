@@ -1,7 +1,14 @@
-import type { Price as PricePrisma } from "@/app/generated/prisma/index";
 import { CurrencyDTO } from "./currency.types";
 
-export type PriceDTO = PricePrisma;
+export type PriceDTO = {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  productId: number;
+  currencyId: number;
+  value: number;
+  isFixed: boolean;
+};
 export interface Price {
   id: number;
   createdAt: Date;

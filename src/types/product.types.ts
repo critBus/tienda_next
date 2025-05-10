@@ -1,15 +1,35 @@
 import { CategoryDTO, CategorySerializer } from "./category.types";
 import { CompanyDTO } from "./company.types";
+import { MunicipalityDTO } from "./municipality.types";
 
 // 1. Importamos el tipo original y lo renombramos
-import { Product as ProductPrisma } from "@/app/generated/prisma/index";
-import { ProductImage } from "@/app/generated/prisma/index";
-import { Province, Municipality, Town } from "@/app/generated/prisma/index";
 
 import { Price, PriceSerializer } from "./price.types";
+import { ProductImageDTO } from "./productImage.types";
+import { ProvinceDTO } from "./provice.types";
+import { TownDTO } from "./town.types";
 
-// 2. Creamos un alias exportable para el tipo original
-export type ProductDTO = ProductPrisma;
+export interface ProductDTO {
+  id: number;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+  image: string;
+  description: string;
+  priceBaseDiscount: number | null;
+  stock: number;
+  ignoreStock: boolean;
+  published: boolean;
+  discountPercentage: number | null;
+  freeShipping: boolean;
+  categoryId: number;
+  companyId: number;
+  itsNew: boolean;
+  category: CategoryDTO;
+  company: CompanyDTO;
+  priceBaseCurrency: number;
+  brand: string | null;
+}
 
 export interface Product {
   id: number;
@@ -56,11 +76,11 @@ export type ProductSerializer = {
   Price: PriceSerializer[]; // Updated to match the schema (array of Price objects)
 };
 
-export interface ProductDetail extends Product {
+export interface ProductDetail extends ProductDTO {
   availableLocations: {
-    province: Province | null;
-    municipality: Municipality | null;
-    town: Town | null;
+    province: ProvinceDTO | null;
+    municipality: MunicipalityDTO | null;
+    town: TownDTO | null;
   }[];
-  ProductImage: ProductImage[];
+  ProductImage: ProductImageDTO[];
 }

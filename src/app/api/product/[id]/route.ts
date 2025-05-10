@@ -4,9 +4,10 @@ import PrismaService from "@/service/PrismaService";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = params;
+  //const { params } = context;
+  const { id } = await params;
 
   try {
     // Buscar el producto por ID

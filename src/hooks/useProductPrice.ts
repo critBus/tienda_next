@@ -1,8 +1,8 @@
-import { Price } from "@/types";
+import { PriceSerializer } from "@/types";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 interface PropsExpected {
-  Price: Price[];
+  Price: PriceSerializer[];
   priceBaseCurrency: number;
 }
 export default function useProductPrice(product: PropsExpected | null) {

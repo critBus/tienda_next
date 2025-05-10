@@ -1,23 +1,23 @@
-import { Product } from "@/types";
-import prisma from "@/libs/prisma";
 import {
-  Product as ProductPrisma,
-  Price as PricePrisma,
-  Currency,
   Category,
-  Company,
-  ProductAvailability,
-} from "@/app/generated/prisma/index";
+  CurrencyDTO,
+  PriceDTO,
+  Product,
+  ProductAvailabilityDTO,
+  ProductDTO,
+} from "@/types";
+import prisma from "@/libs/prisma";
+
 import { FilterType } from "@/store/slices/locationSlice";
 
-interface PricePrismaResponse extends PricePrisma {
-  currency: Currency;
+interface PricePrismaResponse extends PriceDTO {
+  currency: CurrencyDTO;
 }
-interface ProductPrismaResponse extends ProductPrisma {
+interface ProductPrismaResponse extends ProductDTO {
   Price: PricePrismaResponse[];
   category: Category;
-  company: Company;
-  availableLocations: ProductAvailability[];
+  company: CurrencyDTO;
+  availableLocations: ProductAvailabilityDTO[];
 }
 
 export function parseProducts(

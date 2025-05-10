@@ -1,15 +1,14 @@
-// 1. Importamos el tipo original y lo renombramos
-import { Category as CategoryPrisma } from "@/app/generated/prisma/index";
-
-// 2. Creamos un alias exportable para el tipo original
-export type CategoryDTO = CategoryPrisma;
+export interface CategoryDTO {
+  id: number;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
+  image: string | null;
+}
 
 // 3. Extendemos el tipo original en nuestra interfaz
-export interface Category extends CategoryPrisma {
+export interface Category extends CategoryDTO {
   link: string;
 }
 
-export type CategorySerializer = Omit<
-  CategoryPrisma,
-  "createdAt" | "updatedAt"
->;
+export type CategorySerializer = Omit<CategoryDTO, "createdAt" | "updatedAt">;
