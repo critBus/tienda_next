@@ -50,10 +50,11 @@ describe("GET /api/product/[id] (integration)", () => {
   });
 
   it("should return the product from the real database", async () => {
-    const response = await GET(
-      {} as any,
-      { params: { id: String(productId) } }
-    );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const response = await GET({} as any, {
+      params: { id: String(productId) },
+    });
+
     const json = await response.json();
     expect(json.status).toBe("success");
     expect(json.data).toHaveProperty("id", productId);
@@ -63,10 +64,8 @@ describe("GET /api/product/[id] (integration)", () => {
   });
 
   it("should return 404 if product does not exist", async () => {
-    const response = await GET(
-      {} as any,
-      { params: { id: "999999" } }
-    );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const response = await GET({} as any, { params: { id: "999999" } });
     const json = await response.json();
     expect(response.status).toBe(404);
     expect(json.status).toBe("fail");

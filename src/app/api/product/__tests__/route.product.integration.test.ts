@@ -99,8 +99,10 @@ describe("GET /api/product (integration)", () => {
   it("should return best selling products from the real database", async () => {
     const req = {
       url: `http://localhost/api/product?provinceId=${location.provinceId}&municipalityId=${location.municipalityId}&townId=${location.townId}`,
-    } as any;
-    const response = await GET(req);
+    };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const response = await GET(req as any);
+    // eslint-disable-next-line
     const json = await response.json();
     expect(json.status).toBe("success");
     expect(Array.isArray(json.data)).toBe(true);

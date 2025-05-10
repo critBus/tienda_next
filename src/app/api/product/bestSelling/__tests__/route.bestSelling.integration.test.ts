@@ -99,8 +99,9 @@ describe("GET /api/product/bestSelling (integration)", () => {
   it("should return best selling products from the real database", async () => {
     const req = {
       url: `http://localhost/api/product/bestSelling?provinceId=${location.provinceId}&municipalityId=${location.municipalityId}&townId=${location.townId}`,
-    } as any;
-    const response = await GET(req);
+    };
+    // eslint-disable-next-line
+    const response = await GET(req as any);
     const json = await response.json();
     expect(json.status).toBe("success");
     expect(Array.isArray(json.data)).toBe(true);
