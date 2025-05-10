@@ -1,4 +1,4 @@
-import { Category } from "@/types";
+import { Category, CategoryDTO } from "@/types";
 
 export async function getAll(): Promise<Category[]> {
   try {
@@ -9,7 +9,7 @@ export async function getAll(): Promise<Category[]> {
       throw new Error(data.message);
     }
 
-    return data.data.map((category: any) => ({
+    return data.data.map((category: CategoryDTO) => ({
       ...category,
       createdAt: new Date(category.createdAt),
       updatedAt: new Date(category.updatedAt),

@@ -1,5 +1,6 @@
 import {
-  Category,
+  CategoryDTO,
+  CompanyDTO,
   CurrencyDTO,
   PriceDTO,
   Product,
@@ -15,8 +16,8 @@ interface PricePrismaResponse extends PriceDTO {
 }
 interface ProductPrismaResponse extends ProductDTO {
   Price: PricePrismaResponse[];
-  category: Category;
-  company: CurrencyDTO;
+  category: CategoryDTO;
+  company: CompanyDTO;
   availableLocations: ProductAvailabilityDTO[];
 }
 

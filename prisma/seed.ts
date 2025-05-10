@@ -1,9 +1,8 @@
 import prisma from "@/libs/prisma";
-import { ProductDTO } from "@/types"; // Asegúrate que este tipo es correcto o ajústalo
 import { Decimal } from "@prisma/client/runtime/library";
 
 // Helper para asegurar que el precio base sea un número antes de multiplicar
-function safeMultiply(price: Decimal, rate: Decimal): number {
+function safeMultiply(price: Decimal | number, rate: Decimal | number): number {
   const numPrice = Number(price);
   const numRate = Number(rate);
   if (isNaN(numPrice) || isNaN(numRate)) {
@@ -597,7 +596,7 @@ export async function main() {
     );
   }
 
-  const products: ProductDTO[] = createdProducts.map((p) => ({
+  const products = createdProducts.map((p) => ({
     ...p,
   })); // Asegura tipo Decimal a number si es necesario
   console.log(`Productos creadas: ${products.length}`);

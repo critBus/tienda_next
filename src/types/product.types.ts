@@ -1,3 +1,4 @@
+import { Decimal } from "@prisma/client/runtime/library";
 import { CategoryDTO, CategorySerializer } from "./category.types";
 import { CompanyDTO } from "./company.types";
 import { MunicipalityDTO } from "./municipality.types";
@@ -27,7 +28,7 @@ export interface ProductDTO {
   itsNew: boolean;
   category: CategoryDTO;
   company: CompanyDTO;
-  priceBaseCurrency: number;
+  priceBaseCurrency: Decimal;
   brand: string | null;
 }
 
@@ -76,7 +77,7 @@ export type ProductSerializer = {
   Price: PriceSerializer[]; // Updated to match the schema (array of Price objects)
 };
 
-export interface ProductDetail extends ProductDTO {
+export interface ProductDetail extends ProductSerializer {
   availableLocations: {
     province: ProvinceDTO | null;
     municipality: MunicipalityDTO | null;

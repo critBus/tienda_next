@@ -1,7 +1,6 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import InfoShipping from './InfoShipping';
+import InfoShipping from "./InfoShipping";
 
 interface Info {
   icono: string;
@@ -12,21 +11,23 @@ interface Info {
 
 const infos: Info[] = [
   {
-    icono: '/assets/shipping_cuba/group.svg',
-    title: 'Entrega rápida',
-    contenct: 'Nos aseguramos de que su entrega llegue en el menor tiempo posible.',
+    icono: "/assets/shipping_cuba/group.svg",
+    title: "Entrega rápida",
+    contenct:
+      "Nos aseguramos de que su entrega llegue en el menor tiempo posible.",
     last: false,
   },
   {
-    icono: '/assets/shipping_cuba/bag.svg',
-    title: 'Variedad de productos',
-    contenct: 'Contamos con una amplia y completa variedad de productos.',
+    icono: "/assets/shipping_cuba/bag.svg",
+    title: "Variedad de productos",
+    contenct: "Contamos con una amplia y completa variedad de productos.",
     last: false,
   },
   {
-    icono: '/assets/shipping_cuba/location-tick.svg',
-    title: 'Envíos a toda Cuba',
-    contenct: 'Contamos con servicios de entrega a lo largo y ancho de la isla.',
+    icono: "/assets/shipping_cuba/location-tick.svg",
+    title: "Envíos a toda Cuba",
+    contenct:
+      "Contamos con servicios de entrega a lo largo y ancho de la isla.",
     last: true,
   },
 ];
@@ -58,4 +59,4 @@ export default function ShippingCuba() {
       </div>
     </div>
   );
-} 
+}

@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import ProductCard from "./ProductCard";
 
 import { createStore } from "@/store";
-import { Product, ProductSerializer } from "@/types";
+import { ProductSerializer } from "@/types";
 
 const AllProviders = ({ children }: { children: React.ReactNode }) => (
   <Provider store={createStore()}>{children}</Provider>

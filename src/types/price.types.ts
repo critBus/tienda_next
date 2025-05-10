@@ -1,4 +1,5 @@
-import { CurrencyDTO } from "./currency.types";
+import { Decimal } from "@prisma/client/runtime/library";
+import { Currency } from "./currency.types";
 
 export type PriceDTO = {
   id: number;
@@ -6,7 +7,7 @@ export type PriceDTO = {
   updatedAt: Date;
   productId: number;
   currencyId: number;
-  value: number;
+  value: Decimal;
   isFixed: boolean;
 };
 export interface Price {
@@ -17,7 +18,9 @@ export interface Price {
   currencyId: number;
   value: number;
   isFixed: boolean;
-  currency: CurrencyDTO;
+  currency: Currency;
 }
-
+// export interface PriceWithCurrency extends PriceDTO {
+//   currency: CurrencyDTO;
+// }
 export type PriceSerializer = Omit<Price, "createdAt" | "updatedAt">;

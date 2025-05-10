@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const Tooltip = ({
   children,
@@ -13,16 +13,7 @@ const Tooltip = ({
   cssClass?: string;
   showTooltip?: boolean;
   forceVisible?: boolean;
-  // setForceVisible: () => void;
 }) => {
-  // const [isVisible, setIsVisible] = useState(false);
-  // useEffect(() => {
-  //   if (forceVisible) {
-  //     setIsVisible(true);
-  //     setTimeout(() => {setIsVisible(false)}, 3000); // Tooltip visible for 3 seconds
-  //   }
-  // }, [forceVisible]);
-
   return (
     <div className={`relative group ${cssClass}`}>
       {children}
