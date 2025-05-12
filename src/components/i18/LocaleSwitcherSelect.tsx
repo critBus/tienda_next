@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { Locale, useTranslations } from "next-intl";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 
 // import EsFlag from "/assets/flags/a1x1/flag_es.svg";
@@ -47,10 +47,28 @@ export default function LocaleSwitcherSelect({
 }: Props) {
   const t = useTranslations("LocaleSwitcher");
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const pathname = usePathname();
   const params = useParams();
+
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   const handleLanguageChange = async (nextLocale: Locale) => {
     router.replace(
@@ -63,7 +81,7 @@ export default function LocaleSwitcherSelect({
   };
   //hover:border-2 hover:border-black
   return (
-    <div className="flex items-center z-40">
+    <div className="flex items-center z-40" ref={containerRef}>
       <div className="relative inline-block sm:text-left">
         <button
           type="button"
@@ -91,17 +109,22 @@ export default function LocaleSwitcherSelect({
           >
             <div className="py-1 flex flex-col gap-2" role="none">
               {langKeys.map((language, index) => {
+                const isSelected = defaultValue === language;
+                const handlerSelect = () => {
+                  handleLanguageChange(language);
+                  if (isSelected) {
+                    setIsOpen(false);
+                  }
+                };
                 return (
                   <button
                     key={language}
-                    onClick={() => handleLanguageChange(language)}
+                    onClick={handlerSelect}
                     className={`${
-                      defaultValue === language
-                        ? "bg-gray-100 text-gray-900"
-                        : "text-gray-700"
-                    }  px-4 py-2 text-sm text-left items-center inline-flex hover:bg-gray-100 ${
-                      index % 2 === 0 ? "rounded-r" : "rounded-l"
-                    }`}
+                      isSelected ? "bg-gray-100 text-gray-900" : "text-gray-700"
+                    }  px-4 py-2 text-sm text-left items-center inline-flex hover:bg-gray-100 
+                    hover:cursor-pointer 
+                    ${index % 2 === 0 ? "rounded-r" : "rounded-l"}`}
                     role="menuitem"
                   >
                     <FlagIcon countryCode={language} isSelected={false} />
