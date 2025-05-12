@@ -61,5 +61,11 @@
   },
   "ShowMeAllTheProducts": {
     "title": "Ver todos los productos"
+  },
+  "SubscriptionsSection": {
+    "title": "Suscríbete a nuestro boletín",
+    "description": "Mantente al tanto de todas las novedades ofertas y descuentos. ¡Suscríbete!",
+    "placeholder": "Correo Electrónico",
+    "button": "Suscribirse"
   }
 }

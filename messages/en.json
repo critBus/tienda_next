@@ -70,5 +70,11 @@
   },
   "ShowMeAllTheProducts": {
     "title": "Show me all the products"
+  },
+  "SubscriptionsSection": {
+    "title": "Subscribe to our newsletter",
+    "description": "Stay up to date with all the news, offers and discounts. Subscribe!",
+    "placeholder": "Email address",
+    "button": "Subscribe"
   }
 }
