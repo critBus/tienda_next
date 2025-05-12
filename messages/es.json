@@ -11,5 +11,11 @@
     "label": "Cambiar lenguaje",
     "es": "Español",
     "en": "Ingles"
+  },
+  "ModalInsufficientProducts": {
+    "title": "Cantidad de productos insuficientes",
+    "description": "Solo quedan {stock} unidades del producto que está solicitando ¿Desea añadir al carrito las {stock} unidades que quedan?",
+    "cancel": "Cancelar",
+    "yesAdd": "Sí, añadir"
   }
 }

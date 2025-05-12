@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { useTranslations } from "next-intl";
 interface ModalProps {
   isOpen: boolean; // Indica si el modal está abierto o cerrado
   setIsOpen: (isOpen: boolean) => void;
@@ -12,6 +13,7 @@ const ModalInsufficientProducts = ({
   yesAdd,
   stock,
 }: ModalProps) => {
+  const t = useTranslations("ModalInsufficientProducts");
   return (
     <div>
       {isOpen && (
@@ -21,11 +23,6 @@ const ModalInsufficientProducts = ({
           role="dialog"
           aria-modal="true"
         >
-          {/* <div
-      className="fixed inset-0  backdrop-blur-[2px] transition-opacity"
-      aria-hidden="true"
-    ></div> */}
-
           <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
               <div className="w-[340px] h-[350px] relative bg-white rounded-lg shadow-sm shadow-gray-400/50 overflow-hidden">
@@ -53,13 +50,9 @@ const ModalInsufficientProducts = ({
                     />
                   </div>
                   <div className="flex flex-col mx-6 text-center">
-                    <span className="roboto-bold mt-6">
-                      Cantidad de productos insuficientes
-                    </span>
+                    <span className="roboto-bold mt-6">{t("title")}</span>
                     <span className="roboto mx-6 mt-2 text-[#7A7474] text-[12px]">
-                      Solo quedan {stock} unidades del producto que está
-                      solicitando ¿Desea añadir al carrito las {stock} unidades
-                      que quedan?
+                      {t("description", { stock })}
                     </span>
                     <div className="flex flex-wrap flex-row gap-4 h-[48px]">
                       {/* px-6 py-2 */}
@@ -69,7 +62,7 @@ const ModalInsufficientProducts = ({
                 justify-center mt-6 hover:scale-110 transition-all hover:cursor-pointer"
                         onClick={() => setIsOpen(false)}
                       >
-                        Cancelar
+                        {t("cancel")}
                       </button>
                       <button
                         className="text-[12px] text-white bg-[#4F6A8E] h-full grow 
@@ -82,7 +75,7 @@ const ModalInsufficientProducts = ({
                           setIsOpen(false);
                         }}
                       >
-                        Sí, añadir
+                        {t("yesAdd")}
                       </button>
                     </div>
                   </div>

@@ -20,5 +20,11 @@
         "submit": "Submit"
       }
     }
+  },
+  "ModalInsufficientProducts": {
+    "title": "Insufficient product quantity",
+    "description": "Only {stock} units of the requested product remain. Would you like to add the remaining {stock} units to the cart?",
+    "cancel": "Cancel",
+    "yesAdd": "Yes, add"
   }
 }
