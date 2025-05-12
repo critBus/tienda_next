@@ -7,8 +7,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import ApiService from "@/service/ApiService";
 import SkeletonProductSection from "../common/loaders/SkeletonProductSection";
+import { useTranslations } from "next-intl";
 
 export default function LatestAdditions() {
+  const t = useTranslations("LatestAdditions");
   const selectedLocation = useSelector(
     (state: RootState) => state.location.selectedLocation
   );
@@ -37,5 +39,5 @@ export default function LatestAdditions() {
 
   if (loading) return <SkeletonProductSection />;
   if (error) return <p>{error}</p>;
-  return <ProductsSection title="Últimos Añadidos" products={products} />;
+  return <ProductsSection title={t("title")} products={products} />;
 }

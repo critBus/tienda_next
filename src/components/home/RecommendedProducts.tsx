@@ -8,8 +8,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import ApiService from "@/service/ApiService";
 import SkeletonProductSection from "../common/loaders/SkeletonProductSection";
+import { useTranslations } from "next-intl";
 
 export default function RecommendedProducts() {
+  const t = useTranslations("RecommendedProducts");
   const selectedLocation = useSelector(
     (state: RootState) => state.location.selectedLocation
   );
@@ -37,10 +39,5 @@ export default function RecommendedProducts() {
   if (loading) return <SkeletonProductSection />;
   if (error) return <p>{error}</p>;
 
-  return (
-    <ProductsSection
-      title="Productos recomendados"
-      products={recommendedProducts}
-    />
-  );
+  return <ProductsSection title={t("title")} products={recommendedProducts} />;
 }

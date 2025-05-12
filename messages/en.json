@@ -35,5 +35,17 @@
   "LocationSelector": {
     "wholeCountry": "The whole country",
     "search": "Search"
+  },
+  "BestSellingProducts": {
+    "title": "Best selling products"
+  },
+  "LatestAdditions": {
+    "title": "Latest additions"
+  },
+  "LinkingYourPurchases": {
+    "title": "Linking your purchases"
+  },
+  "RecommendedProducts": {
+    "title": "Recommended products"
   }
 }

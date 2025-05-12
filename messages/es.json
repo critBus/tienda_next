@@ -26,5 +26,17 @@
   "LocationSelector": {
     "wholeCountry": "Todo el país",
     "search": "Buscar"
+  },
+  "BestSellingProducts": {
+    "title": "Productos más Vendidos"
+  },
+  "LatestAdditions": {
+    "title": "Últimos Añadidos"
+  },
+  "LinkingYourPurchases": {
+    "title": "Vinculados a tus Compras"
+  },
+  "RecommendedProducts": {
+    "title": "Productos recomendados"
   }
 }
