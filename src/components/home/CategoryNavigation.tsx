@@ -22,17 +22,17 @@ export default function CategoryNavigation() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const categories = await ApiService.category.all();
-        // console.log("pide las categorias");
-        // console.log(categories);
-        setCategories(categories);
+        const categories_response = await ApiService.category.all();
+        console.log("pide las categorias");
+        console.log(categories_response);
+        setCategories(categories_response);
 
         const rows = [];
         const max = 4;
-        for (let i = 0; i < categories.length; i += max) {
+        for (let i = 0; i < categories_response.length; i += max) {
           const row_categories = [];
-          for (let j = i; j < max; j++) {
-            row_categories.push(categories[j]);
+          for (let j = i; j < max && j < categories_response.length; j++) {
+            row_categories.push(categories_response[j]);
           }
           rows.push({
             id: `row-${i}`,
