@@ -83,5 +83,23 @@
     "products": "Products",
     "cart": "Cart",
     "profile": "Profile"
+  },
+  "FooterSection": {
+    "contactUs": "Send us a message",
+    "howHelp": "How can we help you?",
+    "contactAnytime": "Contact us at any time",
+    "subscribeTitle": "Subscribe to our newsletter",
+    "subscribePlaceholder": "Email",
+    "subscribeButton": "Subscribe",
+    "followUs": "Follow us",
+    "linksTitle": "Useful links",
+    "home": "Home",
+    "terms": "Terms of Service",
+    "becomeSeller": "Become a seller",
+    "legal": "Legal",
+    "shippingPolicy": "Shipping policy",
+    "privacyPolicy": "Privacy policy",
+    "warrantyPolicy": "Warranty and returns policy",
+    "securePayment": "Secure payment"
   }
 }

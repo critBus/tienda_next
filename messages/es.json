@@ -74,5 +74,23 @@
     "products": "Productos",
     "cart": "Carrito",
     "profile": "Perfil"
+  },
+  "FooterSection": {
+    "contactUs": "Envíanos un mensaje",
+    "howHelp": "¿Cómo podemos ayudarte?",
+    "contactAnytime": "Ponte en contacto con nosotros en cualquier momento",
+    "subscribeTitle": "Suscríbase a nuestro boletín",
+    "subscribePlaceholder": "Correo",
+    "subscribeButton": "Suscribirse",
+    "followUs": "Síguenos",
+    "linksTitle": "Enlaces de interés",
+    "home": "Inicio",
+    "terms": "Términos de los Servicios",
+    "becomeSeller": "Conviértete en vendedor",
+    "legal": "Legal",
+    "shippingPolicy": "Política de envíos",
+    "privacyPolicy": "Política de privacidad",
+    "warrantyPolicy": "Política de garantía y devoluciones",
+    "securePayment": "Pago seguro"
   }
 }
