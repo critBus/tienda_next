@@ -45,5 +45,8 @@
     "noSubtract": "No se puede restar más",
     "noAddMore": "No se puede agregar más",
     "add": "Añadir"
+  },
+  "ProductsSection": {
+    "NotHaveProducts": "No hay productos para mostrar en esta sección."
   }
 }

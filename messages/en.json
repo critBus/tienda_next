@@ -54,5 +54,8 @@
     "noSubtract": "Cannot subtract more",
     "noAddMore": "Cannot add more",
     "add": "Add"
+  },
+  "ProductsSection": {
+    "NotHaveProducts": "No products available",
   }
 }
