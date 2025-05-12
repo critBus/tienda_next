@@ -91,7 +91,8 @@ export default function LocationSelector({ showText = true }: Props) {
   return (
     <div className="relative">
       <button
-        className="flex items-center gap-1"
+        className="flex items-center gap-1
+        hover:cursor-pointer hover:scale-110 hover:ring  hover:ring-offset-4 hover:rounded-2xl hover:ring-gray-600 transition-transform duration-200 ease-in-out"
         onClick={() => setOpen((v) => !v)}
         aria-label="Seleccionar ubicación"
       >

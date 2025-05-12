@@ -45,7 +45,13 @@ export default function CurrencySelector() {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="bg-[#F8F8F8] flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+          className="bg-[#F8F8F8] flex items-center justify-between 
+          w-full px-4 py-2 text-sm font-medium text-gray-700 
+          border border-gray-300 rounded-md shadow-sm 
+          hover:bg-gray-50 focus:outline-none focus:ring-2 
+          focus:ring-offset-2 focus:ring-yellow-500
+          hover:cursor-pointer hover:scale-110 hover:border-gray-600 transition-transform duration-200 ease-in-out
+          "
         >
           {selectedCurrency?.name || "..."}
           {iconExpand}
