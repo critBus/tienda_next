@@ -26,5 +26,10 @@
     "description": "Only {stock} units of the requested product remain. Would you like to add the remaining {stock} units to the cart?",
     "cancel": "Cancel",
     "yesAdd": "Yes, add"
+  },
+  "ModalNoProductsLeft": {
+    "title": "Insufficient product quantity",
+    "description": "There are no more products of this type left, please choose others",
+    "cancel": "Cancel"
   }
 }

@@ -1,10 +1,12 @@
 import Image from "next/image";
 import React from "react";
+import { useTranslations } from "next-intl";
 interface ModalProps {
   isOpen: boolean; // Indica si el modal está abierto o cerrado
   setIsOpen: (isOpen: boolean) => void; // Función para cambiar el estado del modal
 }
 const ModalNoProductsLeft = ({ isOpen, setIsOpen }: ModalProps) => {
+  const t = useTranslations("ModalNoProductsLeft");
   return (
     <div>
       {isOpen && (
@@ -46,11 +48,9 @@ const ModalNoProductsLeft = ({ isOpen, setIsOpen }: ModalProps) => {
                     />
                   </div>
                   <div className="flex flex-col mx-6 text-center">
-                    <span className="roboto-bold mt-6">
-                      Cantidad de productos insuficientes
-                    </span>
+                    <span className="roboto-bold mt-6">{t("title")}</span>
                     <span className="roboto mx-6 mt-2 text-[#7A7474] text-[12px]">
-                      Ya no quedan productos de este tipo, por favor elija otros
+                      {t("description")}
                     </span>
                     <div className="flex flex-wrap flex-row gap-4 h-[48px]">
                       {/* px-6 py-2 */}
@@ -60,7 +60,7 @@ const ModalNoProductsLeft = ({ isOpen, setIsOpen }: ModalProps) => {
                 justify-center mt-6 hover:scale-110 transition-all hover:cursor-pointer"
                         onClick={() => setIsOpen(false)}
                       >
-                        Cancelar
+                        {t("cancel")}
                       </button>
                     </div>
                   </div>
