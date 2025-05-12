@@ -56,6 +56,16 @@
     "add": "Add"
   },
   "ProductsSection": {
-    "NotHaveProducts": "No products available",
+    "NotHaveProducts": "No products available"
+  },
+  "ShippingCuba": {
+    "warehouseTitle": "More than 1500 products in stock",
+    "mainTitle": "Shipping to all Cuba",
+    "fastDelivery": "Fast delivery",
+    "fastDeliveryDesc": "We make sure your delivery arrives as quickly as possible.",
+    "productVariety": "Product variety",
+    "productVarietyDesc": "We have a wide and complete variety of products.",
+    "shippingAllCuba": "Shipping to all Cuba",
+    "shippingAllCubaDesc": "We offer delivery services throughout the island."
   }
 }

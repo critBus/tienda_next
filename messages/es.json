@@ -48,5 +48,15 @@
   },
   "ProductsSection": {
     "NotHaveProducts": "No hay productos para mostrar en esta sección."
+  },
+  "ShippingCuba": {
+    "warehouseTitle": "Más de 1500 productos en el almacén",
+    "mainTitle": "Envíos hacia toda Cuba",
+    "fastDelivery": "Entrega rápida",
+    "fastDeliveryDesc": "Nos aseguramos de que su entrega llegue en el menor tiempo posible.",
+    "productVariety": "Variedad de productos",
+    "productVarietyDesc": "Contamos con una amplia y completa variedad de productos.",
+    "shippingAllCuba": "Envíos a toda Cuba",
+    "shippingAllCubaDesc": "Contamos con servicios de entrega a lo largo y ancho de la isla."
   }
 }
