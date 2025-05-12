@@ -58,5 +58,8 @@
     "productVarietyDesc": "Contamos con una amplia y completa variedad de productos.",
     "shippingAllCuba": "Envíos a toda Cuba",
     "shippingAllCubaDesc": "Contamos con servicios de entrega a lo largo y ancho de la isla."
+  },
+  "ShowMeAllTheProducts": {
+    "title": "Ver todos los productos"
   }
 }

@@ -67,5 +67,8 @@
     "productVarietyDesc": "We have a wide and complete variety of products.",
     "shippingAllCuba": "Shipping to all Cuba",
     "shippingAllCubaDesc": "We offer delivery services throughout the island."
+  },
+  "ShowMeAllTheProducts": {
+    "title": "Show me all the products"
   }
 }
