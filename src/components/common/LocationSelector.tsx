@@ -11,12 +11,14 @@ import {
   MunicipalityData,
   TownData,
 } from "@/utils/stableLocations";
+import { useTranslations } from "next-intl";
 
 interface Props {
   showText?: boolean;
 }
 
 export default function LocationSelector({ showText = true }: Props) {
+  const t = useTranslations("LocationSelector");
   const dispatch = useDispatch();
   const selectedLocation = useSelector(
     (state: RootState) => state.location.selectedLocation
@@ -119,7 +121,7 @@ export default function LocationSelector({ showText = true }: Props) {
         >
           <input
             type="text"
-            placeholder="Buscar..."
+            placeholder={`${t("search")}...`}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full mb-2 p-1 border rounded"
@@ -128,7 +130,7 @@ export default function LocationSelector({ showText = true }: Props) {
             className="cursor-pointer hover:bg-gray-100 px-2 py-1 rounded"
             onClick={() => handleSelect({})}
           >
-            Todo el país
+            {t("wholeCountry")}
           </div>
           <div className="border-t my-1" />
           {filteredLocations.slice(0, 6).map((prov) => (

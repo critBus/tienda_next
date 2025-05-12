@@ -31,5 +31,9 @@
     "title": "Insufficient product quantity",
     "description": "There are no more products of this type left, please choose others",
     "cancel": "Cancel"
+  },
+  "LocationSelector": {
+    "wholeCountry": "The whole country",
+    "search": "Search"
   }
 }

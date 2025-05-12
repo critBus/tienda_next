@@ -22,5 +22,9 @@
     "title": "Cantidad de productos insuficientes",
     "description": "Ya no quedan productos de este tipo, por favor elija otros",
     "cancel": "Cancelar"
+  },
+  "LocationSelector": {
+    "wholeCountry": "Todo el país",
+    "search": "Buscar"
   }
 }
