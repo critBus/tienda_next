@@ -108,7 +108,7 @@ export default function HeaderComponent() {
           </div>
         </div>
         <div className="w-full flex flex-row items-center gap-2">
-          <div className="h-8 w-auto flex-shrink-0">
+          <div className="h-full w-auto flex-shrink-0 flex items-center justify-center">
             <LocationSelector showText={false} />
           </div>
 
@@ -121,7 +121,11 @@ export default function HeaderComponent() {
           <button
             type="button"
             aria-label="Buscar"
-            className="flex-shrink-0 p-2 bg-yellow-400 rounded-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-300 flex items-center justify-center"
+            className="flex-shrink-0 p-2 bg-yellow-400 rounded-md hover:bg-yellow-500 
+            focus:outline-none focus:ring-2 focus:ring-yellow-300 
+            flex items-center justify-center
+            hover:scale-110 hover:cursor-pointer  transition-transform duration-200 ease-in-out
+            "
           >
             <Image
               src="/assets/header/search-normal.svg"
