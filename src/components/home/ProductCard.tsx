@@ -12,6 +12,7 @@ import ModalInsufficientProducts from "../common/modals/ModalInsufficientProduct
 import ModalNoProductsLeft from "../common/modals/ModalNoProductsLeft";
 import Tooltip from "../common/Tooltip";
 import { RootState } from "@/store";
+import { useTranslations } from "next-intl";
 
 interface ProductCardProps {
   product: ProductSerializer;
@@ -25,6 +26,8 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [showDialogInsufficient, setShowDialogInsufficient] = useState(false); // State for dialog visibility
   const [showDialogNotLeft, setShowDialogNotLeft] = useState(false); // State for dialog visibility
   const dispatch = useDispatch();
+
+  const t = useTranslations("ProductCard");
 
   const { originalPrice } = useProductPrice(product);
   const stockInfo = useSelector((state: RootState) =>
@@ -66,28 +69,11 @@ export default function ProductCard({ product }: ProductCardProps) {
     );
     dispatch(
       addNotification({
-        message: "Producto añadido al carrito.",
+        message: t("addedToCart"),
         type: "success",
         duration: 3000,
       })
     );
-    // setIsAddDisabled(
-    //   !stockInfo.isAvailable ||
-    //     quantity > product.stock - (stockInfo.cartQuantity + quantity)
-    // );
-    // console.log("-------------");
-    // console.log(`stockInfo.cartQuantity ${stockInfo.cartQuantity}`);
-    // console.log(`quantity ${quantity}`);
-    // console.log(`product.stock ${product.stock}`);
-    // console.log(
-    //   `stockInfo.cartQuantity + quantity ${stockInfo.cartQuantity + quantity}`
-    // );
-    // console.log(
-    //   `quantity > product.stock - (stockInfo.cartQuantity + quantity) ${
-    //     quantity > product.stock - (stockInfo.cartQuantity + quantity)
-    //   }`
-    // );
-    // console.log("Añadir al carrito:", product, quantity);
   };
   //sm:h-[50%] sm:h-80
   return (
@@ -124,14 +110,14 @@ export default function ProductCard({ product }: ProductCardProps) {
 
             {product.freeShipping && (
               <span className="rounded-sm text-[12px] text-[#0B7B69] bg-[#DBFEE3] p-1">
-                Envio Gratis
+                {t("freeShipping")}
               </span>
             )}
           </div>
           <div className="flex flex-row gap-2">
             <div className="flex flex-row justify-center items-center">
               <Tooltip
-                text="No se puede restar mas"
+                text={t("noSubtract")}
                 showTooltip={isLessDisabled}
                 forceVisible={forceTooltipLess}
               >
@@ -182,7 +168,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 </span>
               </div>
               <Tooltip
-                text="No se puede agregar mas"
+                text={t("noAddMore")}
                 showTooltip={isAddDisabled}
                 forceVisible={forceTooltipPlus}
               >
@@ -210,7 +196,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   <svg
                     width="15"
                     height="14"
-                    viewBox="0 0 15 14"
+                    viewBox="0 15 14"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-4 w-4"
@@ -234,7 +220,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               </Tooltip>
             </div>
             <Tooltip
-              text="No se puede agregar mas"
+              text={t("noAddMore")}
               showTooltip={isAddCartDisable}
               forceVisible={forceTooltipAddCart}
             >
@@ -264,7 +250,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   height={16}
                 />
 
-                <span className="text-[#624602]">Añadir</span>
+                <span className="text-[#624602]">{t("add")}</span>
               </button>
             </Tooltip>
           </div>

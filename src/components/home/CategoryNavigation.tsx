@@ -23,8 +23,8 @@ export default function CategoryNavigation() {
     const fetchCategories = async () => {
       try {
         const categories_response = await ApiService.category.all();
-        console.log("pide las categorias");
-        console.log(categories_response);
+        // console.log("pide las categorias");
+        // console.log(categories_response);
         setCategories(categories_response);
 
         const rows = [];

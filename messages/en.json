@@ -47,5 +47,12 @@
   },
   "RecommendedProducts": {
     "title": "Recommended products"
+  },
+  "ProductCard": {
+    "addedToCart": "Product added to cart.",
+    "freeShipping": "Free Shipping",
+    "noSubtract": "Cannot subtract more",
+    "noAddMore": "Cannot add more",
+    "add": "Add"
   }
 }
