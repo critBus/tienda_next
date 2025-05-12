@@ -6,6 +6,7 @@ import CurrencySelector from "./CurrencySelector";
 import LocationSelector from "@/components/common/LocationSelector";
 import { RootState } from "@/store";
 import { getLocationLabel } from "@/utils/locationLabel";
+import LocaleSwitcher from "./i18/LocaleSwitcher";
 
 export default function HeaderComponent() {
   const cartCount = useSelector((state: RootState) =>
@@ -95,7 +96,10 @@ export default function HeaderComponent() {
             className="h-8 w-auto"
           />
           <div>{getLocationLabel(selectedLocation)}</div>
-          <CurrencySelector />
+          <div className="flex flex-row items-center gap-2">
+            <LocaleSwitcher />
+            <CurrencySelector />
+          </div>
         </div>
         <div className="w-full flex flex-row items-center gap-2">
           <div className="h-8 w-auto flex-shrink-0">

@@ -14,22 +14,18 @@ type Props = {
   defaultValue: string;
 };
 
-function FlagIcon({ countryCode }: { countryCode: string }) {
-  console.log(`countryCode ${countryCode}`); //${countryCode}
-  // let flagName = "flag_en.svg";
-  // switch (countryCode) {
-  //   case "es":
-  //     flagName = "flag_es.svg";
-  //     break;
-  //   case "en":
-  //     flagName = "flag_en.svg";
-  //     break;
-  // }
-
-  // //bg-[url('/assets/flags/1x1/${flagName}')]
+function FlagIcon({
+  countryCode,
+  isSelected = false,
+}: {
+  countryCode: string;
+  isSelected: boolean;
+}) {
   return (
     <span
-      className={`w-[24px] h-[24px] text-[24px] rounded-full border-0 shadow-[inset_0_0_0_2px_rgba(0,0,0,0.06)] bg-white inline-block mr-2
+      className={`w-[24px] h-[24px] text-[24px] rounded-full border-0 shadow-[inset_0_0_0_2px_rgba(0,0,0,0.06)] bg-white inline-block ${
+        !isSelected ? "mr-2" : ""
+      }
                       relative  leading-none  bg-contain bg-center 
                       bg-no-repeat 
                       `}
@@ -65,35 +61,27 @@ export default function LocaleSwitcherSelect({
       { locale: nextLocale }
     );
   };
-
+  //hover:border-2 hover:border-black
   return (
     <div className="flex items-center z-40">
-      <div className="relative inline-block text-left">
-        <div>
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            type="button"
-            className="inline-flex items-center justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            aria-haspopup="true"
-            aria-expanded={isOpen}
-          >
-            <FlagIcon countryCode={defaultValue} />
-            {t(defaultValue)}
-            <svg
-              className="-mr-1 ml-2 h-5 w-5"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10.293 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
+      <div className="relative inline-block sm:text-left">
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className="h-full mr-1  p-2  
+          border border-gray-300 rounded-md shadow-sm
+           hover:cursor-pointer  flex items-center justify-center 
+           hover:scale-110 hover:border-gray-600 transition-transform duration-200 ease-in-out"
+        >
+          <Image
+            src={`/assets/flags/4x1/${defaultValue}.svg`}
+            alt="Facebook"
+            width={24}
+            height={24}
+            className=""
+          />
+        </button>
+
         {isOpen && (
           <div
             className="origin-top-right absolute right-0 mt-2 w-[140px] rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
@@ -116,7 +104,7 @@ export default function LocaleSwitcherSelect({
                     }`}
                     role="menuitem"
                   >
-                    <FlagIcon countryCode={language} />
+                    <FlagIcon countryCode={language} isSelected={false} />
                     <span className="truncate">{t(language)}</span>
                   </button>
                 );
