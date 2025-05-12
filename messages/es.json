@@ -67,5 +67,12 @@
     "description": "Mantente al tanto de todas las novedades ofertas y descuentos. ¡Suscríbete!",
     "placeholder": "Correo Electrónico",
     "button": "Suscribirse"
+  },
+  "CellPhoneNavigation": {
+    "menu": "Menú",
+    "shops": "Tiendas",
+    "products": "Productos",
+    "cart": "Carrito",
+    "profile": "Perfil"
   }
 }
