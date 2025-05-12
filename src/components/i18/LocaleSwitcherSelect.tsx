@@ -5,6 +5,10 @@ import { Locale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 
+// import EsFlag from "/assets/flags/a1x1/flag_es.svg";
+// import EnFlag from "/assets/flags/a1x1/flag_en.svg";
+import Image from "next/image";
+
 type Props = {
   langKeys: string[];
   defaultValue: string;
@@ -12,11 +16,32 @@ type Props = {
 
 function FlagIcon({ countryCode }: { countryCode: string }) {
   console.log(`countryCode ${countryCode}`); //${countryCode}
+  // let flagName = "flag_en.svg";
+  // switch (countryCode) {
+  //   case "es":
+  //     flagName = "flag_es.svg";
+  //     break;
+  //   case "en":
+  //     flagName = "flag_en.svg";
+  //     break;
+  // }
+
+  // //bg-[url('/assets/flags/1x1/${flagName}')]
   return (
     <span
-      className={`fi fis w-[24px] h-[24px] text-[24px] rounded-full border-0 shadow-[inset_0_0_0_2px_rgba(0,0,0,0.06)] bg-white inline-block mr-2
-                      relative  leading-none  bg-contain bg-center bg-no-repeat bg-[url('/assets/flags/1x1/${countryCode}.svg')]`}
-    ></span>
+      className={`w-[24px] h-[24px] text-[24px] rounded-full border-0 shadow-[inset_0_0_0_2px_rgba(0,0,0,0.06)] bg-white inline-block mr-2
+                      relative  leading-none  bg-contain bg-center 
+                      bg-no-repeat 
+                      `}
+    >
+      <Image
+        src={`/assets/flags/1x1/${countryCode}.svg`}
+        alt="Facebook"
+        width={24}
+        height={24}
+        className="rounded-full"
+      />
+    </span>
   );
 }
 
@@ -71,12 +96,12 @@ export default function LocaleSwitcherSelect({
         </div>
         {isOpen && (
           <div
-            className="origin-top-right absolute right-0 mt-2 w-96 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+            className="origin-top-right absolute right-0 mt-2 w-[140px] rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="language-selector"
           >
-            <div className="py-1 grid grid-cols-2 gap-2" role="none">
+            <div className="py-1 flex flex-col gap-2" role="none">
               {langKeys.map((language, index) => {
                 return (
                   <button
@@ -86,19 +111,12 @@ export default function LocaleSwitcherSelect({
                       defaultValue === language
                         ? "bg-gray-100 text-gray-900"
                         : "text-gray-700"
-                    } block px-4 py-2 text-sm text-left items-center inline-flex hover:bg-gray-100 ${
+                    }  px-4 py-2 text-sm text-left items-center inline-flex hover:bg-gray-100 ${
                       index % 2 === 0 ? "rounded-r" : "rounded-l"
                     }`}
                     role="menuitem"
                   >
                     <FlagIcon countryCode={language} />
-                    {/* <span
-                      className="fi fis w-[24px] h-[24px] text-[24px] rounded-full border-0 shadow-[inset_0_0_0_2px_rgba(0,0,0,0.06)] bg-white inline-block mr-2
-                      relative  leading-none before:content-['\\00a0'] bg-contain bg-center bg-no-repeat bg-[url('/assets/flags/1x1/es.svg')]
-                    "
-                    >
-                      asd
-                    </span> */}
                     <span className="truncate">{t(language)}</span>
                   </button>
                 );
