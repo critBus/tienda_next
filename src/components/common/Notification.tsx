@@ -6,19 +6,24 @@ interface NotificationProps {
   message: string;
   type?: "info" | "success" | "warning" | "error";
   duration?: number; // Duration in milliseconds
+  onClose?: () => void;
 }
 
 export default function Notification({
   message,
   type = "info",
   duration = 3000,
+  onClose,
 }: NotificationProps) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(false), duration);
+    const timer = setTimeout(() => {
+      setVisible(false);
+      if (onClose) onClose();
+    }, duration);
     return () => clearTimeout(timer);
-  }, [duration]);
+  }, [duration, onClose]);
 
   if (!visible) return null;
 
