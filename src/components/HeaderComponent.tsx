@@ -55,6 +55,7 @@ export default function HeaderComponent() {
           </button>
         </div>
         <div className="flex flex-row items-center gap-3 mr-3">
+          <LocaleSwitcher />
           <CurrencySelector />
           <Image
             src="/assets/header/icono base.svg"
