@@ -1,0 +1,108 @@
+{
+  "HomePage": {
+    "title": "Hola Mundo",
+    "about": "ir a la pagina sobre nosotros"
+  },
+  "OtherPage": {
+    "title": "Mi otra pagina",
+    "description": "sobre mi otra pagina"
+  },
+  "LocaleSwitcher": {
+    "label": "Cambiar lenguaje",
+    "es": "Español",
+    "en": "Ingles"
+  },
+  "ModalInsufficientProducts": {
+    "title": "Cantidad de productos insuficientes",
+    "description": "Solo quedan {stock} unidades del producto que está solicitando ¿Desea añadir al carrito las {stock} unidades que quedan?",
+    "cancel": "Cancelar",
+    "yesAdd": "Sí, añadir"
+  },
+  "ModalNoProductsLeft": {
+    "title": "Cantidad de productos insuficientes",
+    "description": "Ya no quedan productos de este tipo, por favor elija otros",
+    "cancel": "Cancelar"
+  },
+  "LocationSelector": {
+    "wholeCountry": "Todo el país",
+    "search": "Buscar"
+  },
+  "BestSellingProducts": {
+    "title": "Productos más Vendidos"
+  },
+  "LatestAdditions": {
+    "title": "Últimos Añadidos"
+  },
+  "LinkingYourPurchases": {
+    "title": "Vinculados a tus Compras"
+  },
+  "RecommendedProducts": {
+    "title": "Productos recomendados"
+  },
+  "ProductCard": {
+    "addedToCart": "Producto añadido al carrito.",
+    "freeShipping": "Envío Gratis",
+    "noSubtract": "No se puede restar más",
+    "noAddMore": "No se puede agregar más",
+    "add": "Añadir"
+  },
+  "ProductsSection": {
+    "NotHaveProducts": "No hay productos para mostrar en esta sección."
+  },
+  "ShippingCuba": {
+    "warehouseTitle": "Más de 1500 productos en el almacén",
+    "mainTitle": "Envíos hacia toda Cuba",
+    "fastDelivery": "Entrega rápida",
+    "fastDeliveryDesc": "Nos aseguramos de que su entrega llegue en el menor tiempo posible.",
+    "productVariety": "Variedad de productos",
+    "productVarietyDesc": "Contamos con una amplia y completa variedad de productos.",
+    "shippingAllCuba": "Envíos a toda Cuba",
+    "shippingAllCubaDesc": "Contamos con servicios de entrega a lo largo y ancho de la isla."
+  },
+  "ShowMeAllTheProducts": {
+    "title": "Ver todos los productos"
+  },
+  "SubscriptionsSection": {
+    "title": "Suscríbete a nuestro boletín",
+    "description": "Mantente al tanto de todas las novedades ofertas y descuentos. ¡Suscríbete!",
+    "placeholder": "Correo Electrónico",
+    "button": "Suscribirse"
+  },
+  "CellPhoneNavigation": {
+    "menu": "Menú",
+    "shops": "Tiendas",
+    "products": "Productos",
+    "cart": "Carrito",
+    "profile": "Perfil"
+  },
+  "FooterSection": {
+    "contactUs": "Envíanos un mensaje",
+    "howHelp": "¿Cómo podemos ayudarte?",
+    "contactAnytime": "Ponte en contacto con nosotros en cualquier momento",
+    "subscribeTitle": "Suscríbase a nuestro boletín",
+    "subscribePlaceholder": "Correo",
+    "subscribeButton": "Suscribirse",
+    "followUs": "Síguenos",
+    "linksTitle": "Enlaces de interés",
+    "home": "Inicio",
+    "terms": "Términos de los Servicios",
+    "becomeSeller": "Conviértete en vendedor",
+    "legal": "Legal",
+    "shippingPolicy": "Política de envíos",
+    "privacyPolicy": "Política de privacidad",
+    "warrantyPolicy": "Política de garantía y devoluciones",
+    "securePayment": "Pago seguro"
+  },
+  "HeaderComponent": {
+    "search": "Buscar"
+  },
+  "NavigationMenu": {
+    "home": "Inicio",
+    "allProducts": "Todos los productos",
+    "shops": "Tiendas",
+    "categories": "Categorías",
+    "sellWithUs": "Vende con Nosotros",
+    "contactUs": "Contáctenos",
+    "faq": "Preguntas frecuentes"
+  }
+}

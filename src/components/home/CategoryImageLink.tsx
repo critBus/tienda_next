@@ -22,7 +22,7 @@ export default function CategoryImageLink({
           <div className="relative w-24 h-24 sm:w-28 sm:h-28 overflow-visible">
             <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#FEF4DB] rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
             <Image
-              src={`/assets/categories/img/${img}`}
+              src={img}
               alt={img}
               width={160}
               height={160}

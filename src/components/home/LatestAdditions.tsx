@@ -1,65 +1,43 @@
-'use client';
+"use client";
+import { useEffect, useState } from "react";
 
-import ProductsSection from './ProductsSection';
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  originalPrice: number;
-  discountPercentage: number;
-  image: string;
-  freeShipping: boolean;
-}
-
-const products: Product[] = [
-  {
-    id: 1,
-    name: 'Galletas Integrales con Semillas de Chía sin cáscaras (400 g)',
-    price: 232.69,
-    originalPrice: 40.69,
-    discountPercentage: 10,
-    image: '/assets/products/img/pomos-de-agua.png',
-    freeShipping: true,
-  },
-  {
-    id: 2,
-    name: 'Galletas Integrales con Semillas de Chía sin cáscaras (400 g)',
-    price: 232.69,
-    originalPrice: 40.69,
-    discountPercentage: 10,
-    image: '/assets/products/img/especias_refinidas.png',
-    freeShipping: true,
-  },
-  {
-    id: 3,
-    name: 'Galletas Integrales con Semillas de Chía sin cáscaras (400 g)',
-    price: 232.69,
-    originalPrice: 40.69,
-    discountPercentage: 10,
-    image: '/assets/products/img/molo_para_piza.png',
-    freeShipping: true,
-  },
-  {
-    id: 4,
-    name: 'Galletas Integrales con Semillas de Chía sin cáscaras (400 g)',
-    price: 232.69,
-    originalPrice: 40.69,
-    discountPercentage: 10,
-    image: '/assets/products/img/pasta_barbicue.png',
-    freeShipping: true,
-  },
-  {
-    id: 5,
-    name: 'Galletas Integrales con Semillas de Chía sin cáscaras (400 g)',
-    price: 232.69,
-    originalPrice: 40.69,
-    discountPercentage: 10,
-    image: '/assets/products/img/rico_drato.png',
-    freeShipping: true,
-  },
-];
+import ProductsSection from "./ProductsSection";
+import { Product } from "@/types";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
+import ApiService from "@/service/ApiService";
+import SkeletonProductSection from "../common/loaders/SkeletonProductSection";
+import { useTranslations } from "next-intl";
 
 export default function LatestAdditions() {
-  return <ProductsSection title="Últimos Añadidos" products={products} />;
-} 
+  const t = useTranslations("LatestAdditions");
+  const selectedLocation = useSelector(
+    (state: RootState) => state.location.selectedLocation
+  );
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        setLoading(true);
+        const productsResponse = await ApiService.product.latestAdditions(
+          selectedLocation
+        );
+        setProducts(productsResponse);
+      } catch {
+        setError("Error al cargar los productos mas nuevos.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProducts();
+  }, [selectedLocation]);
+
+  if (loading) return <SkeletonProductSection />;
+  if (error) return <p>{error}</p>;
+  return <ProductsSection title={t("title")} products={products} />;
+}

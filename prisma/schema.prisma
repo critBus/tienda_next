@@ -1,0 +1,218 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../src/app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  // provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Currency {
+  id        Int     @id @default(autoincrement())
+  name      String
+  baseRate  Decimal @db.Decimal(12, 2)
+  isDefault Boolean @default(false)
+  isBase    Boolean @default(false)
+  Price     Price[]
+  symbol    String
+
+  @@index([name, isDefault])
+  @@index([name, isBase])
+  @@index([isDefault])
+  @@index([isBase])
+  @@index([symbol])
+}
+
+model Company {
+  id      Int       @id @default(autoincrement())
+  name    String
+  Product Product[]
+
+  @@index([name])
+}
+
+model Product {
+  id                 Int                   @id @default(autoincrement())
+  name               String
+  description        String
+  priceBaseCurrency  Decimal               @db.Decimal(12, 2)
+  priceBaseDiscount  Float?
+  stock              Int
+  ignoreStock        Boolean               @default(true)
+  published          Boolean               @default(false)
+  image              String
+  discountPercentage Float?
+  freeShipping       Boolean               @default(false)
+  category           Category              @relation(fields: [categoryId], references: [id])
+  categoryId         Int
+  company            Company               @relation(fields: [companyId], references: [id])
+  companyId          Int
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
+  Price              Price[]
+  itsNew             Boolean               @default(false)
+  brand              String?
+  availableLocations ProductAvailability[]
+  ProductImage       ProductImage[]
+
+  viewCount           Int   @default(0)
+  purchaseCount       Int   @default(0)
+  recommendationScore Float @default(0.0)
+
+  @@index([name])
+  @@index([priceBaseCurrency])
+  @@index([priceBaseDiscount])
+  @@index([stock])
+  @@index([ignoreStock])
+  @@index([published])
+  @@index([purchaseCount])
+  @@index([viewCount])
+  @@index([discountPercentage])
+  @@index([freeShipping])
+  @@index([categoryId])
+  @@index([companyId])
+  @@index([createdAt])
+  @@index([brand])
+  @@index([recommendationScore])
+  @@index([published, purchaseCount])
+  @@index([published, recommendationScore])
+  @@index([published, createdAt])
+}
+
+model ProductImage {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  cover     Boolean @default(false)
+  image     String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId, cover])
+  @@index([cover])
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  image     String?
+
+  @@index([name])
+}
+
+model Price {
+  id         Int      @id @default(autoincrement())
+  productId  Int // Clave foránea para Product (o Int si usas IDs enteros)
+  currencyId Int // Clave foránea para Currency (o Int si usas IDs enteros)
+  value      Decimal  @db.Decimal(12, 2) // Precio. Usa Decimal para precisión monetaria (ajusta precisión y escala según necesites)
+  isFixed    Boolean // TRUE si este precio es fijo para esta moneda. FALSE si es un equivalente calculado.
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Relaciones
+  product  Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  currency Currency @relation(fields: [currencyId], references: [id], onDelete: Restrict) // Restrict para no borrar monedas en uso
+
+  // Índice único para asegurar que solo hay un precio por producto y moneda
+  @@unique([productId, currencyId])
+  @@index([productId, isFixed])
+  @@index([productId, currencyId, value])
+  @@index([currencyId, value])
+  @@index([value])
+  @@index([isFixed])
+  @@index([updatedAt])
+}
+
+model Province {
+  id                Int                   @id @default(autoincrement())
+  name              String                @unique // Asumiendo nombres de provincia únicos en el país
+  municipalities    Municipality[]
+  // Relación inversa para ProductAvailability
+  availableProducts ProductAvailability[]
+
+  @@index([name])
+}
+
+model Municipality {
+  id                Int                   @id @default(autoincrement())
+  name              String // El nombre puede repetirse en distintas provincias
+  province          Province              @relation(fields: [provinceId], references: [id], onDelete: Restrict) // Evita borrar provincia si tiene municipios
+  provinceId        Int
+  towns             Town[]
+  // Relación inversa para ProductAvailability
+  availableProducts ProductAvailability[]
+
+  @@unique([name, provinceId]) // Un municipio es único dentro de una provincia
+  @@index([name, provinceId])
+  @@index([provinceId])
+}
+
+model Town {
+  id                Int                   @id @default(autoincrement())
+  name              String // El nombre puede repetirse en distintos municipios
+  municipality      Municipality          @relation(fields: [municipalityId], references: [id], onDelete: Restrict) // Evita borrar municipio si tiene pueblos
+  municipalityId    Int
+  // Relación inversa para ProductAvailability
+  availableProducts ProductAvailability[]
+
+  @@unique([name, municipalityId]) // Un pueblo es único dentro de un municipio
+  @@index([name, municipalityId])
+  @@index([municipalityId])
+}
+
+// Modelo de Unión para indicar dónde está disponible un producto
+model ProductAvailability {
+  id        Int     @id @default(autoincrement())
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade) // Si se borra el producto, se borra la disponibilidad
+  productId Int
+
+  // Un registro de disponibilidad puede aplicar a UNA provincia, O a UN municipio, O a UN pueblo.
+  // Solo uno de estos campos debería tener valor por registro.
+  // Prisma no fuerza esta restricción a nivel de BD, deberás manejarla en tu lógica de aplicación.
+  province       Province?     @relation(fields: [provinceId], references: [id], onDelete: Cascade) // Si se borra la provincia, se borra esta disponibilidad específica
+  provinceId     Int?
+  municipality   Municipality? @relation(fields: [municipalityId], references: [id], onDelete: Cascade) // Si se borra el municipio, se borra esta disponibilidad específica
+  municipalityId Int?
+  town           Town?         @relation(fields: [townId], references: [id], onDelete: Cascade) // Si se borra el pueblo, se borra esta disponibilidad específica
+  townId         Int?
+
+  createdAt DateTime @default(now())
+
+  // Índice para asegurar que un producto no tenga múltiples entradas *exactamente* iguales
+  // (ej. dos veces disponible en la misma provincia). Podrías necesitar refinar esto.
+  @@unique([productId, provinceId, municipalityId, townId])
+  @@index([productId])
+  @@index([provinceId, municipalityId, townId])
+  @@index([municipalityId, townId])
+  @@index([townId])
+  @@index([createdAt])
+}
+
+// model Order {
+//   id        Int         @id @default(autoincrement())
+//   userId    Int // Relación con un modelo User (ajusta según tu esquema)
+//   createdAt DateTime    @default(now())
+//   items     OrderItem[]
+
+//   @@index([userId, createdAt])
+// }
+
+// model OrderItem {
+//   id        Int     @id @default(autoincrement())
+//   orderId   Int
+//   productId Int
+//   quantity  Int
+//   order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+//   product   Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+//   @@index([orderId, productId, quantity])
+// }
