@@ -1,6 +1,15 @@
 {
-    "HomePage": {
-        "title": "Hello world!",
-        "about": "Go to the about page"
-    }
+  "HomePage": {
+    "title": "Hola Mundo",
+    "about": "ir a la pagina sobre nosotros"
+  },
+  "OtherPage": {
+    "title": "Mi otra pagina",
+    "description": "sobre mi otra pagina"
+  },
+  "LocaleSwitcher": {
+    "label": "Cambiar lenguaje",
+    "es": "Español",
+    "en": "Ingles"
+  }
 }

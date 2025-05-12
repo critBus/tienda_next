@@ -1,6 +1,24 @@
 {
-    "HomePage": {
-        "title": "Hello world!",
-        "about": "Go to the about page"
+  "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page"
+  },
+  "OtherPage": {
+    "title": "My other page",
+    "description": "about my other page"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "es": "Español",
+    "en": "Ingles"
+  },
+  "auth": {
+    "SignUp": {
+      "title": "Sign up",
+      "form": {
+        "placeholder": "Please enter your name",
+        "submit": "Submit"
+      }
     }
+  }
 }
