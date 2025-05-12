@@ -92,5 +92,8 @@
     "privacyPolicy": "Política de privacidad",
     "warrantyPolicy": "Política de garantía y devoluciones",
     "securePayment": "Pago seguro"
+  },
+  "HeaderComponent": {
+    "search": "Buscar"
   }
 }

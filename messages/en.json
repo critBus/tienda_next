@@ -101,5 +101,8 @@
     "privacyPolicy": "Privacy policy",
     "warrantyPolicy": "Warranty and returns policy",
     "securePayment": "Secure payment"
+  },
+  "HeaderComponent": {
+    "search": "Search"
   }
 }

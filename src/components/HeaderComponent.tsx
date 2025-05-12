@@ -7,8 +7,10 @@ import LocationSelector from "@/components/common/LocationSelector";
 import { RootState } from "@/store";
 import { getLocationLabel } from "@/utils/locationLabel";
 import LocaleSwitcher from "./i18/LocaleSwitcher";
+import { useTranslations } from "next-intl";
 
 export default function HeaderComponent() {
+  const t = useTranslations("HeaderComponent");
   const cartCount = useSelector((state: RootState) =>
     state.cart.items.reduce((total, item) => total + item.quantity, 0)
   ); // Calculate total items in the cart
@@ -115,7 +117,7 @@ export default function HeaderComponent() {
           <input
             type="text"
             id="search-input"
-            placeholder="Busca chuleta de cerdo"
+            placeholder={t("search")}
             className="flex-grow px-3 py-2 border border-gray-300 rounded-md text-xs font-normal font-roboto leading-snug align-middle text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-blue-500"
           />
           <button
