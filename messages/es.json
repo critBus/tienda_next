@@ -95,5 +95,14 @@
   },
   "HeaderComponent": {
     "search": "Buscar"
+  },
+  "NavigationMenu": {
+    "home": "Inicio",
+    "allProducts": "Todos los productos",
+    "shops": "Tiendas",
+    "categories": "Categorías",
+    "sellWithUs": "Vende con Nosotros",
+    "contactUs": "Contáctenos",
+    "faq": "Preguntas frecuentes"
   }
 }

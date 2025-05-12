@@ -1,21 +1,24 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
+import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 export default function NavigationMenu() {
+  const t = useTranslations("NavigationMenu");
+
   return (
     <div className="max-sm:hidden bg-[#E5EAF0] h-12 flex flex-row text-[#7A7474] text-sm roboto gap-5 justify-center items-center">
       <button type="button" className="hover:text-black text-[#405774]">
-        Inicio
+        {t("home")}
       </button>
       <button type="button" className="hover:text-black">
-        Todos los productos
+        {t("allProducts")}
       </button>
       <button type="button" className="hover:text-black">
-        Tiendas
+        {t("shops")}
       </button>
       <button type="button" className="flex flex-row hover:text-black">
-        <span>Categorías</span>
+        <span>{t("categories")}</span>
         <Image
           src="/assets/navigation_desk/icons/arrow-right.svg"
           alt=""
@@ -25,14 +28,14 @@ export default function NavigationMenu() {
         />
       </button>
       <button type="button" className="hover:text-black">
-        Vende con Nosotros
+        {t("sellWithUs")}
       </button>
       <button type="button" className="hover:text-black">
-        Contáctenos
+        {t("contactUs")}
       </button>
       <button type="button" className="hover:text-black">
-        Preguntas frecuentes
+        {t("faq")}
       </button>
     </div>
   );
-} 
+}

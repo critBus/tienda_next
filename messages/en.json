@@ -104,5 +104,14 @@
   },
   "HeaderComponent": {
     "search": "Search"
+  },
+  "NavigationMenu": {
+    "home": "Home",
+    "allProducts": "All products",
+    "shops": "Shops",
+    "categories": "Categories",
+    "sellWithUs": "Sell with us",
+    "contactUs": "Contact us",
+    "faq": "FAQ"
   }
 }
