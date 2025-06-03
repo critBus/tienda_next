@@ -8,13 +8,13 @@ export default function SubscriptionsSection() {
 
   return (
     <div className="relative flex justify-center items-center h-[354px]">
-      {/* <Image
-        src="/assets/suscriptions/bg.jpg"
+      <Image
+        src="/img/suscriptions/bg.jpg"
         alt="Background"
         fill
         className="object-cover"
         priority
-      /> */}
+      />
       <div className="relative h-[186px] lg:h-[230px] max-w-[340px] lg:max-w-[650px] bg-white/50 flex flex-col p-4 lg:px-8 lg:pt-8 lg:pb-2 text-center rounded-md lg:items-center">
         <div className="roboto-bold text-[#D09504] text-xl lg:text-3xl">
           {t("title")}
