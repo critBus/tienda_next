@@ -15,19 +15,19 @@ export default function ShippingCuba() {
 
   const infos: Info[] = [
     {
-      icono: "/assets/shipping_cuba/group.svg",
+      icono: "/icons/shipping_cuba/carro_de_envio.svg",
       title: t("fastDelivery"),
       contenct: t("fastDeliveryDesc"),
       last: false,
     },
     {
-      icono: "/assets/shipping_cuba/bag.svg",
+      icono: "/icons/shipping_cuba/bag.svg",
       title: t("productVariety"),
       contenct: t("productVarietyDesc"),
       last: false,
     },
     {
-      icono: "/assets/shipping_cuba/location-tick.svg",
+      icono: "/icons/shipping_cuba/location-tick.svg",
       title: t("shippingAllCuba"),
       contenct: t("shippingAllCubaDesc"),
       last: true,

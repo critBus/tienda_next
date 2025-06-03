@@ -8,7 +8,8 @@ import { RootState } from "@/store";
 import { getLocationLabel } from "@/utils/locationLabel";
 import LocaleSwitcher from "./i18/LocaleSwitcher";
 import { useTranslations } from "next-intl";
-
+import LogoImg from "../../public/icons/logos/logo.png";
+import LogoSimple from "../../public/icons/logos/sinfondosimple.png";
 export default function HeaderComponent() {
   const t = useTranslations("HeaderComponent");
   const cartCount = useSelector((state: RootState) =>
@@ -23,12 +24,13 @@ export default function HeaderComponent() {
       {/* Versión Desktop */}
       <div className="hidden lg:flex lg:flex-row lg:justify-between p-2">
         <div className="flex flex-row ml-4 items-center">
+          {/* <img src="http://localhost:3000/icons/logos/logo.png"></img> */}
           <Image
-            src="/assets/header/TSOTienda.png"
+            src={LogoImg} //"/icons/logos/logo.png"
             alt="Logo Recortado"
-            width={32}
-            height={32}
-            className="h-8 w-auto"
+            width={512}
+            height={512}
+            className="h-auto w-[200px]"
           />
           <div className="flex flex-row ml-4 items-center">
             <LocationSelector showText />
@@ -52,7 +54,7 @@ export default function HeaderComponent() {
             "
           >
             <Image
-              src="/assets/header/search-normal.svg"
+              src="/icons/header/search-normal.svg"
               alt=""
               width={20}
               height={20}
@@ -65,7 +67,7 @@ export default function HeaderComponent() {
           <LocaleSwitcher />
           <CurrencySelector />
           <Image
-            src="/assets/header/icono base.svg"
+            src="/icons/header/profile.svg"
             alt=""
             width={32}
             height={32}
@@ -73,7 +75,7 @@ export default function HeaderComponent() {
           />
           <div className="relative flex items-center cursor-pointer">
             <Image
-              src="/assets/header/shopping-cart.svg"
+              src="/icons/header/shopping-cart.svg"
               alt=""
               width={40}
               height={32}
@@ -97,10 +99,10 @@ export default function HeaderComponent() {
       <div className="lg:hidden flex flex-col gap-2 p-2">
         <div className="flex place-content-between items-center">
           <Image
-            src="/assets/header/image 3.png"
+            src={LogoSimple}
             alt="Logo Recortado"
-            width={32}
-            height={32}
+            width={500}
+            height={137}
             className="h-8 w-auto"
           />
           <div>{getLocationLabel(selectedLocation)}</div>
@@ -130,7 +132,7 @@ export default function HeaderComponent() {
             "
           >
             <Image
-              src="/assets/header/search-normal.svg"
+              src="/icons/header/search-normal.svg"
               alt=""
               width={20}
               height={20}

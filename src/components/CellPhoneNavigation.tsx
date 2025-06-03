@@ -14,27 +14,27 @@ export default function CellPhoneNavigation() {
 
   const buttons: ButtonData[] = [
     {
-      icon: "/assets/cell_phone_navigation/icons/menu.svg",
+      icon: "/icons/cell_phone_navigation/menu.svg",
       name: t("menu"),
       selected: false,
     },
     {
-      icon: "/assets/cell_phone_navigation/icons/shop.svg",
+      icon: "/icons/cell_phone_navigation/shop.svg",
       name: t("shops"),
       selected: true,
     },
     {
-      icon: "/assets/cell_phone_navigation/icons/products.svg",
+      icon: "/icons/cell_phone_navigation/products.svg",
       name: t("products"),
       selected: false,
     },
     {
-      icon: "/assets/cell_phone_navigation/icons/shopping-cart.svg",
+      icon: "/icons/cell_phone_navigation/shopping-cart.svg",
       name: t("cart"),
       selected: false,
     },
     {
-      icon: "/assets/cell_phone_navigation/icons/profile.svg",
+      icon: "/icons/cell_phone_navigation/profile.svg",
       name: t("profile"),
       selected: false,
     },

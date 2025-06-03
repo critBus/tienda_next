@@ -99,7 +99,7 @@ export default function LocationSelector({ showText = true }: Props) {
         aria-label="Seleccionar ubicación"
       >
         <Image
-          src="/assets/header/location.svg"
+          src="/icons/header/location.svg"
           alt="Ubicación"
           width={20}
           height={20}

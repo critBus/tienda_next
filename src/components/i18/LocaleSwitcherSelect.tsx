@@ -31,7 +31,7 @@ function FlagIcon({
                       `}
     >
       <Image
-        src={`/assets/flags/1x1/${countryCode}.svg`}
+        src={`/icons/i18/circle/${countryCode}.svg`} //{`/icons/i18/${countryCode}.png`} //{`/assets/flags/1x1/${countryCode}.svg`}
         alt="Facebook"
         width={24}
         height={24}
@@ -92,7 +92,7 @@ export default function LocaleSwitcherSelect({
            hover:scale-110 hover:border-gray-600 transition-transform duration-200 ease-in-out"
         >
           <Image
-            src={`/assets/flags/4x1/${defaultValue}.svg`}
+            src={`/icons/i18/rectangle/${defaultValue}.svg`} //{`/assets/flags/4x1/${defaultValue}.svg`}
             alt="Facebook"
             width={24}
             height={24}

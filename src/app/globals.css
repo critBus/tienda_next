@@ -3,34 +3,34 @@
 /* Carga de la fuente */
 @font-face {
   font-family: 'RobotoCondensed-Bold';
-  src: url('../../public/assets/fonts/RobotoCondensed-Bold.ttf') format('truetype');
+  src: url('../../public/fonts/Roboto/RobotoCondensed-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Roboto';
-  src: url('../../public/assets/fonts/Roboto-Regular.ttf') format('truetype');
+  src: url('../../public/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Roboto-Bold';
-  src: url('../../public/assets/fonts/Roboto-Bold.ttf') format('truetype');
+  src: url('../../public/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Source-Sans-Pro';
-  src: url('../../public/assets/fonts/SourceSansPro-Light.otf') format('truetype');
+  src: url('../../public/fonts/SourceSansPro/SourceSansPro-Light.otf') format('truetype');
 }
 
 @font-face {
   font-family: 'Source-Sans-Pro-Bold';
-  src: url('../../public/assets/fonts/SourceSansPro-Bold.otf') format('truetype');
+  src: url('../../public/fonts/SourceSansPro/SourceSansPro-Bold.otf') format('truetype');
 }
 
 @font-face {
   font-family: 'Heebo';
-  src: url('../../public/assets/fonts/Heebo-Light.ttf') format('truetype');
+  src: url('../../public/fonts/Heebo/Heebo-Light.ttf') format('truetype');
 }
 
 .custom-link {
