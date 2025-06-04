@@ -1,0 +1,117 @@
+{
+  "HomePage": {
+    "title": "Hello world!",
+    "about": "Go to the about page"
+  },
+  "OtherPage": {
+    "title": "My other page",
+    "description": "about my other page"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "es": "Español",
+    "en": "Ingles"
+  },
+  "auth": {
+    "SignUp": {
+      "title": "Sign up",
+      "form": {
+        "placeholder": "Please enter your name",
+        "submit": "Submit"
+      }
+    }
+  },
+  "ModalInsufficientProducts": {
+    "title": "Insufficient product quantity",
+    "description": "Only {stock} units of the requested product remain. Would you like to add the remaining {stock} units to the cart?",
+    "cancel": "Cancel",
+    "yesAdd": "Yes, add"
+  },
+  "ModalNoProductsLeft": {
+    "title": "Insufficient product quantity",
+    "description": "There are no more products of this type left, please choose others",
+    "cancel": "Cancel"
+  },
+  "LocationSelector": {
+    "wholeCountry": "The whole country",
+    "search": "Search"
+  },
+  "BestSellingProducts": {
+    "title": "Best selling products"
+  },
+  "LatestAdditions": {
+    "title": "Latest additions"
+  },
+  "LinkingYourPurchases": {
+    "title": "Linking your purchases"
+  },
+  "RecommendedProducts": {
+    "title": "Recommended products"
+  },
+  "ProductCard": {
+    "addedToCart": "Product added to cart.",
+    "freeShipping": "Free Shipping",
+    "noSubtract": "Cannot subtract more",
+    "noAddMore": "Cannot add more",
+    "add": "Add"
+  },
+  "ProductsSection": {
+    "NotHaveProducts": "No products available"
+  },
+  "ShippingCuba": {
+    "warehouseTitle": "More than 1500 products in stock",
+    "mainTitle": "Shipping to all Cuba",
+    "fastDelivery": "Fast delivery",
+    "fastDeliveryDesc": "We make sure your delivery arrives as quickly as possible.",
+    "productVariety": "Product variety",
+    "productVarietyDesc": "We have a wide and complete variety of products.",
+    "shippingAllCuba": "Shipping to all Cuba",
+    "shippingAllCubaDesc": "We offer delivery services throughout the island."
+  },
+  "ShowMeAllTheProducts": {
+    "title": "Show me all the products"
+  },
+  "SubscriptionsSection": {
+    "title": "Subscribe to our newsletter",
+    "description": "Stay up to date with all the news, offers and discounts. Subscribe!",
+    "placeholder": "Email address",
+    "button": "Subscribe"
+  },
+  "CellPhoneNavigation": {
+    "menu": "Menu",
+    "shops": "Shops",
+    "products": "Products",
+    "cart": "Cart",
+    "profile": "Profile"
+  },
+  "FooterSection": {
+    "contactUs": "Send us a message",
+    "howHelp": "How can we help you?",
+    "contactAnytime": "Contact us at any time",
+    "subscribeTitle": "Subscribe to our newsletter",
+    "subscribePlaceholder": "Email",
+    "subscribeButton": "Subscribe",
+    "followUs": "Follow us",
+    "linksTitle": "Useful links",
+    "home": "Home",
+    "terms": "Terms of Service",
+    "becomeSeller": "Become a seller",
+    "legal": "Legal",
+    "shippingPolicy": "Shipping policy",
+    "privacyPolicy": "Privacy policy",
+    "warrantyPolicy": "Warranty and returns policy",
+    "securePayment": "Secure payment"
+  },
+  "HeaderComponent": {
+    "search": "Search"
+  },
+  "NavigationMenu": {
+    "home": "Home",
+    "allProducts": "All products",
+    "shops": "Shops",
+    "categories": "Categories",
+    "sellWithUs": "Sell with us",
+    "contactUs": "Contact us",
+    "faq": "FAQ"
+  }
+}
