@@ -1,9 +1,8 @@
-import { getRequestConfig } from 'next-intl/server';
+import { getRequestConfig } from "next-intl/server";
 
-import { TypeLocales, routing } from './routing';
+import { TypeLocales, routing } from "./routing";
 
-export default getRequestConfig(async ({ requestLocale }) => {
-  let locale = await requestLocale;
+export const getLocaleData = async (locale: string | undefined) => {
   // Validate that the incoming `locale` parameter is valid
   if (!locale || !routing.locales.includes(locale as TypeLocales)) {
     locale = routing.defaultLocale;
@@ -19,4 +18,11 @@ export default getRequestConfig(async ({ requestLocale }) => {
     messages: mergedMessages,
     locale,
   };
-});
+};
+
+export default getRequestConfig(
+  async ({ requestLocale }: { requestLocale: Promise<string | undefined> }) => {
+    let locale = await requestLocale;
+    return await getLocaleData(locale);
+  }
+);
