@@ -103,4 +103,36 @@ test.describe("home page", () => {
       page.getByText(messages_nextLang["LatestAdditions"]["title"])
     ).toBeVisible();
   });
+
+  test("Change currency", async ({ page }) => {
+    await page.goto("/");
+    const currentCurrency = "USD";
+    const nextCurrency = "EUR";
+    const currentPrice = "5.99";
+    const nextPrice = "5.51";
+
+    const bottonOpenCurrency = page.getByRole("button", {
+      name: currentCurrency,
+    });
+    const bottonNextCurrency = page.getByRole("button", {
+      name: nextCurrency,
+    });
+
+    await expect(bottonOpenCurrency).toBeVisible();
+    await expect(bottonNextCurrency).not.toBeVisible();
+
+    // const countFirstPrice: number = await page.getByText(currentPrice).count();
+    await expect(await page.getByText(currentPrice).count()).toBeGreaterThan(0);
+    await expect(await page.getByText(nextPrice).count()).toBe(0);
+
+    await bottonOpenCurrency.click();
+
+    await expect(bottonNextCurrency).toBeVisible();
+    await bottonNextCurrency.click();
+
+    await expect(bottonOpenCurrency).not.toBeVisible();
+
+    await expect(await page.getByText(currentPrice).count()).toBe(0);
+    await expect(await page.getByText(nextPrice).count()).toBeGreaterThan(0);
+  });
 });
