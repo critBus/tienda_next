@@ -22,7 +22,7 @@ export const getLocaleData = async (locale: string | undefined) => {
 
 export default getRequestConfig(
   async ({ requestLocale }: { requestLocale: Promise<string | undefined> }) => {
-    let locale = await requestLocale;
+    const locale = await requestLocale;
     return await getLocaleData(locale);
   }
 );

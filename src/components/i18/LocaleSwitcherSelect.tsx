@@ -1,16 +1,15 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { Locale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useState, useRef, useEffect } from "react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 
-// import EsFlag from "/assets/flags/a1x1/flag_es.svg";
-// import EnFlag from "/assets/flags/a1x1/flag_en.svg";
 import Image from "next/image";
+import { TypeLocales } from "@/i18n/routing";
 
 type Props = {
-  langKeys: string[];
+  langKeys: TypeLocales[];
   defaultValue: string;
 };
 
@@ -70,7 +69,7 @@ export default function LocaleSwitcherSelect({
     };
   }, [isOpen]);
 
-  const handleLanguageChange = async (nextLocale: Locale) => {
+  const handleLanguageChange = async (nextLocale: TypeLocales) => {
     router.replace(
       // @ts-expect-error -- TypeScript will validate that only known `params`
       // are used in combination with a given `pathname`. Since the two will
