@@ -78,21 +78,21 @@ test.describe("home page", () => {
       page.getByText(current_messages["LatestAdditions"]["title"])
     ).toBeVisible();
 
-    // // Abrir el selector de idioma
+    //  Abrir el selector de idioma
     const bottonOpenLocale = page.getByRole("button", {
       name: "Locale Selected",
     });
     await expect(bottonOpenLocale).toBeVisible();
     await bottonOpenLocale.click();
 
-    // // Seleccionar el otro idioma
+    //  Seleccionar el otro idioma
     const bottonNextLang = page.locator(
       `button >> img[src*="/icons/i18/circle/${nextLang}.svg"]`
     );
     await expect(bottonNextLang).toBeVisible();
     await bottonNextLang.click();
 
-    // // Esperar a que la URL cambie al nuevo idioma
+    //  Esperar a que la URL cambie al nuevo idioma
     await expect(page).toHaveURL(new RegExp(`/${nextLang}`));
 
     // Verificar que el texto traducido cambió
@@ -134,5 +134,14 @@ test.describe("home page", () => {
 
     await expect(await page.getByText(currentPrice).count()).toBe(0);
     await expect(await page.getByText(nextPrice).count()).toBeGreaterThan(0);
+  });
+
+  test("Change site", async ({ page }) => {
+    await page.goto("/");
+    const town = "Centro Histórico";
+    const municipality = "La Habana Vieja";
+    const province = "La Habana";
+    const productCountry = "Refresco Nacional";
+    const productTown = "Cerveza Premium";
   });
 });

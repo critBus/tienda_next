@@ -20,7 +20,7 @@ interface Props {
 export default function LocationSelector({ showText = true }: Props) {
   const t = useTranslations("LocationSelector");
   const dispatch = useDispatch();
-  const selectedLocation = useSelector(
+  const selectedLocation: LocationType = useSelector(
     (state: RootState) => state.location.selectedLocation
   );
   const [open, setOpen] = useState(false);
@@ -104,15 +104,30 @@ export default function LocationSelector({ showText = true }: Props) {
           width={20}
           height={20}
         />
-        {showText && (
-          <span className="text-xs font-medium text-[#4E4949]">
-            {selectedLocation.provinceId
-              ? availableLocations.provinces.find(
-                  (p) => p.id === selectedLocation.provinceId
-                )?.name
-              : "Todo el país"}
-          </span>
-        )}
+        {showText &&
+          (selectedLocation.provinceName &&
+          selectedLocation.municipalityName ? (
+            <div className="flex flex-col text-left ">
+              <span className="text-xs  font-bold text-black">
+                {selectedLocation.provinceName}
+              </span>
+
+              <span className="text-[10px] font-medium text-[#4E4949]">
+                {selectedLocation.municipalityName}
+              </span>
+              {selectedLocation.townName && (
+                <span className="text-[9px]  text-[#837c7c]">
+                  {selectedLocation.townName}
+                </span>
+              )}
+            </div>
+          ) : (
+            <span className="text-xs font-bold text-black ">
+              {selectedLocation.provinceId
+                ? selectedLocation.provinceName
+                : t("wholeCountry")}
+            </span>
+          ))}
       </button>
       {open && (
         <div
