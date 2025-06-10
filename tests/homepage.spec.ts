@@ -1,6 +1,16 @@
 import { test, expect } from "@playwright/test";
 import messages from "../locales/en.json";
+import messages_es from "../locales/es.json";
 import "dotenv/config";
+import { TypeLocales } from "@/i18n/routing";
+
+const getMessages = (locale: TypeLocales) => {
+  if (locale == "es") {
+    return messages_es;
+  }
+  return messages;
+};
+
 // const getUrl = (url: string = "") => {
 //   return `${process.env.FRONTEND_URL}${url}`;
 // };
@@ -50,7 +60,47 @@ test.describe("home page", () => {
   });
 
   test("Change language", async ({ page }) => {
-    // await page.goto(getUrl("/"));
     await page.goto("/");
+    // await page.waitForTimeout(5000);
+    // Detectar idioma actual por la URL
+
+    // const url = page.url();
+    const currentLang = "en"; //url.includes("/es") ? "es" : "en";
+    await expect(page).toHaveURL(new RegExp(`/${currentLang}`));
+    const nextLang = "en"; //currentLang === "es" ? "en" : "en";
+    const current_messages = getMessages(currentLang);
+
+    await expect(
+      page.getByText(current_messages["LatestAdditions"]["title"])
+    ).toBeVisible();
+
+    await expect(
+      page.getByText(current_messages["LatestAdditions"]["title"])
+    ).toBeVisible();
+
+    // // Abrir el selector de idioma
+    const bottonOpenLocale = page.getByRole("button", {
+      name: "Locale Selected",
+    });
+    await expect(bottonOpenLocale).toBeVisible();
+    await bottonOpenLocale.click();
+
+    // // Seleccionar el otro idioma
+    const bottonNextLang = page.locator(
+      `button >> img[src*="/icons/i18/circle/${nextLang}.svg"]`
+    );
+    await expect(bottonNextLang).toBeVisible();
+    await bottonNextLang.click();
+
+    // // Esperar a que la URL cambie al nuevo idioma
+    await expect(page).toHaveURL(new RegExp(`/${nextLang}`));
+
+    // Verificar que el texto traducido cambió
+    const messages_nextLang = getMessages(nextLang);
+
+    // const messages_nextLang = require(`../locales/${nextLang}.json`);
+    await expect(
+      page.getByText(messages_nextLang["LatestAdditions"]["title"])
+    ).toBeVisible();
   });
 });

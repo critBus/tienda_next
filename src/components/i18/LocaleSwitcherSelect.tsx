@@ -83,6 +83,7 @@ export default function LocaleSwitcherSelect({
     <div className="flex items-center z-40" ref={containerRef}>
       <div className="relative inline-block sm:text-left">
         <button
+          data-testid="id-open-locale-switcher"
           type="button"
           onClick={() => setIsOpen(!isOpen)}
           className="h-full mr-1  p-2  
@@ -92,7 +93,7 @@ export default function LocaleSwitcherSelect({
         >
           <Image
             src={`/icons/i18/rectangle/${defaultValue}.svg`} //{`/assets/flags/4x1/${defaultValue}.svg`}
-            alt="Facebook"
+            alt="Locale Selected"
             width={24}
             height={24}
             className=""
