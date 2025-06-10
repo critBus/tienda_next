@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import messages from "../locales/en.json";
 import "dotenv/config";
 // const getUrl = (url: string = "") => {
 //   return `${process.env.FRONTEND_URL}${url}`;
@@ -25,6 +26,27 @@ test.describe("home page", () => {
 
     await addButton.click();
     await expect(cartCount).toHaveText("2");
+  });
+  test("renders recommended products", async ({ page }) => {
+    // await page.goto(getUrl("/"));
+    await page.goto("/");
+    await expect(
+      page.getByText(messages["RecommendedProducts"]["title"])
+    ).toBeVisible();
+  });
+  test("renders Best Selling products", async ({ page }) => {
+    // await page.goto(getUrl("/"));
+    await page.goto("/");
+    await expect(
+      page.getByText(messages["BestSellingProducts"]["title"])
+    ).toBeVisible();
+  });
+  test("Latest Additions products", async ({ page }) => {
+    // await page.goto(getUrl("/"));
+    await page.goto("/");
+    await expect(
+      page.getByText(messages["LatestAdditions"]["title"])
+    ).toBeVisible();
   });
 });
 
