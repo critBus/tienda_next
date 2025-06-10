@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLocation, LocationType } from "@/store/slices/locationSlice";
-import availableLocations from "@/data/availableLocations.json";
+
 import { RootState } from "@/store";
 import Image from "next/image";
 import {

@@ -138,10 +138,62 @@ test.describe("home page", () => {
 
   test("Change site", async ({ page }) => {
     await page.goto("/");
-    const town = "Centro Histórico";
-    const municipality = "La Habana Vieja";
+    const town = "Nuevo Vedado";
+    const municipality = "Plaza de la Revolución"; //"La Habana Vieja";
     const province = "La Habana";
     const productCountry = "Refresco Nacional";
     const productTown = "Cerveza Premium";
+
+    const wholeCountry = messages["LocationSelector"]["wholeCountry"];
+    const buttonWholeCountry = page.getByText(wholeCountry).first();
+    await expect(buttonWholeCountry).toBeVisible();
+    await buttonWholeCountry.click();
+    await expect(buttonWholeCountry).toBeVisible();
+
+    // seleccionar un provincia
+    await expect(buttonWholeCountry).toBeVisible();
+    const buttonProvince = page.getByText(province).first();
+    await expect(buttonProvince).toBeVisible();
+    await buttonProvince.click();
+    await expect(buttonWholeCountry).not.toBeVisible();
+    await expect(buttonProvince).toBeVisible();
+
+    // seleccionar un municipio
+    await buttonProvince.click();
+    await expect(buttonProvince).toBeVisible();
+    // // await page.waitForTimeout(5000);
+    // buscar el boton de expandir provincia
+    const buttonShowMunicipality = page
+      .getByText(`${province}+`)
+      .getByText("+");
+    await expect(buttonShowMunicipality).toBeVisible();
+    await buttonShowMunicipality.click();
+    //buscar el municipio
+    const buttonMunicipality = page.getByText(municipality);
+    await expect(buttonMunicipality).toBeVisible();
+    await buttonMunicipality.click();
+    await expect(buttonProvince).toBeVisible();
+
+    const switcher = page.getByRole("button", {
+      name: "Seleccionar ubicación",
+    });
+    await expect(switcher).toBeVisible();
+    await expect(switcher.getByText(municipality)).toBeVisible();
+
+    //seleccionar un pueblo
+    //sale expandida la provincia
+    await switcher.click();
+    await expect(buttonProvince).toBeVisible();
+    // buscar el boton de expandir municipio
+    const buttonShowTown = page.getByText(`${municipality}+`).getByText("+");
+    await expect(buttonShowTown).toBeVisible();
+    await buttonShowTown.click();
+    // buscar el pueblo
+    const buttonTown = page.getByText(town);
+    await expect(buttonTown).toBeVisible();
+    await buttonTown.click();
+    await expect(switcher.getByText(province)).toBeVisible();
+    await expect(switcher.getByText(municipality)).toBeVisible();
+    await expect(switcher.getByText(town)).toBeVisible();
   });
 });
