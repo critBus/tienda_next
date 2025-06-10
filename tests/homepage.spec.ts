@@ -4,9 +4,27 @@ import "dotenv/config";
 //   return `${process.env.FRONTEND_URL}${url}`;
 // };
 
-test.describe("conjunto de test", () => {
-  test("mi prueba interna1", async ({ page }) => {
+test.describe("home page", () => {
+  test("adds a product to the cart when clicking the add button", async ({
+    page,
+  }) => {
+    // await page.goto(getUrl("/"));
     await page.goto("/");
+    // ✅ Asegurar que existe antes de hacer click
+    const addButton = page
+      .locator('[data-testid="idtest-button-cart-add"]')
+      .first();
+    const cartCount = page.locator('[data-testid="id-test-cart-count"]');
+    await expect(cartCount).not.toBeVisible();
+    // locator('div').filter({ hasText: 'Recommended' }).getByTestId('idtest-button-cart-add')
+    await expect(addButton).toBeVisible();
+    await addButton.click();
+
+    await expect(cartCount).toBeVisible();
+    await expect(cartCount).toHaveText("1");
+
+    await addButton.click();
+    await expect(cartCount).toHaveText("2");
   });
 });
 

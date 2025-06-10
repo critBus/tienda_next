@@ -1,14 +1,10 @@
 # Playwright
 
-
-
 ## Ejecutar los test e2e
 
 ```bash
 pnpm exec playwright test
 ```
-
-
 
 ## Estructura
 
