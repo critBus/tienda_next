@@ -195,5 +195,14 @@ test.describe("home page", () => {
     await expect(switcher.getByText(province)).toBeVisible();
     await expect(switcher.getByText(municipality)).toBeVisible();
     await expect(switcher.getByText(town)).toBeVisible();
+
+    //seleccionar todos los paises
+    await switcher.click();
+    await expect(buttonWholeCountry).toBeVisible();
+    await buttonWholeCountry.click();
+    await expect(buttonWholeCountry).toBeVisible();
+    await expect(switcher.getByText(province)).not.toBeVisible();
+    await expect(switcher.getByText(municipality)).not.toBeVisible();
+    await expect(switcher.getByText(town)).not.toBeVisible();
   });
 });
