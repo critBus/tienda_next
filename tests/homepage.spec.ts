@@ -144,8 +144,9 @@ test.describe("home page", () => {
     const municipality = "Plaza de la Revolución"; //"La Habana Vieja";
     const province = "La Habana";
     const productCountry = "Cerveza Premium";
-    const productProvince = "Especias Refinadas";
-    const productTown = "Refresco Nacional";
+    const productProvince = "Masa para Pizza";
+    const productMunicipality = "Pasta Barbacoa";
+    const productTown = "Especias Refinadas";
 
     const wholeCountry = messages["LocationSelector"]["wholeCountry"];
     const buttonWholeCountry = page.getByText(wholeCountry).first();
@@ -189,6 +190,10 @@ test.describe("home page", () => {
     await expect(switcher).toBeVisible();
     await expect(switcher.getByText(municipality)).toBeVisible();
 
+    await homePage.haveTheProductsInRecommended({
+      productsName: [productCountry, productProvince, productMunicipality],
+    });
+
     //seleccionar un pueblo
     //sale expandida la provincia
     await switcher.click();
@@ -205,6 +210,15 @@ test.describe("home page", () => {
     await expect(switcher.getByText(municipality)).toBeVisible();
     await expect(switcher.getByText(town)).toBeVisible();
 
+    await homePage.haveTheProductsInRecommended({
+      productsName: [
+        productCountry,
+        productProvince,
+        productMunicipality,
+        productTown,
+      ],
+    });
+
     //seleccionar todos los paises
     await switcher.click();
     await expect(buttonWholeCountry).toBeVisible();
@@ -213,5 +227,9 @@ test.describe("home page", () => {
     await expect(switcher.getByText(province)).not.toBeVisible();
     await expect(switcher.getByText(municipality)).not.toBeVisible();
     await expect(switcher.getByText(town)).not.toBeVisible();
+
+    await homePage.haveTheProductsInRecommended({
+      productsName: [productCountry],
+    });
   });
 });

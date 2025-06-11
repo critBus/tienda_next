@@ -110,7 +110,7 @@ export async function main() {
   const puebloVedado = await prisma.town.create({
     data: { name: "Vedado", municipalityId: municipioPlaza.id },
   });
-  await prisma.town.create({
+  const puebloNuevoVedado = await prisma.town.create({
     data: { name: "Nuevo Vedado", municipalityId: municipioPlaza.id },
   });
   const puebloCentroHistorico = await prisma.town.create({
@@ -773,7 +773,7 @@ export async function main() {
 
   const availabilityEntries = await Promise.all([
     createProductAvailability({
-      productId: products.find((p) => p.name === "Especias Refinadas")!.id,
+      productId: products.find((p) => p.name === "Masa para Pizza")!.id,
       provinceId: provinciaHabana.id,
     }),
     createProductAvailability({
@@ -786,8 +786,8 @@ export async function main() {
     }),
     createProductAvailability({
       productId: products.find((p) => p.name === "Especias Refinadas")!.id,
-      townId: puebloVedado.id,
-      municipalityId: puebloVedado.municipalityId,
+      townId: puebloNuevoVedado.id,
+      municipalityId: puebloNuevoVedado.municipalityId,
       provinceId: municipioPlaza.provinceId,
     }),
     createProductAvailability({
