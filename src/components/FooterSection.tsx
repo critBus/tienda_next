@@ -54,21 +54,21 @@ export default function FooterSection() {
             </span>
             <div className="flex flex-row justify-start gap-3 mt-3">
               <Image
-                src="/assets/footer/facebook.svg"
+                src="/icons/footer/follow/facebook.svg"
                 alt="Facebook"
                 width={24}
                 height={24}
                 className="w-6 h-6 object-contain"
               />
               <Image
-                src="/assets/footer/usuarios.svg"
+                src="/icons/footer/follow/users.svg"
                 alt="Usuarios"
                 width={24}
                 height={24}
                 className="w-6 h-6 object-contain"
               />
               <Image
-                src="/assets/footer/instagram.svg"
+                src="/icons/footer/follow/instagram.svg"
                 alt="Instagram"
                 width={24}
                 height={24}
@@ -121,31 +121,31 @@ export default function FooterSection() {
 
               <div className="flex flex-row gap-1 justify-start py-4">
                 <Image
-                  src="/assets/footer/mastecardrecortado.png"
+                  src="/icons/footer/types_of_payment/mastercard.png"
                   alt="Mastercard"
                   width={40}
                   height={25}
                 />
                 <Image
-                  src="/assets/footer/visa.png"
+                  src="/icons/footer/types_of_payment/visa.png"
                   alt="Visa"
                   width={40}
                   height={25}
                 />
                 <Image
-                  src="/assets/footer/americaexpresajustado.png"
+                  src="/icons/footer/types_of_payment/americanexpress.png"
                   alt="American Express"
                   width={40}
                   height={25}
                 />
                 <Image
-                  src="/assets/footer/discoverajustado.png"
+                  src="/icons/footer/types_of_payment/discovernetwork.png"
                   alt="Discover"
                   width={40}
                   height={25}
                 />
                 <Image
-                  src="/assets/footer/tropipay.png"
+                  src="/icons/footer/types_of_payment/tropipay.png"
                   alt="Tropipay"
                   width={40}
                   height={25}

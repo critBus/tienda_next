@@ -9,7 +9,7 @@ export default function SubscriptionsSection() {
   return (
     <div className="relative flex justify-center items-center h-[354px]">
       <Image
-        src="/assets/suscriptions/bg.jpg"
+        src="/img/suscriptions/bg.jpg"
         alt="Background"
         fill
         className="object-cover"

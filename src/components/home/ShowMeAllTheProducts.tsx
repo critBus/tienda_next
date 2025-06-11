@@ -15,7 +15,7 @@ export default function ShowMeAllTheProducts() {
         <span className="mr-2">{t("title")}</span>
         <div className="bg-[#d0cbcb] rounded-full p-1">
           <Image
-            src="/assets/categories/Vector.svg"
+            src="/icons/all_products/arrow-right.svg"
             alt=""
             width={12}
             height={12}

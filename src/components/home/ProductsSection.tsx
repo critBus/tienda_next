@@ -9,16 +9,18 @@ interface ProductsSectionProps {
   title: string;
   products: Product[];
   gray_background?: boolean;
+  id?: string;
 }
 
 export default function ProductsSection({
   title,
   products,
   gray_background = true,
+  id,
 }: ProductsSectionProps) {
   const t = useTranslations("ProductsSection");
   return (
-    <section className={gray_background ? "bg-[#F8F8F8]" : "bg-white"}>
+    <section id={id} className={gray_background ? "bg-[#F8F8F8]" : "bg-white"}>
       <div className="pt-6 pb-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Título de la sección */}
         <h2 className="text-2xl sm:text-3xl roboto-bold mb-8 text-center md:text-left">

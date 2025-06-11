@@ -17,7 +17,8 @@ function safeMultiply(price: Decimal | number, rate: Decimal | number): number {
 
 export async function main() {
   console.log("Iniciando el seeding...");
-
+  const example_url_category_img = "/img/examples/pizza.png";
+  const example_url_product_img = "/img/examples/cervesa.png";
   // --- Crear Monedas ---
   const currencies = await Promise.all([
     prisma.currency.create({
@@ -64,17 +65,17 @@ export async function main() {
     prisma.category.create({
       data: {
         name: "Electrodomésticos",
-        image: "/assets/categories/img/electrodomesticos.png",
+        image: example_url_category_img,
       },
     }),
     prisma.category.create({
       data: {
         name: "Alimentos",
-        image: "/assets/categories/img/buffet.png",
+        image: example_url_category_img,
       }, // Renombrado/Ajustado
     }),
     prisma.category.create({
-      data: { name: "Bebidas", image: "/assets/categories/img/bebidas.png" },
+      data: { name: "Bebidas", image: example_url_category_img },
     }),
   ]);
   console.log(`Categorías creadas: ${categories.length}`);
@@ -109,7 +110,7 @@ export async function main() {
   const puebloVedado = await prisma.town.create({
     data: { name: "Vedado", municipalityId: municipioPlaza.id },
   });
-  await prisma.town.create({
+  const puebloNuevoVedado = await prisma.town.create({
     data: { name: "Nuevo Vedado", municipalityId: municipioPlaza.id },
   });
   const puebloCentroHistorico = await prisma.town.create({
@@ -133,7 +134,7 @@ export async function main() {
       published: true,
       stock: 50,
       ignoreStock: false,
-      image: "/assets/products/img/cerveza.png",
+      image: example_url_product_img,
       discountPercentage: null,
       itsNew: true,
       freeShipping: false,
@@ -145,15 +146,15 @@ export async function main() {
       ProductImage: [
         {
           cover: true,
-          image: "/assets/products/img/cerveza.png",
+          image: example_url_product_img,
         },
         {
           cover: false,
-          image: "/assets/products/img/cerveza.png",
+          image: example_url_product_img,
         },
         {
           cover: false,
-          image: "/assets/products/img/cerveza.png",
+          image: example_url_product_img,
         },
       ],
     },
@@ -167,7 +168,7 @@ export async function main() {
       ignoreStock: true,
       published: true,
       itsNew: true,
-      image: "/assets/products/img/pasta_barbicue.png",
+      image: example_url_product_img,
       discountPercentage: 11.11,
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
@@ -178,15 +179,15 @@ export async function main() {
       ProductImage: [
         {
           cover: true,
-          image: "/assets/products/img/pasta_barbicue.png",
+          image: example_url_product_img,
         },
         {
           cover: false,
-          image: "/assets/products/img/pasta_barbicue.png",
+          image: example_url_product_img,
         },
         {
           cover: false,
-          image: "/assets/products/img/pasta_barbicue.png",
+          image: example_url_product_img,
         },
       ],
     },
@@ -200,7 +201,7 @@ export async function main() {
       stock: 100,
       ignoreStock: false,
       itsNew: false,
-      image: "/assets/products/img/especias_refinidas.png",
+      image: example_url_product_img,
       discountPercentage: null,
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
@@ -211,15 +212,15 @@ export async function main() {
       ProductImage: [
         {
           cover: true,
-          image: "/assets/products/img/especias_refinidas.png",
+          image: example_url_product_img,
         },
         {
           cover: false,
-          image: "/assets/products/img/especias_refinidas.png",
+          image: example_url_product_img,
         },
         {
           cover: false,
-          image: "/assets/products/img/especias_refinidas.png",
+          image: example_url_product_img,
         },
       ],
     },
@@ -232,7 +233,7 @@ export async function main() {
       published: true,
       stock: 40,
       ignoreStock: false,
-      image: "/assets/products/img/vainilla.png",
+      image: example_url_product_img,
       discountPercentage: null,
       itsNew: false,
       freeShipping: false,
@@ -243,15 +244,15 @@ export async function main() {
       ProductImage: [
         {
           cover: true,
-          image: "/assets/products/img/vainilla.png",
+          image: example_url_product_img,
         },
         {
           cover: false,
-          image: "/assets/products/img/vainilla.png",
+          image: example_url_product_img,
         },
         {
           cover: false,
-          image: "/assets/products/img/vainilla.png",
+          image: example_url_product_img,
         },
       ],
     },
@@ -265,7 +266,7 @@ export async function main() {
       ignoreStock: false,
       published: true,
       itsNew: true,
-      image: "/assets/products/img/pomos-de-agua.png",
+      image: example_url_product_img,
       discountPercentage: null,
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Bebidas")!.id,
@@ -275,15 +276,15 @@ export async function main() {
       ProductImage: [
         {
           cover: true,
-          image: "/assets/products/img/pomos-de-agua.png",
+          image: example_url_product_img,
         },
         {
           cover: false,
-          image: "/assets/products/img/pomos-de-agua.png",
+          image: example_url_product_img,
         },
         {
           cover: false,
-          image: "/assets/products/img/pomos-de-agua.png",
+          image: example_url_product_img,
         },
       ],
     },
@@ -297,7 +298,7 @@ export async function main() {
       stock: 60,
       ignoreStock: false,
       itsNew: true,
-      image: "/assets/products/img/rico_drato.png",
+      image: example_url_product_img,
       discountPercentage: null,
       freeShipping: false,
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
@@ -308,7 +309,15 @@ export async function main() {
       ProductImage: [
         {
           cover: true,
-          image: "/assets/products/img/rico_drato.png",
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
         },
       ],
     },
@@ -321,7 +330,7 @@ export async function main() {
       stock: 80,
       ignoreStock: false,
       itsNew: false,
-      image: "/assets/products/img/vejetales.png",
+      image: example_url_product_img,
       discountPercentage: null,
       freeShipping: true,
       categoryId: categories.find((c) => c.name === "Alimentos")!.id,
@@ -332,7 +341,15 @@ export async function main() {
       ProductImage: [
         {
           cover: true,
-          image: "/assets/products/img/vejetales.png",
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
         },
       ],
     },
@@ -345,7 +362,7 @@ export async function main() {
       published: true,
       stock: 100,
       ignoreStock: false,
-      image: "/assets/products/img/vejetales.png",
+      image: example_url_product_img,
       discountPercentage: 10,
       itsNew: true,
       freeShipping: true,
@@ -355,7 +372,18 @@ export async function main() {
       viewCount: 200,
       purchaseCount: 50,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/vejetales.png" },
+        {
+          cover: true,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
       ],
     },
     {
@@ -366,7 +394,7 @@ export async function main() {
       published: true,
       stock: 80,
       ignoreStock: false,
-      image: "/assets/products/img/vejetales.png",
+      image: example_url_product_img,
       discountPercentage: 5,
       itsNew: false,
       freeShipping: false,
@@ -376,7 +404,18 @@ export async function main() {
       viewCount: 150,
       purchaseCount: 40,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/vejetales.png" },
+        {
+          cover: true,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
       ],
     },
     {
@@ -387,7 +426,7 @@ export async function main() {
       published: true,
       stock: 120,
       ignoreStock: false,
-      image: "/assets/products/img/vejetales.png",
+      image: example_url_product_img,
       discountPercentage: null,
       itsNew: true,
       freeShipping: true,
@@ -397,7 +436,18 @@ export async function main() {
       viewCount: 100,
       purchaseCount: 30,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/vejetales.png" },
+        {
+          cover: true,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
       ],
     },
     {
@@ -408,7 +458,7 @@ export async function main() {
       published: true,
       stock: 60,
       ignoreStock: false,
-      image: "/assets/products/img/vejetales.png",
+      image: example_url_product_img,
       discountPercentage: null,
       itsNew: false,
       freeShipping: false,
@@ -418,7 +468,18 @@ export async function main() {
       viewCount: 80,
       purchaseCount: 20,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/vejetales.png" },
+        {
+          cover: true,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
       ],
     },
     {
@@ -429,7 +490,7 @@ export async function main() {
       published: true,
       stock: 50,
       ignoreStock: false,
-      image: "/assets/products/img/vejetales.png",
+      image: example_url_product_img,
       discountPercentage: null,
       itsNew: true,
       freeShipping: false,
@@ -439,7 +500,18 @@ export async function main() {
       viewCount: 70,
       purchaseCount: 15,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/vejetales.png" },
+        {
+          cover: true,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
       ],
     },
     {
@@ -450,7 +522,7 @@ export async function main() {
       published: true,
       stock: 40,
       ignoreStock: false,
-      image: "/assets/products/img/vejetales.png",
+      image: example_url_product_img,
       discountPercentage: 15,
       itsNew: false,
       freeShipping: true,
@@ -460,7 +532,18 @@ export async function main() {
       viewCount: 90,
       purchaseCount: 25,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/vejetales.png" },
+        {
+          cover: true,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
       ],
     },
     {
@@ -471,7 +554,7 @@ export async function main() {
       published: true,
       stock: 70,
       ignoreStock: false,
-      image: "/assets/products/img/vejetales.png",
+      image: example_url_product_img,
       discountPercentage: null,
       itsNew: true,
       freeShipping: false,
@@ -481,7 +564,18 @@ export async function main() {
       viewCount: 60,
       purchaseCount: 10,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/vejetales.png" },
+        {
+          cover: true,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
       ],
     },
     {
@@ -492,7 +586,7 @@ export async function main() {
       published: true,
       stock: 90,
       ignoreStock: false,
-      image: "/assets/products/img/vejetales.png",
+      image: example_url_product_img,
       discountPercentage: null,
       itsNew: false,
       freeShipping: true,
@@ -502,7 +596,18 @@ export async function main() {
       viewCount: 110,
       purchaseCount: 35,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/vejetales.png" },
+        {
+          cover: true,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
       ],
     },
     {
@@ -513,7 +618,7 @@ export async function main() {
       published: true,
       stock: 30,
       ignoreStock: false,
-      image: "/assets/products/img/vejetales.png",
+      image: example_url_product_img,
       discountPercentage: 10,
       itsNew: true,
       freeShipping: false,
@@ -525,7 +630,15 @@ export async function main() {
       ProductImage: [
         {
           cover: true,
-          image: "/assets/products/img/vejetales.png",
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
         },
       ],
     },
@@ -537,7 +650,7 @@ export async function main() {
       published: true,
       stock: 100,
       ignoreStock: false,
-      image: "/assets/products/img/vejetales.png",
+      image: example_url_product_img,
       discountPercentage: null,
       itsNew: false,
       freeShipping: true,
@@ -547,7 +660,18 @@ export async function main() {
       viewCount: 140,
       purchaseCount: 45,
       ProductImage: [
-        { cover: true, image: "/assets/products/img/vejetales.png" },
+        {
+          cover: true,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
+        {
+          cover: false,
+          image: example_url_product_img,
+        },
       ],
     },
   ];
@@ -649,7 +773,7 @@ export async function main() {
 
   const availabilityEntries = await Promise.all([
     createProductAvailability({
-      productId: products.find((p) => p.name === "Cerveza Premium")!.id,
+      productId: products.find((p) => p.name === "Masa para Pizza")!.id,
       provinceId: provinciaHabana.id,
     }),
     createProductAvailability({
@@ -662,8 +786,8 @@ export async function main() {
     }),
     createProductAvailability({
       productId: products.find((p) => p.name === "Especias Refinadas")!.id,
-      townId: puebloVedado.id,
-      municipalityId: puebloVedado.municipalityId,
+      townId: puebloNuevoVedado.id,
+      municipalityId: puebloNuevoVedado.municipalityId,
       provinceId: municipioPlaza.provinceId,
     }),
     createProductAvailability({

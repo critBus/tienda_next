@@ -1,16 +1,15 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { Locale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useState, useRef, useEffect } from "react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 
-// import EsFlag from "/assets/flags/a1x1/flag_es.svg";
-// import EnFlag from "/assets/flags/a1x1/flag_en.svg";
 import Image from "next/image";
+import { TypeLocales } from "@/i18n/routing";
 
 type Props = {
-  langKeys: string[];
+  langKeys: TypeLocales[];
   defaultValue: string;
 };
 
@@ -31,7 +30,7 @@ function FlagIcon({
                       `}
     >
       <Image
-        src={`/assets/flags/1x1/${countryCode}.svg`}
+        src={`/icons/i18/circle/${countryCode}.svg`} //{`/icons/i18/${countryCode}.png`} //{`/assets/flags/1x1/${countryCode}.svg`}
         alt="Facebook"
         width={24}
         height={24}
@@ -70,7 +69,7 @@ export default function LocaleSwitcherSelect({
     };
   }, [isOpen]);
 
-  const handleLanguageChange = async (nextLocale: Locale) => {
+  const handleLanguageChange = async (nextLocale: TypeLocales) => {
     router.replace(
       // @ts-expect-error -- TypeScript will validate that only known `params`
       // are used in combination with a given `pathname`. Since the two will
@@ -84,6 +83,7 @@ export default function LocaleSwitcherSelect({
     <div className="flex items-center z-40" ref={containerRef}>
       <div className="relative inline-block sm:text-left">
         <button
+          data-testid="id-open-locale-switcher"
           type="button"
           onClick={() => setIsOpen(!isOpen)}
           className="h-full mr-1  p-2  
@@ -92,8 +92,8 @@ export default function LocaleSwitcherSelect({
            hover:scale-110 hover:border-gray-600 transition-transform duration-200 ease-in-out"
         >
           <Image
-            src={`/assets/flags/4x1/${defaultValue}.svg`}
-            alt="Facebook"
+            src={`/icons/i18/rectangle/${defaultValue}.svg`} //{`/assets/flags/4x1/${defaultValue}.svg`}
+            alt="Locale Selected"
             width={24}
             height={24}
             className=""

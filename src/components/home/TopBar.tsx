@@ -1,18 +1,13 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function TopBar() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const intervalTime = 5000; // 5 segundos
-
-  const images = [
-    '/assets/topbar/img/Banner.png',
-    '/assets/topbar/img/Banner.png',
-    '/assets/topbar/img/Banner.png',
-    '/assets/topbar/img/Banner.png'
-  ];
+  const urlExampleImg = "/img/banner/3.PNG";
+  const images = [urlExampleImg, urlExampleImg, urlExampleImg, urlExampleImg];
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % images.length);
@@ -33,7 +28,9 @@ export default function TopBar() {
       {images.map((image, index) => (
         <div
           key={index}
-          className={`carousel-item absolute w-full h-96 ${currentSlide !== index ? 'hidden' : ''}`}
+          className={`carousel-item absolute w-full h-96 ${
+            currentSlide !== index ? "hidden" : ""
+          }`}
         >
           <Image
             src={image}
@@ -48,7 +45,7 @@ export default function TopBar() {
                 key={`indicator-${idx}`}
                 onClick={() => setCurrentSlide(idx)}
                 className={`w-4 h-4 rounded-full cursor-pointer ${
-                  currentSlide === idx ? 'bg-white' : 'bg-gray-400'
+                  currentSlide === idx ? "bg-white" : "bg-gray-400"
                 }`}
               ></button>
             ))}
@@ -71,4 +68,4 @@ export default function TopBar() {
       ))}
     </div>
   );
-} 
+}

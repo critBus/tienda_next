@@ -25,7 +25,7 @@ const ModalNoProductsLeft = ({ isOpen, setIsOpen }: ModalProps) => {
             <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
               <div className="w-[340px] h-[350px] relative bg-white rounded-lg shadow-sm shadow-gray-400/50 overflow-hidden">
                 <Image
-                  src="/assets/modal_insufficient_stok/close.svg"
+                  src="/icons/modal/close.svg"
                   alt="Close"
                   width={16}
                   height={16}
@@ -40,7 +40,7 @@ const ModalNoProductsLeft = ({ isOpen, setIsOpen }: ModalProps) => {
                 <div className="h-full w-full flex flex-col bg-white">
                   <div className=" flex  items-center justify-center">
                     <Image
-                      src="/assets/modal_insufficient_stok/productos_insuficientes.svg"
+                      src="/icons/modal/modal_insufficient_stok/public/icons/modal/modal_insufficient_stok/bolsatriste.svg"
                       alt="productos_insuficientes"
                       width={124}
                       height={119}

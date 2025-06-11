@@ -1,12 +1,16 @@
-import type { Metadata } from "next";
-import "../globals.css";
+import { notFound } from "next/navigation";
 
-import Providers from "@/providers/Providers";
+import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+
 import RootLayoutContent from "@/components/layouts/RootLayoutContent";
 
-import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
+import { TypeLocales } from "@/i18n/routing";
+import { hasLocale } from "@/i18n/utils";
+import Providers from "@/providers/Providers";
+
+import "../globals.css";
+import { getLocaleData } from "@/i18n/request";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,13 +27,14 @@ export default async function RootLayout({
   params,
 }: Readonly<Props>) {
   const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
+  if (!hasLocale(locale as TypeLocales)) {
     notFound();
   }
+  const { messages } = await getLocaleData(locale);
   return (
     <html lang={locale}>
       <body className="roboto">
-        <NextIntlClientProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>
             <RootLayoutContent>{children}</RootLayoutContent>
           </Providers>

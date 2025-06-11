@@ -244,7 +244,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 }`}
               >
                 <Image
-                  src="/assets/products/icons/shopping-cart.svg"
+                  src="/icons/products/shopping-cart.svg"
                   alt="Carrito"
                   width={16}
                   height={16}
@@ -261,7 +261,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         {product.discountPercentage && (
           <div className="bg-[#FBDDE5] px-2.5 py-1 rounded-r-lg shadow flex flex-row items-center justify-center">
             <Image
-              src="/assets/products/icons/tag.svg"
+              src="/icons/products/tag.svg"
               alt="Tag"
               width={16}
               height={16}
@@ -277,7 +277,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         {product.itsNew && (
           <div className="bg-[#FEF4DB] max-sm:w-8 p-1 rounded-r-md shadow flex items-center justify-center">
             <Image
-              src="/assets/products/icons/select.svg"
+              src="/icons/products/new.svg"
               alt="Nuevo"
               width={16}
               height={16}
@@ -292,7 +292,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className="sm:hidden bg-[#E5EAF0] w-8 p-1 rounded-r-md shadow flex items-center justify-center">
           <Image
-            src="/assets/products/icons/calendar-edit.svg"
+            src="/icons/products/calendar-edit.svg"
             alt="Calendario"
             width={16}
             height={16}
@@ -303,7 +303,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       <div className="max-sm:hidden absolute sm:mt-2 z-10 top-0 right-0 bg-[#E5EAF0] w-8 p-1 rounded-l-md shadow flex items-center justify-center">
         <Image
-          src="/assets/products/icons/calendar-edit.svg"
+          src="/icons/products/calendar-edit.svg"
           alt="Calendario"
           width={16}
           height={16}

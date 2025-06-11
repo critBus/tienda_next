@@ -20,7 +20,7 @@ export default function NavigationMenu() {
       <button type="button" className="flex flex-row hover:text-black">
         <span>{t("categories")}</span>
         <Image
-          src="/assets/navigation_desk/icons/arrow-right.svg"
+          src="/icons/navigation_desk/arrow-down.svg"
           alt=""
           width={16}
           height={16}
