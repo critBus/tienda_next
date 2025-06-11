@@ -133,6 +133,7 @@ export default function LocationSelector({ showText = true }: Props) {
         <div
           ref={popupRef}
           className="absolute z-50 bg-white border rounded shadow p-2 mt-2 w-64 max-h-80 overflow-auto"
+          data-testid="id-test-expand-site"
         >
           <input
             type="text"
