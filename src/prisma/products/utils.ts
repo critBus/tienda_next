@@ -7,7 +7,7 @@ import {
   ProductAvailabilityDTO,
   ProductDTO,
 } from "@/types";
-import prisma from "@/libs/prisma";
+import prisma from "@/prisma/config";
 
 import { FilterType } from "@/store/slices/locationSlice";
 

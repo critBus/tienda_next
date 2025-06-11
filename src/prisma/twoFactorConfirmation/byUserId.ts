@@ -1,4 +1,4 @@
-import prisma from "@/libs/prisma";
+import prisma from "@/prisma/config";
 export const byUserId = async (userId: string) => {
   try {
     const response = await prisma.twoFactorConfirmation.findUnique({

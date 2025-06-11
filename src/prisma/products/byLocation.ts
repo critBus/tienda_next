@@ -1,5 +1,5 @@
 import { Product } from "@/types";
-import prisma from "@/libs/prisma";
+import prisma from "@/prisma/config";
 import { getLocationFilter, parseProducts } from "./utils";
 import { FilterType } from "@/store/slices/locationSlice";
 export async function byLocation(location: FilterType): Promise<Product[]> {

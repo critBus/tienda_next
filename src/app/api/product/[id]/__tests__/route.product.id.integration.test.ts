@@ -1,13 +1,13 @@
 /**
  * @jest-environment node
  */
-import { clearData } from '@/utils/testutils';
+import { clearData } from "@/utils/testutils";
 
-import prisma from '@/libs/prisma';
+import prisma from "@/prisma/config";
 
-import { GET } from '../route';
+import { GET } from "../route";
 
-describe('GET /api/product/[id] (integration)', () => {
+describe("GET /api/product/[id] (integration)", () => {
   let productId: number;
 
   beforeAll(async () => {
@@ -16,24 +16,24 @@ describe('GET /api/product/[id] (integration)', () => {
     // await prisma.product.deleteMany();
     const product = await prisma.product.create({
       data: {
-        name: 'ProductoTest',
-        description: 'Descripción de prueba',
+        name: "ProductoTest",
+        description: "Descripción de prueba",
         priceBaseCurrency: 10.5,
         stock: 5,
         ignoreStock: false,
         published: true,
-        image: '/assets/products/img/test.png',
+        image: "/assets/products/img/test.png",
         category: {
           create: {
-            name: 'CategoriaTest',
+            name: "CategoriaTest",
           },
         },
         company: {
           create: {
-            name: 'EmpresaTest',
+            name: "EmpresaTest",
           },
         },
-        brand: 'MarcaTest',
+        brand: "MarcaTest",
         itsNew: true,
       },
       include: {
@@ -52,26 +52,26 @@ describe('GET /api/product/[id] (integration)', () => {
   //   await prisma.$disconnect();
   // });
 
-  it('should return the product from the real database', async () => {
+  it("should return the product from the real database", async () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const response = await GET({} as any, {
       params: { id: String(productId) },
     });
 
     const json = await response.json();
-    expect(json.status).toBe('success');
-    expect(json.data).toHaveProperty('id', productId);
-    expect(json.data).toHaveProperty('name', 'ProductoTest');
-    expect(json.data).toHaveProperty('category');
-    expect(json.data).toHaveProperty('company');
+    expect(json.status).toBe("success");
+    expect(json.data).toHaveProperty("id", productId);
+    expect(json.data).toHaveProperty("name", "ProductoTest");
+    expect(json.data).toHaveProperty("category");
+    expect(json.data).toHaveProperty("company");
   });
 
-  it('should return 404 if product does not exist', async () => {
+  it("should return 404 if product does not exist", async () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const response = await GET({} as any, { params: { id: '999999' } });
+    const response = await GET({} as any, { params: { id: "999999" } });
     const json = await response.json();
     expect(response.status).toBe(404);
-    expect(json.status).toBe('fail');
-    expect(json.message).toBe('Producto no encontrado');
+    expect(json.status).toBe("fail");
+    expect(json.message).toBe("Producto no encontrado");
   });
 });

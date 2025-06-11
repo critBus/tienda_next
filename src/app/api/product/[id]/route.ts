@@ -1,6 +1,5 @@
+import PrismaRepository from "@/prisma/PrismaRepository";
 import { NextResponse } from "next/server";
-
-import PrismaService from "@/service/PrismaService";
 
 export async function GET(
   request: Request,
@@ -11,7 +10,7 @@ export async function GET(
 
   try {
     // Buscar el producto por ID
-    const product = await PrismaService.products.byId(parseInt(id));
+    const product = await PrismaRepository.products.byId(parseInt(id));
 
     // Si no se encuentra el producto, devolver un error
     if (!product) {

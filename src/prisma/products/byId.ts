@@ -1,5 +1,5 @@
 import { ProductDetail } from "@/types";
-import prisma from "@/libs/prisma";
+import prisma from "@/prisma/config";
 
 export async function byId(id: number): Promise<ProductDetail | null> {
   const find_product = await prisma.product.findUnique({

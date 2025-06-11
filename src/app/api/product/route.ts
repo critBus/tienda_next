@@ -1,4 +1,4 @@
-import PrismaService from "@/service/PrismaService";
+import PrismaRepository from "@/prisma/PrismaRepository";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -16,8 +16,8 @@ export async function GET(req: NextRequest) {
 
     const products =
       provinceId || municipalityId || townId
-        ? await PrismaService.products.byLocation(location)
-        : await PrismaService.products.all();
+        ? await PrismaRepository.products.byLocation(location)
+        : await PrismaRepository.products.all();
 
     return NextResponse.json({
       status: "success",
