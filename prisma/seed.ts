@@ -773,7 +773,7 @@ export async function main() {
 
   const availabilityEntries = await Promise.all([
     createProductAvailability({
-      productId: products.find((p) => p.name === "Cerveza Premium")!.id,
+      productId: products.find((p) => p.name === "Especias Refinadas")!.id,
       provinceId: provinciaHabana.id,
     }),
     createProductAvailability({

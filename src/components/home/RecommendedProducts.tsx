@@ -39,5 +39,11 @@ export default function RecommendedProducts() {
   if (loading) return <SkeletonProductSection />;
   if (error) return <p>{error}</p>;
 
-  return <ProductsSection title={t("title")} products={recommendedProducts} />;
+  return (
+    <ProductsSection
+      id="id-section-recommended-products"
+      title={t("title")}
+      products={recommendedProducts}
+    />
+  );
 }

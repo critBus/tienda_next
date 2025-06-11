@@ -3,6 +3,7 @@ import messages from "../locales/en.json";
 import messages_es from "../locales/es.json";
 import "dotenv/config";
 import { TypeLocales } from "@/i18n/routing";
+import HomePage from "./pages/home/home.page";
 
 const getMessages = (locale: TypeLocales) => {
   if (locale == "es") {
@@ -138,15 +139,20 @@ test.describe("home page", () => {
 
   test("Change site", async ({ page }) => {
     await page.goto("/");
+    const homePage = new HomePage(page);
     const town = "Nuevo Vedado";
     const municipality = "Plaza de la Revolución"; //"La Habana Vieja";
     const province = "La Habana";
-    const productCountry = "Refresco Nacional";
-    const productTown = "Cerveza Premium";
+    const productCountry = "Cerveza Premium";
+    const productProvince = "Especias Refinadas";
+    const productTown = "Refresco Nacional";
 
     const wholeCountry = messages["LocationSelector"]["wholeCountry"];
     const buttonWholeCountry = page.getByText(wholeCountry).first();
     await expect(buttonWholeCountry).toBeVisible();
+    await homePage.haveTheProductsInRecommended({
+      productsName: [productCountry],
+    });
     await buttonWholeCountry.click();
     await expect(buttonWholeCountry).toBeVisible();
 
@@ -157,6 +163,9 @@ test.describe("home page", () => {
     await buttonProvince.click();
     await expect(buttonWholeCountry).not.toBeVisible();
     await expect(buttonProvince).toBeVisible();
+    await homePage.haveTheProductsInRecommended({
+      productsName: [productCountry, productProvince],
+    });
 
     // seleccionar un municipio
     await buttonProvince.click();
