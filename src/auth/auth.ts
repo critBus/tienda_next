@@ -1,0 +1,118 @@
+import NextAuth, { DefaultSession } from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import prisma from "@/libs/prisma";
+import authConfig from "./config";
+import PrismaService from "@/service/PrismaService";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { JWT } from "next-auth/jwt";
+import { UserRole } from "@prisma/client";
+
+export type ExtendedUser = DefaultSession["user"] & {
+  role: UserRole;
+  isTwoFactorEnabled: boolean;
+  isOAuth: boolean;
+};
+
+declare module "next-auth" {
+  interface Session {
+    user: ExtendedUser;
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    role?: UserRole;
+    isOAuth: boolean;
+  }
+}
+export const { handlers, signIn, signOut, auth } = NextAuth({
+  pages: {
+    signIn: "/auth/login",
+    error: "/auth/error",
+  },
+  events: {
+    async linkAccount({ user }) {
+      await prisma.user.update({
+        where: { id: user.id },
+        data: {
+          emailVerified: new Date(),
+        },
+      });
+    },
+  },
+  callbacks: {
+    async signIn({ user, account }) {
+      if (account?.provider !== "credentials") {
+        return true;
+      }
+      if (user.id) {
+        const existingUser = await PrismaService.users.byId(user.id);
+        if (existingUser?.emailVerified) {
+          if (existingUser.isTwoFactorEnabled) {
+            const twoFactorConfirmation =
+              await PrismaService.twoFactorConfirmation.byUserId(
+                existingUser.id
+              );
+
+            if (!twoFactorConfirmation) {
+              return false;
+            }
+            await prisma.twoFactorConfirmation.delete({
+              where: { id: twoFactorConfirmation.id },
+            });
+            //return true;
+          }
+          return true;
+        }
+      }
+
+      return false;
+    },
+
+    async session({ session, token }) {
+      if (session.user) {
+        if (token.sub) {
+          session.user.id = token.sub;
+        }
+        if (token.role) {
+          session.user.role = token.role;
+        }
+        session.user.isTwoFactorEnabled = !!token.isTwoFactorEnabled;
+        session.user.name = token.name;
+        if (token.email) {
+          session.user.email = token.email;
+        }
+        session.user.isOAuth = token.isOAuth;
+      }
+
+      return session;
+    },
+    async jwt({ token, trigger }) {
+      switch (trigger) {
+        case "signIn":
+          break;
+        case "signUp":
+          break;
+        case "update":
+          break;
+      }
+      if (token.sub) {
+        const existingUser = await PrismaService.users.byId(token.sub);
+        if (existingUser) {
+          const existingAccount = await PrismaService.account.byUserId(
+            existingUser.id
+          );
+          token.isOAuth = !!existingAccount;
+          token.role = existingUser.role;
+          token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
+          token.name = existingUser.name;
+          token.email = existingUser.email;
+        }
+      }
+      return token;
+    },
+  },
+  adapter: PrismaAdapter(prisma),
+  session: { strategy: "jwt" },
+  ...authConfig,
+});
