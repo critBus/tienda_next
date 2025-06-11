@@ -1,9 +1,9 @@
 import { test, expect } from "@playwright/test";
-import messages from "../locales/en.json";
-import messages_es from "../locales/es.json";
+import messages from "../../../locales/en.json";
+import messages_es from "../../../locales/es.json";
 import "dotenv/config";
 import { TypeLocales } from "@/i18n/routing";
-import HomePage from "./pages/home/home.page";
+import HomePage from "../../pages/home/home.page";
 
 const getMessages = (locale: TypeLocales) => {
   if (locale == "es") {
