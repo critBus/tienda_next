@@ -5,31 +5,31 @@ import Credentials from "next-auth/providers/credentials";
 
 import bcrypt from "bcryptjs";
 import { LoginSchema } from "@/schemas/auth";
-// import PrismaService from "@/service/PrismaService";
-// const customAuthProvider = Credentials({
-//   async authorize(credentials) {
-//     try {
-//       const validatedFields = LoginSchema.safeParse(credentials);
-//       if (validatedFields.success) {
-//         const { email, password } = validatedFields.data;
-//         const user = await PrismaService.users.byEmail(email);
-//         if (!user || !user.password) {
-//           return null;
-//         }
-//         const passwordMath = await bcrypt.compare(password, user.password);
-//         if (passwordMath) {
-//           return user;
-//         }
-//       }
-//     } catch (error) {
-//       console.log("error en credentials");
-//       console.log(error);
-//     }
+import PrismaRepository from "@/prisma/PrismaRepository";
+const customAuthProvider = Credentials({
+  async authorize(credentials) {
+    try {
+      const validatedFields = LoginSchema.safeParse(credentials);
+      if (validatedFields.success) {
+        const { email, password } = validatedFields.data;
+        const user = await PrismaRepository.users.byEmail(email);
+        if (!user || !user.password) {
+          return null;
+        }
+        const passwordMath = await bcrypt.compare(password, user.password);
+        if (passwordMath) {
+          return user;
+        }
+      }
+    } catch (error) {
+      console.log("error en credentials");
+      console.log(error);
+    }
 
-//     return null;
-//   },
-// });
+    return null;
+  },
+});
 // /
 export default {
-  providers: [GitHub, Google], //customAuthProvider
+  providers: [GitHub, Google, customAuthProvider],
 } satisfies NextAuthConfig;

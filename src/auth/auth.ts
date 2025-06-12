@@ -1,8 +1,8 @@
 import NextAuth, { DefaultSession } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import prisma from "@/libs/prisma";
+import prisma from "@/prisma/config";
 import authConfig from "./config";
-import PrismaService from "@/service/PrismaService";
+import PrismaRepository from "@/prisma/PrismaRepository";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { JWT } from "next-auth/jwt";
 import { UserRole } from "@prisma/client";
@@ -46,11 +46,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         return true;
       }
       if (user.id) {
-        const existingUser = await PrismaService.users.byId(user.id);
+        const existingUser = await PrismaRepository.users.byId(user.id);
         if (existingUser?.emailVerified) {
           if (existingUser.isTwoFactorEnabled) {
             const twoFactorConfirmation =
-              await PrismaService.twoFactorConfirmation.byUserId(
+              await PrismaRepository.twoFactorConfirmation.byUserId(
                 existingUser.id
               );
 
@@ -97,9 +97,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           break;
       }
       if (token.sub) {
-        const existingUser = await PrismaService.users.byId(token.sub);
+        const existingUser = await PrismaRepository.users.byId(token.sub);
         if (existingUser) {
-          const existingAccount = await PrismaService.account.byUserId(
+          const existingAccount = await PrismaRepository.account.byUserId(
             existingUser.id
           );
           token.isOAuth = !!existingAccount;

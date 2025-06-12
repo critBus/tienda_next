@@ -10,7 +10,9 @@ import { routing } from "./i18n/routing";
 
 // 2. IMPORTACIONES DE NEXT-AUTH
 import NextAuth from "next-auth";
-import authConfig from "./auth/config";
+import authConfig from "@/auth/config";
+//import authConfig from "./auth.config";
+// import { auth } from "@/auth/auth";
 // ¡Asegúrate de que la ruta a tus constantes de rutas sea correcta!
 import {
   AUTH_ROUTES,
@@ -21,12 +23,14 @@ import {
 
 // 3. INICIALIZACIÓN DE LOS MIDDLEWARES
 const { auth } = NextAuth(authConfig);
+
 const intlMiddleware = createIntlMiddleware(routing);
 
 // ======================================================================
 // EL ORQUESTADOR PRINCIPAL
 // ======================================================================
 export default async function middleware(request: NextRequest) {
+  // const { auth } = NextAuth(authConfig);
   const { pathname } = request.nextUrl;
 
   // Paso 1: Determinar la ruta semántica (sin el prefijo de idioma)
