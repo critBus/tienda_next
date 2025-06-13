@@ -8,6 +8,18 @@ import TopBar from "@/components/home/TopBar";
 import BestSellingProducts from "@/components/home/BestSellingProducts";
 import CategoryNavigation from "@/components/home/CategoryNavigation";
 
-export default function Home() {
-  return <div>Nada</div>;
+export default function Page() {
+  return (
+    <main>
+      <TopBar />
+      <CategoryNavigation />
+      <RecommendedProducts />
+      <SecurePaymentImg />
+      <BestSellingProducts />
+      <LatestAdditions />
+      <ShippingCuba />
+      <Subscriptions />
+      {/* <LinkingYourPurchases /> */}
+    </main>
+  );
 }

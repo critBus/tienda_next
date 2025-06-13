@@ -35,9 +35,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className="roboto">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Providers>
-            <RootLayoutContent>{children}</RootLayoutContent>
-          </Providers>
+          <Providers>{children}</Providers>
         </NextIntlClientProvider>
       </body>
     </html>

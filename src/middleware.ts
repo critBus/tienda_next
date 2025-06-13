@@ -46,6 +46,9 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
+  if (semanticPathname == "/") {
+    return NextResponse.redirect(new URL("/shop", request.url));
+  }
   // Paso 2: Ejecutar la lógica de autenticación SOLO si es necesario
   const isProtectedRoute = PROTECTED_ROUTES.some((route) =>
     semanticPathname.startsWith(route)
