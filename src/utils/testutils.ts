@@ -1,4 +1,4 @@
-import prisma from '@/libs/prisma';
+import prisma from "@/prisma/config";
 
 export const clearData = async () => {
   await prisma.price.deleteMany();

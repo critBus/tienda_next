@@ -1,13 +1,11 @@
-import LatestAdditions from "@/components/home/LatestAdditions";
-
-import RecommendedProducts from "@/components/home/RecommendedProducts";
-import SecurePaymentImg from "@/components/home/SecurePaymentImg";
-import ShippingCuba from "@/components/home/ShippingCuba";
-import Subscriptions from "@/components/home/SubscriptionsSection";
-import TopBar from "@/components/home/TopBar";
-import BestSellingProducts from "@/components/home/BestSellingProducts";
-import CategoryNavigation from "@/components/home/CategoryNavigation";
+"use client";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
+  const route = useRouter();
+  useEffect(() => {
+    route.push("/shop");
+  }, [route]);
   return <div>Nada</div>;
 }

@@ -3,8 +3,6 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 
-import RootLayoutContent from "@/components/layouts/RootLayoutContent";
-
 import { TypeLocales } from "@/i18n/routing";
 import { hasLocale } from "@/i18n/utils";
 import Providers from "@/providers/Providers";

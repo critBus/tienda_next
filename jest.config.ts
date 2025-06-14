@@ -14,7 +14,7 @@ const config: Config = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   preset: "ts-jest",
   moduleNameMapper: {
-    "^@/libs/prisma$": "<rootDir>/src/libs/prisma.ts",
+    "^@/prisma/config$": "<rootDir>/src/prisma/config.ts",
   },
   testPathIgnorePatterns: ["<rootDir>/tests/e2e/"],
 };

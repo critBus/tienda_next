@@ -3,7 +3,7 @@ import prisma from "@/prisma/config";
 import { NextResponse } from "next/server";
 import { SUCCES, ERROR } from "@/types";
 
-jest.mock("@/libs/prisma", () => ({
+jest.mock("@/prisma/config", () => ({
   category: {
     findMany: jest.fn(),
   },

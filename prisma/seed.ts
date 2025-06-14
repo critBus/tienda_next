@@ -1,4 +1,4 @@
-import prisma from "@/libs/prisma";
+import prisma from "@/prisma/config";
 import { Decimal } from "@prisma/client/runtime/library";
 
 // Helper para asegurar que el precio base sea un número antes de multiplicar
