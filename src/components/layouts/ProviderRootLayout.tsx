@@ -1,5 +1,5 @@
 import React from "react";
-import Providers from "@/providers/Providers";
+import Providers from "@/components/providers/Providers";
 import RootLayoutContent from "@/components/layouts/RootLayoutContent";
 
 const ProviderRootLayout = ({

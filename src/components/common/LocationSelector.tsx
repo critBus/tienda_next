@@ -10,7 +10,7 @@ import {
   ProvinceData,
   MunicipalityData,
   TownData,
-} from "@/utils/stableLocations";
+} from "@/lib/shared/stableLocations";
 import { useTranslations } from "next-intl";
 
 interface Props {

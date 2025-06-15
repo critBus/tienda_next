@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-import { clearData } from "@/utils/testutils";
+import { clearData } from "@/lib/server/tests/clearData";
 
 import locations from "@/data/availableLocations.json";
 import prisma from "@/prisma/config";

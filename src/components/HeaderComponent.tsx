@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 import LocationSelector from "@/components/common/LocationSelector";
 
-import { getLocationLabel } from "@/utils/locationLabel";
+import { getLocationLabel } from "@/lib/shared/locationLabel";
 
 import { RootState } from "@/store";
 

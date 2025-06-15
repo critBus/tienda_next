@@ -4,6 +4,7 @@
 
 ```bash
 pnpm exec playwright test
+
 ```
 
 ## Estructura
@@ -141,4 +142,17 @@ test("login test", async ({ page }) => {
   await page.goto(ROUTES.AUTH.LOGIN);
   // Playwright usa baseURL + "/auth/login" automáticamente
 });
+```
+
+# **Estructura Utiles**
+
+```bash
+/src
+  /lib
+    /shared      # Métodos compartidos (front/back)
+    /client      # Métodos solo para frontend
+    /server      # Métodos solo para backend
+  /app
+    /api         # API Routes (backend)
+    /components  # Componentes cliente o servidor
 ```
