@@ -4,7 +4,7 @@
 
 ```bash
 pnpm exec playwright test
-
+pnpm exec playwright test --project="chromium"
 ```
 
 ## Estructura
@@ -155,4 +155,69 @@ test("login test", async ({ page }) => {
   /app
     /api         # API Routes (backend)
     /components  # Componentes cliente o servidor
+```
+
+
+
+# Estructura componentes
+
+```
+src/
+├── app/                          # App Router de Next.js 13+
+│   ├── (auth)/                   # Grupos de rutas
+│   │   ├── login/
+│   │   │   ├── page.tsx
+│   │   │   └── _components/       # Componentes específicos de login
+│   │   │       ├── LoginForm.tsx
+│   │   │       └── LoginHeader.tsx
+│   │   └── register/
+│   │       ├── page.tsx
+│   │       └── _components/
+│   │           └── RegisterForm.tsx
+├── components/                   # Componentes compartidos
+│   ├── ui/                       # Componentes base reutilizables
+│   │   ├── Button.tsx
+│   │   ├── Input.tsx
+│   │   ├── Modal.tsx
+│   │   ├── Card.tsx
+│   │   └── index.ts              # Barrel exports
+│   ├── layout/                   # Componentes de layout
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Sidebar.tsx
+│   │   └── Navigation.tsx
+│   ├── forms/                    # Componentes de formularios compartidos
+│   │   ├── ContactForm.tsx
+│   │   ├── SearchBar.tsx
+│   │   └── ValidationMessage.tsx
+│   ├── feature/                  # Componentes de características específicas
+│   |   ├── profile/
+│   |   |   └── UserProfile.tsx       # Usado en múltiples páginas
+│   |   └── product/
+│   |       └── ProductCard.tsx       # Usado en múltiples páginas
+│   ├── providers/                   # Componentes provider
+│   │   ├── Providers.tsx
+│   │   └── Providers2.tsx
+│   └── shared/              # Componentes reutilizados en varias páginas
+│       ├── SearchBar.jsx
+        └── Pagination.jsx
+
+```
+
+# Estilos css
+
+1- Si un componente pose ciertos estilos solo para el, ponerlos al mismo nivel con su mismo nombre 
+
+
+
+```
+src/
+├── components/                   
+│   ├── ui/                       
+│   │   ├── Button.tsx
+│   │   ├── Button.css
+│   └── shared/              
+│       ├── Pagination.css
+        └── Pagination.jsx
+
 ```

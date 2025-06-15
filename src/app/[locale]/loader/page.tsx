@@ -1,4 +1,4 @@
-import MainLoader from "@/components/common/loaders/MainLoader";
+import MainLoader from "@/components/shared/loaders/MainLoader";
 import React from "react";
 
 const Page = () => {

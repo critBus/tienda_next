@@ -8,9 +8,9 @@ import useProductPrice from "@/hooks/useProductPrice";
 import { addNotification } from "@/store/slices/notificationSlice";
 import { addToCart as addToCartAction } from "@/store/slices/cartSlice";
 import { selectProductStockInfo } from "@/store/selectors/productStockSelectors";
-import ModalInsufficientProducts from "../common/modals/ModalInsufficientProducts";
-import ModalNoProductsLeft from "../common/modals/ModalNoProductsLeft";
-import Tooltip from "../common/Tooltip";
+import ModalInsufficientProducts from "@/components/shared/modals/ModalInsufficientProducts";
+import ModalNoProductsLeft from "@/components/shared/modals/ModalNoProductsLeft";
+import Tooltip from "@/components/ui/Tooltip";
 import { RootState } from "@/store";
 import { useTranslations } from "next-intl";
 

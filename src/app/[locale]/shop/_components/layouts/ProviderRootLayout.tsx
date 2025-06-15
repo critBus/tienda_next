@@ -1,6 +1,6 @@
 import React from "react";
 import Providers from "@/components/providers/Providers";
-import RootLayoutContent from "@/components/layouts/RootLayoutContent";
+import ShopLayout from "./ShopLayout";
 
 const ProviderRootLayout = ({
   children,
@@ -9,7 +9,7 @@ const ProviderRootLayout = ({
 }>) => {
   return (
     <Providers>
-      <RootLayoutContent>{children}</RootLayoutContent>
+      <ShopLayout>{children}</ShopLayout>
     </Providers>
   );
 };

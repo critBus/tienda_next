@@ -5,16 +5,16 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useSelector } from "react-redux";
 
-import LocationSelector from "@/components/common/LocationSelector";
+import LocationSelector from "./LocationSelector";
 
 import { getLocationLabel } from "@/lib/shared/locationLabel";
 
 import { RootState } from "@/store";
 
-import LogoImg from "../../public/icons/logos/logo.png";
-import LogoSimple from "../../public/icons/logos/sinfondosimple.png";
+import LogoImg from "@public/icons/logos/logo.png";
+import LogoSimple from "@public/icons/logos/sinfondosimple.png";
 import CurrencySelector from "./CurrencySelector";
-import LocaleSwitcher from "./i18/LocaleSwitcher";
+import LocaleSwitcher from "@/components/feature/i18/LocaleSwitcher";
 
 export default function HeaderComponent() {
   const t = useTranslations("HeaderComponent");

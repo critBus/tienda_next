@@ -1,4 +1,4 @@
-import ProductDetail from "@/components/product/ProductDetail";
+import ProductDetail from "./_components/ProductDetail";
 import PrismaRepository from "@/prisma/PrismaRepository";
 
 import React from "react";

@@ -1,12 +1,12 @@
-import LatestAdditions from "@/components/home/LatestAdditions";
+import LatestAdditions from "./_components/LatestAdditions";
 
-import RecommendedProducts from "@/components/home/RecommendedProducts";
-import SecurePaymentImg from "@/components/home/SecurePaymentImg";
-import ShippingCuba from "@/components/home/ShippingCuba";
-import Subscriptions from "@/components/home/SubscriptionsSection";
-import TopBar from "@/components/home/TopBar";
-import BestSellingProducts from "@/components/home/BestSellingProducts";
-import CategoryNavigation from "@/components/home/CategoryNavigation";
+import RecommendedProducts from "./_components/RecommendedProducts";
+import SecurePaymentImg from "./_components/SecurePaymentImg";
+import ShippingCuba from "./_components/ShippingCuba";
+import Subscriptions from "./_components/SubscriptionsSection";
+import TopBar from "./_components/TopBar";
+import BestSellingProducts from "./_components/BestSellingProducts";
+import CategoryNavigation from "./_components/CategoryNavigation";
 
 export default function Page() {
   return (

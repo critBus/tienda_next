@@ -6,7 +6,7 @@ import { Product } from "@/types";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import ApiService from "@/service/ApiService";
-import SkeletonProductSection from "../common/loaders/SkeletonProductSection";
+import SkeletonProductSection from "./loaders/SkeletonProductSection";
 import { useTranslations } from "next-intl";
 
 export default function LatestAdditions() {

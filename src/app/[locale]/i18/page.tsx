@@ -1,4 +1,4 @@
-import LocaleSwitcher from "@/components/i18/LocaleSwitcher";
+import LocaleSwitcher from "@/components/feature/i18/LocaleSwitcher";
 import React from "react";
 
 const page = () => {

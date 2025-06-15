@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { createStore } from "@/store";
 import { ProductSerializer } from "@/types";
 
-import message from "../../../locales/es.json";
+import message from "@locales/en.json";
 import ProductCard from "./ProductCard";
 
 const AllProviders = ({ children }: { children: React.ReactNode }) => (
@@ -164,7 +164,8 @@ jest.mock("axios", () => {
 
   const mockedCreateAxios = jest.fn();
   const restponseGet = (url: string) => {
-    let data = fake_products;
+    let data:typeof fake_products| typeof fake_categories|  typeof fake_currencies=
+     fake_products;
     if (url == "/categories") {
       data = fake_categories;
     } else if (url == "/currencies") {

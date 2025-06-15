@@ -7,7 +7,7 @@ import CategoryImageLink from "./CategoryImageLink";
 import "./CategoryNavigation.css";
 import ApiService from "@/service/ApiService";
 import { Category } from "@/types";
-import CategorySectionSkeleton from "../common/loaders/CategorySectionSkeleton";
+import CategorySectionSkeleton from "./loaders/CategorySectionSkeleton";
 
 interface RowCategory {
   id: string;

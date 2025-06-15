@@ -1,9 +1,9 @@
-import RootLayoutContent from "@/components/layouts/RootLayoutContent";
+import ShopLayout from "./_components/layouts/ShopLayout";
 
 type Props = {
   children: React.ReactNode;
 };
 
 export default async function RootLayout({ children }: Readonly<Props>) {
-  return <RootLayoutContent>{children}</RootLayoutContent>;
+  return <ShopLayout>{children}</ShopLayout>;
 }
