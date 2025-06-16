@@ -8,6 +8,7 @@ import * as z from "zod";
 import { login } from "@/actions/auth/login";
 import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
+import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
 type TypeSchemaForm = z.infer<typeof LoginSchema>;
 const LoguinForm = () => {
   const t = useTranslations("Auth.Login");
@@ -62,6 +63,9 @@ const LoguinForm = () => {
         });
     });
   };
+  if (isPending) {
+    return <GeneralLoader />;
+  }
 
   return (
     <div className="w-full lg:w-4/12 px-4">
