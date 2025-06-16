@@ -5,13 +5,18 @@ const AuthLayout = ({
 }>) => {
   return (
     <main>
-      <section className="relative w-full h-full py-40 min-h-screen">
-        <div
+      <section
+        className="relative w-full h-full flex flex-col justify-center items-center min-h-screen bg-blueGray-800 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/img/register_bg_2.png')",
+        }}
+      >
+        {/* <div
           className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
           style={{
             backgroundImage: "url('/img/register_bg_2.png')",
           }}
-        ></div>
+        ></div> */}
         {children}
       </section>
     </main>

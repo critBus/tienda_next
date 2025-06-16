@@ -1,4 +1,6 @@
+import { createHashedPassword } from "@/lib/server/auth/createHashedPassword";
 import prisma from "@/prisma/config";
+import { UserRole } from "@prisma/client";
 import { Decimal } from "@prisma/client/runtime/library";
 
 // Helper para asegurar que el precio base sea un número antes de multiplicar
@@ -13,6 +15,20 @@ function safeMultiply(price: Decimal | number, rate: Decimal | number): number {
   }
   // Redondear a 2 decimales como en el schema Decimal(12, 2)
   return Math.round(numPrice * numRate * 100) / 100;
+}
+
+async function createTestUsers() {
+  console.log("Creando Usuarios ...");
+  const user = await prisma.user.create({
+    data: {
+      name: "admin",
+      email: "admin@admin.com",
+      emailVerified: new Date(),
+      password: await createHashedPassword({ password: "123" }),
+      role: UserRole.ADMIN,
+    },
+  });
+  console.log(`user: ${user.email} - ${user.role}`);
 }
 
 export async function main() {
@@ -816,6 +832,8 @@ export async function main() {
       availabilityEntries.filter((entry) => entry !== null).length
     }`
   );
+
+  await createTestUsers();
 
   console.log("Seeding completado exitosamente!");
 }

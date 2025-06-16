@@ -104,5 +104,17 @@
     "sellWithUs": "Vende con Nosotros",
     "contactUs": "Contáctenos",
     "faq": "Preguntas frecuentes"
+  },
+  "Auth": {
+    "Login": {
+      "SignInWith": "Iniciar sesión con",
+      "OrSignInWithCredentials": "O inicia sesión con credenciales",
+      "Email": "Correo electrónico",
+      "Password": "Contraseña",
+      "RememberMe": "Recuérdame",
+      "SignIn": "Iniciar sesión",
+      "ForgotPassword": "¿Olvidaste tu contraseña?",
+      "CreateNewAccount": "Crear una nueva cuenta"
+    }
   }
 }

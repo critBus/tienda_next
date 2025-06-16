@@ -113,5 +113,17 @@
     "sellWithUs": "Sell with us",
     "contactUs": "Contact us",
     "faq": "FAQ"
+  },
+  "Auth": {
+    "Login": {
+      "SignInWith": "Sign in with",
+      "OrSignInWithCredentials": "Or sign in with credentials",
+      "Email": "Email",
+      "Password": "Password",
+      "RememberMe": "Remember me",
+      "SignIn": "Sign In",
+      "ForgotPassword": "Forgot password?",
+      "CreateNewAccount": "Create new account"
+    }
   }
 }

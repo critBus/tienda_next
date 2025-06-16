@@ -1,14 +1,20 @@
-import * as CategoryService from "./category";
-import ProductService from "./products";
-import UserService from "./users";
-import TwoFactorConfirmation from "./twoFactorConfirmation";
-import Account from "./account";
+import * as CategoryRepository from "./category";
+import ProductRepository from "./products";
+import UserRepository from "./users";
+import TwoFactorConfirmationEmailRepository from "./twoFactorConfirmationEmail";
+import AccountRepository from "./account";
+import TwoFactorTokenEmailRepository from "./twoFactorTokenEmail";
+import PasswordResetTokenRepository from "./passwordResetToken";
+import VerificationTokenEmailRepository from "./verificationTokenEmail";
 const PrismaRepository = {
-  products: ProductService,
-  categories: CategoryService,
-  users: UserService,
-  twoFactorConfirmation: TwoFactorConfirmation,
-  account: Account,
+  products: ProductRepository,
+  categories: CategoryRepository,
+  users: UserRepository,
+  twoFactorConfirmationEmail: TwoFactorConfirmationEmailRepository,
+  account: AccountRepository,
+  twoFactorTokenEmail: TwoFactorTokenEmailRepository,
+  passwordResetToken: PasswordResetTokenRepository,
+  verificationTokenEmail: VerificationTokenEmailRepository,
 };
 
 export default PrismaRepository;
