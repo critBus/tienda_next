@@ -29,6 +29,17 @@ async function createTestUsers() {
     },
   });
   console.log(`user: ${user.email} - ${user.role}`);
+  const user2fa = await prisma.user.create({
+    data: {
+      name: "2fa",
+      email: "2fa@2fa.com",
+      emailVerified: new Date(),
+      password: await createHashedPassword({ password: "123" }),
+      isTwoFactorEnabled: true,
+      role: UserRole.USER,
+    },
+  });
+  console.log(`user2fa: ${user2fa.email} - ${user2fa.role}`);
 }
 
 export async function main() {

@@ -1,0 +1,256 @@
+"use client";
+import { Link } from "@/i18n/navigation";
+import {
+  LoginSchema,
+  TypeSchemaVerificationCode,
+  VerificationCodeSchema,
+} from "@/schemas/auth";
+import { useRouter, useSearchParams } from "next/navigation";
+import React, { useEffect, useRef, useState, useTransition } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { login } from "@/actions/auth/login";
+import { useTranslations } from "next-intl";
+import ErrorAlert from "@/components/ui/ErrorAlert";
+import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
+import { login2faEmailCode } from "@/actions/auth/login2faEmailCode";
+import { REDIRECT_LOGIN_SUCCESSFUL } from "@/auth/routes";
+type OTPState = [string, string, string, string, string, string];
+type TypeSchemaForm = z.infer<typeof LoginSchema>;
+const TwoFactorEmailForm = () => {
+  const t = useTranslations("Auth.Login");
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "Email already in use with different provider!"
+      : "";
+  const [error, setError] = useState<string | undefined>("");
+
+  const [otp, setOtp] = useState<OTPState>(["", "", "", "", "", ""]); // Array with 6 empty strings
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]); // Array of refs for each input field
+  const [code, setCode] = useState(otp.join(""));
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (
+      !/^[0-9]{1}$/.test(e.key) &&
+      e.key !== "Backspace" &&
+      e.key !== "Delete" &&
+      e.key !== "Tab" &&
+      !e.metaKey
+    ) {
+      e.preventDefault();
+    }
+
+    if (e.key === "Delete" || e.key === "Backspace") {
+      const index = inputRefs.current.indexOf(e.currentTarget);
+      if (index > 0) {
+        const newOtp = [...otp];
+        newOtp[index - 1] = "";
+        if (index == 5) {
+          newOtp[index] = "";
+        }
+        setOtp(newOtp as OTPState);
+        inputRefs.current[index - 1]?.focus();
+      }
+    }
+  };
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (/^[0-9]{1}$/.test(e.key)) {
+      e.preventDefault();
+      const index = inputRefs.current.indexOf(e.currentTarget);
+      if (index != 5) {
+        if (otp[index] == e.key) {
+          inputRefs.current[index + 1]?.focus();
+        }
+      }
+    }
+  };
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { target } = e;
+    const index: number = inputRefs.current.indexOf(target);
+    const value = target.value;
+    console.log(`entra ${value}`);
+    if (value && /^[0-9]{1}$/.test(value)) {
+      const newOtp = [...otp];
+      newOtp[index] = value;
+      setOtp(newOtp as OTPState);
+      console.log(`newOtp.join("") ${newOtp.join("")}`);
+
+      if (index < otp.length - 1) {
+        inputRefs.current[index + 1]?.focus();
+      }
+    }
+  };
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    e.target.select();
+  };
+
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const text = e.clipboardData.getData("text");
+    if (!new RegExp(`^[0-9]{${otp.length}}$`).test(text)) {
+      return;
+    }
+    const digits = text.split("") as OTPState;
+    setOtp(digits);
+  };
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+    setValue,
+  } = useForm<TypeSchemaVerificationCode>({
+    resolver: zodResolver(VerificationCodeSchema),
+    defaultValues: {
+      code: otp.join(""),
+    },
+  });
+  useEffect(() => {
+    const newCode = otp.join("");
+    setValue("code", newCode);
+    setCode(newCode);
+  }, [otp, setValue]);
+  const handlerSubmit = (values: TypeSchemaVerificationCode) => {
+    console.log(values);
+    startTransition(() => {
+      login2faEmailCode(values, callbackUrl || undefined)
+        .then((data) => {
+          if (data?.error) {
+            reset();
+            setError(data.error);
+          }
+          if (data?.success) {
+            reset();
+            //setSuccess(data.success);
+            router.push(REDIRECT_LOGIN_SUCCESSFUL);
+            // TODO agregar notificacion
+            return;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          setError("something went wrong");
+        });
+    });
+  };
+
+  if (isPending) {
+    return <GeneralLoader />;
+  }
+
+  return (
+    <div className="w-full lg:w-4/12 px-4">
+      <div
+        className="relative flex flex-col min-w-0 
+      break-words w-full  shadow-lg 
+      rounded-lg bg-blueGray-200 border-0"
+      >
+        <div className="flex-auto  lg:px-10 pb-3 pt-0">
+          <div className="text-blueGray-400 text-center mb-3 font-bold">
+            <small>{t("OrSignInWithCredentials")}</small>
+          </div>
+          {error && (
+            <ErrorAlert title="Error" errors={[error]} className="my-2" />
+          )}
+          <form onSubmit={handleSubmit(handlerSubmit)}>
+            <div className="relative w-full mb-3">
+              <label
+                className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                {t("Email")}
+              </label>
+              <div className="flex justify-center gap-2">
+                {otp.map((digit, index) => (
+                  <input
+                    key={index}
+                    type="text"
+                    maxLength={1}
+                    className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 
+                    bg-white rounded text-sm shadow   text-center
+                     w-full ease-linear transition-all duration-150 
+                    focus:border-white focus:ring-2 focus:ring-white focus:outline-none"
+                    value={digit}
+                    onChange={handleInput}
+                    onKeyDown={handleKeyDown}
+                    onKeyUp={handleKeyUp}
+                    onFocus={handleFocus}
+                    onPaste={handlePaste}
+                    ref={(el) => {
+                      inputRefs.current[index] = el;
+                    }}
+                    id={`id-digit-${index}`}
+                  />
+                ))}
+              </div>
+
+              {/* Input oculto para el formulario */}
+              <input
+                {...register("code", {
+                  required: "El código es requerido",
+                  minLength: 6,
+                  maxLength: 6,
+                  pattern: /^[0-9]{6}$/,
+                })}
+                type="hidden"
+                value={code}
+              />
+              <p className="text-red">{errors.code?.message}</p>
+            </div>
+
+            <div>
+              <label className="inline-flex items-center cursor-pointer">
+                <input
+                  id="customCheckLogin"
+                  type="checkbox"
+                  className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
+                />
+                <span className="ml-2 text-sm font-semibold text-blueGray-600">
+                  {t("RememberMe")}
+                </span>
+              </label>
+            </div>
+
+            <div className="text-center mt-6">
+              <button
+                disabled={isPending}
+                id="id-button-submit"
+                className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                type="submit"
+              >
+                {t("SignIn")}
+              </button>
+            </div>
+          </form>
+
+          <div className="flex flex-wrap  relative">
+            <div className="w-1/2">
+              <a
+                href="#pablo"
+                onClick={(e) => e.preventDefault()}
+                className="text-blueGray-600"
+              >
+                <small>{t("ForgotPassword")}</small>
+              </a>
+            </div>
+            <div className="w-1/2 text-right">
+              <Link href="/auth/register" className="text-blueGray-600">
+                <small>{t("CreateNewAccount")}</small>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TwoFactorEmailForm;

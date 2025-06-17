@@ -9,6 +9,7 @@ import { login } from "@/actions/auth/login";
 import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
+import { LOGIN_2FA_URL, REDIRECT_LOGIN_SUCCESSFUL } from "@/auth/routes";
 type TypeSchemaForm = z.infer<typeof LoginSchema>;
 const LoguinForm = () => {
   const t = useTranslations("Auth.Login");
@@ -48,12 +49,13 @@ const LoguinForm = () => {
           if (data?.success) {
             reset();
             //setSuccess(data.success);
-            router.push("/shop");
+            router.push(REDIRECT_LOGIN_SUCCESSFUL);
             // TODO agregar notificacion
             return;
           }
           if (data?.twoFactor) {
-            router.push("/auth/TwoFactorCodeEmail");
+            router.push(LOGIN_2FA_URL);
+            // TODO agregar notificacion
             return;
           }
         })

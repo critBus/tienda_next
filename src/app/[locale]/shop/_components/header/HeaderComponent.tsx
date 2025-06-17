@@ -15,6 +15,8 @@ import LogoImg from "@public/icons/logos/logo.png";
 import LogoSimple from "@public/icons/logos/sinfondosimple.png";
 import CurrencySelector from "./CurrencySelector";
 import LocaleSwitcher from "@/components/feature/i18/LocaleSwitcher";
+import { Link } from "@/i18n/navigation";
+import { LOGIN_URL } from "@/auth/routes";
 
 export default function HeaderComponent() {
   const t = useTranslations("HeaderComponent");
@@ -66,13 +68,16 @@ export default function HeaderComponent() {
         <div className="mr-3 flex flex-row items-center gap-3">
           <LocaleSwitcher />
           <CurrencySelector />
-          <Image
-            src="/icons/header/profile.svg"
-            alt=""
-            width={32}
-            height={32}
-            className="h-8 w-8"
-          />
+          <Link href={LOGIN_URL}>
+            <Image
+              src="/icons/header/profile.svg"
+              alt=""
+              width={32}
+              height={32}
+              className="h-8 w-8"
+            />
+          </Link>
+
           <div className="relative flex cursor-pointer items-center">
             <Image
               src="/icons/header/shopping-cart.svg"

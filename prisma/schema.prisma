@@ -320,6 +320,7 @@ model TwoFactorTokenEmail {
   id      String   @id @default(cuid())
   email   String
   token   String   @unique
+  used    Boolean  @default(false)
   expires DateTime
 
   @@unique([email, token])

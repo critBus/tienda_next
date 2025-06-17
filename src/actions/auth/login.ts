@@ -17,6 +17,7 @@ import {
   sendVerificationEmail,
 } from "@/lib/shared/mail";
 import { DEFAULT_LOGIN_REDIRECT } from "@/auth/routes";
+import { createTempAuthToken } from "@/lib/server/auth/2faEmail";
 export const login = async (
   values: z.infer<typeof LoginSchema>,
   callbackUrl?: string
@@ -77,6 +78,10 @@ export const login = async (
     } else {
       const twoFactorToken = await generateTwoFactorToken(email);
       await sendTwoFactorTokenEmail(twoFactorToken.email, twoFactorToken.token);
+
+      // Guardar token en cookie HttpOnly
+      await createTempAuthToken(email);
+
       return { twoFactor: true };
     }
   }
