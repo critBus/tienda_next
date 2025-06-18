@@ -32,7 +32,10 @@ export const login2faEmailCode = async (
     return { success: t("loginSuccess") };
   } catch (error) {
     if (error instanceof Auth2faCodeEmailError) {
-      return { error: error.simpleMessage };
+      return {
+        error: error.simpleMessage,
+        redirectToMessage: error.redirectToMessage,
+      };
     }
     // console.log("Error al intentar loguearse");
     if (error instanceof AuthError) {

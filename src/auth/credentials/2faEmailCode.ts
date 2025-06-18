@@ -1,7 +1,6 @@
 import Credentials from "next-auth/providers/credentials";
 
-import bcrypt from "bcryptjs";
-import { LoginSchema, VerificationCodeSchema } from "@/schemas/auth";
+import { VerificationCodeSchema } from "@/schemas/auth";
 import PrismaRepository from "@/prisma/PrismaRepository";
 import {
   clearTempAuthToken,
@@ -30,7 +29,9 @@ export const custom2FAEmailCodeProvider = Credentials({
     const email = await verifyTempAuthToken();
 
     if (!email) {
-      throw new Auth2faCodeEmailError(t("noTempSession"));
+      throw new Auth2faCodeEmailError(t("noTempSession"), {
+        redirectToMessage: true,
+      });
     }
 
     const validatedFields = VerificationCodeSchema.safeParse(credentials);
@@ -44,7 +45,9 @@ export const custom2FAEmailCodeProvider = Credentials({
       await PrismaRepository.twoFactorTokenEmail.byEmail(email);
 
     if (!twoFactorToken) {
-      throw new Auth2faCodeEmailError(t("codeExpired"));
+      throw new Auth2faCodeEmailError(t("codeExpired"), {
+        redirectToMessage: true,
+      });
     }
 
     // 3. Comprobar si se ha excedido el número de intentos
@@ -61,7 +64,9 @@ export const custom2FAEmailCodeProvider = Credentials({
       await prisma.twoFactorTokenEmail.delete({
         where: { id: twoFactorToken.id },
       });
-      throw new Auth2faCodeEmailError(t("codeExpired"));
+      throw new Auth2faCodeEmailError(t("codeExpired"), {
+        redirectToMessage: true,
+      });
     }
 
     // 5. Comprobar si el código es incorrecto
@@ -70,7 +75,11 @@ export const custom2FAEmailCodeProvider = Credentials({
         where: { id: twoFactorToken.id },
         data: { attempts: { increment: 1 } },
       });
-      throw new Auth2faCodeEmailError(t("invalidCode"));
+      const remainingAttempts =
+        MAX_ATTEMPTS_2FA_EMAIL_CODE - (twoFactorToken.attempts + 1);
+      throw new Auth2faCodeEmailError(
+        t("auth2faemailcodeError", { remainingAttempts })
+      );
     }
 
     // --- ¡ÉXITO! ---
@@ -81,103 +90,11 @@ export const custom2FAEmailCodeProvider = Credentials({
 
     const user = await PrismaRepository.users.byEmail(email);
     if (!user) {
-      throw new Auth2faCodeEmailError(t("emailDoesNotExist"));
-      return null;
+      throw new Auth2faCodeEmailError(t("emailDoesNotExist"), {
+        redirectToMessage: true,
+      });
     }
 
     return user;
   },
 });
-// export const custom2FAEmailCodeProvider = Credentials({
-//   id: "2fa", // Un ID único para este flujo
-//   name: "Two-Factor Authentication",
-//   credentials: {
-//     // Solo pedimos el código en el formulario
-//     code: { label: "Código de Verificación", type: "text" },
-//   },
-//   async authorize(credentials) {
-//     // 1. Obtener el email de confianza desde la cookie firmada
-//     const email = await verifyTempAuthToken();
-//     await clearTempAuthToken();
-//     if (!credentials?.code || !email) {
-//       // Si no hay código o la cookie/token expiró/es inválido
-//       return null;
-//     }
-
-//     try {
-//       const validatedFields = VerificationCodeSchema.safeParse(credentials);
-//       if (validatedFields.success) {
-//         const { code } = validatedFields.data;
-
-//         const twoFactorToken =
-//           await PrismaRepository.twoFactorTokenEmail.byEmail(email);
-//         if (!twoFactorToken) {
-//           console.log({ error: "Invalid token" });
-//           return null;
-//         }
-//         if (twoFactorToken.token !== code) {
-//           console.log({ error: "Invalid code" });
-//           return null;
-//         }
-//         const hasExpired = new Date(twoFactorToken.expires) < new Date();
-//         if (hasExpired) {
-//           console.log({ error: "Code expired" });
-//           return null;
-//         }
-
-//         if (!twoFactorToken.used) {
-//           await prisma.twoFactorTokenEmail.delete({
-//             where: {
-//               id: twoFactorToken.id,
-//             },
-//           });
-//           console.log({ error: "Token Used" });
-//           return null;
-//         }
-//         await prisma.twoFactorTokenEmail.delete({
-//           where: {
-//             id: twoFactorToken.id,
-//           },
-//         });
-
-//         const user = await PrismaRepository.users.byEmail(email);
-//         if (!user || !user.password) {
-//           return null;
-//         }
-//         return user;
-//       }
-//     } catch (error) {
-//       console.log("error en credentials");
-//       console.log(error);
-//     }
-
-//     // Si el código es incorrecto, devolver null para que Next-Auth gestione el error.
-//     return null;
-//   },
-// });
-//             },
-//           });
-//           console.log({ error: "Token Used" });
-//           return null;
-//         }
-//         await prisma.twoFactorTokenEmail.delete({
-//           where: {
-//             id: twoFactorToken.id,
-//           },
-//         });
-
-//         const user = await PrismaRepository.users.byEmail(email);
-//         if (!user || !user.password) {
-//           return null;
-//         }
-//         return user;
-//       }
-//     } catch (error) {
-//       console.log("error en credentials");
-//       console.log(error);
-//     }
-
-//     // Si el código es incorrecto, devolver null para que Next-Auth gestione el error.
-//     return null;
-//   },
-// });

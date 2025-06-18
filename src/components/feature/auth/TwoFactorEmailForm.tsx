@@ -15,7 +15,7 @@ import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
 import { login2faEmailCode } from "@/actions/auth/login2faEmailCode";
-import { REDIRECT_LOGIN_SUCCESSFUL } from "@/auth/routes";
+import { LOGIN_URL, REDIRECT_LOGIN_SUCCESSFUL } from "@/auth/routes";
 import { resend2faEmailCode } from "@/actions/auth/resend2faEmailCode";
 import SuccessAlert from "@/components/ui/SuccessAlert";
 type OTPState = [string, string, string, string, string, string];
@@ -128,15 +128,7 @@ const TwoFactorEmailForm = () => {
     setIsValidCode(match);
     setCode(newCode);
   }, [otp]);
-  const validateOpt = () => {
-    const newCode = otp.join("");
-    setValue("code", newCode);
-    console.log(`newCode ${newCode}`);
-    const match = new RegExp(`^[0-9]{6}$`).test(newCode);
-    console.log(`match ${match}`);
-    setIsValidCode(match);
-  };
-  // validateOpt();
+
   const handlerSubmit = (values: TypeSchemaVerificationCode) => {
     setSuccess("");
     setError("");
@@ -146,6 +138,13 @@ const TwoFactorEmailForm = () => {
         .then((data) => {
           if (data?.error) {
             reset();
+            if (data.redirectToMessage) {
+              const errorMessage = data.error;
+              const encodedMessage = encodeURIComponent(errorMessage);
+              const redirectUrl = `${LOGIN_URL}?error=${encodedMessage}`;
+              router.push(redirectUrl);
+              return;
+            }
             setError(data.error);
           }
           if (data?.success) {

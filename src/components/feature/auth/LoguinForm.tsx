@@ -21,11 +21,10 @@ const LoguinForm = () => {
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
-  const urlError =
-    searchParams.get("error") === "OAuthAccountNotLinked"
-      ? "Email already in use with different provider!"
-      : "";
-  const [error, setError] = useState<string | undefined>("");
+
+  const [error, setError] = useState<string | undefined>(
+    searchParams.get("error") ?? ""
+  );
   const [success, setSuccess] = useState<string | undefined>("");
   const {
     reset,
