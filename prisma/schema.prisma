@@ -334,3 +334,19 @@ model TwoFactorConfirmation {
 
   @@unique([userId])
 }
+
+enum TypeAuthAction {
+  FACTOR_2FA_SEND
+  FACTOR_2FA_RESEND
+  PASSWORD_RESET_REQUEST
+}
+
+// NUEVO MODELO para registrar intentos de acciones sensibles
+model AuthActionLog {
+  id        String         @id @default(cuid())
+  email     String
+  action    TypeAuthAction // Ej: "2FA_RESEND", "PASSWORD_RESET_REQUEST"
+  createdAt DateTime       @default(now())
+
+  @@index([email, action, createdAt])
+}
