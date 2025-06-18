@@ -132,6 +132,60 @@
       "2FAAutentication": "2FA Autentication",
       "Check": "Check",
       "CodeWastSent": "The code was sent"
+    },
+    "errors": {
+      "auth": {
+        "invalidFields": "Invalid fields.",
+        "emailNotFound": "Email does not exist.",
+        "emailNotVerified": "The email has not been validated.",
+        "invalidCredentials": "Invalid credentials.",
+        "accessDenied": "Access denied.",
+        "somethingWentWrong": "Something went wrong. Please try again."
+      },
+      "2fa": {
+        "noTempSession": "Your session has expired. Please request a new code.",
+        "invalidCodeFormat": "Invalid code format.",
+        "invalidCode": "The verification code is incorrect.",
+        "codeExpired": "The code has expired. Please request a new code.",
+        "codeExpiredOrInvalid": "The code has expired or is invalid. Please request a new code.",
+        "maxAttemptsExceeded": "You have exceeded the number of attempts. Please request a new code.",
+        "tooManyLoginAttempts": "Too many login attempts have been made. Please try again later.",
+        "maxResendsExceeded": "You have reached the maximum number of resends. Please try to log in again later.",
+        "loginCooldown": "Please wait {timeLeft} seconds before trying to log in again.",
+        "resendCooldown": "Please wait {timeLeft} seconds before requesting another code."
+      }
+    },
+    "success": {
+      "auth": {
+        "confirmationEmailSent": "Confirmation email sent!",
+        "loginSuccess": "Login successful!"
+      },
+      "2fa": {
+        "resendCode": "A new code has been sent to your email."
+      }
     }
+  },
+  "AuthServerActions": {
+    "invalidFields": "Invalid fields.",
+    "emailNotFound": "Email does not exist.",
+    "emailNotVerified": "The email has not been validated.",
+    "confirmationEmailSent": "Confirmation email sent!",
+    "loginSuccess": "Login successful!",
+    "invalidToken": "Invalid token.",
+    "invalidCode": "Invalid code.",
+    "codeExpired": "The code has expired.",
+    "tooManyLoginAttempts": "Too many login attempts have been made. Please try again later.",
+    "waitBeforeRetry": "Please wait {timeLeft} seconds before trying to log in again.",
+    "twoFactorRequired": "Two-factor authentication required.",
+    "maxResendsExceeded": "You have reached the maximum number of resends. Please try to log in again later.",
+    "waitBeforeResend": "Please wait {timeLeft} seconds before requesting another code.",
+    "noTempSession": "No temporary session.",
+    "emailDoesNotExist": "Email does not exist.",
+    "emailNotValidated": "The email is not validated.",
+    "codeResent": "A new code has been sent to your email.",
+    "somethingWentWrong": "Something went wrong. Please try again.",
+    "accessDenied": "Access denied.",
+    "invalidCredentials": "Invalid credentials.",
+    "emailSent": "Email sent."
   }
 }

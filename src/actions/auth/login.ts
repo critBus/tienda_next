@@ -1,9 +1,7 @@
 "use server";
 
 import { signIn } from "@/auth/auth";
-
 import { LoginSchema } from "@/schemas/auth";
-
 import { AuthError } from "next-auth";
 import * as z from "zod";
 import prisma from "@/prisma/config";
@@ -23,19 +21,21 @@ import {
   MAX_SEND_ATTEMPTS_2FA_EMAIL_LOGIN,
   SEND_INTERVAL_SECONDS_2FA_EMAIL_LOGIN,
 } from "@/config";
+import { getTranslations } from "next-intl/server";
+
 export const login = async (
   values: z.infer<typeof LoginSchema>,
   callbackUrl?: string
 ) => {
+  const t = await getTranslations("AuthServerActions");
   const validatedFields = LoginSchema.safeParse(values);
   if (!validatedFields.success) {
-    return { error: "Invalid fields" };
+    return { error: t("invalidFields") };
   }
   const { email, password, code } = validatedFields.data;
-  //const existingUser = await getUserByEmail(email);
   const existingUser = await PrismaRepository.users.byEmail(email);
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { error: "Email does not exist" };
+    return { error: t("emailNotFound") };
   }
   if (!existingUser.emailVerified) {
     const verificationToken = await generateVerificationToken(email);
@@ -43,7 +43,7 @@ export const login = async (
       verificationToken.email,
       verificationToken.token
     );
-    return { success: "Confirmation email sent" };
+    return { success: t("confirmationEmailSent") };
   }
 
   if (existingUser.isTwoFactorEnabled && existingUser.email) {
@@ -51,14 +51,14 @@ export const login = async (
       const twoFactorToken =
         await PrismaRepository.twoFactorTokenEmail.byEmail(email);
       if (!twoFactorToken) {
-        return { error: "Invalid token" };
+        return { error: t("invalidToken") };
       }
       if (twoFactorToken.token !== code) {
-        return { error: "Invalid code" };
+        return { error: t("invalidCode") };
       }
       const hasExpired = new Date(twoFactorToken.expires) < new Date();
       if (hasExpired) {
-        return { error: "Code expired" };
+        return { error: t("codeExpired") };
       }
       await prisma.twoFactorTokenEmail.delete({
         where: {
@@ -97,8 +97,7 @@ export const login = async (
 
       if (recentSendAttempts.length >= MAX_SEND_ATTEMPTS_2FA_EMAIL_LOGIN) {
         return {
-          error:
-            "Se han realizado demasiados intentos de inicio de sesión. Por favor, inténtalo de nuevo más tarde.",
+          error: t("tooManyLoginAttempts"),
         };
       }
 
@@ -112,7 +111,7 @@ export const login = async (
             SEND_INTERVAL_SECONDS_2FA_EMAIL_LOGIN - timeSinceLastAttempt
           );
           return {
-            error: `Por favor, espera ${timeLeft} segundos antes de intentar iniciar sesión de nuevo.`,
+            error: t("waitBeforeRetry", { timeLeft }),
           };
         }
       }
@@ -136,27 +135,24 @@ export const login = async (
 
   try {
     console.log(`callbackUrl ${callbackUrl}`);
-    // await signIn("credentials", values);
     await signIn("credentials", {
       email,
       password,
       redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
     });
   } catch (error) {
-    // console.log(error);
-
     if (error instanceof AuthError) {
       console.log(error.type);
       switch (error.type) {
         case "CredentialsSignin":
-          return { error: "Invalid Credentials" };
+          return { error: t("invalidCredentials") };
         case "AccessDenied":
-          return { error: "Access Denied" };
+          return { error: t("accessDenied") };
         default:
-          return { error: "Something went wrong" };
+          return { error: t("somethingWentWrong") };
       }
     }
     throw error;
   }
-  return { success: "Email sent" };
+  return { success: t("emailSent") };
 };
