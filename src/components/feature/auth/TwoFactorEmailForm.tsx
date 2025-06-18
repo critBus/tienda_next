@@ -169,6 +169,13 @@ const TwoFactorEmailForm = () => {
       const data = await resend2faEmailCode();
       if (data.error) {
         reset();
+        if (data.redirectToMessage) {
+          const errorMessage = data.error;
+          const encodedMessage = encodeURIComponent(errorMessage);
+          const redirectUrl = `${LOGIN_URL}?error=${encodedMessage}`;
+          router.push(redirectUrl);
+          return;
+        }
         setError(data.error);
       }
       if (data.success) {

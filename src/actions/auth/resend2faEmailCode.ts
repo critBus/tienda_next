@@ -17,7 +17,7 @@ export const resend2faEmailCode = async () => {
   const email = await verifyTempAuthToken();
 
   if (!email) {
-    return { error: t("noTempSession") };
+    return { error: t("noTempSession"), redirectToMessage: true };
   }
 
   const tenMinutesAgo = new Date(new Date().getTime() - 10 * 60 * 1000);
@@ -34,6 +34,7 @@ export const resend2faEmailCode = async () => {
   if (recentResendAttempts.length >= MAX_RESEND_ATTEMPTS_2FA_EMAIL_CODE) {
     return {
       error: t("maxResendsExceeded"),
+      redirectToMessage: true,
     };
   }
 
@@ -54,10 +55,10 @@ export const resend2faEmailCode = async () => {
 
   const existingUser = await PrismaRepository.users.byEmail(email);
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { error: t("emailDoesNotExist") };
+    return { error: t("emailDoesNotExist"), redirectToMessage: true };
   }
   if (!existingUser.emailVerified) {
-    return { error: t("emailNotValidated") };
+    return { error: t("emailNotValidated"), redirectToMessage: true };
   }
   await prisma.twoFactorTokenEmail.deleteMany({
     where: {
