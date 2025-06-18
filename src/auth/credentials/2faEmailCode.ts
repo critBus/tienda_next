@@ -8,7 +8,7 @@ import {
   verifyTempAuthToken,
 } from "@/lib/server/auth/2faEmail";
 import prisma from "@/prisma/config";
-import { AuthError } from "next-auth";
+
 import { MAX_ATTEMPTS_2FA_EMAIL_CODE } from "@/config";
 import { Auth2faCodeEmailError } from "@/lib/server/errors/2faEmailError";
 import { getTranslations } from "next-intl/server";
@@ -22,17 +22,20 @@ export const custom2FAEmailCodeProvider = Credentials({
   },
   async authorize(credentials) {
     const t = await getTranslations("AuthServerActions");
+    if (!credentials?.code) {
+      throw new Auth2faCodeEmailError(t("invalidCode")); //(t("invalidCode"));
+    }
+
     // 1. Obtener el email de confianza desde la cookie firmada
     const email = await verifyTempAuthToken();
-    if (!credentials?.code || !email) {
+
+    if (!email) {
       throw new Auth2faCodeEmailError(t("noTempSession"));
-      return null;
     }
 
     const validatedFields = VerificationCodeSchema.safeParse(credentials);
     if (!validatedFields.success) {
       throw new Auth2faCodeEmailError(t("invalidCode"));
-      return null;
     }
     const { code } = validatedFields.data;
 

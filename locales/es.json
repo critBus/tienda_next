@@ -124,28 +124,7 @@
       "Check": "Chequear",
       "CodeWastSent": "El codigo fue enviado"
     },
-    "errors": {
-      "auth": {
-        "invalidFields": "Campos inválidos.",
-        "emailNotFound": "El correo electrónico no existe.",
-        "emailNotVerified": "El correo electrónico no ha sido validado.",
-        "invalidCredentials": "Credenciales inválidas.",
-        "accessDenied": "Acceso denegado.",
-        "somethingWentWrong": "Algo salió mal. Por favor, inténtalo de nuevo."
-      },
-      "2fa": {
-        "noTempSession": "Tu sesión ha expirado. Por favor, solicita un nuevo código.",
-        "invalidCodeFormat": "El formato del código es inválido.",
-        "invalidCode": "El código de verificación es incorrecto.",
-        "codeExpired": "El código ha expirado. Por favor, solicita uno nuevo.",
-        "codeExpiredOrInvalid": "El código ha expirado o no es válido. Por favor, solicita uno nuevo.",
-        "maxAttemptsExceeded": "Has excedido el número de intentos. Por favor, solicita un nuevo código.",
-        "tooManyLoginAttempts": "Se han realizado demasiados intentos de inicio de sesión. Por favor, inténtalo de nuevo más tarde.",
-        "maxResendsExceeded": "Has alcanzado el número máximo de reenvíos. Por favor, intenta iniciar sesión de nuevo más tarde.",
-        "loginCooldown": "Por favor, espera {timeLeft} segundos antes de intentar iniciar sesión de nuevo.",
-        "resendCooldown": "Por favor, espera {timeLeft} segundos antes de solicitar otro código."
-      }
-    },
+
     "success": {
       "auth": {
         "confirmationEmailSent": "¡Correo de confirmación enviado!",

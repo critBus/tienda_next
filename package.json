@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "generate:locations": "tsx src/commands/generateAvailableLocations.ts",
+    "clear:session": "tsx src/commands/clearSessionData.ts",
     "test": "jest  --passWithNoTests --runInBand",
     "test:watch": "jest --watchAll --runInBand"
   },
