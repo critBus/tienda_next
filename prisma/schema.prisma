@@ -317,11 +317,12 @@ model ResetPasswordTokenEmail {
 }
 
 model TwoFactorTokenEmail {
-  id      String   @id @default(cuid())
-  email   String
-  token   String   @unique
-  used    Boolean  @default(false)
-  expires DateTime
+  id       String   @id @default(cuid())
+  email    String
+  token    String   @unique
+  used     Boolean  @default(false)
+  attempts Int      @default(0)
+  expires  DateTime
 
   @@unique([email, token])
 }

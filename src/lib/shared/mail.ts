@@ -1,3 +1,4 @@
+import { DOMAIN_URL, GMAIL_PASS, GMAIL_USER, SENT_EMAIL } from "@/config";
 import nodemailer from "nodemailer";
 const transporter = nodemailer.createTransport({
   service: "Gmail",
@@ -5,12 +6,10 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_PASS,
+    user: GMAIL_USER,
+    pass: GMAIL_PASS,
   },
 });
-
-const SENT_EMAIL = process.env.SENT_EMAIL == "true";
 
 const sendEmailFree = async ({
   to,
@@ -28,7 +27,7 @@ const sendEmailFree = async ({
   });
   if (SENT_EMAIL) {
     return await transporter.sendMail({
-      from: `"Example Team" <${process.env.GMAIL_USER}>`, // sender address
+      from: `"Example Team" <${GMAIL_USER}>`, // sender address
       to: to, // list of receivers
       subject: subject, // Subject line
       html: html, // html body
@@ -65,7 +64,7 @@ export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
 };
 
 export const sendPasswordResetEmail = async (email: string, token: string) => {
-  const confirmLink = `${process.env.DOMAIN_URL}/auth/new-password?token=${token}`;
+  const confirmLink = `${DOMAIN_URL}/auth/new-password?token=${token}`;
   return await sendEmail({
     to: email,
     subject: "Reset your password",
@@ -74,7 +73,7 @@ export const sendPasswordResetEmail = async (email: string, token: string) => {
 };
 
 export const sendVerificationEmail = async (email: string, token: string) => {
-  const confirmLink = `${process.env.DOMAIN_URL}/auth/new-verification?token=${token}`;
+  const confirmLink = `${DOMAIN_URL}/auth/new-verification?token=${token}`;
   return await sendEmail({
     to: email,
     subject: "Confirm your email",
