@@ -53,7 +53,9 @@ export default function HeaderComponent() {
           <button
             type="button"
             aria-label="Buscar"
-            className="bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-300 flex h-full flex-shrink-0 items-center justify-center rounded-md p-2 transition-transform duration-200 ease-in-out hover:scale-110 hover:cursor-pointer focus:outline-none focus:ring-2"
+            className="bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-300 flex h-full flex-shrink-0 items-center justify-center rounded-md p-2 
+            transition-transform duration-200 ease-in-out hover:scale-110 hover:cursor-pointer 
+            focus:outline-none focus:ring-2"
           >
             <Image
               src="/icons/header/search-normal.svg"

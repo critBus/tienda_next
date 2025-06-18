@@ -130,7 +130,8 @@
       "ResendCode": "Resend Code",
       "Code": "Code",
       "2FAAutentication": "2FA Autentication",
-      "Check": "Check"
+      "Check": "Check",
+      "CodeWastSent": "The code was sent"
     }
   }
 }

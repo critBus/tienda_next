@@ -39,17 +39,6 @@ export const login2faEmailCode = async (
       console.log(`error.cause: ${error.cause}`);
       console.log(`error.message: ${error.message}`);
 
-      // Capturamos los errores específicos lanzados desde authorize
-      // if (error.cause?.err?.message.includes("excedido")) {
-      //   return {
-      //     error:
-      //       "Has excedido el número de intentos. Solicita un nuevo código.",
-      //   };
-      // }
-      // if (error.cause?.err?.message.includes("expirado")) {
-      //   return { error: "El código ha expirado. Solicita un nuevo código." };
-      // }
-
       // Error genérico para códigos incorrectos
       switch (error.type) {
         case "CredentialsSignin":

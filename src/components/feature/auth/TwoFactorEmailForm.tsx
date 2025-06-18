@@ -16,6 +16,8 @@ import ErrorAlert from "@/components/ui/ErrorAlert";
 import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
 import { login2faEmailCode } from "@/actions/auth/login2faEmailCode";
 import { REDIRECT_LOGIN_SUCCESSFUL } from "@/auth/routes";
+import { resend2faEmailCode } from "@/actions/auth/resend2faEmailCode";
+import SuccessAlert from "@/components/ui/SuccessAlert";
 type OTPState = [string, string, string, string, string, string];
 type TypeSchemaForm = z.infer<typeof LoginSchema>;
 const TwoFactorEmailForm = () => {
@@ -29,6 +31,7 @@ const TwoFactorEmailForm = () => {
       ? "Email already in use with different provider!"
       : "";
   const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
 
   const [otp, setOtp] = useState<OTPState>(["", "", "", "", "", ""]); // Array with 6 empty strings
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]); // Array of refs for each input field
@@ -119,6 +122,8 @@ const TwoFactorEmailForm = () => {
     setCode(newCode);
   }, [otp, setValue]);
   const handlerSubmit = (values: TypeSchemaVerificationCode) => {
+    setSuccess("");
+    setError("");
     console.log(values);
     startTransition(() => {
       login2faEmailCode(values, callbackUrl || undefined)
@@ -142,6 +147,21 @@ const TwoFactorEmailForm = () => {
     });
   };
 
+  const handlerResend2fa = () => {
+    setSuccess("");
+    setError("");
+    startTransition(async () => {
+      const data = await resend2faEmailCode();
+      if (data.error) {
+        reset();
+        setError(data.error);
+      }
+      if (data.success) {
+        setSuccess(t("CodeWastSent"));
+      }
+    });
+  };
+
   if (isPending) {
     return <GeneralLoader />;
   }
@@ -160,6 +180,9 @@ const TwoFactorEmailForm = () => {
           {error && (
             <ErrorAlert title="Error" errors={[error]} className="my-2" />
           )}
+          {success && (
+            <SuccessAlert title="Exito" messages={[success]} className="my-2" />
+          )}
           <form onSubmit={handleSubmit(handlerSubmit)}>
             <div className="relative w-full mb-3">
               <label
@@ -176,7 +199,11 @@ const TwoFactorEmailForm = () => {
                     maxLength={1}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 
                     bg-white rounded text-sm shadow   text-center
-                     w-full ease-linear transition-all duration-150 
+                     w-full 
+                     
+                     
+                      transition-transform duration-200 ease-in-out hover:scale-110 
+                     
                     focus:border-white focus:ring-2 focus:ring-white focus:outline-none"
                     value={digit}
                     onChange={handleInput}
@@ -206,13 +233,13 @@ const TwoFactorEmailForm = () => {
               <p className="text-red">{errors.code?.message}</p>
             </div>
 
-            
-
             <div className="text-center mt-6">
               <button
                 disabled={isPending}
                 id="id-button-submit"
-                className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full
+                cursor-pointer transition-transform duration-200 ease-in-out hover:scale-110 hover:cursor-pointer 
+                "
                 type="submit"
               >
                 {t("Check")}
@@ -222,18 +249,23 @@ const TwoFactorEmailForm = () => {
 
           <div className="flex flex-wrap  relative">
             <div className="w-1/2">
-              <a
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-                className="text-blueGray-600"
-              >
-                <small>{t("BackToTheLogin")}</small>
-              </a>
+              <Link href="/auth/login" className="text-blueGray-600 ">
+                <button
+                  type="button"
+                  className="cursor-pointer transition-transform duration-200 ease-in-out hover:scale-110 hover:cursor-pointer "
+                >
+                  <small>{t("BackToTheLogin")}</small>
+                </button>
+              </Link>
             </div>
             <div className="w-1/2 text-right">
-              <Link href="/auth/register" className="text-blueGray-600">
-                <small>{t("ResendCode")}</small>
-              </Link>
+              <button
+                type="button"
+                className="cursor-pointer transition-transform duration-200 ease-in-out hover:scale-110 hover:cursor-pointer "
+                onClick={handlerResend2fa}
+              >
+                <small className="text-blueGray-600">{t("ResendCode")}</small>
+              </button>
             </div>
           </div>
         </div>
