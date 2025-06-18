@@ -18,6 +18,11 @@ import {
 } from "@/lib/shared/mail";
 import { DEFAULT_LOGIN_REDIRECT } from "@/auth/routes";
 import { createTempAuthToken } from "@/lib/server/auth/2faEmail";
+import { TypeAuthAction } from "@prisma/client";
+import {
+  MAX_SEND_ATTEMPTS_2FA_EMAIL_LOGIN,
+  SEND_INTERVAL_SECONDS_2FA_EMAIL_LOGIN,
+} from "@/config";
 export const login = async (
   values: z.infer<typeof LoginSchema>,
   callbackUrl?: string
@@ -76,9 +81,52 @@ export const login = async (
         },
       });
     } else {
+      //!! Aqui se envia el email con el 2fa
+
+      // --- Lógica de Rate Limiting para el envío inicial del código 2FA ---
+      const tenMinutesAgo = new Date(new Date().getTime() - 10 * 60 * 1000);
+
+      const recentSendAttempts = await prisma.authActionLog.findMany({
+        where: {
+          email,
+          action: TypeAuthAction.FACTOR_2FA_SEND, // Usamos la acción para el envío inicial
+          createdAt: { gte: tenMinutesAgo },
+        },
+        orderBy: { createdAt: "desc" },
+      });
+
+      if (recentSendAttempts.length >= MAX_SEND_ATTEMPTS_2FA_EMAIL_LOGIN) {
+        return {
+          error:
+            "Se han realizado demasiados intentos de inicio de sesión. Por favor, inténtalo de nuevo más tarde.",
+        };
+      }
+
+      if (recentSendAttempts.length > 0) {
+        const lastAttemptTime = recentSendAttempts[0].createdAt;
+        const timeSinceLastAttempt =
+          (new Date().getTime() - lastAttemptTime.getTime()) / 1000;
+
+        if (timeSinceLastAttempt < SEND_INTERVAL_SECONDS_2FA_EMAIL_LOGIN) {
+          const timeLeft = Math.ceil(
+            SEND_INTERVAL_SECONDS_2FA_EMAIL_LOGIN - timeSinceLastAttempt
+          );
+          return {
+            error: `Por favor, espera ${timeLeft} segundos antes de intentar iniciar sesión de nuevo.`,
+          };
+        }
+      }
+      // --- Fin de la lógica de Rate Limiting ---
+
       const twoFactorToken = await generateTwoFactorToken(email);
       await sendTwoFactorTokenEmail(twoFactorToken.email, twoFactorToken.token);
-
+      // ¡Importante! Registrar esta acción de envío en el log
+      await prisma.authActionLog.create({
+        data: {
+          email,
+          action: TypeAuthAction.FACTOR_2FA_SEND,
+        },
+      });
       // Guardar token en cookie HttpOnly
       await createTempAuthToken(email);
 
