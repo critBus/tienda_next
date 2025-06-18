@@ -19,7 +19,7 @@ import { REDIRECT_LOGIN_SUCCESSFUL } from "@/auth/routes";
 type OTPState = [string, string, string, string, string, string];
 type TypeSchemaForm = z.infer<typeof LoginSchema>;
 const TwoFactorEmailForm = () => {
-  const t = useTranslations("Auth.Login");
+  const t = useTranslations("Auth.2faEmailCode");
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
@@ -155,7 +155,7 @@ const TwoFactorEmailForm = () => {
       >
         <div className="flex-auto  lg:px-10 pb-3 pt-0">
           <div className="text-blueGray-400 text-center mb-3 font-bold">
-            <small>{t("OrSignInWithCredentials")}</small>
+            <small>{t("2FAAutentication")}</small>
           </div>
           {error && (
             <ErrorAlert title="Error" errors={[error]} className="my-2" />
@@ -166,7 +166,7 @@ const TwoFactorEmailForm = () => {
                 className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                 htmlFor="grid-password"
               >
-                {t("Email")}
+                {t("Code")}
               </label>
               <div className="flex justify-center gap-2">
                 {otp.map((digit, index) => (
@@ -206,18 +206,7 @@ const TwoFactorEmailForm = () => {
               <p className="text-red">{errors.code?.message}</p>
             </div>
 
-            <div>
-              <label className="inline-flex items-center cursor-pointer">
-                <input
-                  id="customCheckLogin"
-                  type="checkbox"
-                  className="form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150"
-                />
-                <span className="ml-2 text-sm font-semibold text-blueGray-600">
-                  {t("RememberMe")}
-                </span>
-              </label>
-            </div>
+            
 
             <div className="text-center mt-6">
               <button
@@ -226,7 +215,7 @@ const TwoFactorEmailForm = () => {
                 className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="submit"
               >
-                {t("SignIn")}
+                {t("Check")}
               </button>
             </div>
           </form>
@@ -238,12 +227,12 @@ const TwoFactorEmailForm = () => {
                 onClick={(e) => e.preventDefault()}
                 className="text-blueGray-600"
               >
-                <small>{t("ForgotPassword")}</small>
+                <small>{t("BackToTheLogin")}</small>
               </a>
             </div>
             <div className="w-1/2 text-right">
               <Link href="/auth/register" className="text-blueGray-600">
-                <small>{t("CreateNewAccount")}</small>
+                <small>{t("ResendCode")}</small>
               </Link>
             </div>
           </div>

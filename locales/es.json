@@ -115,6 +115,13 @@
       "SignIn": "Iniciar sesión",
       "ForgotPassword": "¿Olvidaste tu contraseña?",
       "CreateNewAccount": "Crear una nueva cuenta"
+    },
+    "2faEmailCode": {
+      "BackToTheLogin": "Volver al Loguin",
+      "ResendCode": "Reenviar el codigo",
+      "Code": "Codigo",
+      "2FAAutentication": "Autenticación 2fa",
+      "Check": "Chequear"
     }
   }
 }

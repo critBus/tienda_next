@@ -124,6 +124,13 @@
       "SignIn": "Sign In",
       "ForgotPassword": "Forgot password?",
       "CreateNewAccount": "Create new account"
+    },
+    "2faEmailCode": {
+      "BackToTheLogin": "Back to the Login",
+      "ResendCode": "Resend Code",
+      "Code": "Code",
+      "2FAAutentication": "2FA Autentication",
+      "Check": "Check"
     }
   }
 }
