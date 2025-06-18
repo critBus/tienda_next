@@ -40,6 +40,19 @@ async function createTestUsers() {
     },
   });
   console.log(`user2fa: ${user2fa.email} - ${user2fa.role}`);
+
+  const userEmailVerication = await prisma.user.create({
+    data: {
+      name: "userverifi",
+      email: "verifi@verifi.com",
+      password: await createHashedPassword({ password: "123" }),
+      isTwoFactorEnabled: true,
+      role: UserRole.USER,
+    },
+  });
+  console.log(
+    `userverifi: ${userEmailVerication.email} - ${userEmailVerication.role}`
+  );
 }
 
 export async function main() {

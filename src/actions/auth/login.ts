@@ -43,7 +43,7 @@ export const login = async (
       verificationToken.email,
       verificationToken.token
     );
-    return { success: t("confirmationEmailSent") };
+    return { success: t("confirmationEmailSent"), sendEmailVerification: true };
   }
 
   if (existingUser.isTwoFactorEnabled && existingUser.email) {

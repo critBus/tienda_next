@@ -9,7 +9,11 @@ import { login } from "@/actions/auth/login";
 import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
-import { LOGIN_2FA_URL, REDIRECT_LOGIN_SUCCESSFUL } from "@/auth/routes";
+import {
+  LOGIN_2FA_URL,
+  LOGIN_MESSAGE,
+  REDIRECT_LOGIN_SUCCESSFUL,
+} from "@/auth/routes";
 type TypeSchemaForm = z.infer<typeof LoginSchema>;
 const LoguinForm = () => {
   const t = useTranslations("Auth.Login");
@@ -47,6 +51,13 @@ const LoguinForm = () => {
             setError(data.error);
           }
           if (data?.success) {
+            if (data?.sendEmailVerification) {
+              const errorMessage = t("confirmationEmailSent");
+              const encodedMessage = encodeURIComponent(errorMessage);
+              const redirectUrl = `${LOGIN_MESSAGE}?success=${encodedMessage}`;
+              router.push(redirectUrl);
+              return;
+            }
             reset();
             //setSuccess(data.success);
             router.push(REDIRECT_LOGIN_SUCCESSFUL);
