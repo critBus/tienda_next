@@ -32,7 +32,7 @@ const TwoFactorEmailForm = () => {
       : "";
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
-
+  const [isValidCode, setIsValidCode] = useState<boolean>(false);
   const [otp, setOtp] = useState<OTPState>(["", "", "", "", "", ""]); // Array with 6 empty strings
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]); // Array of refs for each input field
   const [code, setCode] = useState(otp.join(""));
@@ -57,6 +57,7 @@ const TwoFactorEmailForm = () => {
           newOtp[index] = "";
         }
         setOtp(newOtp as OTPState);
+        //validateOpt();
         inputRefs.current[index - 1]?.focus();
       }
     }
@@ -82,6 +83,7 @@ const TwoFactorEmailForm = () => {
       const newOtp = [...otp];
       newOtp[index] = value;
       setOtp(newOtp as OTPState);
+      //validateOpt();
       console.log(`newOtp.join("") ${newOtp.join("")}`);
 
       if (index < otp.length - 1) {
@@ -102,6 +104,7 @@ const TwoFactorEmailForm = () => {
     }
     const digits = text.split("") as OTPState;
     setOtp(digits);
+    //validateOpt();
   };
 
   const {
@@ -119,8 +122,21 @@ const TwoFactorEmailForm = () => {
   useEffect(() => {
     const newCode = otp.join("");
     setValue("code", newCode);
+    console.log(`newCode ${newCode}`);
+    const match = new RegExp(`^[0-9]{6}$`).test(newCode);
+    console.log(`match ${match}`);
+    setIsValidCode(match);
     setCode(newCode);
-  }, [otp, setValue]);
+  }, [otp]);
+  const validateOpt = () => {
+    const newCode = otp.join("");
+    setValue("code", newCode);
+    console.log(`newCode ${newCode}`);
+    const match = new RegExp(`^[0-9]{6}$`).test(newCode);
+    console.log(`match ${match}`);
+    setIsValidCode(match);
+  };
+  // validateOpt();
   const handlerSubmit = (values: TypeSchemaVerificationCode) => {
     setSuccess("");
     setError("");
@@ -235,11 +251,18 @@ const TwoFactorEmailForm = () => {
 
             <div className="text-center mt-6">
               <button
-                disabled={isPending}
+                disabled={isPending || !isValidCode}
                 id="id-button-submit"
-                className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full
-                cursor-pointer transition-transform duration-200 ease-in-out hover:scale-110 hover:cursor-pointer 
-                "
+                className={`
+                    text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full
+                text-white
+                ${
+                  isValidCode
+                    ? "bg-blueGray-800  active:bg-blueGray-600 cursor-pointer " +
+                      "transition-transform duration-200 ease-in-out hover:scale-110 hover:cursor-pointer "
+                    : "bg-blueGray-400"
+                }
+                  `}
                 type="submit"
               >
                 {t("Check")}
