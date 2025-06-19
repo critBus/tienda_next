@@ -143,6 +143,15 @@
       "2fa": {
         "resendCode": "A new code has been sent to your email."
       }
+    },
+    "Register": {
+      "OrSignUpWithCredentials": "Or sign up with credentials",
+      "Name": "Name",
+      "Email": "Email",
+      "Password": "Password",
+      "CreateAccount": "Create Account",
+      "SignUpWith": "Sign up with",
+      "DoYouAlreadyHaveAnAccount": "Do you already have an account?"
     }
   },
   "AuthServerActions": {
