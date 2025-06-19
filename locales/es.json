@@ -146,6 +146,7 @@
     }
   },
   "AuthServerActions": {
+    "EmailAlreadyInUse": "Correo electrónico ya en uso",
     "auth2faemailcodeError": "{remainingAttempts, plural, =0 {No tienes más intentos.} one {Tienes 1 intento restante.} other {Tienes # intentos restantes.}}",
     "invalidFields": "Campos inválidos.",
     "emailNotFound": "El correo electrónico no existe.",

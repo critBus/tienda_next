@@ -2,16 +2,18 @@
 
 import prisma from "@/prisma/config";
 import * as z from "zod";
-import bcrypt from "bcryptjs";
+
 import { RegisterSchema } from "@/schemas/auth";
 import { generateVerificationToken } from "@/lib/server/auth/tokens";
 import { sendVerificationEmail } from "@/lib/shared/mail";
 import { createHashedPassword } from "@/lib/server/auth/createHashedPassword";
+import { getTranslations } from "next-intl/server";
 
 export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
+  const t = await getTranslations("AuthServerActions");
   const validatedFields = RegisterSchema.safeParse(values);
   if (!validatedFields.success) {
-    return { error: "Invalid fields" };
+    return { error: t("invalidFields") };
   }
   const { email, password, name } = validatedFields.data;
   const hashedPassword = await createHashedPassword({ password });
@@ -21,7 +23,7 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
     },
   });
   if (existingUser) {
-    return { error: "Email already in use" };
+    return { error: t("EmailAlreadyInUse") };
   }
   await prisma.user.create({
     data: {
@@ -33,5 +35,5 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
   const verificationToken = await generateVerificationToken(email);
   await sendVerificationEmail(verificationToken.email, verificationToken.token);
 
-  return { success: "Confirmation email sent" };
+  return { success: t("confirmationEmailSent") };
 };
