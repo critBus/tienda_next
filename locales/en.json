@@ -151,7 +151,8 @@
       "Password": "Password",
       "CreateAccount": "Create Account",
       "SignUpWith": "Sign up with",
-      "DoYouAlreadyHaveAnAccount": "Do you already have an account?"
+      "DoYouAlreadyHaveAnAccount": "Do you already have an account?",
+      "confirmationEmailSent": "Confirmation email sent!"
     }
   },
   "AuthServerActions": {

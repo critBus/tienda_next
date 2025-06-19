@@ -50,25 +50,15 @@ const RegisterForm = () => {
             reset();
             setError(data.error);
           }
-          //   if (data?.success) {
-          //     if (data?.sendEmailVerification) {
-          //       const errorMessage = t("confirmationEmailSent");
-          //       const encodedMessage = encodeURIComponent(errorMessage);
-          //       const redirectUrl = `${LOGIN_MESSAGE}?success=${encodedMessage}`;
-          //       router.push(redirectUrl);
-          //       return;
-          //     }
-          //     reset();
-          //     //setSuccess(data.success);
-          //     router.push(REDIRECT_LOGIN_SUCCESSFUL);
-          //     // TODO agregar notificacion
-          //     return;
-          //   }
-          //   if (data?.twoFactor) {
-          //     router.push(LOGIN_2FA_URL);
-          //     // TODO agregar notificacion
-          //     return;
-          //   }
+          if (data?.success) {
+            reset();
+            const errorMessage = t("confirmationEmailSent");
+            const encodedMessage = encodeURIComponent(errorMessage);
+            const redirectUrl = `${LOGIN_MESSAGE}?success=${encodedMessage}`;
+            router.push(redirectUrl);
+            // TODO agregar notificacion
+            return;
+          }
         })
         .catch((error) => {
           console.log(error);

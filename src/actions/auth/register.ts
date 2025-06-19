@@ -6,6 +6,7 @@ import bcrypt from "bcryptjs";
 import { RegisterSchema } from "@/schemas/auth";
 import { generateVerificationToken } from "@/lib/server/auth/tokens";
 import { sendVerificationEmail } from "@/lib/shared/mail";
+import { createHashedPassword } from "@/lib/server/auth/createHashedPassword";
 
 export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
   const validatedFields = RegisterSchema.safeParse(values);
@@ -13,7 +14,7 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
     return { error: "Invalid fields" };
   }
   const { email, password, name } = validatedFields.data;
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await createHashedPassword({ password });
   const existingUser = await prisma.user.findUnique({
     where: {
       email,

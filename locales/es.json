@@ -141,7 +141,8 @@
       "Password": "Contraseña",
       "CreateAccount": "Crear cuenta",
       "SignUpWith": "Regístrate con",
-      "DoYouAlreadyHaveAnAccount": "Ya tienes una cuenta?"
+      "DoYouAlreadyHaveAnAccount": "Ya tienes una cuenta?",
+      "confirmationEmailSent": "¡Correo de confirmación enviado!"
     }
   },
   "AuthServerActions": {
