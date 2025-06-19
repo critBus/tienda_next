@@ -1,8 +1,8 @@
 import Credentials from "next-auth/providers/credentials";
 
-import bcrypt from "bcryptjs";
 import { LoginSchema } from "@/schemas/auth";
 import PrismaRepository from "@/prisma/PrismaRepository";
+import { validateHashedPassword } from "@/lib/server/auth/validateHashedPassword";
 export const customEmailPasswordAuthProvider = Credentials({
   async authorize(credentials) {
     try {
@@ -13,7 +13,10 @@ export const customEmailPasswordAuthProvider = Credentials({
         if (!user || !user.password) {
           return null;
         }
-        const passwordMath = await bcrypt.compare(password, user.password);
+        const passwordMath = await validateHashedPassword({
+          password,
+          storePassword: user.password,
+        });
         if (passwordMath) {
           return user;
         }
