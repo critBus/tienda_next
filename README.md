@@ -216,8 +216,6 @@ src/
         └── Pagination.jsx
 ```
 
-
-
 Gestión de Esquemas Zod en Next.js - Estrategia Completa
 
 # 🎯 Desafío Específico de Zod
@@ -686,3 +684,266 @@ export const dashboardConfigSchema = userPreferencesSchema.extend({
 ```
 
 Esta estructura te permitirá mantener tus esquemas organizados, reutilizables y escalables mientras sigues el principio de proximidad donde sea apropiado.
+
+# Estructura rutas
+
+Cuando trabajas con **Next.js 15** (o cualquier versión moderna de Next.js), seguir buenas prácticas para nombrar URLs es clave para mantener un proyecto escalable, legible y SEO-friendly. 
+
+---
+
+### **1. Usa minúsculas y guiones (`-`) para separar palabras**
+
+- **Evita mayúsculas y espacios**: Las URLs son sensibles a mayúsculas/minúsculas, pero muchas configuraciones las tratan como insensibles, lo que puede causar problemas. Usa siempre minúsculas.
+- **Guiones en lugar de guiones bajos o camelCase**: Los guiones (`-`) son más legibles para humanos y mejor indexados por motores de búsqueda.
+  - ✅ Bueno: `/blog/optimizando-rutas-nextjs`
+  - ❌ Malo: `/Blog/OptimizandoRutasNextJS` o `/blog/optimizando_rutas_nextjs`
+
+---
+
+### **2. Usa sustantivos en plural para recursos**
+
+- En APIs RESTful o rutas que representan recursos, usa plural para indicar colecciones (sigue principios REST).
+  - ✅ Bueno: `/users`, `/products`, `/blog-posts`
+  - ❌ Malo: `/user`, `/product`, `/blogPost`
+
+---
+
+### **3. Estructura jerárquica y semántica**
+
+- Organiza las URLs de forma lógica, reflejando la estructura del sitio o aplicación.
+  
+  - Ejemplo:  
+    
+    ```
+    /users
+    /users/[id]
+    /users/[id]/orders
+    /users/[id]/settings
+    ```
+
+---
+
+### **4. Evita parámetros en la ruta cuando no son necesarios**
+
+- Usa **parámetros de consulta** (`?key=value`) para filtros, ordenamientos o datos opcionales. Reserva los segmentos de ruta para identificadores críticos.
+  - ✅ Bueno: `/search?query=nextjs`  
+  - ❌ Malo: `/search/nextjs`
+
+---
+
+### **5. No incluyas extensiones de archivo**
+
+- Next.js maneja rutas de forma automática. Evita `.html`, `.php`, etc.
+  - ✅ Bueno: `/about`  
+  - ❌ Malo: `/about.html`
+
+---
+
+### **6. Usa parámetros dinámicos con `[slug]` o `[id]`**
+
+- En Next.js, los parámetros dinámicos se definen con corchetes en el nombre del archivo dentro del directorio `app/` o `pages/`.
+  
+  - Ejemplo:
+    
+    ```
+    app/users/[id]/page.tsx → /users/123
+    app/blog/[slug]/page.tsx → /blog/titulo-del-articulo
+    ```
+
+---
+
+### **7. Versión de APIs (si aplica)**
+
+- Si construyes una API, incluye la versión en la ruta para evitar romper cambios futuros.
+  - ✅ Bueno: `/api/v1/users`  
+  - ❌ Malo: `/api/users`
+
+---
+
+### **8. Evita palabras clave irrelevantantes o redundantes**
+
+- Simplifica las URLs sin sacrificar claridad. Evita términos como `index`, `default`, `page`, etc.
+  - ✅ Bueno: `/dashboard`  
+  - ❌ Malo: `/dashboard/index.html`
+
+---
+
+### **9. Consideraciones SEO**
+
+- Incluye palabras clave relevantes en las rutas (sin exagerar). Por ejemplo:
+  - ✅ Bueno: `/blog/optimizacion-nextjs`  
+  - ❌ Malo: `/blog/post-123`
+
+---
+
+### **10. Consistencia en todo el proyecto**
+
+- Define un estándar y síguelo en todas las rutas. Si usas guiones, no cambies a camelCase. Si usas plural, mantén todo en plural.
+
+---
+
+### **Ejemplo completo en Next.js 15**
+
+Si tienes una app con blog y usuarios, la estructura de archivos podría ser:
+
+```
+app/
+├── page.tsx → /
+├── blog/
+│   ├── page.tsx → /blog
+│   └── [slug]/
+│       └── page.tsx → /blog/:slug
+├── users/
+│   ├── page.tsx → /users
+│   └── [id]/
+│       └── page.tsx → /users/:id
+└── dashboard/
+    └── page.tsx → /dashboard
+```
+
+---
+
+# Estructura Nombre Archivos y Carpetas
+
+!! TODO : Ajustar a nuestra estructura actual (Pero quedarse con la nomenclatura de los nombres) 
+
+```
+src/
+├── app/                          # Rutas de la aplicación (Next 15 App Router)
+│   ├── api/                      # Endpoints API (si usas Server Components)
+│   │   └── example-route/
+│   │       └─ route.ts           # Para rutas dinámicas
+│   ├── [locale]/                 # Soporte multi-idioma con next-intl
+│   │   ├── home/
+│   │   │   ├── page.tsx         # Página Home
+│   │   │   ├── layout.tsx       # Layout específico
+│   │   │   └── components/      # Componentes locales
+│   │   └── dashboard/
+│   │       ├── users/
+│   │       │   ├── page.tsx
+│   │       │   └── user-card/
+│   │       │       └── index.tsx
+│   └── layout.tsx               # Layout global
+│   └── loading.tsx              # UI de carga global
+│
+├── features/                     # Funcionalidades específicas por dominio
+│   ├── auth/
+│   │   ├── slices/               # Slices de Redux por funcionalidad
+│   │   │   └── authSlice.ts
+│   │   ├── services/             # Llamadas a APIs
+│   │   │   └── authService.ts
+│   │   └── types/                # Tipos específicos
+│   │       └── authTypes.ts
+│   └── products/
+│       ├── slices/
+│       ├── services/
+│       └── types/
+│
+├── store/                        # Configuración de Redux
+│   ├── slices/                   # Slices globales
+│   │   └── cartSlice.ts
+│   ├── store.ts                  # Store principal
+│   └── persistConfig.ts          # Configuración de redux-persist
+│
+├── components/                   # Componentes reutilizables
+│   ├── ui/                       # Componentes UI atómicos
+│   │   ├── button/
+│   │   │   ├── index.tsx
+│   │   │   └── Button.types.ts
+│   │   └── card/
+│   └── layout/                   # Componentes de layout
+│       └── header/
+│           └── Header.tsx
+│
+├── hooks/                        # Custom hooks compartidos
+│   ├── useAuth.ts
+│   └── useCart.ts
+│
+├── locales/                      # Archivos de traducción (next-intl)
+│   ├── en/                       # Carpeta por idioma
+│   │   └── messages.json
+│   └── es/
+│       └── messages.json
+│
+├── utils/                        # Funciones utilitarias
+│   ├── formatCurrency.ts
+│   └── dateUtils.ts
+│
+├── config/                       # Configuraciones globales
+│   ├── i18n.ts                   # Configuración de next-intl
+│   └── theme.ts                  # Configuración de tema
+│
+├── types/                        # Tipos globales
+│   ├── index.ts
+│   └── commonTypes.ts
+│
+├── constants/                    # Constantes globales
+│   ├── roles.ts
+│   └── statusCodes.ts
+│
+├── services/                     # Servicios de API
+│   ├── apiClient.ts             # Configuración base de Axios
+│   └── productService.ts
+│
+├── commands/                     # Scripts personalizados (ya existentes)
+│   ├── generateAvailableLocations.ts
+│   └── clearSessionData.ts
+│
+├── public/                       # Archivos estáticos
+│   ├── images/
+│   └── fonts/
+│
+└── styles/                       # Estilos globales
+    ├── globals.css
+    └── tailwind.css
+```
+
+### Reglas de nomenclatura:
+
+1. **Carpetas**:
+   
+   - `kebab-case` para carpetas (ej: `user-profile`)
+   - Agrupar por dominio (`features/auth/`) o tipo (`components/`, `hooks/`)
+
+2. **Archivos**:
+   
+   - `PascalCase` para componentes (ej: `UserCard.tsx`)
+   - `snake_case` para archivos de configuración (ej: `api_client.ts`)
+   - `[page-name].page.tsx` para páginas principales
+   - `[component-name].types.ts` para definiciones de tipos
+   - `[hook-name].ts` para hooks personalizados
+
+3. **Archivos especiales**:
+   
+   - `page.tsx`: Páginas del App Router
+   - `layout.tsx`: Layouts de secciones
+   - `route.ts`: Rutas API
+   - `loading.tsx`: UI de carga por sección
+   - `error.tsx`: Manejadores de errores
+
+4. **Redux**:
+   
+   - `slices/[feature]Slice.ts`
+   - `store/store.ts`
+   - `store/persistConfig.ts`
+
+5. **next-intl**:
+   
+   - `locales/[lang]/messages.json`
+   - `config/i18n.ts` para configuración global
+
+6. **Pruebas**:
+   
+   - `__tests__` junto al archivo probado o en carpeta separada
+   - `[filename].test.ts` para tests unitarios
+   - `[filename].e2e.test.ts` para pruebas end-to-end
+
+Esta estructura prioriza:
+
+- Escalabilidad (agregar nuevas funcionalidades es predecible)
+- Separación de responsabilidades
+- Facilidad de mantenimiento
+- Reusabilidad de componentes y lógica
+- Integración natural con las convenciones de Next.js 15
+
+Para rutas dinámicas, usa el formato `[paramName]/page.tsx` (ej: `products/[id]/page.tsx`). Para componentes que usan server actions, coloca `use server` en sus archivos `.server.ts`.

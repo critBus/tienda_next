@@ -168,6 +168,8 @@
     "somethingWentWrong": "Algo salió mal. Por favor, inténtalo de nuevo.",
     "accessDenied": "Acceso denegado.",
     "invalidCredentials": "Credenciales inválidas.",
-    "emailSent": "Correo enviado."
+    "emailSent": "Correo enviado.",
+    "tokenDoesNotExist": "¡El token no existe!",
+    "tokenHasExpired": "El token ha expirado"
   }
 }

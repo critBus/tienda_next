@@ -52,8 +52,8 @@ const RegisterForm = () => {
           }
           if (data?.success) {
             reset();
-            const errorMessage = t("confirmationEmailSent");
-            const encodedMessage = encodeURIComponent(errorMessage);
+            const message = t("confirmationEmailSent");
+            const encodedMessage = encodeURIComponent(message);
             const redirectUrl = `${LOGIN_MESSAGE}?success=${encodedMessage}`;
             router.push(redirectUrl);
             // TODO agregar notificacion
