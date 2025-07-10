@@ -124,6 +124,15 @@
       "Check": "Chequear",
       "CodeWastSent": "El codigo fue enviado"
     },
+    "ResetPassword": {
+      "resetPassword": "Resetear la contraseña",
+      "newPassword": "Nueva Contraseña",
+      "ResendEmail": "Reenviar el Correo",
+      "invalidLink": "El enlace para cambiar la contraseña es inválido o ha expirado.",
+      "SomethingWentWrong": "Algo salio Mal",
+      "ChangePassword": "Cambiar Contraseña",
+      "BackToTheLogin": "Volver al Loguin"
+    },
 
     "success": {
       "auth": {
@@ -146,6 +155,7 @@
     }
   },
   "AuthServerActions": {
+    "userDoesNotExist": "User does not exist",
     "EmailAlreadyInUse": "Correo electrónico ya en uso",
     "auth2faemailcodeError": "{remainingAttempts, plural, =0 {No tienes más intentos.} one {Tienes 1 intento restante.} other {Tienes # intentos restantes.}}",
     "invalidFields": "Campos inválidos.",
@@ -170,6 +180,9 @@
     "invalidCredentials": "Credenciales inválidas.",
     "emailSent": "Correo enviado.",
     "tokenDoesNotExist": "¡El token no existe!",
-    "tokenHasExpired": "El token ha expirado"
+    "tokenHasExpired": "El token ha expirado",
+    "emailVerified": "Email verified",
+    "missingToken": "Missing token",
+    "passwordUpdated": "Password Updated"
   }
 }

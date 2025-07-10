@@ -134,6 +134,14 @@
       "Check": "Check",
       "CodeWastSent": "The code was sent"
     },
+    "ResetPassword": {
+      "resetPassword": "Reset Password",
+      "newPassword": "New Password",
+      "ResendEmail": "Resend Email",
+      "invalidLink": "The password change link is invalid or has expired.",
+      "SomethingWentWrong": "Something went wrong",
+      "ChangePassword": "Change Password"
+    },
 
     "success": {
       "auth": {
@@ -156,6 +164,7 @@
     }
   },
   "AuthServerActions": {
+    "userDoesNotExist": "User does not exist",
     "EmailAlreadyInUse": "Email already in use",
     "auth2faemailcodeError": "{remainingAttempts, plural, =0 {You have no attempts left.} one {You have 1 attempt remaining.} other {You have # attempts remaining.}}",
     "invalidFields": "Invalid fields.",
@@ -181,6 +190,8 @@
     "emailSent": "Email sent.",
     "tokenDoesNotExist": "Token does not exist!",
     "tokenHasExpired": "Token has expired",
-    "emailVerified":"Email verified"
+    "emailVerified": "Email verified",
+    "missingToken": "Missing token",
+    "passwordUpdated": "Password Updated"
   }
 }
