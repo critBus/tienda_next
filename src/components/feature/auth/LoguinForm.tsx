@@ -169,7 +169,8 @@ const LoguinForm = () => {
               <button
                 disabled={isPending}
                 id="id-button-submit"
-                className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow outline-none focus:outline-none mr-1 mb-1 w-full
+                hover:shadow-lg  ease-linear transition-all duration-150"
                 type="submit"
               >
                 {t("SignIn")}
@@ -179,16 +180,22 @@ const LoguinForm = () => {
 
           <div className="flex flex-wrap  relative">
             <div className="w-1/2">
-              <a
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-                className="text-blueGray-600"
+              <Link
+                href="/auth/reset-password/send-email"
+                className="text-blueGray-600 
+                cursor-pointer 
+                "
               >
-                <small>{t("ForgotPassword")}</small>
-              </a>
+                <small className="transition-transform duration-200 ease-in-out hover:scale-110 hover:cursor-pointer">
+                  {t("ForgotPassword")}
+                </small>
+              </Link>
             </div>
             <div className="w-1/2 text-right">
-              <Link href="/auth/register" className="text-blueGray-600">
+              <Link
+                href="/auth/register"
+                className="text-blueGray-600 cursor-pointer transition-transform duration-200 ease-in-out hover:scale-110 hover:cursor-pointer"
+              >
                 <small>{t("CreateNewAccount")}</small>
               </Link>
             </div>

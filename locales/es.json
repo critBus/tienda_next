@@ -133,6 +133,14 @@
       "ChangePassword": "Cambiar Contraseña",
       "BackToTheLogin": "Volver al Loguin"
     },
+    "SendEmailResetPassword": {
+      "SendEmail": "Enviar el Correo",
+      "Email": "Correo electrónico",
+      "YourEmail": "Tu correo electrónico",
+      "Send": "Enviar",
+      "BackToTheLogin": "Volver al Loguin",
+      "CreateNewAccount": "Crear una nueva cuenta"
+    },
 
     "success": {
       "auth": {

@@ -64,7 +64,7 @@ export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
 };
 
 export const sendPasswordResetEmail = async (email: string, token: string) => {
-  const confirmLink = `${DOMAIN_URL}/auth/new-password?token=${token}`;
+  const confirmLink = `${DOMAIN_URL}/auth/reset-password/new-password?token=${token}`;
   return await sendEmail({
     to: email,
     subject: "Reset your password",

@@ -140,7 +140,16 @@
       "ResendEmail": "Resend Email",
       "invalidLink": "The password change link is invalid or has expired.",
       "SomethingWentWrong": "Something went wrong",
-      "ChangePassword": "Change Password"
+      "ChangePassword": "Change Password",
+      "BackToTheLogin": "Back to the Login"
+    },
+    "SendEmailResetPassword": {
+      "SendEmail": "Send the email",
+      "Email": "Email",
+      "YourEmail": "Your Email",
+      "Send": "Send",
+      "BackToTheLogin": "Back to the Login",
+      "CreateNewAccount": "Create new account"
     },
 
     "success": {
