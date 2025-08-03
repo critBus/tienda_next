@@ -16,16 +16,30 @@ import LogoSimple from "@public/icons/logos/sinfondosimple.png";
 import CurrencySelector from "./CurrencySelector";
 import LocaleSwitcher from "@/components/feature/i18/LocaleSwitcher";
 import { Link } from "@/i18n/navigation";
-import { LOGIN_URL } from "@/auth/routes";
+import { AUTH_URL_LOGIN, AUTH_URL_LOGIN_REGISTER } from "@/auth/routes";
+
+import { useSession, signOut } from "next-auth/react";
+import { useState } from "react";
 
 export default function HeaderComponent() {
   const t = useTranslations("HeaderComponent");
+  const { data: session, status } = useSession();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cartCount = useSelector((state: RootState) =>
     state.cart.items.reduce((total, item) => total + item.quantity, 0)
   ); // Calculate total items in the cart
   const selectedLocation = useSelector(
     (state: RootState) => state.location.selectedLocation
   );
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleSignOut = async () => {
+    await signOut({ callbackUrl: "/" });
+    setIsMenuOpen(false);
+  };
   return (
     <>
       {/* Versión Desktop */}
@@ -70,7 +84,67 @@ export default function HeaderComponent() {
         <div className="mr-3 flex flex-row items-center gap-3">
           <LocaleSwitcher />
           <CurrencySelector />
-          <Link href={LOGIN_URL}>
+
+          {status === "authenticated" ? (
+            <div className="relative">
+              <button
+                onClick={toggleMenu}
+                aria-label="Menú de usuario"
+                aria-haspopup="true"
+                aria-expanded={isMenuOpen}
+                className="flex items-center justify-center rounded-full p-1 transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <Image
+                  src="/icons/header/profile.svg"
+                  alt="Avatar de usuario"
+                  width={32}
+                  height={32}
+                  className="h-8 w-8"
+                />
+              </button>
+              {isMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 rounded-md bg-white py-2 shadow-lg z-10">
+                  <Link
+                    href="/profile"
+                    className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Información de Perfil
+                  </Link>
+                  <Link
+                    href="/change-password"
+                    className="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Cambiar Contraseña
+                  </Link>
+                  <button
+                    onClick={handleSignOut}
+                    className="block w-full px-4 py-2 text-left text-sm text-gray-800 hover:bg-gray-100"
+                  >
+                    Cerrar Sesión
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <Link
+                href={AUTH_URL_LOGIN_REGISTER}
+                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+              >
+                Crear Cuenta
+              </Link>
+              <Link
+                href={AUTH_URL_LOGIN}
+                className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors"
+              >
+                Iniciar Sesión
+              </Link>
+            </div>
+          )}
+
+          {/* <Link href={AUTH_URL_LOGIN}>
             <Image
               src="/icons/header/profile.svg"
               alt=""
@@ -78,7 +152,7 @@ export default function HeaderComponent() {
               height={32}
               className="h-8 w-8"
             />
-          </Link>
+          </Link> */}
 
           <div className="relative flex cursor-pointer items-center">
             <Image

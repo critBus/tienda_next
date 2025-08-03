@@ -18,7 +18,7 @@ import {
   AUTH_ROUTES,
   DEFAULT_LOGIN_REDIRECT,
   PROTECTED_ROUTES,
-  LOGIN_URL,
+  AUTH_URL_LOGIN,
 } from "@/auth/routes";
 
 // 3. INICIALIZACIÓN DE LOS MIDDLEWARES
@@ -72,8 +72,8 @@ export default async function middleware(request: NextRequest) {
 
         // Redirige a la página de login, manteniendo el locale si existe
         const loginUrlWithLocale = pathname.startsWith(`/${routing.locales[0]}`)
-          ? `/${pathname.split("/")[1]}${LOGIN_URL}`
-          : LOGIN_URL;
+          ? `/${pathname.split("/")[1]}${AUTH_URL_LOGIN}`
+          : AUTH_URL_LOGIN;
 
         return NextResponse.redirect(
           new URL(

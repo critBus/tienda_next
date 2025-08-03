@@ -10,8 +10,8 @@ import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
 import {
-  LOGIN_2FA_URL,
-  LOGIN_MESSAGE,
+  AUTH_URL_LOGIN_2FA,
+  AUTH_URL_LOGIN_MESSAGE,
   REDIRECT_LOGIN_SUCCESSFUL,
 } from "@/auth/routes";
 type TypeSchemaForm = z.infer<typeof LoginSchema>;
@@ -53,7 +53,7 @@ const LoguinForm = () => {
             if (data?.sendEmailVerification) {
               const errorMessage = t("confirmationEmailSent");
               const encodedMessage = encodeURIComponent(errorMessage);
-              const redirectUrl = `${LOGIN_MESSAGE}?success=${encodedMessage}`;
+              const redirectUrl = `${AUTH_URL_LOGIN_MESSAGE}?success=${encodedMessage}`;
               router.push(redirectUrl);
               return;
             }
@@ -64,7 +64,7 @@ const LoguinForm = () => {
             return;
           }
           if (data?.twoFactor) {
-            router.push(LOGIN_2FA_URL);
+            router.push(AUTH_URL_LOGIN_2FA);
             // TODO agregar notificacion
             return;
           }

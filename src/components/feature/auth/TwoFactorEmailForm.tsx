@@ -15,7 +15,7 @@ import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
 import { login2faEmailCode } from "@/actions/auth/login2faEmailCode";
-import { LOGIN_URL, REDIRECT_LOGIN_SUCCESSFUL } from "@/auth/routes";
+import { AUTH_URL_LOGIN, REDIRECT_LOGIN_SUCCESSFUL } from "@/auth/routes";
 import { resend2faEmailCode } from "@/actions/auth/resend2faEmailCode";
 import SuccessAlert from "@/components/ui/SuccessAlert";
 type OTPState = [string, string, string, string, string, string];
@@ -141,7 +141,7 @@ const TwoFactorEmailForm = () => {
             if (data.redirectToMessage) {
               const errorMessage = data.error;
               const encodedMessage = encodeURIComponent(errorMessage);
-              const redirectUrl = `${LOGIN_URL}?error=${encodedMessage}`;
+              const redirectUrl = `${AUTH_URL_LOGIN}?error=${encodedMessage}`;
               router.push(redirectUrl);
               return;
             }
@@ -172,7 +172,7 @@ const TwoFactorEmailForm = () => {
         if (data.redirectToMessage) {
           const errorMessage = data.error;
           const encodedMessage = encodeURIComponent(errorMessage);
-          const redirectUrl = `${LOGIN_URL}?error=${encodedMessage}`;
+          const redirectUrl = `${AUTH_URL_LOGIN}?error=${encodedMessage}`;
           router.push(redirectUrl);
           return;
         }

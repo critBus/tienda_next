@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import SuccessAlert from "@/components/ui/SuccessAlert";
 import { newVerification } from "@/actions/auth/new-verification";
-import { LOGIN_MESSAGE } from "@/auth/routes";
+import { AUTH_URL_LOGIN_MESSAGE } from "@/auth/routes";
 
 const NewVericationForm = () => {
   const router = useRouter();
@@ -30,7 +30,7 @@ const NewVericationForm = () => {
             console.log(`verification success: ${data.success}`);
             const message = data.success;
             const encodedMessage = encodeURIComponent(message);
-            const redirectUrl = `${LOGIN_MESSAGE}?success=${encodedMessage}`;
+            const redirectUrl = `${AUTH_URL_LOGIN_MESSAGE}?success=${encodedMessage}`;
             router.push(redirectUrl);
             return;
           }

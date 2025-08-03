@@ -11,9 +11,9 @@ import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
 import {
-  LOGIN_2FA_URL,
-  LOGIN_MESSAGE,
-  LOGIN_URL,
+  AUTH_URL_LOGIN_2FA,
+  AUTH_URL_LOGIN_MESSAGE,
+  AUTH_URL_LOGIN,
   REDIRECT_LOGIN_SUCCESSFUL,
 } from "@/auth/routes";
 import { newPassword } from "@/actions/auth/new-password";
@@ -55,7 +55,7 @@ const NewPasswordForm = () => {
           console.log(`reset success: ${data.success}`);
           const message = data.success;
           const encodedMessage = encodeURIComponent(message);
-          const redirectUrl = `${LOGIN_MESSAGE}?success=${encodedMessage}`;
+          const redirectUrl = `${AUTH_URL_LOGIN_MESSAGE}?success=${encodedMessage}`;
           router.push(redirectUrl);
           return;
         }
@@ -76,14 +76,14 @@ const NewPasswordForm = () => {
         reset();
         const errorMessage = data.error;
         const encodedMessage = encodeURIComponent(errorMessage);
-        const redirectUrl = `${LOGIN_URL}?error=${encodedMessage}`;
+        const redirectUrl = `${AUTH_URL_LOGIN}?error=${encodedMessage}`;
         router.push(redirectUrl);
         return;
       }
       if (data.success) {
         const successMessage = data.success;
         const encodedMessage = encodeURIComponent(successMessage);
-        const redirectUrl = `${LOGIN_URL}?success=${encodedMessage}`;
+        const redirectUrl = `${AUTH_URL_LOGIN}?success=${encodedMessage}`;
         router.push(redirectUrl);
         return;
       }

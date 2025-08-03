@@ -10,8 +10,8 @@ import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
 import {
-  LOGIN_2FA_URL,
-  LOGIN_MESSAGE,
+  AUTH_URL_LOGIN_2FA,
+  AUTH_URL_LOGIN_MESSAGE,
   REDIRECT_LOGIN_SUCCESSFUL,
 } from "@/auth/routes";
 import { registerUser } from "@/actions/auth/register";
@@ -54,7 +54,7 @@ const RegisterForm = () => {
             reset();
             const message = t("confirmationEmailSent");
             const encodedMessage = encodeURIComponent(message);
-            const redirectUrl = `${LOGIN_MESSAGE}?success=${encodedMessage}`;
+            const redirectUrl = `${AUTH_URL_LOGIN_MESSAGE}?success=${encodedMessage}`;
             router.push(redirectUrl);
             // TODO agregar notificacion
             return;
