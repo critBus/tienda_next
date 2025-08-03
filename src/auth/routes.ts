@@ -17,6 +17,6 @@ export const AUTH_ROUTES = [
   AUTH_URL_NEW_PASSWORD,
   AUTH_URL_SEND_EMAIL_RESET_PASSWORD,
 ];
-export const DEFAULT_LOGIN_REDIRECT = "/dashboard";
+export const DEFAULT_LOGIN_REDIRECT = "/shop";
 export const PROTECTED_ROUTES = ["/dashboard"];
-export const REDIRECT_LOGIN_SUCCESSFUL = "/dashboard"; //"/shop";
+export const REDIRECT_LOGIN_SUCCESSFUL = "/shop";

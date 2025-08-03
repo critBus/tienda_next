@@ -138,8 +138,10 @@ export const login = async (
     await signIn("credentials", {
       email,
       password,
-      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+      //redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+      redirect: false,
     });
+    return { success: "Login exitoso" };
   } catch (error) {
     if (error instanceof AuthError) {
       console.log(error.type);

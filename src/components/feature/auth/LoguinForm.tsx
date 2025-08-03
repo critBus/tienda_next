@@ -14,6 +14,7 @@ import {
   AUTH_URL_LOGIN_MESSAGE,
   REDIRECT_LOGIN_SUCCESSFUL,
 } from "@/auth/routes";
+import { useSession } from "next-auth/react";
 type TypeSchemaForm = z.infer<typeof LoginSchema>;
 const LoguinForm = () => {
   const t = useTranslations("Auth.Login");
@@ -21,6 +22,7 @@ const LoguinForm = () => {
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
+  const { update } = useSession();
 
   const [error, setError] = useState<string | undefined>(
     searchParams.get("error") ?? ""
@@ -42,37 +44,40 @@ const LoguinForm = () => {
   const handlerSubmit = (values: TypeSchemaForm) => {
     setError("");
     setSuccess("");
-    startTransition(() => {
-      login(values, callbackUrl || undefined)
-        .then((data) => {
-          if (data?.error) {
-            reset();
-            setError(data.error);
-          }
-          if (data?.success) {
-            if (data?.sendEmailVerification) {
-              const errorMessage = t("confirmationEmailSent");
-              const encodedMessage = encodeURIComponent(errorMessage);
-              const redirectUrl = `${AUTH_URL_LOGIN_MESSAGE}?success=${encodedMessage}`;
-              router.push(redirectUrl);
-              return;
-            }
-            reset();
-            //setSuccess(data.success);
-            router.push(REDIRECT_LOGIN_SUCCESSFUL);
-            // TODO agregar notificacion
+    startTransition(async () => {
+      try {
+        const data = await login(values, callbackUrl || undefined);
+        if (data?.error) {
+          reset();
+          setError(data.error);
+        }
+        if (data?.success) {
+          if (data?.sendEmailVerification) {
+            const errorMessage = t("confirmationEmailSent");
+            const encodedMessage = encodeURIComponent(errorMessage);
+            const redirectUrl = `${AUTH_URL_LOGIN_MESSAGE}?success=${encodedMessage}`;
+            router.push(redirectUrl);
             return;
           }
-          if (data?.twoFactor) {
-            router.push(AUTH_URL_LOGIN_2FA);
-            // TODO agregar notificacion
-            return;
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          setError("something went wrong");
-        });
+          reset();
+
+          await update();
+          //setSuccess(data.success);
+          router.push(REDIRECT_LOGIN_SUCCESSFUL);
+          // window.location.href = REDIRECT_LOGIN_SUCCESSFUL;
+          // TODO agregar notificacion
+          return;
+        }
+        if (data?.twoFactor) {
+          router.push(AUTH_URL_LOGIN_2FA);
+          // TODO agregar notificacion
+          return;
+        }
+      } catch (error) {
+        console.log("error");
+        console.log(error);
+        setError("something went wrong");
+      }
     });
   };
   if (isPending) {
