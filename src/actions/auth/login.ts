@@ -141,7 +141,10 @@ export const login = async (
       //redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
       redirect: false,
     });
-    return { success: "Login exitoso" };
+    return {
+      success: "Login exitoso",
+      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+    };
   } catch (error) {
     if (error instanceof AuthError) {
       console.log(error.type);

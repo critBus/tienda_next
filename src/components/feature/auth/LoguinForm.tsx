@@ -63,7 +63,8 @@ const LoguinForm = () => {
 
           await update();
           //setSuccess(data.success);
-          router.push(REDIRECT_LOGIN_SUCCESSFUL);
+
+          router.push(data?.redirectTo ?? REDIRECT_LOGIN_SUCCESSFUL);
           // window.location.href = REDIRECT_LOGIN_SUCCESSFUL;
           // TODO agregar notificacion
           return;
