@@ -13,21 +13,19 @@ const NewVericationForm = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [error, setError] = useState<string | null>(searchParams.get("error"));
-  const [success, setSuccess] = useState<string | null>(
-    searchParams.get("success")
-  );
+  const [success] = useState<string | null>(searchParams.get("success")); //setSuccess
   const token = searchParams.get("token");
   const t = useTranslations("Auth.2faEmailCode");
 
   const handlerSubmit = useCallback(() => {
     if (success || error) return;
-    console.log(`token: ${token}`);
+    // console.log(`token: ${token}`);
     if (token) {
       newVerification(token)
         .then((data) => {
           console.log(data);
           if (data.success) {
-            console.log(`verification success: ${data.success}`);
+            // console.log(`verification success: ${data.success}`);
             const message = data.success;
             const encodedMessage = encodeURIComponent(message);
             const redirectUrl = `${AUTH_URL_LOGIN_MESSAGE}?success=${encodedMessage}`;

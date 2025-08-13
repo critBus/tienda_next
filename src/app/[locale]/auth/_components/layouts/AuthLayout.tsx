@@ -11,12 +11,6 @@ const AuthLayout = ({
           backgroundImage: "url('/img/register_bg_2.png')",
         }}
       >
-        {/* <div
-          className="absolute top-0 w-full h-full bg-blueGray-800 bg-no-repeat bg-full"
-          style={{
-            backgroundImage: "url('/img/register_bg_2.png')",
-          }}
-        ></div> */}
         {children}
       </section>
     </main>

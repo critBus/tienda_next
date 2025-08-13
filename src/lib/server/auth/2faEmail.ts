@@ -32,7 +32,7 @@ export async function verifyTempAuthToken(): Promise<string | null> {
   try {
     const { payload } = await jwtVerify(cookie.value, secret);
     return payload.email as string;
-  } catch (error) {
+  } catch {
     // Token inválido o expirado
     return null;
   }

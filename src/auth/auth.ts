@@ -50,7 +50,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (existingUser?.emailVerified) {
           if (existingUser.isTwoFactorEnabled) {
             const twoFactorConfirmation =
-              await PrismaRepository.twoFactorConfirmation.byUserId(
+              await PrismaRepository.twoFactorConfirmationEmail.byUserId(
                 existingUser.id
               );
 

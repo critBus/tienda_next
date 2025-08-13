@@ -27,7 +27,7 @@ const LoguinForm = () => {
   const [error, setError] = useState<string | undefined>(
     searchParams.get("error") ?? ""
   );
-  const [success, setSuccess] = useState<string | undefined>("");
+
   const {
     reset,
     register,
@@ -43,7 +43,7 @@ const LoguinForm = () => {
   });
   const handlerSubmit = (values: TypeSchemaForm) => {
     setError("");
-    setSuccess("");
+
     startTransition(async () => {
       try {
         const data = await login(values, callbackUrl || undefined);

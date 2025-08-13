@@ -5,5 +5,5 @@ export const getTwoFactorConfirmationByUserId = async ({
 }: {
   id: string;
 }) => {
-  return await PrismaRepository.twoFactorConfirmation.byUserId(id);
+  return await PrismaRepository.twoFactorConfirmationEmail.byUserId(id);
 };

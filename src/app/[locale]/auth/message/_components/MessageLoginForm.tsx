@@ -39,6 +39,7 @@ const MessageLoginForm = () => {
               <Link href="/auth/login" className="text-blueGray-600 ">
                 <button
                   type="button"
+                  id="id-button-back-to-login"
                   className="cursor-pointer transition-transform duration-200 ease-in-out hover:scale-110 hover:cursor-pointer "
                 >
                   <small>{t("BackToTheLogin")}</small>

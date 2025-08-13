@@ -1,19 +1,15 @@
 import { Link } from "@/i18n/navigation";
-import { LoginSchema, RegisterSchema, ResetSchema } from "@/schemas/auth";
+import { RegisterSchema } from "@/schemas/auth";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { login } from "@/actions/auth/login";
+
 import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
-import {
-  AUTH_URL_LOGIN_2FA,
-  AUTH_URL_LOGIN_MESSAGE,
-  REDIRECT_LOGIN_SUCCESSFUL,
-} from "@/auth/routes";
+import { AUTH_URL_LOGIN_MESSAGE } from "@/auth/routes";
 import { registerUser } from "@/actions/auth/register";
 type TypeSchemaForm = z.infer<typeof RegisterSchema>;
 const RegisterForm = () => {
@@ -21,12 +17,12 @@ const RegisterForm = () => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl");
+  // const callbackUrl = searchParams.get("callbackUrl");
 
   const [error, setError] = useState<string | undefined>(
     searchParams.get("error") ?? ""
   );
-  const [success, setSuccess] = useState<string | undefined>("");
+
   const {
     reset,
     register,
@@ -42,7 +38,7 @@ const RegisterForm = () => {
   });
   const handlerSubmit = (values: TypeSchemaForm) => {
     setError("");
-    setSuccess("");
+
     startTransition(() => {
       registerUser(values)
         .then((data) => {
@@ -118,7 +114,7 @@ const RegisterForm = () => {
               </label>
               <input
                 {...register("name")}
-                id="id-input-email"
+                id="id-input-name"
                 className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                 placeholder={t("Name")}
               />

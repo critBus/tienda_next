@@ -5,6 +5,10 @@ export default class HomePage {
   readonly page: Page;
   readonly recommendedProductsSection: Locator;
   readonly switcherSite: Locator;
+  readonly buttonCreateAccount: Locator;
+  readonly buttonLogin: Locator;
+  readonly buttonAccount: Locator;
+  readonly buttonLogout: Locator;
   constructor(page: Page) {
     this.page = page;
     this.recommendedProductsSection = page.locator(
@@ -13,6 +17,10 @@ export default class HomePage {
     this.switcherSite = this.page.getByRole("button", {
       name: "Seleccionar ubicación",
     });
+    this.buttonCreateAccount = page.locator("#id-link-create-account");
+    this.buttonLogin = page.locator("#id-link-login");
+    this.buttonAccount = page.locator("#id-account-open-menu");
+    this.buttonLogout = page.locator("#id-button-logout");
   }
   async haveTheProductsInRecommended({
     productsName,

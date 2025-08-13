@@ -1,26 +1,17 @@
 "use client";
 import { Link } from "@/i18n/navigation";
-import { LoginSchema, ResetSchema } from "@/schemas/auth";
+import { ResetSchema } from "@/schemas/auth";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { login } from "@/actions/auth/login";
+
 import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
-import {
-  AUTH_URL_LOGIN_2FA,
-  AUTH_URL_LOGIN_MESSAGE,
-  AUTH_URL_LOGIN,
-  REDIRECT_LOGIN_SUCCESSFUL,
-} from "@/auth/routes";
-import { newPassword } from "@/actions/auth/new-password";
-import {
-  resendResetPassword,
-  resetPassword,
-} from "@/actions/auth/reset-password";
+import { AUTH_URL_LOGIN_MESSAGE } from "@/auth/routes";
+
 import { sendResetPassword } from "@/actions/auth/send_reset_password";
 
 type TypeSchemaForm = z.infer<typeof ResetSchema>;
@@ -33,9 +24,8 @@ const SendEmailResetPasswordForm = () => {
   const [error, setError] = useState<string | undefined>(
     searchParams.get("error") ?? ""
   );
-  const [success, setSuccess] = useState<string | undefined>("");
+
   const {
-    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -47,11 +37,10 @@ const SendEmailResetPasswordForm = () => {
   });
   const handlerSubmit = (values: TypeSchemaForm) => {
     setError("");
-    setSuccess("");
+
     startTransition(() => {
       sendResetPassword(values).then((data) => {
         if (data.success) {
-          //setSuccess(data.success);
           console.log(`reset success: ${data.success}`);
           const message = data.success;
           const encodedMessage = encodeURIComponent(message);

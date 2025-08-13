@@ -23,7 +23,8 @@ import { useState } from "react";
 
 export default function HeaderComponent() {
   const t = useTranslations("HeaderComponent");
-  const { data: session, status } = useSession();
+  //const { data: session, status } = useSession();
+  const { status } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const cartCount = useSelector((state: RootState) =>
     state.cart.items.reduce((total, item) => total + item.quantity, 0)
@@ -93,6 +94,7 @@ export default function HeaderComponent() {
                 aria-haspopup="true"
                 aria-expanded={isMenuOpen}
                 className="flex items-center justify-center rounded-full p-1 transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                id="id-account-open-menu"
               >
                 <Image
                   src="/icons/header/profile.svg"
@@ -121,6 +123,7 @@ export default function HeaderComponent() {
                   <button
                     onClick={handleSignOut}
                     className="block w-full px-4 py-2 text-left text-sm text-gray-800 hover:bg-gray-100"
+                    id="id-button-logout"
                   >
                     Cerrar Sesión
                   </button>
@@ -132,12 +135,14 @@ export default function HeaderComponent() {
               <Link
                 href={AUTH_URL_LOGIN_REGISTER}
                 className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors"
+                id="id-link-create-account"
               >
                 Crear Cuenta
               </Link>
               <Link
                 href={AUTH_URL_LOGIN}
                 className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors"
+                id="id-link-login"
               >
                 Iniciar Sesión
               </Link>

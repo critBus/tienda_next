@@ -1,7 +1,6 @@
 "use client";
 import { Link } from "@/i18n/navigation";
 import {
-  LoginSchema,
   TypeSchemaVerificationCode,
   VerificationCodeSchema,
 } from "@/schemas/auth";
@@ -9,8 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useRef, useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { login } from "@/actions/auth/login";
+
 import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
@@ -19,17 +17,14 @@ import { AUTH_URL_LOGIN, REDIRECT_LOGIN_SUCCESSFUL } from "@/auth/routes";
 import { resend2faEmailCode } from "@/actions/auth/resend2faEmailCode";
 import SuccessAlert from "@/components/ui/SuccessAlert";
 type OTPState = [string, string, string, string, string, string];
-type TypeSchemaForm = z.infer<typeof LoginSchema>;
+
 const TwoFactorEmailForm = () => {
   const t = useTranslations("Auth.2faEmailCode");
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
-  const urlError =
-    searchParams.get("error") === "OAuthAccountNotLinked"
-      ? "Email already in use with different provider!"
-      : "";
+
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isValidCode, setIsValidCode] = useState<boolean>(false);

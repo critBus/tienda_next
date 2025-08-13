@@ -1,26 +1,18 @@
 "use client";
 import { Link } from "@/i18n/navigation";
-import { LoginSchema, NewPasswordSchema } from "@/schemas/auth";
+import { NewPasswordSchema } from "@/schemas/auth";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { login } from "@/actions/auth/login";
+
 import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
-import {
-  AUTH_URL_LOGIN_2FA,
-  AUTH_URL_LOGIN_MESSAGE,
-  AUTH_URL_LOGIN,
-  REDIRECT_LOGIN_SUCCESSFUL,
-} from "@/auth/routes";
+import { AUTH_URL_LOGIN_MESSAGE, AUTH_URL_LOGIN } from "@/auth/routes";
 import { newPassword } from "@/actions/auth/new-password";
-import {
-  resendResetPassword,
-  resetPassword,
-} from "@/actions/auth/reset-password";
+import { resendResetPassword } from "@/actions/auth/reset-password";
 
 type TypeSchemaForm = z.infer<typeof NewPasswordSchema>;
 const NewPasswordForm = () => {
@@ -33,7 +25,7 @@ const NewPasswordForm = () => {
   const [error, setError] = useState<string | undefined>(
     searchParams.get("error") ?? ""
   );
-  const [success, setSuccess] = useState<string | undefined>("");
+
   const {
     reset,
     register,
@@ -47,11 +39,10 @@ const NewPasswordForm = () => {
   });
   const handlerSubmit = (values: TypeSchemaForm) => {
     setError("");
-    setSuccess("");
+
     startTransition(() => {
       newPassword(values, token).then((data) => {
         if (data.success) {
-          //setSuccess(data.success);
           console.log(`reset success: ${data.success}`);
           const message = data.success;
           const encodedMessage = encodeURIComponent(message);
@@ -64,7 +55,6 @@ const NewPasswordForm = () => {
     });
   };
   const handlerResendEmail = () => {
-    setSuccess("");
     setError("");
     startTransition(async () => {
       if (!token) {
