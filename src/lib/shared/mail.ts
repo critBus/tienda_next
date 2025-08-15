@@ -1,5 +1,7 @@
 import { DOMAIN_URL, GMAIL_PASS, GMAIL_USER, SENT_EMAIL } from "@/config";
 import nodemailer from "nodemailer";
+import prisma from "@/prisma/config";
+
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   host: "smtp.gmail.com",
@@ -25,9 +27,20 @@ const sendEmailFree = async ({
     subject,
     html,
   });
+  const from = `"Example Team" <${GMAIL_USER}>`;
+  // Log email before sending
+  await prisma.sentEmailLog.create({
+    data: {
+      from,
+      to,
+      subject,
+      html,
+    },
+  });
+
   if (SENT_EMAIL) {
     return await transporter.sendMail({
-      from: `"Example Team" <${GMAIL_USER}>`, // sender address
+      from: from, // sender address
       to: to, // list of receivers
       subject: subject, // Subject line
       html: html, // html body

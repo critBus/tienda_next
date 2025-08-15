@@ -7,7 +7,9 @@ import { faker } from "@faker-js/faker";
 import RegisterPage from "../../pages/home/create-account.page";
 import MessagePage from "../../pages/home/message.page";
 import prisma from "@/prisma/config";
-import { VerificationTokenEmail } from "@prisma/client";
+import { SentEmailLog, VerificationTokenEmail } from "@prisma/client";
+import { DOMAIN_URL } from "@/config";
+import LoginPage from "../../pages/home/login.page";
 
 test.describe("home page", () => {
   test("Create Account", async ({ page }) => {
@@ -43,15 +45,60 @@ test.describe("home page", () => {
     const messagePage = new MessagePage(page);
     await messagePage.isMessageVisible({ message: "Confirmation email sent!" });
     await messagePage.backToLogin();
+
     // const emailSentMessage = page.getByText("Confirmation email sent!");
     // await expect(emailSentMessage).toBeVisible();
     // const verificationTokens=
-    const verificationTokenEmail: VerificationTokenEmail =
+    const verificationTokenEmail: VerificationTokenEmail | null =
       await prisma.verificationTokenEmail.findFirst({
         where: {
           email: email,
         },
       });
-    console.log(`verificationTokenEmail.token ${verificationTokenEmail.token}`);
+    expect(verificationTokenEmail).not.toBeNull();
+    //console.log(`verificationTokenEmail.token ${verificationTokenEmail.token}`);
+
+    const lastEmail: SentEmailLog | null = await prisma.sentEmailLog.findFirst({
+      where: {
+        to: email,
+      },
+      orderBy: {
+        sentAt: "desc",
+      },
+    });
+
+    expect(lastEmail).not.toBeNull();
+
+    if (!lastEmail || !verificationTokenEmail) {
+      return;
+    }
+    const confirmLink = `${DOMAIN_URL}/auth/new-verification?token=${verificationTokenEmail.token}`;
+
+    expect(lastEmail.html).toContain(confirmLink);
+
+    await page.goto(confirmLink);
+
+    await messagePage.isMessageVisible({ message: "Email verified" });
+    await messagePage.backToLogin();
+
+    const loginPage = new LoginPage(page);
+    await loginPage.fillDataAndSubmit({
+      email,
+      password,
+    });
+
+    await expect(page).toHaveURL(`${currentLang}/shop`);
+    await expect(homePage.buttonLogin).not.toBeVisible();
+    await expect(homePage.buttonCreateAccount).not.toBeVisible();
+    await expect(homePage.buttonLogout).not.toBeVisible();
+    await expect(homePage.buttonAccount).toBeVisible();
+    await homePage.buttonAccount.click();
+    await expect(homePage.buttonLogout).toBeVisible();
+    await homePage.buttonLogout.click();
+
+    await expect(homePage.buttonLogin).toBeVisible();
+    await expect(homePage.buttonCreateAccount).toBeVisible();
+    await expect(homePage.buttonLogout).not.toBeVisible();
+    await expect(homePage.buttonAccount).not.toBeVisible();
   });
 });

@@ -6,6 +6,7 @@ import AccountRepository from "./account";
 import TwoFactorTokenEmailRepository from "./twoFactorTokenEmail";
 import PasswordResetTokenRepository from "./passwordResetToken";
 import VerificationTokenEmailRepository from "./verificationTokenEmail";
+
 const PrismaRepository = {
   products: ProductRepository,
   categories: CategoryRepository,

@@ -350,3 +350,14 @@ model AuthActionLog {
 
   @@index([email, action, createdAt])
 }
+
+model SentEmailLog {
+  id      Int      @id @default(autoincrement())
+  to      String
+  from    String
+  subject String
+  html    String
+  sentAt  DateTime @default(now())
+
+  @@index([to, sentAt])
+}
