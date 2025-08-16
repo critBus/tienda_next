@@ -11,9 +11,13 @@ import { SentEmailLog, VerificationTokenEmail } from "@prisma/client";
 import { DOMAIN_URL } from "@/config";
 import LoginPage from "../../pages/home/login.page";
 import { DEFAULT_LOCALE } from "../../config/test-data/urls.config";
+import { createHashedPassword } from "@/lib/server/auth/createHashedPassword";
+import PrismaRepository from "@/prisma/PrismaRepository";
 
 test.describe("home page", () => {
   test("Create Account", async ({ page }) => {
+    await prisma.user.deleteMany();
+
     await page.goto("/");
     const homePage = new HomePage(page);
     await expect(homePage.buttonLogin).toBeVisible();
@@ -79,6 +83,19 @@ test.describe("home page", () => {
 
     await messagePage.isMessageVisible({ message: "Email verified" });
     await messagePage.backToLogin();
+
+    // const hashedPassword = await createHashedPassword({ password });
+    // const hashedPassword2 = await createHashedPassword({ password });
+    // console.log(`password: ${password}`);
+    // console.log(`hashedPassword: ${hashedPassword}`);
+    // console.log(`hashedPassword2: ${hashedPassword2}`);
+
+    // const existingUser = await PrismaRepository.users.byEmail(email);
+
+    // if (existingUser) {
+    //   console.log(`son distintas: ${hashedPassword != existingUser.password}`);
+    //   console.log(`existingUser.password: ${existingUser.password}`);
+    // }
 
     const loginPage = new LoginPage(page);
     await loginPage.fillDataAndSubmit({

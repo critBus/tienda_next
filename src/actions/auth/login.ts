@@ -23,6 +23,8 @@ import {
 } from "@/config";
 import { getTranslations } from "next-intl/server";
 
+import { validateHashedPassword } from "@/lib/server/auth/validateHashedPassword";
+
 export const login = async (
   values: z.infer<typeof LoginSchema>,
   callbackUrl?: string
@@ -37,6 +39,22 @@ export const login = async (
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return { error: t("emailNotFound") };
   }
+
+  const passwordMath = await validateHashedPassword({
+    password,
+    storePassword: existingUser.password,
+  });
+  if (!passwordMath) {
+    return { error: t("invalidCredentials") };
+  }
+
+  // const hashedPassword = await createHashedPassword({ password });
+
+  // if (hashedPassword != existingUser.password) {
+  //   console.log(`password: ${password}`);
+  //   console.log(`hashedPassword: ${hashedPassword}`);
+  //   return { error: t("invalidCredentials") };
+  // }
   if (!existingUser.emailVerified) {
     const verificationToken = await generateVerificationToken(email);
     await sendVerificationEmail(

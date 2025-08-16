@@ -25,6 +25,8 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
   if (existingUser) {
     return { error: t("EmailAlreadyInUse") };
   }
+  // console.log(`password: ${password}`);
+  // console.log(`hashedPassword: ${hashedPassword}`);
   await prisma.user.create({
     data: {
       name,

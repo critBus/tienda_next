@@ -1,8 +1,10 @@
 import { test, expect } from "@playwright/test";
-import { faker } from "@faker-js/faker";
+
 import "dotenv/config";
 import HomePage from "../../pages/home/home.page";
 import LoginPage from "../../pages/home/login.page";
+import { factoryUser } from "../../utils/test-data/factories/user.factory";
+import { AUTH_URL_LOGIN } from "@/auth/routes";
 
 test.describe("Login from the home page", () => {
   test("login failed", async ({ page }) => {
@@ -16,5 +18,14 @@ test.describe("Login from the home page", () => {
       password: "xxxxxx",
     });
     await loginPage.isMessageVisible({ message: "Email does not exist." });
+
+    const user = await factoryUser();
+
+    await page.goto(AUTH_URL_LOGIN);
+    await loginPage.fillDataAndSubmit({
+      email: user.email,
+      password: "xxxxxx",
+    });
+    await loginPage.isMessageVisible({ message: "Invalid credentials." });
   });
 });

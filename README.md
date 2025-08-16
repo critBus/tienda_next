@@ -6,6 +6,7 @@
 pnpm exec playwright test
 pnpm exec playwright test --project="chromium"
 npx playwright test --ui
+
 ```
 
 ## Estructura
@@ -122,8 +123,6 @@ proyecto-nextjs/
 - Pages: `{pagina}.page.ts`
 - Components: `{componente}.component.ts`
 - Helpers: `{proposito}-helper.ts`
-
-
 
 # **Estructura Utiles**
 
