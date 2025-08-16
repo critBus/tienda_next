@@ -10,6 +10,7 @@ import prisma from "@/prisma/config";
 import { SentEmailLog, VerificationTokenEmail } from "@prisma/client";
 import { DOMAIN_URL } from "@/config";
 import LoginPage from "../../pages/home/login.page";
+import { DEFAULT_LOCALE } from "../../config/test-data/urls.config";
 
 test.describe("home page", () => {
   test("Create Account", async ({ page }) => {
@@ -19,9 +20,7 @@ test.describe("home page", () => {
     await expect(homePage.buttonCreateAccount).toBeVisible();
     await homePage.buttonCreateAccount.click();
 
-    const currentLang = "en";
-    // console.log(page.url());
-    await expect(page).toHaveURL(`${currentLang}/auth/register`);
+    await expect(page).toHaveURL(`${DEFAULT_LOCALE}/auth/register`);
 
     const registerPage = new RegisterPage(page);
     await expect(registerPage.inputEmail).toBeVisible();
@@ -87,7 +86,7 @@ test.describe("home page", () => {
       password,
     });
 
-    await expect(page).toHaveURL(`${currentLang}/shop`);
+    await expect(page).toHaveURL(`${DEFAULT_LOCALE}/shop`);
     await expect(homePage.buttonLogin).not.toBeVisible();
     await expect(homePage.buttonCreateAccount).not.toBeVisible();
     await expect(homePage.buttonLogout).not.toBeVisible();

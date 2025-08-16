@@ -76,7 +76,12 @@ proyecto-nextjs/
 │   │   │   └── mock-server.ts
 │   │   ├── test-data/
 │   │   │   ├── data-generator.ts
-│   │   │   └── faker-helper.ts
+│   │   │   ├── faker-helper.ts
+│   │   │   └── factories/             # << Nueva carpeta para factories
+│   │   │       ├── user.factory.ts
+│   │   │       ├── product.factory.ts
+│   │   │       ├── order.factory.ts
+│   │   │       └── ...factory.ts
 │   │   └── common/
 │   │       ├── date-helper.ts
 │   │       ├── string-helper.ts
@@ -118,32 +123,7 @@ proyecto-nextjs/
 - Components: `{componente}.component.ts`
 - Helpers: `{proposito}-helper.ts`
 
-## urls.config.ts
 
-Centralizar las direcciones de las rutas en los tests 
-
-```typescript
-// tests/config/urls.config.ts
-export const ROUTES = {
-  AUTH: {
-    LOGIN: "/auth/login",
-    REGISTER: "/auth/register",
-  },
-  DASHBOARD: "/dashboard",
-  PRODUCTS: {
-    LIST: "/products",
-    DETAIL: (id: string) => `/products/${id}`,
-  },
-} as const;
-
-// En tus tests
-import { ROUTES } from "../../config/urls.config";
-
-test("login test", async ({ page }) => {
-  await page.goto(ROUTES.AUTH.LOGIN);
-  // Playwright usa baseURL + "/auth/login" automáticamente
-});
-```
 
 # **Estructura Utiles**
 
