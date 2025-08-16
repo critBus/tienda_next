@@ -4,13 +4,13 @@ import { signIn } from "@/auth/auth";
 import { VerificationCodeSchema } from "@/schemas/auth";
 import { AuthError } from "next-auth";
 import * as z from "zod";
-import { DEFAULT_LOGIN_REDIRECT } from "@/auth/routes";
+
 import { Auth2faCodeEmailError } from "@/lib/server/errors/2faEmailError";
 import { getTranslations } from "next-intl/server";
 
 export const login2faEmailCode = async (
-  values: z.infer<typeof VerificationCodeSchema>,
-  callbackUrl?: string
+  values: z.infer<typeof VerificationCodeSchema>
+  // callbackUrl?: string
 ) => {
   const t = await getTranslations("AuthServerActions");
   const validatedFields = VerificationCodeSchema.safeParse(values);
@@ -24,7 +24,8 @@ export const login2faEmailCode = async (
     // Simplemente llamamos a signIn. La lógica compleja ya está en el provider.
     await signIn("2fa", {
       code,
-      redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+      //redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+      redirect: false,
     });
 
     // Si signIn no lanza un error, la redirección ocurrirá automáticamente.

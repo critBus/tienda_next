@@ -6,7 +6,6 @@
 pnpm exec playwright test
 pnpm exec playwright test --project="chromium"
 npx playwright test --ui
-
 ```
 
 ## Estructura

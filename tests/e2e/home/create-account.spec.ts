@@ -102,12 +102,13 @@ test.describe("home page", () => {
       email,
       password,
     });
-
-    await expect(page).toHaveURL(`${DEFAULT_LOCALE}/shop`);
-    await expect(homePage.buttonLogin).not.toBeVisible();
-    await expect(homePage.buttonCreateAccount).not.toBeVisible();
-    await expect(homePage.buttonLogout).not.toBeVisible();
-    await expect(homePage.buttonAccount).toBeVisible();
+    await homePage.isOnPage();
+    await homePage.areLoggedin();
+    // await expect(page).toHaveURL(`${DEFAULT_LOCALE}/shop`);
+    // await expect(homePage.buttonLogin).not.toBeVisible();
+    // await expect(homePage.buttonCreateAccount).not.toBeVisible();
+    // await expect(homePage.buttonLogout).not.toBeVisible();
+    // await expect(homePage.buttonAccount).toBeVisible();
     await homePage.buttonAccount.click();
     await expect(homePage.buttonLogout).toBeVisible();
     await homePage.buttonLogout.click();

@@ -1,6 +1,7 @@
 import { type Locator, type Page } from "@playwright/test";
 import { expect } from "@playwright/test";
 import messages from "../../../locales/en.json";
+import { DEFAULT_LOCALE } from "../../config/test-data/urls.config";
 export default class HomePage {
   readonly page: Page;
   readonly recommendedProductsSection: Locator;
@@ -22,6 +23,22 @@ export default class HomePage {
     this.buttonAccount = page.locator("#id-account-open-menu");
     this.buttonLogout = page.locator("#id-button-logout");
   }
+
+  async isOnPage(args: { locale?: boolean } = {}) {
+    if (args?.locale === false) {
+      await expect(this.page).toHaveURL(`/shop`);
+    } else {
+      await expect(this.page).toHaveURL(`${DEFAULT_LOCALE}/shop`);
+    }
+  }
+  async areLoggedin() {
+    await expect(this.buttonAccount).toBeVisible();
+
+    await expect(this.buttonLogin).not.toBeVisible();
+    await expect(this.buttonCreateAccount).not.toBeVisible();
+    await expect(this.buttonLogout).not.toBeVisible();
+  }
+
   async haveTheProductsInRecommended({
     productsName,
   }: {

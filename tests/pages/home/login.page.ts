@@ -1,4 +1,6 @@
+import { AUTH_URL_LOGIN } from "@/auth/routes";
 import { type Locator, type Page, expect } from "@playwright/test";
+import { DEFAULT_LOCALE } from "../../config/test-data/urls.config";
 export default class LoginPage {
   readonly page: Page;
   readonly spamTitle: Locator;
@@ -15,7 +17,12 @@ export default class LoginPage {
     this.inputPassword = page.locator("#id-input-password"); // this.page.getByRole("textbox", { name: "Password" }); //
     this.buttonLogin = page.locator("#id-button-submit");
   }
-
+  async goToPage() {
+    await this.page.goto(AUTH_URL_LOGIN);
+  }
+  async isOnPage() {
+    await expect(this.page).toHaveURL(`${DEFAULT_LOCALE}${AUTH_URL_LOGIN}`);
+  }
   async areFieldsPresent() {
     await expect(this.inputEmail).toBeVisible();
     await expect(this.inputPassword).toBeVisible();

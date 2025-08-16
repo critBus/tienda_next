@@ -4,7 +4,7 @@ import {
   TypeSchemaVerificationCode,
   VerificationCodeSchema,
 } from "@/schemas/auth";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -16,14 +16,15 @@ import { login2faEmailCode } from "@/actions/auth/login2faEmailCode";
 import { AUTH_URL_LOGIN, REDIRECT_LOGIN_SUCCESSFUL } from "@/auth/routes";
 import { resend2faEmailCode } from "@/actions/auth/resend2faEmailCode";
 import SuccessAlert from "@/components/ui/SuccessAlert";
+import { useSession } from "next-auth/react";
 type OTPState = [string, string, string, string, string, string];
 
 const TwoFactorEmailForm = () => {
   const t = useTranslations("Auth.2faEmailCode");
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl");
+  // const searchParams = useSearchParams();
+  // const callbackUrl = searchParams.get("callbackUrl");
 
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
@@ -31,6 +32,7 @@ const TwoFactorEmailForm = () => {
   const [otp, setOtp] = useState<OTPState>(["", "", "", "", "", ""]); // Array with 6 empty strings
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]); // Array of refs for each input field
   const [code, setCode] = useState(otp.join(""));
+  const { update } = useSession();
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
@@ -128,32 +130,35 @@ const TwoFactorEmailForm = () => {
     setSuccess("");
     setError("");
     console.log(values);
-    startTransition(() => {
-      login2faEmailCode(values, callbackUrl || undefined)
-        .then((data) => {
-          if (data?.error) {
-            reset();
-            if (data.redirectToMessage) {
-              const errorMessage = data.error;
-              const encodedMessage = encodeURIComponent(errorMessage);
-              const redirectUrl = `${AUTH_URL_LOGIN}?error=${encodedMessage}`;
-              router.push(redirectUrl);
-              return;
-            }
-            setError(data.error);
-          }
-          if (data?.success) {
-            reset();
-            //setSuccess(data.success);
-            router.push(REDIRECT_LOGIN_SUCCESSFUL);
-            // TODO agregar notificacion
+    startTransition(async () => {
+      try {
+        const data = await login2faEmailCode(values); //, callbackUrl || undefined
+
+        if (data?.error) {
+          reset();
+          if (data.redirectToMessage) {
+            const errorMessage = data.error;
+            const encodedMessage = encodeURIComponent(errorMessage);
+            const redirectUrl = `${AUTH_URL_LOGIN}?error=${encodedMessage}`;
+            router.push(redirectUrl);
             return;
           }
-        })
-        .catch((error) => {
-          console.log(error);
-          setError("something went wrong");
-        });
+          setError(data.error);
+        }
+        if (data?.success) {
+          reset();
+          //setSuccess(data.success);
+          await update();
+          router.push(REDIRECT_LOGIN_SUCCESSFUL);
+
+          // TODO agregar notificacion
+          return;
+        }
+      } catch (error) {
+        console.log("error");
+        console.log(error);
+        setError("something went wrong");
+      }
     });
   };
 

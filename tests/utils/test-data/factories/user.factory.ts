@@ -3,9 +3,16 @@ import prisma from "@/prisma/config";
 
 import { faker } from "@faker-js/faker";
 
-export async function factoryUser(overrides: { password?: string } = {}) {
+export async function factoryUser(
+  overrides: {
+    password?: string;
+    email?: string;
+    emailVerified?: Date;
+    isTwoFactorEnabled?: boolean;
+  } = {}
+) {
   const data = {
-    email: faker.internet.email(),
+    email: overrides.email ? overrides.email : faker.internet.email(),
     name: faker.person.fullName(),
     ...overrides,
   };
