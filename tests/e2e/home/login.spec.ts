@@ -28,4 +28,15 @@ test.describe("Login from the home page", () => {
     });
     await loginPage.isMessageVisible({ message: "Invalid credentials." });
   });
+  test("login Validate Email", async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    await page.goto(AUTH_URL_LOGIN);
+    const user = await factoryUser({ password: "testpass" });
+    await loginPage.fillDataAndSubmit({
+      email: user.email,
+      password: "testpass",
+    });
+    await loginPage.isMessageVisible({ message: "Confirmation email sent!" });
+  });
 });

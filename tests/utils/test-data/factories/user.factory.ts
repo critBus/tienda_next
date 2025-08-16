@@ -1,13 +1,23 @@
+import { createHashedPassword } from "@/lib/server/auth/createHashedPassword";
 import prisma from "@/prisma/config";
 
 import { faker } from "@faker-js/faker";
 
-export async function factoryUser(overrides = {}) {
+export async function factoryUser(overrides: { password?: string } = {}) {
   const data = {
     email: faker.internet.email(),
-    password: faker.internet.password(),
     name: faker.person.fullName(),
     ...overrides,
   };
-  return prisma.user.create({ data });
+  const hashedPassword = await createHashedPassword({
+    password: overrides.password
+      ? overrides.password
+      : faker.internet.password(),
+  });
+  return prisma.user.create({
+    data: {
+      ...data,
+      password: hashedPassword,
+    },
+  });
 }
