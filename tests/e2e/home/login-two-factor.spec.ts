@@ -7,6 +7,7 @@ import { factoryUser } from "../../utils/test-data/factories/user.factory";
 
 import LoginTwoFactor from "../../pages/home/login-two-factor.page";
 import PrismaRepository from "@/prisma/PrismaRepository";
+import MessagePage from "../../pages/home/message.page";
 
 test.describe("2fa Login", () => {
   test("2fa Login successful", async ({ page }) => {
@@ -114,24 +115,11 @@ test.describe("2fa Login", () => {
         "You have reached the maximum number of resends. Please try to log in again later.",
     });
 
-    // await twoFactorPage.sendCode({ code: "123456" });
-    // await twoFactorPage.isMessageVisible({
-    //   message: "Invalid code.",
+    // const messagePage = new MessagePage(page);
+    // await messagePage.isMessageVisible({
+    //   message:
+    //     "You have reached the maximum number of resends. Please try to log in again later.",
     // });
-
-    // await twoFactorPage.sendCode({ code: "123456" });
-    // await twoFactorPage.isMessageVisible({
-    //   message: "Invalid code.",
-    // });
-
-    // await twoFactorPage.sendCode({ code: "123456" });
-    // await twoFactorPage.isMessageVisible({
-    //   message: "Invalid code.",
-    // });
-
-    // await twoFactorPage.sendCode({ code: "123456" });
-    // await twoFactorPage.isMessageVisible({
-    //   message: "Invalid code.",
-    // });
+    // await messagePage.isOnPage();
   });
 });

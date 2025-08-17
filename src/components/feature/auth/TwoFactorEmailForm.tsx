@@ -132,11 +132,23 @@ const TwoFactorEmailForm = () => {
     console.log(values);
     startTransition(async () => {
       try {
-        const data = await login2faEmailCode(values); //, callbackUrl || undefined
+        console.log("Los datos de opt");
+        console.log(otp);
+        let codepartial = "";
+        for (let i = 0; i < inputRefs.current.length; i++) {
+          const element = inputRefs.current[i];
+          codepartial += element?.value;
+        }
+        // inputRefs.current.forEach((element) => {
+        //   codepartial += element?.value;
+        // });
+        const data = await login2faEmailCode({
+          code: codepartial, //otp.join(""),
+        }); //, callbackUrl || undefined
 
         if (data?.error) {
-          reset();
-          setOtp(["", "", "", "", "", ""]); // <-- Limpia otp tras reset
+          // reset();
+          // setOtp(["", "", "", "", "", ""]); // <-- Limpia otp tras reset
           if (data.redirectToMessage) {
             const errorMessage = data.error;
             const encodedMessage = encodeURIComponent(errorMessage);
@@ -144,11 +156,12 @@ const TwoFactorEmailForm = () => {
             router.push(redirectUrl);
             return;
           }
+
           setError(data.error);
         }
         if (data?.success) {
-          reset();
-          setOtp(["", "", "", "", "", ""]); // <-- Limpia otp tras reset exitoso
+          // reset();
+          // setOtp(["", "", "", "", "", ""]); // <-- Limpia otp tras reset exitoso
           //setSuccess(data.success);
           await update();
           router.push(REDIRECT_LOGIN_SUCCESSFUL);
@@ -171,7 +184,7 @@ const TwoFactorEmailForm = () => {
       const data = await resend2faEmailCode();
       if (data.error) {
         reset();
-        setOtp(["", "", "", "", "", ""]); // <-- Limpia otp tras reset
+        // setOtp(["", "", "", "", "", ""]); // <-- Limpia otp tras reset
         if (data.redirectToMessage) {
           const errorMessage = data.error;
           const encodedMessage = encodeURIComponent(errorMessage);
