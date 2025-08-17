@@ -22,7 +22,7 @@ export const custom2FAEmailCodeProvider = Credentials({
   async authorize(credentials) {
     const t = await getTranslations("AuthServerActions");
     if (!credentials?.code) {
-      throw new Auth2faCodeEmailError(t("invalidCode")); //(t("invalidCode"));
+      throw new Auth2faCodeEmailError(t("invalidCode"));
     }
 
     // 1. Obtener el email de confianza desde la cookie firmada

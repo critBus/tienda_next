@@ -124,7 +124,7 @@ const TwoFactorEmailForm = () => {
     console.log(`match ${match}`);
     setIsValidCode(match);
     setCode(newCode);
-  }, [otp]);
+  }, [otp, setValue]); // <-- Asegura que el efecto se ejecute correctamente
 
   const handlerSubmit = (values: TypeSchemaVerificationCode) => {
     setSuccess("");
@@ -136,6 +136,7 @@ const TwoFactorEmailForm = () => {
 
         if (data?.error) {
           reset();
+          setOtp(["", "", "", "", "", ""]); // <-- Limpia otp tras reset
           if (data.redirectToMessage) {
             const errorMessage = data.error;
             const encodedMessage = encodeURIComponent(errorMessage);
@@ -147,6 +148,7 @@ const TwoFactorEmailForm = () => {
         }
         if (data?.success) {
           reset();
+          setOtp(["", "", "", "", "", ""]); // <-- Limpia otp tras reset exitoso
           //setSuccess(data.success);
           await update();
           router.push(REDIRECT_LOGIN_SUCCESSFUL);
@@ -169,6 +171,7 @@ const TwoFactorEmailForm = () => {
       const data = await resend2faEmailCode();
       if (data.error) {
         reset();
+        setOtp(["", "", "", "", "", ""]); // <-- Limpia otp tras reset
         if (data.redirectToMessage) {
           const errorMessage = data.error;
           const encodedMessage = encodeURIComponent(errorMessage);
