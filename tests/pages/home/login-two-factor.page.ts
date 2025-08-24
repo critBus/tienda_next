@@ -1,12 +1,13 @@
 import { Page, Locator } from "@playwright/test";
 import { expect } from "@playwright/test";
 import { DEFAULT_LOCALE } from "../../config/test-data/urls.config";
-import { AUTH_URL_LOGIN_2FA } from "@/auth/routes";
+import { AUTH_URL_LOGIN, AUTH_URL_LOGIN_2FA } from "@/auth/routes";
 
 export default class LoginTwoFactor {
   readonly page: Page;
   readonly buttonSubmit: Locator;
   readonly buttonResendCode: Locator;
+  readonly buttonBack: Locator;
   readonly inputDigit0: Locator;
   readonly inputDigit1: Locator;
   readonly inputDigit2: Locator;
@@ -23,6 +24,7 @@ export default class LoginTwoFactor {
     this.inputDigit4 = page.locator("#id-digit-4");
     this.inputDigit5 = page.locator("#id-digit-5");
     this.buttonResendCode = page.getByRole("button", { name: "Resend Code" });
+    this.buttonBack = page.getByRole("button", { name: "Back to the Login" });
   }
 
   async areFieldsPresent() {
@@ -36,6 +38,7 @@ export default class LoginTwoFactor {
 
     await expect(this.buttonSubmit).toBeVisible();
     await expect(this.buttonResendCode).toBeVisible();
+    await expect(this.buttonBack).toBeVisible();
   }
 
   async sendCode({ code }: { code: string }) {
@@ -61,5 +64,11 @@ export default class LoginTwoFactor {
   }
   async isOnPage() {
     await expect(this.page).toHaveURL(`${DEFAULT_LOCALE}${AUTH_URL_LOGIN_2FA}`);
+  }
+  async backToLogin() {
+    await expect(this.buttonBack).toBeVisible();
+    await expect(this.buttonBack).toBeEnabled();
+    await this.buttonBack.click();
+    await expect(this.page).toHaveURL(`${DEFAULT_LOCALE}${AUTH_URL_LOGIN}`);
   }
 }

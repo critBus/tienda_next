@@ -7,7 +7,6 @@ import { factoryUser } from "../../utils/test-data/factories/user.factory";
 
 import LoginTwoFactor from "../../pages/home/login-two-factor.page";
 import PrismaRepository from "@/prisma/PrismaRepository";
-import MessagePage from "../../pages/home/message.page";
 
 test.describe("2fa Login", () => {
   test("2fa Login successful", async ({ page }) => {
@@ -157,5 +156,25 @@ test.describe("2fa Login", () => {
     await homePage.isOnPage(); //{ locale: false }
     // await page.waitForTimeout(5000);
     await homePage.areLoggedin();
+  });
+
+  test("2fa to login page", async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    await loginPage.goToPage();
+    const user = await factoryUser({
+      password: "testpass",
+      emailVerified: new Date(),
+      isTwoFactorEnabled: true,
+    });
+    await loginPage.fillDataAndSubmit({
+      email: user.email,
+      password: "testpass",
+    });
+
+    const twoFactorPage = new LoginTwoFactor(page);
+    await twoFactorPage.isOnPage();
+    await twoFactorPage.areFieldsPresent();
+    await twoFactorPage.backToLogin();
   });
 });
