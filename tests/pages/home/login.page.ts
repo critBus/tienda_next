@@ -8,6 +8,7 @@ export default class LoginPage {
   readonly inputEmail: Locator;
   readonly inputPassword: Locator;
   readonly buttonLogin: Locator;
+  readonly buttonForgotPassword: Locator;
   constructor(page: Page) {
     this.page = page;
     this.spamTitle = this.page.getByText("Sign up with");
@@ -16,6 +17,9 @@ export default class LoginPage {
 
     this.inputPassword = page.locator("#id-input-password"); // this.page.getByRole("textbox", { name: "Password" }); //
     this.buttonLogin = page.locator("#id-button-submit");
+    this.buttonForgotPassword = page.getByRole("link", {
+      name: "Forgot password?",
+    });
   }
   async goToPage() {
     await this.page.goto(AUTH_URL_LOGIN);
@@ -36,6 +40,7 @@ export default class LoginPage {
     await expect(this.inputEmail).toBeVisible();
     await expect(this.inputPassword).toBeVisible();
     await expect(this.buttonLogin).toBeVisible();
+    await expect(this.buttonForgotPassword).toBeVisible();
   }
   async fillDataAndSubmit({
     email,

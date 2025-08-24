@@ -1,7 +1,7 @@
 import { Page, type Locator } from "@playwright/test";
 import { expect } from "@playwright/test";
 import { DEFAULT_LOCALE } from "../../config/test-data/urls.config";
-import { AUTH_URL_LOGIN_MESSAGE } from "@/auth/routes";
+import { AUTH_URL_LOGIN, AUTH_URL_LOGIN_MESSAGE } from "@/auth/routes";
 export default class MessagePage {
   readonly page: Page;
 
@@ -15,16 +15,27 @@ export default class MessagePage {
     const locationMessage = this.page.getByText(message);
     await expect(locationMessage).toBeVisible();
   }
-  async isOnPage() {
-    await expect(this.page).toHaveURL(
-      `${DEFAULT_LOCALE}${AUTH_URL_LOGIN_MESSAGE}`
-    );
+
+  async isOnPage(ignoreQueryParams: boolean = false) {
+    const url = this.page.url();
+
+    if (ignoreQueryParams) {
+      // Solo comparamos el pathname sin los query params
+      const { pathname } = new URL(url);
+      await expect(pathname).toBe(
+        `/${DEFAULT_LOCALE}${AUTH_URL_LOGIN_MESSAGE}`
+      );
+    } else {
+      // Compara la URL completa exacta
+      await expect(this.page).toHaveURL(
+        `${DEFAULT_LOCALE}${AUTH_URL_LOGIN_MESSAGE}`
+      );
+    }
   }
   async backToLogin() {
     await expect(this.buttonBack).toBeVisible();
     await expect(this.buttonBack).toBeEnabled();
     await this.buttonBack.click();
-    const currentLang = "en";
-    await expect(this.page).toHaveURL(`${currentLang}/auth/login`);
+    await expect(this.page).toHaveURL(`${DEFAULT_LOCALE}${AUTH_URL_LOGIN}`);
   }
 }
