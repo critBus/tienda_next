@@ -110,10 +110,12 @@ test.describe("2fa Login", () => {
     });
 
     await twoFactorPage.sendCode({ code: "123456" });
-    await twoFactorPage.isMessageVisible({
+
+    await loginPage.isMessageVisible({
       message:
         "You have reached the maximum number of resends. Please try to log in again later.",
     });
+    await loginPage.isOnPage(true);
 
     // const messagePage = new MessagePage(page);
     // await messagePage.isMessageVisible({

@@ -20,8 +20,17 @@ export default class LoginPage {
   async goToPage() {
     await this.page.goto(AUTH_URL_LOGIN);
   }
-  async isOnPage() {
-    await expect(this.page).toHaveURL(`${DEFAULT_LOCALE}${AUTH_URL_LOGIN}`);
+  async isOnPage(ignoreQueryParams: boolean = false) {
+    const url = this.page.url();
+
+    if (ignoreQueryParams) {
+      // Solo comparamos el pathname sin los query params
+      const { pathname } = new URL(url);
+      await expect(pathname).toBe(`/${DEFAULT_LOCALE}${AUTH_URL_LOGIN}`);
+    } else {
+      // Compara la URL completa exacta
+      await expect(this.page).toHaveURL(`${DEFAULT_LOCALE}${AUTH_URL_LOGIN}`);
+    }
   }
   async areFieldsPresent() {
     await expect(this.inputEmail).toBeVisible();

@@ -55,7 +55,9 @@ export const custom2FAEmailCodeProvider = Credentials({
       await prisma.twoFactorTokenEmail.delete({
         where: { id: twoFactorToken.id },
       });
-      throw new Auth2faCodeEmailError(t("maxResendsExceeded"));
+      throw new Auth2faCodeEmailError(t("maxResendsExceeded"), {
+        redirectToMessage: true,
+      });
     }
 
     // 4. Comprobar si el token ha expirado por tiempo
