@@ -116,12 +116,46 @@ test.describe("2fa Login", () => {
         "You have reached the maximum number of resends. Please try to log in again later.",
     });
     await loginPage.isOnPage(true);
+  });
 
-    // const messagePage = new MessagePage(page);
-    // await messagePage.isMessageVisible({
-    //   message:
-    //     "You have reached the maximum number of resends. Please try to log in again later.",
-    // });
-    // await messagePage.isOnPage();
+  test("2fa Login failed and resend", async ({ page }) => {
+    const loginPage = new LoginPage(page);
+
+    await loginPage.goToPage();
+    const user = await factoryUser({
+      password: "testpass",
+      emailVerified: new Date(),
+      isTwoFactorEnabled: true,
+    });
+    await loginPage.fillDataAndSubmit({
+      email: user.email,
+      password: "testpass",
+    });
+
+    const twoFactorPage = new LoginTwoFactor(page);
+    await twoFactorPage.isOnPage();
+
+    await twoFactorPage.sendCode({ code: "123456" });
+    await twoFactorPage.isMessageVisible({
+      message: "You have 1 attempt remaining.",
+    });
+
+    await twoFactorPage.resendCode();
+
+    const twoFactorToken = await PrismaRepository.twoFactorTokenEmail.byEmail(
+      user.email
+    );
+    expect(twoFactorToken).not.toBeNull();
+
+    if (!twoFactorToken) {
+      return;
+    }
+
+    await twoFactorPage.sendCode({ code: twoFactorToken.token });
+
+    const homePage = new HomePage(page);
+    await homePage.isOnPage(); //{ locale: false }
+    // await page.waitForTimeout(5000);
+    await homePage.areLoggedin();
   });
 });

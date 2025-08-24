@@ -6,6 +6,7 @@ import { AUTH_URL_LOGIN_2FA } from "@/auth/routes";
 export default class LoginTwoFactor {
   readonly page: Page;
   readonly buttonSubmit: Locator;
+  readonly buttonResendCode: Locator;
   readonly inputDigit0: Locator;
   readonly inputDigit1: Locator;
   readonly inputDigit2: Locator;
@@ -21,6 +22,7 @@ export default class LoginTwoFactor {
     this.inputDigit3 = page.locator("#id-digit-3");
     this.inputDigit4 = page.locator("#id-digit-4");
     this.inputDigit5 = page.locator("#id-digit-5");
+    this.buttonResendCode = page.getByRole("button", { name: "Resend Code" });
   }
 
   async areFieldsPresent() {
@@ -33,6 +35,7 @@ export default class LoginTwoFactor {
     await expect(this.inputDigit5).toBeVisible();
 
     await expect(this.buttonSubmit).toBeVisible();
+    await expect(this.buttonResendCode).toBeVisible();
   }
 
   async sendCode({ code }: { code: string }) {
@@ -46,6 +49,11 @@ export default class LoginTwoFactor {
     await this.buttonSubmit.click();
     // await this.page.waitForTimeout(5000);
     // expect(this.page.url()).toBe(`${process.env.EXPECTED_URL + ""}success`);
+  }
+  async resendCode() {
+    await expect(this.buttonResendCode).toBeVisible();
+    await this.buttonResendCode.click();
+    await this.isMessageVisible({ message: "The code was sent" });
   }
   async isMessageVisible({ message }: { message: string }) {
     const locationMessage = this.page.getByText(message);
