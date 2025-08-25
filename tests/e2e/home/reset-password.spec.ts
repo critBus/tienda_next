@@ -190,4 +190,16 @@ test.describe("Tests reset password page", () => {
     await homePage.isOnPage();
     await homePage.areLoggedin();
   });
+  test("Incorrect email when trying to reset password", async ({ page }) => {
+    await page.goto(AUTH_URL_LOGIN);
+
+    const loginPage = new LoginPage(page);
+    await loginPage.areFieldsPresent();
+    await loginPage.buttonForgotPassword.click();
+
+    const forgotPasswordPage = new ForgotPasswordPage(page);
+    await forgotPasswordPage.isOnPage();
+    await forgotPasswordPage.fillAndSubmit({ email: "fake99999@email.com" });
+    await forgotPasswordPage.isMessageVisible({ message: "Email not found" });
+  });
 });
