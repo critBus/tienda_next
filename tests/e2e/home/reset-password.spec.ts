@@ -202,4 +202,17 @@ test.describe("Tests reset password page", () => {
     await forgotPasswordPage.fillAndSubmit({ email: "fake99999@email.com" });
     await forgotPasswordPage.isMessageVisible({ message: "Email not found" });
   });
+  test("Return to login after entering the email form to reset password.", async ({
+    page,
+  }) => {
+    await page.goto(AUTH_URL_LOGIN);
+
+    const loginPage = new LoginPage(page);
+    await loginPage.areFieldsPresent();
+    await loginPage.buttonForgotPassword.click();
+
+    const forgotPasswordPage = new ForgotPasswordPage(page);
+    await forgotPasswordPage.isOnPage();
+    await forgotPasswordPage.backToLogin();
+  });
 });
