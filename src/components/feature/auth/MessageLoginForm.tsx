@@ -1,15 +1,18 @@
-"use client";
 import { Link } from "@/i18n/navigation";
 
-import { useSearchParams } from "next/navigation";
 import React from "react";
 import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import SuccessAlert from "@/components/ui/SuccessAlert";
 
-const MessageLoginForm = () => {
+const MessageLoginForm = ({
+  error,
+  success,
+}: {
+  error?: string | undefined;
+  success?: string | undefined;
+}) => {
   const t = useTranslations("Auth.2faEmailCode");
-  const searchParams = useSearchParams();
 
   return (
     <div className="w-full lg:w-4/12 px-4">
@@ -19,17 +22,13 @@ const MessageLoginForm = () => {
       rounded-lg bg-blueGray-200 border-0"
       >
         <div className="flex-auto  lg:px-10 pb-3 pt-3">
-          {searchParams.get("error") && (
-            <ErrorAlert
-              title="Error"
-              errors={[searchParams.get("error") ?? ""]}
-              className="my-2"
-            />
+          {error && (
+            <ErrorAlert title="Error" errors={[error ?? ""]} className="my-2" />
           )}
-          {searchParams.get("success") && (
+          {success && (
             <SuccessAlert
               title="Exito"
-              messages={[searchParams.get("success") ?? ""]}
+              messages={[success ?? ""]}
               className="my-2"
             />
           )}

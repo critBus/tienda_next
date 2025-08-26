@@ -141,7 +141,8 @@
       "invalidLink": "The password change link is invalid or has expired.",
       "SomethingWentWrong": "Something went wrong",
       "ChangePassword": "Change Password",
-      "BackToTheLogin": "Back to the Login"
+      "BackToTheLogin": "Back to the Login",
+      "TokenIsRequired": "The token is required"
     },
     "SendEmailResetPassword": {
       "SendEmail": "Send the email",

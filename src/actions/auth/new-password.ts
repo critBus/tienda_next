@@ -6,6 +6,22 @@ import prisma from "@/prisma/config";
 import { NewPasswordSchema } from "@/schemas/auth";
 import PrismaRepository from "@/prisma/PrismaRepository";
 import { getTranslations } from "next-intl/server";
+export const validateToken = async (token?: string | null) => {
+  const t = await getTranslations("AuthServerActions");
+  if (!token) {
+    return { error: t("missingToken") };
+  }
+  const existingToken =
+    await PrismaRepository.passwordResetToken.byToken(token);
+  if (!existingToken) {
+    return { error: t("invalidToken") };
+  }
+  const hasExpired = new Date(existingToken.expires) < new Date();
+  if (hasExpired) {
+    return { error: t("tokenHasExpired") };
+  }
+  return { success: true };
+};
 export const newPassword = async (
   values: z.infer<typeof NewPasswordSchema>,
   token?: string | null

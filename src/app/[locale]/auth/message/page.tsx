@@ -1,8 +1,8 @@
 import React from "react";
-import MessageLoginForm from "./_components/MessageLoginForm";
+import MessageClientLoginForm from "./_components/MessageClientLoginForm";
 
 const Page = () => {
-  return <MessageLoginForm />;
+  return <MessageClientLoginForm />;
 };
 
 export default Page;

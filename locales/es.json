@@ -131,7 +131,8 @@
       "invalidLink": "El enlace para cambiar la contraseña es inválido o ha expirado.",
       "SomethingWentWrong": "Algo salio Mal",
       "ChangePassword": "Cambiar Contraseña",
-      "BackToTheLogin": "Volver al Loguin"
+      "BackToTheLogin": "Volver al Loguin",
+      "TokenIsRequired": "El token es necesario "
     },
     "SendEmailResetPassword": {
       "SendEmail": "Enviar el Correo",

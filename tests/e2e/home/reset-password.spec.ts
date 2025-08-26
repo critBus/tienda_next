@@ -215,4 +215,19 @@ test.describe("Tests reset password page", () => {
     await forgotPasswordPage.isOnPage();
     await forgotPasswordPage.backToLogin();
   });
+  test("Incorrect token in the change password form", async ({ page }) => {
+    let confirmLink = `${DOMAIN_URL}${AUTH_URL_NEW_PASSWORD}`;
+    await page.goto(confirmLink);
+
+    const resetPasswordPage = new ResetPasswordPage(page);
+    await resetPasswordPage.isMessageVisible({
+      message: "The token is required",
+    });
+
+    confirmLink = `${DOMAIN_URL}${AUTH_URL_NEW_PASSWORD}?token=tokenincorrecto`;
+    await page.goto(confirmLink);
+    await resetPasswordPage.isMessageVisible({
+      message: "Invalid token.",
+    });
+  });
 });

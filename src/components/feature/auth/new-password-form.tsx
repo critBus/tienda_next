@@ -11,8 +11,9 @@ import { useTranslations } from "next-intl";
 import ErrorAlert from "@/components/ui/ErrorAlert";
 import GeneralLoader from "@/components/shared/loaders/GeneralLoader";
 import { AUTH_URL_LOGIN_MESSAGE, AUTH_URL_LOGIN } from "@/auth/routes";
-import { newPassword } from "@/actions/auth/new-password";
+import { newPassword, validateToken } from "@/actions/auth/new-password";
 import { resendResetPassword } from "@/actions/auth/reset-password";
+import MessageLoginForm from "./MessageLoginForm";
 
 type TypeSchemaForm = z.infer<typeof NewPasswordSchema>;
 const NewPasswordForm = () => {
@@ -25,6 +26,7 @@ const NewPasswordForm = () => {
   const [error, setError] = useState<string | undefined>(
     searchParams.get("error") ?? ""
   );
+  const [tokenError, setTokenError] = useState<string | undefined>(undefined);
 
   const {
     reset,
@@ -80,6 +82,23 @@ const NewPasswordForm = () => {
       setError(t("SomethingWentWrong"));
     });
   };
+
+  React.useEffect(() => {
+    if (!token) return;
+    validateToken(token).then((result) => {
+      if (result.error) {
+        setTokenError(result.error);
+      }
+    });
+  }, [token]);
+
+  if (!token) {
+    return <MessageLoginForm error={t("TokenIsRequired")} />;
+  }
+
+  if (tokenError) {
+    return <MessageLoginForm error={tokenError} />;
+  }
 
   if (isPending) {
     return <GeneralLoader />;
